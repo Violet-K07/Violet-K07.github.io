@@ -1,7 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
-html,
-body {
+html,body {
   width: 100%;
   height: 100%;
   padding: 0;
@@ -10,7 +9,7 @@ body {
 ul {
   padding: 0;
   margin: 0;
-  list-style: none;
+  list-style:circle;
 }
 #app {
   height: 100%;
@@ -20,8 +19,8 @@ ul {
 }
 .game-container {
   display: grid;
-  grid-template-columns: repeat(3, 10rem);
-  grid-template-rows: repeat(9, 2.5rem);
+  grid-template-columns: repeat(3, 250px);
+  grid-template-rows: repeat(10, 75px);
   user-select: none;
 }
 .game-container .item {
@@ -35,77 +34,81 @@ ul {
   grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 3;
-  background-color: #C2185B;
-  font-size: 1.6rem;
+  background-color:red;
+  font-size: 50px;
 }
 .game-container .item-2 {
   grid-column-start: 1;
   grid-column-end: 4;
   grid-row-start: 3;
   grid-row-end: 5;
-  background-color: #D32F2F;
+  background-color:coral;
 }
 .game-container .item-3 {
   grid-column-start: 1;
   grid-column-end: 3;
   grid-row-start: 5;
   grid-row-end: 9;
-  background-color: #7B1FA2;
+  background-color:cadetblue;
 }
 .game-container .item-4 {
   grid-column-start: 3;
   grid-column-end: 4;
   grid-row-start: 5;
   grid-row-end: 7;
-  background-color: #512DA8;
+  background-color:darkseagreen;
+  font-size:25px;
 }
 .game-container .item-5 {
   grid-column-start: 3;
   grid-column-end: 4;
   grid-row-start: 7;
   grid-row-end: 9;
-  background-color: #303F9F;
+  background-color:cornflowerblue;
+  font-size:25px;
 }
 .game-container .item-6 {
   grid-column-start: 1;
   grid-column-end: 4;
   grid-row-start: 9;
   grid-row-end: 10;
-  background-color: #1976D2;
+  background-color:mediumpurple;
+
 }
 .game-container .item-7 {
   grid-column-start: 1;
   grid-column-end: 4;
   grid-row-start: 10;
   grid-row-end: 15;
-  background-color:darkseagreen;
+  background-color:indigo;
 }
 .game-container .win {
-  background-color: #0f0 !important;
+  background-color: #0f0;
 }
 .game-container .failure {
-  background-color: #f00 !important;
+  background-color: #f00;
 }
-.game-container #begin,
-.game-container #btnSubmit,
-.game-container #ins {
+.game-container #begin,.game-container #btnSubmit,.game-container #int {
   display: inline-block;
-  height: 3rem;
-  width: 10rem;
+  height: 90px;
+  width: 300px;
   background: none;
   color: #fff;
   border: 1px solid #000;
-  border-radius: 0.2rem;
+  border-radius: 5px;
+  font-size:50px;
+  font-family:"华文彩云";
 }
-.game-container #btnSubmit,
-.game-container #ins {
-  width: 5rem;
-  height: 2rem !important;
+.game-container #btnSubmit,.game-container #int {
+  width: 150px;
+  height: 60px;
+  font-size:25px;
+  font-family:"华文琥珀";
 }
-.game-container #ins {
+.game-container #int {
   display: inline-block;
   background: rgba(0, 0, 0, 0.5);
   color: #fff;
   text-align: center;
-  margin-right: 1rem;
+  margin-right: 10px;
 }
