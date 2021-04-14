@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>营销号生成器</title>
+</head>
+<style>
+.mainltr01{width:400px}
+.wbox div{margin-top:15px}
+.wbox textarea{width:300px;height:100px;resize:both}
+.mainr{margin-left:40px}
+.mainr li{margin-top:15px}
+.ct_cetpbutm{width:auto;height:50px;padding-top:10px;padding-left:50px}
+.ct_cetpbutm ul li{float:left;display:inline}
+.ct_cetpbutm ul li input,.owinput{font-size:14px;color:#fff;cursor:pointer}
+.ct_cetpbutma input,.owinput{background:no-repeat 0 -97px;height:35px;width:81px}
+.ct_cetpbutmb{margin-left:32px}
+.ct_cetpbutmb input{background:no-repeat 0 -134px;height:35px;width:81px}
+li{list-style:none}
+input{padding-left:5px;height:30px;border:solid #dcdcdc 1px}
+</style>
+<body style="background-color: lavender;">
+<center>
+	<h1>营销号生成器</h1><br>
+<div class="main" style="margin-left: 20px">
+   <form action="javascript:void(0);" autocomplete="off">
+         <table width="750" border="0" cellpadding="0" cellspacing="0" style="font-size:15px!important;">
+              <tr>
+                  <td width="400" valign="top" style="border-right:dashed #dcdcdc 1px;">
+                     <div class="mainl">
+                                <div class="mainltr01 cnradio">
+                                    <li style="line-height: 30px; padding-left: 20px; margin-bottom:15px; margin-top:5px;">&nbsp; 主体：<input id="subject" name="subject" type="text" style="width: 90%;"  placeholder="创造营"  required /></li>
+                                    <li style="line-height: 30px; padding-left: 20px; margin-bottom:15px; margin-top:5px;">&nbsp; 事件：<input id="event" name="event" type="text" style="width: 90%;"  placeholder="利老师"  required /></li>
+                                    <li style="line-height: 30px; padding-left: 20px; margin-bottom:15px; margin-top:5px;">&nbsp; 另一种说法：<input id="event2" name="event2" type="text" style="width: 90%;"  placeholder="弗拉季斯拉夫·西德洛夫/卫俊浩"  required /></li>
+                                </div>
+                                <div class="ct_cetpbutm" style="margin-left:35px;">
+                                    <ul>
+                                        <li class="ct_cetpbutma" style="float: left;background-color: #4880ff">
+                                            <input type="submit" onClick="generate()" value="生成" style="border:none;" />
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td width="350" valign="top">
+                           <br>
+							<div class="mainr">
+                                <div class="mainrtr01">
+                                    <textarea id="result" onchange="auto_grow(this)" oninput="auto_grow(this)" placeholder="　　创造营利老师是怎么回事呢？创造营相信大家都很熟悉，但是创造营利老师是怎么回事呢，下面就让小编带大家一起了解吧。
+　　创造营利老师，其实就是弗拉季斯拉夫·西德洛夫/卫俊浩，大家可能会很惊讶创造营怎么会利老师呢？但事实就是这样，小编也感到非常惊讶。
+　　这就是关于创造营利老师的事情了，大家有什么想法呢，欢迎在评论区告诉小编一起讨论哦！" style="height: 190px;width: 387px;"></textarea>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <!--计算 end-->
+	</center>
+	<div class="cha-intro">
+		<div class="title">
+			<h3>工具简介</h3>
+		</div>
+		<div class="content">
+				<p>《营销号生成器》是最近网络上面挺火的一款恶搞神器，也叫《营销号文案生成器》，《营销号文章生成器》《傻瓜文案生成器》，很多小伙伴在玩，大家可以直接输入事件，主体，另一种说法就可以一键生成一大片无厘头的文案！</p>
+				<p><strong class="red">营销号生成器是什么</strong><br />是现在很火的很好玩的休闲益智趣味魔性恶搞的文案生成软件，而且操作起来也是十分的简单，相信很多人都十分感兴趣。想要玩的都可以试试。<br />
+很多人都不知道，其实QQ群聊天里每天都有大量原创内容，我们可以将这些聊天内容进行处理后生产出原创文章来，可谓是取之不尽用之不竭。</p>
+				<p><strong class="red">使用说明：</strong><br />输入主题，事件和解释，点击生成即可</p>
+				<strong class="red">示例文案</strong><br><strong>文案1:</strong><br>
+				你只需在主体输入“桃子核”，事件输入“不能吞下去”，另一种说法“桃核太大了，吞下去容易噎着，然后就可以自动生成“桃子核不能吞下去是怎么回事呢?桃子核相信大家都很熟悉，但是桃子核不能吞下去是怎么回事呢，下面就让小编带大家一起了解吧。<br />
+桃子核不能吞下去，其实就是桃核太大了，吞下去容易噎着，大家可能会很惊讶桃子核怎么会不能吞下去呢?但事实就是这样，小编也感到非常惊讶这就是关于桃子核不能吞下去的事情了，大家有什么想法呢，欢迎在评论区告诉小编起讨论哦!”这样一段没营养的文字。<br /><strong>文案2:</strong><br />电灯泡不能吞下去是怎么回事呢?电灯泡相信大家都很熟悉，但是电灯泡不能吞下去是怎么回事呢，下面就让小编带大家一起了解吧。<br />
+电灯泡不能吞下去，其实就是容易卡住导致窒息，必须去医院取出，大家可能会很惊讶电灯泡怎么会不能吞下去呢?但事实就是这样，小编也感到非常惊讶。<br />
+这就是关于电灯泡不能吞下去的事情了，大家有什么想法呢，欢迎在评论区告诉小编一起讨论哦!
+		</div>
+	</div>
+<script type="text/javascript">
+function auto_grow(element) {
+    element.style.height = "5px";
+    element.style.height = (element.scrollHeight)+"px";
+}
+
+function onload() {
+    auto_grow(document.getElementById("result"));
+}
+
+function generate() {
+    subject = document.getElementById("subject").value;
+    event = document.getElementById("event").value;
+    event2 = document.getElementById("event2").value;
+    if (subject.length==0 || event.length==0 || event2.length==0)
+        return;
+    result = `　　${subject}${event}是怎么回事呢？${subject}相信大家都很熟悉，但是${subject}${event}是怎么回事呢，下面就让小编带大家一起了解吧。\r\n　　${subject}${event}，其实就是${event2}，大家可能会很惊讶${subject}怎么会${event}呢？但事实就是这样，小编也感到非常惊讶。\r\n　　这就是关于${subject}${event}的事情了，大家有什么想法呢，欢迎在评论区告诉小编一起讨论哦！`;
+    document.getElementById("result").value = result;
+    auto_grow(document.getElementById("result"));
+}
+</script>
+</body>
+</html>

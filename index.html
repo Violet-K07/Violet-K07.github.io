@@ -1,26 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
-<meta charset="utf-8">
-<title>My Firsts Web Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一起来猜数字吧~</title>
+    <link rel="stylesheet" href="猜数字.css">
 </head>
-<body style="background-color: lavender;">
-<h1 style="background-color: lightskyblue;">My first website</h1>
- <h2 style="border-style: solid;border-width: 1px;">I hope you like it here.</h2>
-  <h3>I hope you like it here.</h3>
-   <h4>I hope you like it here.</h4>
-    <h5>I hope you like it here.</h5>
-      <h6>I hope you like it here.</h6>
-		<p style="color: red;">this is my paragraph段落</p><br>
-		<p>this is another paragraph</p>
-		<b>Bold text</b><br>
-		<i>Italic text</i><br>
-		<em>Emphsized text</em><br>
-		<sub>Subscript text</sub><br>
-		<sup>Superscript text</sup><br>
-		<img src="http://www.cuc.edu.cn/_upload/site/00/05/5/logo.png" alt="CUC logo">
-	    <a href="http://www.cuc.edu.cn/" target="_blank">This is the link to the CUC.</a><br>
-	<img src="sakura.gif" alt="sakura">
+
+<body bgcolor="lavender">
+    <div id="app">
+        <ul class="game-container">
+            <li class="item item-1">猜一猜我心中的数字~</li>
+            <li class="item item-2">
+                <input type="button" id="begin" value="开始游戏">
+            </li>
+            <li class="item item-3">
+                <input type="text" id="ins" value="0">
+                <input type="button" value="是它吗？" id="btnSubmit">
+            </li>
+            <li class="item item-4">
+                <span id="scoreTip"></span>
+            </li>
+            <li class="item item-5">
+                <span id="friendlyReminder"></span>
+            </li>
+            <li class="item item-6" id="resultContainer">
+                <span id="gameResult"></span>
+            </li>
+			<li class="item item-7" id="gameInstruction">
+				<span><center>游戏规则：点击红色按钮开始游戏，在输入框内输入1~100的数字，猜猜网页心中想的到底是哪一个数字吧~</center></span>
+			</li>
+        </ul>
+    </div>
+    <script src="猜数字.js"></script>
 </body>
-<footer></footer>
+
 </html>
