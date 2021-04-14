@@ -65,7 +65,7 @@ class TakeaGuess {
     equalForNum() {
         this.total--;
         let resNum = 10 - this.total;
-        this.friendlyReminder.innerText = '你答对了';
+        this.friendlyReminder.innerText = '你猜对了';
         this.scoreTip.innerText = `你还有${this.total}次机会`;
         this.winGame();
     }
@@ -75,7 +75,6 @@ class TakeaGuess {
             this.gameOver();
         }
         this.total--;
-        this.friendlyReminder.innerText = '你答错了';
         this.scoreTip.innerText = `你还有${this.total}次机会`;
     }
 
@@ -114,12 +113,6 @@ class TakeaGuess {
     gameEvent() {
         this.btnSubmit.onclick = () => {
             this.judgeUserInp();
-        };
-
-        this.int.onkeydown = (event) => {
-            if (event.keyCode == 13) {
-                this.judgeUserInp();
-            }
         }
     }
 };
