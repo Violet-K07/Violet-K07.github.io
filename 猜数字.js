@@ -85,7 +85,6 @@ class TakeaGuess {
         this.playAgain();
     }
 
-    // 挑战成功，游戏结束
     winGame() {
         let resNum = 10 - this.total;
         this.resultContainer.classList.add('win');
@@ -96,7 +95,7 @@ class TakeaGuess {
 			this.gameResult.innerText = `你是读心高手！\n你用了${resNum}次机会就读懂了我`;
 		}
 		else {
-			this.gameResult.innerText = `你是读心初学者！\n你用了${resNum}次机会读懂了我`;
+			this.gameResult.innerText = `你是读心初学者！\n你用了${resNum}次机会来读懂我`;
 		}
         this.playAgain();
     }
@@ -105,8 +104,10 @@ class TakeaGuess {
         setTimeout(() => {
             let val = confirm('再来一次?');
             if (val) {
-                this.indexOfGame();
-            }
+                this.initGame();
+            }else{
+				this.indexOfGame();
+			}
         }, 1);
     }
 

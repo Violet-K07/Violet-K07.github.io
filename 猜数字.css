@@ -36,6 +36,7 @@ ul {
   grid-row-end: 3;
   background-color:red;
   font-size: 50px;
+  font-family:"华文琥珀";
 }
 .game-container .item-2 {
   grid-column-start: 1;
@@ -58,6 +59,7 @@ ul {
   grid-row-end: 7;
   background-color:darkseagreen;
   font-size:25px;
+  font-family:"华文行楷";
 }
 .game-container .item-5 {
   grid-column-start: 3;
@@ -66,6 +68,7 @@ ul {
   grid-row-end: 9;
   background-color:cornflowerblue;
   font-size:25px;
+  font-family:"华文行楷";
 }
 .game-container .item-6 {
   grid-column-start: 1;
@@ -73,6 +76,9 @@ ul {
   grid-row-start: 9;
   grid-row-end: 10;
   background-color:mediumpurple;
+  font-family:"华文琥珀";
+  font-size:25px;
+  text-align: center;
 
 }
 .game-container .item-7 {
@@ -81,6 +87,7 @@ ul {
   grid-row-start: 10;
   grid-row-end: 15;
   background-color:indigo;
+  font-family:"华文楷体";
 }
 .game-container .win {
   background-color: #0f0;
