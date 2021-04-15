@@ -119,3 +119,7 @@ ul {
   text-align: center;
   margin-right: 10px;
 }
+.game-container #btnSubmit {
+  width: 200px;
+  height: 60px;
+}
