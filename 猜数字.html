@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>一起来猜数字吧~</title>
+    <link rel="stylesheet" href="猜数字.css">
+</head>
+
+<body bgcolor="lavender">
+    <div id="app">
+        <ul class="game-container">
+            <li class="item item-1">猜一猜我心中的数字~</li>
+            <li class="item item-2">
+                <input type="button" id="begin" value="开始游戏">
+            </li>
+            <li class="item item-3">
+                <input type="text" id="int" value="0">
+                <input type="button" value="就决定是它了吗？" id="btnSubmit">
+            </li>
+            <li class="item item-4">
+                <span id="scoreTip"></span>
+            </li>
+            <li class="item item-5">
+                <span id="friendlyReminder"></span>
+            </li>
+            <li class="item item-6" id="resultContainer">
+                <span id="gameResult"></span>
+            </li>
+			<li class="item item-7" id="gameInstruction">
+				<span><center>玩法：点击橙色按钮开始游戏，在输入框内输入1~100的数字，猜猜我心中想的到底是哪一个数字吧~</center></span>
+			</li>
+        </ul>
+    </div>
+    <script src="猜数字.js"></script>
+</body>
+
+</html>
