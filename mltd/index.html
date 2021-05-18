@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+	<link rel="shortcut icon" type="image/x-icon" href="tl.png" />
+    <title>THE IDOLM@STER MILLION LIVE THEATER DAYS</title>
+   
+    <!-- CSS -->
+	  <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/carousel/">
+	  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+	  <link href="page-top.css" rel="stylesheet">
+	  <style>
+		  .bd-placeholder-img {
+			  font-size: 1.125rem;
+			  text-anchor: middle;
+			  -webkit-user-select: none; 
+			  -moz-user-select: none;
+			  -ms-user-select: none;
+			  user-select: none;
+		  }
+		  
+		  @media (min-width: 768px) {
+			  .bd-placeholder-img-lg {
+				  font-size: 3.5rem;
+			  }
+		  }
+		  
+		  body{
+			 background-image: linear-gradient(90deg,rgba(255,247,218,1), rgba(255,227,239,1), rgba(221,249,253,1));
+		  }
+		  
+		  nav{
+			 font-size:1.2rem;
+		  }
+		  
+		  h3{
+			  width: 59.9vw;
+			  height: 9.9vw;
+			  line-height: 9.9vw;
+			  margin: 1rem auto 2rem !important;
+			  color: #fff;
+			  text-align: center;
+			  font-weight: 700;
+			  font-style: normal;
+			  background: url(osusume_bg.png) no-repeat center;
+			  background-size: 60%;
+			  font-size: 3vw;  
+		  }  
+	  </style>
+	  <link href="carousel.css" rel="stylesheet">
+	  <link href="menu-btn.css" rel="stylesheet">
+	  
+  </head>
+	
+<body>
+	<header>
+		<h2>&nbsp</h2>
+		
+		<!--导航页-->
+		<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top rounded" >
+			<a class="navbar-brand">
+				<img src="IM@S_ML_Papillon_Mark 彩.png" width="50" height="50" class="d-inline-block align-top" alt="">
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarScroll">
+				<ul class="navbar-nav mr-auto my-2 my-lg-0 navbar-nav-scroll" style="max-height: 100px;">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown2" role="button" data-toggle="dropdown" aria-expanded="false">热门</a>
+						<ul class="dropdown-menu rounded" aria-labelledby="navbarScrollingDropdown2">
+							<li><a href="https://imasml-theater-wiki.gamerch.com/%E3%80%90%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%80%91%E3%83%9F%E3%83%AA%E3%82%B3%E3%83%AC%EF%BC%81%EF%BD%9EMILLIONLIVE%20COLLECTION%EF%BD%9E%20202105" class="dropdown-item" target="_blank">当前活动</a></li>
+							<li><a href="https://imasml-theater-wiki.gamerch.com/SONG%20FOR%20YOU%EF%BC%81%E3%82%AC%E3%82%B7%E3%83%A3%20VOL.16" target="_blank" class="dropdown-item">当前卡池</a></li>								
+						</ul>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown1" role="button" data-toggle="dropdown" aria-expanded="false">图鉴</a>
+						<ul class="dropdown-menu rounded" aria-labelledby="navbarScrollingDropdown1">
+							<li><a href="https://imas.gamedbs.jp/mlth/" target="_blank" class="dropdown-item" >偶像图鉴</a></li>
+							<li><a href="https://mltd.matsurihi.me/cards/" target="_blank" class="dropdown-item" >卡牌图鉴</a></li>
+							<li><a href="http://mirishitadb.php.xdomain.jp/db/" target="_blank" class="dropdown-item">衣服图鉴</a></li>	
+							<li><a href="https://imas.gamedbs.jp/mlth/achievement" target="_blank" class="dropdown-item" >称号图鉴</a></li>
+						</ul>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown3" role="button" data-toggle="dropdown" aria-expanded="false">媒体</a>
+						<ul class="dropdown-menu rounded" aria-labelledby="navbarScrollingDropdown3">
+							<li><a class="dropdown-item">音乐</a></li>
+							<li><a class="dropdown-item">影像</a></li>
+							<li><a href="https://imas.gamedbs.jp/mlth/chara/offshot" target="_blank" class="dropdown-item">过场漫画</a></li>
+							<li><a href="https://imas.gamedbs.jp/mlth/chara/comic" target="_blank" class="dropdown-item">四格漫画</a></li>
+							<li><a href="https://imas.gamedbs.jp/mlth/chara/chatstamp" target="_blank" class="dropdown-item">表情包</a></li>
+						</ul>
+					</li>				
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">工具</a>
+						<ul class="dropdown-menu rounded" aria-labelledby="navbarScrollingDropdown">
+							<li><a href="https://millionlive.idolmaster.jp/theaterdays/jyuku.html" target="_blank" class="dropdown-item">MLTD小课堂</a></li>
+							<li><a class="dropdown-item">活动档线计算器</a></li>
+							<li><a class="dropdown-item">抽卡模拟器</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item">更多工具敬请期待...</a></li>
+						</ul>
+					</li>
+					<li class="nav-item"><a class="nav-link">社区</a></li>	
+					<li class="nav-item">
+						<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">更多请期待后续开发...</a>
+					</li>
+				</ul>
+				<form class="d-flex">
+					<input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
+					<button class="btn btn-outline-success" type="submit">Search</button>
+				</form>
+			</div>
+		</nav>
+	</header>
+	
+<main role="main">
+	<!--滚动图片页面-->
+	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="background: url(carouselmain.jpg) no-repeat center;">
+		<ol class="carousel-indicators">
+			<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+		</ol>
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<a class="im" href="https://imasml-theater-wiki.gamerch.com/%E3%80%90%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%80%91%E3%83%9F%E3%83%AA%E3%82%B3%E3%83%AC%EF%BC%81%EF%BD%9EMILLIONLIVE%20COLLECTION%EF%BD%9E%20202105" target="_blank">
+					<img src="https://cdn.img-conv.gamerch.com/img.gamerch.com/imasml-theater-wiki/1620713720.jpg" class="d-block mx-auto img-thumbnail rounded" alt="活动.jpg">
+				</a>
+			</div>
+			<div class="carousel-item">
+				<a class="im" href="https://imasml-theater-wiki.gamerch.com/SONG%20FOR%20YOU%EF%BC%81%E3%82%AC%E3%82%B7%E3%83%A3%20VOL.16" target="_blank">
+					<img src="https://cdn.img-conv.gamerch.com/img.gamerch.com/imasml-theater-wiki/1620713103.jpg" class="d-block mx-auto img-thumbnail rounded" alt="卡池.jpg">
+				</a>
+			</div>
+			<div class="carousel-item">
+				<img src="game_bnr_theaterdays.png" class="d-block mx-auto img-thumbnail rounded" alt="...">
+				<div class="carousel-captions">
+					<a href="https://apps.apple.com/jp/app/id1238569156" target="_blank">
+						<img src="dl03.png" alt="..." onMouseOver="this.src='dl03_ro.png'" onMouseOut="this.src='dl03.png'" class="w-25">
+					</a>
+					<a href="https://play.google.com/store/apps/details?id=com.bandainamcoent.imas_millionlive_theaterdays&referrer=adjust_reftag%3DcwGJlhjQRcLL8%26utm_source%3DOM_hp%26utm_campaign%3DAndroid" target="_blank">
+						<img src="dl04.png" alt="..." onMouseOver="this.src='dl04_ro.png'" onMouseOut="this.src='dl04.png'" class="w-25">
+					</a>
+				</div>
+			</div>
+		</div>
+		<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
+	</div>
+	
+	<!--快速到达菜单-->
+	<div class="container">
+		<div class="row col-12">
+		<div class="menu-btn col-lg-3 col-md-6 col-sm-6" id="Profile-btn">
+			<a href="#Profile">简介</a>
+		</div>
+		<div class="menu-btn col-lg-3 col-md-6 col-sm-6" id="Idol-btn">
+			<a href="#Idol">偶像</a>
+		</div>
+		<div class="menu-btn col-lg-3 col-md-6 col-sm-6" id="Scene-btn">
+			<a href="#Scene">场景</a>
+		</div>
+		<div class="menu-btn col-lg-3 col-md-6 col-sm-6" id="MV-btn">
+			<a href="#MV">MV</a>
+		</div>
+			</div>
+	</div>
+	
+	<hr id="Profile" class="featurette-divider">
+	<h3>游戏简介</h3>
+	<div class="container">
+		<div class="row featurette">
+			<div class="col-md-7">
+				<h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
+				<p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+			</div>
+			<div class="col-md-5">
+			<!--播放PV-->
+				<div class="embed-responsive embed-responsive-16by9 mx-auto" width="500">
+					<iframe class="embed-responsive-item rounded" src="https://www.youtube.com/embed/6MY-8oXGczY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+			</div>
+		</div>
+		
+		<hr class="featurette-divider">
+		
+		<div class="row featurette">
+			<div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
+        <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+        <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
+      </div>
+      <div class="col-md-5">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+
+      </div>
+    </div>
+	</div>
+	
+	<hr id="Idol" class="featurette-divider">
+	<h3>偶像一览</h3>
+	<div class="container marketing">
+		<div style="background-color:rgba(255,255,255,0.5);" class="rounded col-10 mx-auto">
+			<p style="color: #ff74b8;font-size: 1.4rem;text-align: center;" >在游戏中玩家可以成为以下52位偶像的制作人，总共分为三类：Princess，Fairy和Angel。</p>
+			<p style="color: #ff74b8;font-size: 1.4rem;text-align: center;" >包括出现在《偶像大师：百万现场！》中的所有角色，以及两位新角色出现。</p>
+		</div>
+    <!-- Three columns of text below the carousel -->
+		<div class="row col-12">
+			<div class="col-lg-4 col-sm-3 mx-auto">
+				<img src="https://cdn.img-conv.gamerch.com/img.gamerch.com/imasml-theater-wiki/1548839154.png" class="d-block  mx-auto" alt="Princess.png">
+				<h2 style="color:#ff2284">Princess</h2>
+				<p><a class="btn btn-secondary" data-toggle="collapse" href="#collapsePrincess" role="button" aria-expanded="false" aria-controls="collapseExample">Details&raquo;</a></p>
+			</div>
+			
+			<div class="col-lg-4 col-sm-3 mx-auto">
+				<img src="https://cdn.img-conv.gamerch.com/img.gamerch.com/imasml-theater-wiki/1548839161.png" class="d-block  mx-auto" alt="Fairy.png">
+				<h2 style="color:#005eff">Fairy</h2>
+				<p><a class="btn btn-secondary" data-toggle="collapse" href="#collapseFairy" role="button" aria-expanded="false" aria-controls="collapseExample">Details&raquo;</a></p>
+			</div>
+			
+			<div class="col-lg-4 col-sm-3 mx-auto">
+				<img src="https://cdn.img-conv.gamerch.com/img.gamerch.com/imasml-theater-wiki/1548839168.png" class="d-block  mx-auto" alt="Angel.png">
+				<h2 style="color:#ffbb00">Angel</h2>
+				<p><a class="btn btn-secondary" data-toggle="collapse" href="#collapseAngel" role="button" aria-expanded="false" aria-controls="collapseExample">Details&raquo;</a></p>
+			</div>
+			
+			<div class="collapse col-12" id="collapsePrincess">
+				<div class="row card-body rounded" style="background-color: #ffbecf">
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E5%A4%A9%E6%B5%B7%E6%98%A5%E9%A6%99" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/a/a4/HarukaLoadingTD.png/120px-HarukaLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E8%90%A9%E5%8E%9F%E9%9B%AA%E6%AD%A5" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/e/e0/YukihoLoadingTD.png/120px-YukihoLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E8%8F%8A%E5%9C%B0%E7%9C%9F" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/f/f9/MakotoLoadingTD.png/120px-MakotoLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E6%88%91%E9%82%A3%E9%9C%B8%E5%93%8D" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/9/94/HibikiLoadingTD.png/120px-HibikiLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E6%98%A5%E6%97%A5%E6%9C%AA%E6%9D%A5" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/5/53/MiraiLoadingTD.png/120px-MiraiLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E7%94%B0%E4%B8%AD%E7%90%B4%E5%8F%B6" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/e/ec/KotohaLoadingTD.png/120px-KotohaLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E4%BD%90%E7%AB%B9%E7%BE%8E%E5%A5%88%E5%AD%90" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/e/e4/MinakoLoadingTD.png/120px-MinakoLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E5%BE%B7%E5%B7%9D%E8%8C%89%E8%8E%89" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/8/8a/MatsuriLoadingTD.png/120px-MatsuriLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E4%B8%83%E5%B0%BE%E7%99%BE%E5%90%88%E5%AD%90" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/1/1f/YurikoLoadingTD.png/120px-YurikoLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E9%AB%98%E5%B1%B1%E7%BA%B1%E4%BB%A3%E5%AD%90" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/e/e7/SayokoLoadingTD.png/120px-SayokoLoadingTD.png" class="d-block mx-auto" alt="...">	
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E6%9D%BE%E7%94%B0%E4%BA%9A%E5%88%A9%E6%B2%99" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/d/d4/ArisaLoadingTD.png/120px-ArisaLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E9%AB%98%E5%9D%82%E6%B5%B7%E7%BE%8E" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/7/70/UmiLoadingTD.png/120px-UmiLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E4%B8%AD%E8%B0%B7%E8%82%B2" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/d/d9/IkuLoadingTD.png/120px-IkuLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>	
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E8%89%BE%E7%B1%B3%E8%8E%89%C2%B7%E6%96%AF%E5%9B%BE%E4%BA%9A%E7%89%B9" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/0/0c/EmilyLoadingTD.png/120px-EmilyLoadingTD.png" class="d-block mx-auto" alt="...">	
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E7%9F%A2%E5%90%B9%E5%8F%AF%E5%A5%88" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/5/5e/KanaLoadingTD.png/120px-KanaLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E6%A8%AA%E5%B1%B1%E5%A5%88%E7%BB%AA" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/3/3e/NaoLoadingTD.png/120px-NaoLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E7%A6%8F%E7%94%B0%E6%B3%95%E5%AD%90" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/0/03/NorikoLoadingTD.png/120px-NorikoLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+				</div>
+			</div>
+			
+			<div class="collapse col-12" id="collapseFairy">
+				<div class="row card-body rounded" style="background-color: #98c7fd">
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E5%A6%82%E6%9C%88%E5%8D%83%E6%97%A9" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/6/60/ChihayaLoadingTD.png/120px-ChihayaLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E6%B0%B4%E6%BF%91%E4%BC%8A%E7%BB%87" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/6/6b/IoriLoadingTD.png/120px-IoriLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E5%9B%9B%E6%9D%A1%E8%B4%B5%E9%9F%B3" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/a/a3/TakaneLoadingTD.png/120px-TakaneLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E7%A7%8B%E6%9C%88%E5%BE%8B%E5%AD%90" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/8/84/RitsukoLoadingTD.png/120px-RitsukoLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E6%9C%80%E4%B8%8A%E9%9D%99%E9%A6%99" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/e/e7/ShizukaLoadingTD.png/120px-ShizukaLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E6%89%80%E6%83%A0%E7%BE%8E" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/9/92/MegumiLoadingTD.png/120px-MegumiLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E4%BC%B4%E7%94%B0%E8%B7%AF%E5%AD%90" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/9/9b/RocoLoadingTD.png/120px-RocoLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E5%A4%A9%E7%A9%BA%E6%A1%A5%E6%9C%8B%E8%8A%B1" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/3/3c/TomokaLoadingTD.png/120px-TomokaLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E5%8C%97%E6%B3%BD%E5%BF%97%E4%BF%9D" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/7/75/ShihoLoadingTD.png/120px-ShihoLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E8%88%9E%E6%BB%A8%E6%AD%A5" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/5/51/AyumuLoadingTD.png/120px-AyumuLoadingTD.png" class="d-block mx-auto" alt="...">	
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E4%BA%8C%E9%98%B6%E5%A0%82%E5%8D%83%E9%B9%A4" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/5/59/ChizuruLoadingTD.png/120px-ChizuruLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E7%9C%9F%E5%A3%81%E7%91%9E%E5%B8%8C" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/f/f2/MizukiLoadingTD.png/120px-MizukiLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E7%99%BE%E6%BF%91%E8%8E%89%E7%BB%AA" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/b/b8/RioLoadingTD.png/120px-RioLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>	
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E6%B0%B8%E5%90%89%E6%98%B4" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/8/8f/SubaruLoadingTD.png/120px-SubaruLoadingTD.png" class="d-block mx-auto" alt="...">	
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E5%91%A8%E9%98%B2%E6%A1%83%E5%AD%90" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/4/42/MomokoLoadingTD.png/120px-MomokoLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E8%8C%B1%E8%8E%89%E4%BA%9A(%E7%99%BE%E4%B8%87LIVE)" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/d/d5/JuliaLoadingTD.png/120px-JuliaLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E7%99%BD%E7%9F%B3%E4%8C%B7" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/6/63/TsumugiLoadingTD.png/120px-TsumugiLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+				</div>
+			</div>
+			
+			<div class="collapse col-12" id="collapseAngel">
+				<div class="row card-body rounded" style="background-color: #ffe267">
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E6%98%9F%E4%BA%95%E7%BE%8E%E5%B8%8C" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/0/0f/MikiLoadingTD.png/120px-MikiLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E9%AB%98%E6%A7%BB%E5%BC%A5%E7%94%9F" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/a/aa/YayoiLoadingTD.png/120px-YayoiLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E4%B8%89%E6%B5%A6%E6%A2%93" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/e/e9/AzusaLoadingTD.png/120px-AzusaLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E5%8F%8C%E6%B5%B7%E4%BA%9A%E7%BE%8E" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/5/54/AmiLoadingTD.png/120px-AmiLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E5%8F%8C%E6%B5%B7%E7%9C%9F%E7%BE%8E" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/a/ae/MamiLoadingTD.png/120px-MamiLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E4%BC%8A%E5%90%B9%E7%BF%BC" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/1/1c/TsubasaLoadingTD.png/120px-TsubasaLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E5%B2%9B%E5%8E%9F%E5%9F%83%E7%90%B3%E5%A8%9C" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/a/ae/ElenaLoadingTD.png/120px-ElenaLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E7%AE%B1%E5%B4%8E%E6%98%9F%E6%A2%A8%E8%8A%B1" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/9/95/SerikaLoadingTD.png/120px-SerikaLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E9%87%8E%E9%87%8E%E5%8E%9F%E8%8C%9C" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/9/98/AkaneLoadingTD.png/120px-AkaneLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E6%9C%9B%E6%9C%88%E6%9D%8F%E5%A5%88" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/e/ec/AnnaLoadingTD.png/120px-AnnaLoadingTD.png" class="d-block mx-auto" alt="...">	
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E6%9C%A8%E4%B8%8B%E6%97%A5%E5%90%91" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/7/7f/HinataLoadingTD.png/120px-HinataLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E9%A9%AC%E5%9C%BA%E6%9C%A8%E5%AE%9E" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/9/9f/KonomiLoadingTD.png/120px-KonomiLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E5%A4%A7%E7%A5%9E%E7%8E%AF" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/0/07/TamakiLoadingTD.png/120px-TamakiLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>	
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E4%B8%B0%E5%B7%9D%E9%A3%8E%E8%8A%B1" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/e/e7/FukaLoadingTD.png/120px-FukaLoadingTD.png" class="d-block mx-auto" alt="...">	
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E5%AE%AB%E5%B0%BE%E7%BE%8E%E4%B9%9F" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/a/af/MiyaLoadingTD.png/120px-MiyaLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E7%AF%A0%E5%AE%AB%E5%8F%AF%E6%80%9C" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/c/ce/KarenLoadingTD.png/120px-KarenLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E5%8C%97%E4%B8%8A%E4%B8%BD%E8%8A%B1" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/d/dc/ReikaLoadingTD.png/120px-ReikaLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+					<div class="col col-lg-2 col-md-4 col-sm-6">
+						<a href="https://zh.moegirl.org.cn/%E6%A8%B1%E5%AE%88%E6%AD%8C%E7%BB%87" target="_blank">
+							<img src="https://www.project-imas.com/w/images/thumb/3/34/KaoriLoadingTD.png/120px-KaoriLoadingTD.png" class="d-block mx-auto" alt="...">
+						</a>
+					</div>
+				</div>
+			</div>
+			
+		</div> 
+	</div>
+	
+	<hr id="Scene" class="featurette-divider">
+	<h3>场景介绍</h3>
+	
+	<hr id="MV" class="featurette-divider">
+	<h3>MV速览</h3>
+	
+	<!--回到顶部按钮-->
+	<div id="page-top" class="scrollSite_btn">
+		<a href="#">top of the page</a>
+	</div>
+	
+	<!--- Connect -->
+	<div class="container-fluid padding">
+		<div class="row text-center padding">
+			<div class="col-12">
+				<h2>Connect</h2>
+			</div>
+			<div class="col-12 social padding">
+				<a href="#"><i class="fab fa-facebook"></i></a>
+				<a href="#"><i class="fab fa-twitter"></i></a>
+				<a href="#"><i class="fab fa-google-plus-g"></i></a>
+				<a href="#"><i class="fab fa-instagram"></i></a>
+				<a href="#"><i class="fab fa-youtube"></i></a>
+			</div>
+		</div>
+	</div>
+	
+	
+  <!-- FOOTER -->
+	
+  <footer class="container">
+    <p>&copy; 2017-2021 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+  </footer>
+</main>
+	<script src="jquery-3.6.0.min.js"></script>
+	<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="page-top.js"></script>
+	<script src="menu-btn.js"></script>
+	
+</body>
+	
+</html>

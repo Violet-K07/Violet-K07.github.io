@@ -1,0 +1,49 @@
+#page-top {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 100;
+}
+
+#page-top a {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+    background-color: #ffffff;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2286%22%20height%3D%2250%22%20viewBox%3D%220%200%2086%2050%22%3E%20%3Cdefs%3E%20%3Cstyle%3E%20.cls-1%20%7B%20fill%3A%20%23ff74b8%3B%20fill-rule%3A%20evenodd%3B%20%7D%20%3C%2Fstyle%3E%20%3C%2Fdefs%3E%20%3Cpath%20id%3D%22arrow_page_top.svg%22%20class%3D%22cls-1%22%20d%3D%22M13.984%2C65.593l23.2-23.375a8.159%2C8.159%2C0%2C0%2C1%2C11.6%2C0l23.2%2C23.375a8.158%2C8.158%2C0%2C0%2C0%2C11.6%2C0h0a8.308%2C8.308%2C0%2C0%2C0%2C0-11.687l-29-29.218L51.488%2C21.57a11.965%2C11.965%2C0%2C0%2C0-17.011%2C0l-3.094%2C3.117-29%2C29.218a8.309%2C8.309%2C0%2C0%2C0%2C0%2C11.687h0A8.158%2C8.158%2C0%2C0%2C0%2C13.984%2C65.593Z%22%20transform%3D%22translate(0%20-18.031)%22%2F%3E%3C%2Fsvg%3E");
+    background-size: 24px auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+    filter: drop-shadow(0 6px 10px rgba(150, 150, 178, 0.2));
+    transform: translateZ(0);
+    transition: background-color 0.2s ease-in-out;
+}
+
+@media screen and (min-width: 768px) {
+    #page-top a:hover {
+        background-color: #ff74b8;
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2286%22%20height%3D%2250%22%20viewBox%3D%220%200%2086%2050%22%3E%20%3Cdefs%3E%20%3Cstyle%3E%20.cls-1%20%7B%20fill%3A%20%23ffffff%3B%20fill-rule%3A%20evenodd%3B%20%7D%20%3C%2Fstyle%3E%20%3C%2Fdefs%3E%20%3Cpath%20id%3D%22arrow_page_top.svg%22%20class%3D%22cls-1%22%20d%3D%22M13.984%2C65.593l23.2-23.375a8.159%2C8.159%2C0%2C0%2C1%2C11.6%2C0l23.2%2C23.375a8.158%2C8.158%2C0%2C0%2C0%2C11.6%2C0h0a8.308%2C8.308%2C0%2C0%2C0%2C0-11.687l-29-29.218L51.488%2C21.57a11.965%2C11.965%2C0%2C0%2C0-17.011%2C0l-3.094%2C3.117-29%2C29.218a8.309%2C8.309%2C0%2C0%2C0%2C0%2C11.687h0A8.158%2C8.158%2C0%2C0%2C0%2C13.984%2C65.593Z%22%20transform%3D%22translate(0%20-18.031)%22%2F%3E%3C%2Fsvg%3E");
+        filter: drop-shadow(0 6px 10px rgba(150, 150, 178, 0.05));
+        transition: background-color 0.2s ease-in-out;
+    }
+}
+
+
+
+@media screen and (max-width: 767px) {
+  /* PAGETOP */
+    #page-top {
+        right: 4.1vw;
+        bottom: 4.7vw;
+    }
+
+    #page-top a {
+        width: 55px;
+        height: 55px;
+        background-size: 27px auto;
+    }
+}

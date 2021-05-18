@@ -1,0 +1,51 @@
+.menu-btn {
+	clear: both;
+	margin: 0 auto;
+	padding: 0 20px 20px;
+}
+.menu-btn a {
+	font-weight: 700;
+	font-style: normal;
+	font-size: 2.5vw;
+	text-decoration: none;
+	text-align: center;
+	display: inline-block;
+	background: #fff;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%) translateZ(0);
+	color: #ff74b8;
+	padding: 15px 70px;
+	border-radius: 50px;
+	filter: drop-shadow(0 6px 10px rgba(171, 171, 204, 0.1));
+}
+.menu-btn a:hover{
+	font-size: 2.7vw;
+}
+.menu-btn a::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 20px;
+	width: 23px;
+	height: 50px;
+	filter: none;
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2248%22%20height%3D%2256%22%20viewBox%3D%220%200%2048%2056%22%3E%20%3Cdefs%3E%20%3Cstyle%3E%20.cls-1%20%7B%20fill%3A%20%23f2f2ff%3B%20fill-rule%3A%20evenodd%3B%20%7D%20%3C%2Fstyle%3E%20%3C%2Fdefs%3E%20%3Cpath%20id%3D%22btn_icon.svg%22%20class%3D%22cls-1%22%20d%3D%22M14%2C0.006l3.291%2C10.715L28%2C10.7l-8.68%2C6.6L22.654%2C28%2C14%2C21.366%2C5.342%2C28%2C8.673%2C17.3l-8.68-6.6%2C10.714%2C0.022ZM39%2C38l2.116%2C6.888L48%2C44.878l-5.58%2C4.243L44.563%2C56%2C39%2C51.735%2C33.434%2C56l2.141-6.88L30%2C44.878l6.888%2C0.014Z%22%2F%3E%3C%2Fsvg%3E");
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 23px auto;
+}
+.menu-btn a::after {
+	content: "";
+	position: absolute;
+	width: 8px;
+	height: 14px;
+	top: 50%;
+	transform: translateY(-50%) rotateZ(180deg);
+	right: 20px;
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2249.969%22%20height%3D%2286%22%20viewBox%3D%220%200%2049.969%2086%22%3E%20%3Cdefs%3E%20%3Cstyle%3E%20.cls-1%20%7B%20fill%3A%20%23ff74b8%3B%20fill-rule%3A%20evenodd%3B%20%7D%20%3C%2Fstyle%3E%20%3C%2Fdefs%3E%20%3Cpath%20id%3D%22arrow_left.svg%22%20class%3D%22cls-1%22%20d%3D%22M47.593%2C13.984l-23.375%2C23.2a8.159%2C8.159%2C0%2C0%2C0%2C0%2C11.6l23.375%2C23.2a8.158%2C8.158%2C0%2C0%2C1%2C0%2C11.6h0a8.308%2C8.308%2C0%2C0%2C1-11.687%2C0l-29.218-29L3.57%2C51.488a11.965%2C11.965%2C0%2C0%2C1%2C0-17.011l3.117-3.094%2C29.218-29a8.309%2C8.309%2C0%2C0%2C1%2C11.687%2C0h0A8.158%2C8.158%2C0%2C0%2C1%2C47.593%2C13.984Z%22%20transform%3D%22translate(-0.031)%22%2F%3E%3C%2Fsvg%3E");
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 8px auto;
+	transition: right 0.2s ease-in-out;
+}
