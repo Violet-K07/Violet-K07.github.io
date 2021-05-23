@@ -8,17 +8,17 @@ $('#Idol-btn').click(
 	function(){
 		$('html,body').animate(
 			{scrollTop:$('#Idol').offset().top
-			}, 400);
+			}, 300);
 	});
-$('#Scene-btn').click(
+$('#Event-btn').click(
 	function(){
 		$('html,body').animate(
-			{scrollTop:$('#Scene').offset().top
-			}, 400);
+			{scrollTop:$('#Event').offset().top
+			}, 300);
 	});
 $('#MV-btn').click(
 	function(){
 		$('html,body').animate(
 			{scrollTop:$('#MV').offset().top
-			}, 400);
+			}, 300);
 	});

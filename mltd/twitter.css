@@ -1,0 +1,44 @@
+@charset "utf-8";
+/* CSS Document */
+
+#twitterframe {
+    position: relative;
+    float: left;
+    margin: 19px 0 0 4px;
+}
+.rblock {
+    position: relative;
+}
+#twitter {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+.ablock {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.pblock {
+    margin: 0;
+    padding: 0;
+}
+#twitter {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+#twitterwidget {
+	display: inline-block;
+	width: 82%;
+	height: 100%;
+	max-width: 1200px;
+	background-color: #ffffff;
+	border-radius: 5px;
+	overflow: hidden;
+}
+#twitterwidget iframe {
+	min-height: auto !important;
+}
