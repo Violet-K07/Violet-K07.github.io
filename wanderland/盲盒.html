@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Wanderland</title>
+	 
+    <!--CSS -->
+	  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+	  <link href="../../期末/wanderland.css" rel="stylesheet">
+	  <link href="../../期末/cover.css" rel="stylesheet">
+	
+  </head>
+  <body class="text-center">
+	  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+		  <!--导航-->
+		  <header class="masthead mb-auto">
+			  <div class="inner fix">
+				  <h3 class="masthead-brand">Wanderland</h3>
+				  <nav class="nav nav-masthead justify-content-center">
+					  <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">盲盒</a>
+					  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+						  <a class="dropdown-item" href="#">随机盲盒</a>
+						  <a class="dropdown-item" href="../../期末/自选盲盒.html">自选盲盒</a>
+					  </div>
+					  <!-- 麻烦老板们将自己负责的部分相应a class=""里改为class="nav-link active"-->
+					  <a class="nav-link" href="../../期末/详情的首页.html">Features</a>
+					  <a class="nav-link" href="#">MY</a>
+				  </nav>
+			  </div>
+		  </header> 
+		  
+		<!--随机大盲盒-->
+		<div id="wrapper">
+			<h1>
+				周末怎么玩，怎么玩？
+				<br>
+				<br>
+				<b style="color:#FFFFFF" id="what"></b>
+				<a href="#" style="color:#FFFFFF" id="what1"></a>
+			</h1>
+			<input type="button" value="开盲盒"  id="start" />
+			<input type="button" value="开盲盒"  id="stop" style="display: none;">
+		  </div>
+		  
+		  <!--本期策划案标题 每一个直接按空格分割-->
+		  <textarea rows="9" cols="53" id="list" style="display:none">
+          打卡《觉醒年代》 庙里看书 欢迎进入“图像超市” 你见过凌晨四点的天安门广场吗? 米酒派对
+		  </textarea>
+		  <!--本期策划案详情链接 每一个直接按空格分割 顺序要与上面标题保持一致-->
+		  <textarea rows="9" cols="53" id="list1" style="display:none">
+          https://www.baidu.com/ https://map.baidu.com/@12981363,4836001,13z https://tieba.baidu.com/index.html https://xueshu.baidu.com/ 米酒派对.html
+		  </textarea>
+		  
+		  <footer class="mastfoot mt-auto">
+			  <div class="inner">
+				  <p style="color: aliceblue">Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+			  </div>
+		  </footer>
+	 </div>
+
+<!--JS-->
+<script src="../../期末/jquery-3.6.0.min.js"></script>
+<script src="../../期末/bootstrap.bundle.min.js"></script>
+<script src="../../期末/random.js"></script>
+
+  </body>
+</html>
