@@ -57,6 +57,12 @@
     .author-bio h5 {
         margin-left: 70px;
     }
+	.mhtitle{
+		font-size:40px;
+	}
+	.mharticle{
+		font-size:20px;
+	}
 }
 
 /*============================================================
@@ -159,6 +165,12 @@
     .author-social {
         margin-left: 0;
     }
+	.mhtitle{
+		font-size:40px;
+	}
+	.mharticle{
+		font-size:20px;
+	}
 }
 
 
@@ -395,6 +407,12 @@
     .author-avatar {
         margin-right: 10px;
     }
+	.mhtitle{
+		font-size:20px;
+	}
+	.mharticle{
+		font-size:10px;
+	}
 }
 
 
@@ -519,4 +537,10 @@
     .tab-post-nav li a {
         padding: 10px 15px;
     }
+	.mhtitle{
+		font-size:20px;
+	}
+	.mharticle{
+		font-size:10px;
+	}
 }
