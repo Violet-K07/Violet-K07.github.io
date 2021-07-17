@@ -342,7 +342,7 @@ var Grid = (function() {
 	Preview.prototype = {
 		create : function() {
 			// create Preview structure:
-			this.$title = $( '<h3 style="font-size:40px;" class="mhtitle"></h3>' );
+			this.$title = $( '<h3 class="mhtitle"></h3>' );
 			this.$description = $( '<p style="letter-spacing:0.25rem;" class="mharticle"></p>' );
 			this.$href = $( '<a class="btn btn-transparent" href="#" style="border-color:white;color:white;">Details</a>' );
 			this.$details = $( '<div class="og-details"></div>' ).append( this.$title, this.$description, this.$href );
