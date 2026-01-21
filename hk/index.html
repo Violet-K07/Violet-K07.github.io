@@ -596,7 +596,7 @@
             z-index: 1000;
             display: none;
         }
-         /* 导出余量图相关样式 - 沿用库存卡片设计 */
+        /* 导出余量图相关样式 - 沿用库存卡片设计 */
         .export-stock-container {
             margin: 20px 0;
             padding: 15px;
@@ -849,6 +849,123 @@
         .export-tips li {
             margin-bottom: 3px;
         }
+        
+        /* 登录按钮样式 */
+        #authButtons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+        
+        #authButtons .btn {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+        
+        #logoutBtn {
+            background-color: #dc3545;
+            color: white;
+        }
+        
+        #logoutBtn:hover {
+            background-color: #c82333;
+        }
+        
+        #reLoginBtn {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        #reLoginBtn:hover {
+            background-color: #5a6268;
+        }
+        
+        /* 登录模态框样式 */
+        #loginModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+        
+        #loginModal .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80%;
+            overflow-y: auto;
+        }
+        
+        #loginModal .form-group {
+            margin: 20px 0;
+        }
+        
+        #loginModal .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+        
+        #loginModal .help-text {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            font-size: 14px;
+            margin: 15px 0;
+        }
+        
+        #loginModal .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        #loginModal .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+        
+        #loginModal .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        #loginModal .btn-gh-link {
+            background: #24292e;
+            color: white;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+        }
+        
+        #loginModal .btn-gh-link:hover {
+            background: #000;
+        }
+        
+        #loginModal .token-steps {
+            margin-top: 15px;
+            padding-left: 20px;
+        }
+        
+        #loginModal .token-steps li {
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
     </style>
     <!-- 引入SheetJS库用于Excel导出 -->
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -858,6 +975,12 @@
     <script src="gist-utils.js"></script>
 </head>
 <body>
+    <!-- 右上角登录按钮 -->
+    <div id="authButtons" style="display: none;">
+        <button id="logoutBtn" class="btn" onclick="logoutToken()">退出登录</button>
+        <button id="reLoginBtn" class="btn" onclick="showLoginModal()">重新登录</button>
+    </div>
+    
     <div class="container">
         <!-- 主标签页切换（仅保留结算、库存） -->
         <div class="tabs">
@@ -948,6 +1071,55 @@
     <!-- 导出临时容器 -->
     <div id="exportTempContainer"></div>
     
+    <!-- 登录模态框 -->
+    <div id="loginModal">
+        <div class="modal-content">
+            <h3>🔐 GitHub Token 登录</h3>
+            <p>需要 GitHub Personal Access Token 来同步数据到云端</p>
+            
+            <div class="form-group">
+                <label for="tokenInput">GitHub Token</label>
+                <input type="password" id="tokenInput" class="form-control" 
+                       placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
+                       autocomplete="off">
+                <small style="color: #666; display: block; margin-top: 5px;">
+                    Token 仅保存在您的浏览器本地，不会发送到任何服务器
+                </small>
+            </div>
+            
+            <div class="help-text">
+                <strong>📋 如何获取 Token：</strong>
+                <ol class="token-steps">
+                    <li><a href="https://github.com/settings/tokens" target="_blank" class="btn btn-gh-link">
+                        🔗 点击前往 GitHub Token 页面
+                    </a></li>
+                    <li>点击 "Generate new token"</li>
+                    <li>输入名称：<code>排谷系统</code></li>
+                    <li><strong>只勾选 "gist" 权限</strong></li>
+                    <li>设置过期时间（建议 90 天）</li>
+                    <li>点击 "Generate token"</li>
+                    <li><strong>立即复制生成的 Token</strong>（只会显示一次！）</li>
+                    <li>粘贴到上面的输入框中</li>
+                </ol>
+                
+                <div style="margin-top: 10px; padding: 10px; background: #fff3cd; border-radius: 4px;">
+                    <strong>⚠️ 安全提醒：</strong>
+                    <ul style="margin: 5px 0 0 20px;">
+                        <li>请使用自己的 GitHub Token</li>
+                        <li>不要分享 Token 给任何人</li>
+                        <li>Token 泄露可能导致数据被窃取</li>
+                        <li>随时可以点击"退出登录"清除 Token</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="submitToken()" style="flex: 1;">确认并登录</button>
+                <button class="btn btn-secondary" onclick="hideLoginModal()" style="flex: 1;">取消</button>
+            </div>
+        </div>
+    </div>
+    
     <script>
         // ==================== 全局变量 ====================
         let guziData = [];          
@@ -958,20 +1130,163 @@
         let currentStockSearch = '';
         let previewedGridData = []; // 存储预览的网格数据
         let currentGridSize = '3x3'; // 当前选择的网格尺寸
-        // 导出页面专用筛选和搜索变量
         let currentExportFilter = 'inStock';
         let currentExportSearch = '';
+        
+        // 登录状态
+        let isLoggedIn = false;
 
         // ==================== 页面初始化 ====================
         document.addEventListener('DOMContentLoaded', async function() {
-            // 从Gist加载数据
-            const data = await fetchGuziDataFromGist();
-            guziData = data.guziData;
-            claimRecords = data.claimRecords;
+            // 检查登录状态
+            await checkLoginStatus();
             
-            renderStockPage();
-            renderSummaryPage();
+            // 如果已登录，加载数据
+            if (isLoggedIn) {
+                await loadData();
+            }
+        });
+
+        // ==================== 登录相关功能 ====================
+        async function checkLoginStatus() {
+            const token = getGistToken();
+            if (!token) {
+                // 没有token，显示登录框
+                showLoginModal();
+                return;
+            }
             
+            // 验证token有效性
+            try {
+                const isValid = await validateToken(token);
+                if (!isValid) {
+                    // Token无效，清除并提示重新登录
+                    clearGistToken();
+                    alert('Token 无效或已过期，请重新登录');
+                    showLoginModal();
+                    return;
+                }
+                
+                // Token有效，显示登录按钮
+                isLoggedIn = true;
+                document.getElementById('authButtons').style.display = 'flex';
+            } catch (error) {
+                console.error('验证Token失败:', error);
+                alert('验证Token失败，请检查网络连接');
+                showLoginModal();
+            }
+        }
+
+        function showLoginModal() {
+            document.getElementById('loginModal').style.display = 'flex';
+            document.getElementById('authButtons').style.display = 'none';
+            isLoggedIn = false;
+            
+            // 清空输入框
+            document.getElementById('tokenInput').value = '';
+        }
+
+        function hideLoginModal() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+
+        async function submitToken() {
+            const tokenInput = document.getElementById('tokenInput');
+            const token = tokenInput.value.trim();
+            
+            if (!token) {
+                alert('请输入 GitHub Token');
+                tokenInput.focus();
+                return;
+            }
+            
+            // 验证Token格式
+            if (!token.startsWith('ghp_') && !token.startsWith('github_pat_')) {
+                if (!confirm('Token格式似乎不正确。标准的GitHub Token以"ghp_"开头。\n\n是否继续使用这个Token？')) {
+                    tokenInput.focus();
+                    return;
+                }
+            }
+            
+            try {
+                // 验证Token有效性
+                const isValid = await validateToken(token);
+                if (!isValid) {
+                    alert('Token 无效，请检查是否正确');
+                    return;
+                }
+                
+                // 保存Token
+                setGistToken(token);
+                isLoggedIn = true;
+                
+                // 隐藏登录框，显示登录按钮
+                hideLoginModal();
+                document.getElementById('authButtons').style.display = 'flex';
+                
+                // 加载数据
+                await loadData();
+                
+                // 显示成功提示
+                showSyncTip('登录成功！数据已加载');
+            } catch (error) {
+                console.error('提交Token失败:', error);
+                alert('登录失败：' + error.message);
+            }
+        }
+
+        function logoutToken() {
+            if (!confirm('确定要退出登录吗？这将清除本地保存的Token，但不会删除云端数据。')) {
+                return;
+            }
+            
+            // 清除Token
+            clearGistToken();
+            isLoggedIn = false;
+            
+            // 清空页面数据
+            guziData = [];
+            claimRecords = [];
+            
+            // 清空页面显示
+            document.getElementById('stock-container').innerHTML = '';
+            document.getElementById('summary-container').innerHTML = '';
+            document.querySelector('.stock-total-amount').innerText = '¥0.00';
+            
+            // 隐藏登录按钮，显示登录框
+            document.getElementById('authButtons').style.display = 'none';
+            showLoginModal();
+            
+            showSyncTip('已退出登录');
+        }
+
+        // ==================== 数据加载 ====================
+        async function loadData() {
+            try {
+                const data = await fetchGuziDataFromGist();
+                guziData = data.guziData;
+                claimRecords = data.claimRecords;
+                
+                renderStockPage();
+                renderSummaryPage();
+                
+                // 设置事件监听
+                setupEventListeners();
+                
+                showSyncTip('数据加载成功');
+            } catch (error) {
+                console.error('加载数据失败:', error);
+                
+                if (error.message.includes('Token') || error.message.includes('401') || error.message.includes('403')) {
+                    alert('Token 无效或已过期，请重新登录');
+                    logoutToken();
+                } else {
+                    alert('加载数据失败：' + error.message);
+                }
+            }
+        }
+
+        function setupEventListeners() {
             // 监听网格尺寸选择变化
             document.getElementById('gridSize').addEventListener('change', function() {
                 currentGridSize = this.value;
@@ -986,19 +1301,38 @@
             document.getElementById('stockSearchInput').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') searchStock();
             });
-        });
+            
+            // 登录框输入框支持回车提交
+            document.getElementById('tokenInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') submitToken();
+            });
+            
+            // 点击登录框外部关闭
+            document.getElementById('loginModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    hideLoginModal();
+                }
+            });
+        }
 
         // ==================== 数据同步函数 ====================
         function saveDataToLocalStorage() {
+            if (!isLoggedIn) {
+                alert('请先登录才能保存数据');
+                showLoginModal();
+                return;
+            }
+            
             syncGuziDataToGist(guziData, claimRecords);
             showSyncTip();
         }
 
         // ==================== 辅助函数 ====================
-        function showSyncTip() {
+        function showSyncTip(message = '数据已同步到云端！') {
             const tip = document.getElementById('syncTip');
+            tip.textContent = message;
             tip.style.display = "block";
-            setTimeout(() => tip.style.display = "none", 2000);
+            setTimeout(() => tip.style.display = "none", 3000);
         }
 
         // ==================== 页面切换函数 ====================
@@ -1009,7 +1343,6 @@
             event.target.classList.add('active');
         }
         
-        // 子页面切换函数
         function switchSubPage(subPageId) {
             document.querySelectorAll('.sub-page').forEach(page => page.classList.remove('active'));
             document.querySelectorAll('.sub-tab').forEach(tab => tab.classList.remove('active'));
@@ -1040,7 +1373,6 @@
                 let isVisible = true;
                 if (currentStockFilter === 'inStock' && isOutOfStock) isVisible = false;
                 if (currentStockFilter === 'outOfStock' && !isOutOfStock) isVisible = false;
-                // 库存搜索也改为模糊匹配（忽略大小写）
                 if (currentStockSearch && !item.category.toLowerCase().includes(currentStockSearch.toLowerCase()) && 
                     !item.kunxu.toLowerCase().includes(currentStockSearch.toLowerCase())) {
                     isVisible = false;
@@ -1137,6 +1469,12 @@
         }
 
         function submitClaim(index) {
+            if (!isLoggedIn) {
+                alert('请先登录才能认领谷子');
+                showLoginModal();
+                return;
+            }
+            
             const claimerName = document.getElementById(`claimer-name-${index}`).value.trim();
             const claimQuantity = parseInt(document.getElementById(`claim-quantity-${index}`).value);
             
@@ -1186,7 +1524,7 @@
             renderStockPage();
         }
 
-        // ==================== 网格布局导出余量图功能（修复版） ====================
+        // ==================== 网格布局导出余量图功能 ====================
         function previewStockGrid() {
             const previewContainer = document.getElementById('previewContainer');
             const stockPreviewGrid = document.getElementById('stockPreviewGrid');
@@ -1670,172 +2008,5 @@
             XLSX.writeFile(wb, `${cn}_排谷结算单_${new Date().toLocaleDateString()}.xlsx`);
         }
     </script>
-	<!-- 在 HTML 的 body 最后添加 -->
-<div id="loginModal" class="modal" style="display: none;">
-    <div class="modal-content">
-        <h3>GitHub 登录</h3>
-        <p>请输入您的 GitHub 个人访问令牌以同步数据</p>
-        
-        <div class="form-group">
-            <label for="tokenInput">GitHub Personal Access Token</label>
-            <input type="password" id="tokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" class="form-control">
-        </div>
-        
-        <div class="help-text">
-            <strong>如何获取 token：</strong>
-            <ol>
-                <li>登录 GitHub → Settings → Developer settings → Personal access tokens</li>
-                <li>点击 "Generate new token"</li>
-                <li>勾选 "gist" 权限</li>
-                <li>复制生成的 token</li>
-            </ol>
-            <p><small>token 仅存储在您的浏览器本地，不会发送到任何其他服务器</small></p>
-        </div>
-        
-        <div class="modal-actions">
-            <button class="btn btn-primary" onclick="submitToken()">确认</button>
-            <button class="btn btn-secondary" onclick="useLocalData()">仅使用本地数据</button>
-        </div>
-    </div>
-</div>
-
-<style>
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10000;
-}
-
-.modal-content {
-    background: white;
-    padding: 30px;
-    border-radius: 8px;
-    max-width: 500px;
-    width: 90%;
-    max-height: 80%;
-    overflow-y: auto;
-}
-
-.form-group {
-    margin: 20px 0;
-}
-
-.form-control {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-top: 5px;
-}
-
-.help-text {
-    background: #f8f9fa;
-    padding: 15px;
-    border-radius: 4px;
-    font-size: 14px;
-    margin: 15px 0;
-}
-
-.modal-actions {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.btn-primary {
-    background: #007bff;
-    color: white;
-}
-
-.btn-secondary {
-    background: #6c757d;
-    color: white;
-}
-</style>
-	<script>
-// 在 main.js 中添加
-let isInitialLoad = true;
-
-function showLoginModal() {
-    document.getElementById('loginModal').style.display = 'flex';
-}
-
-function hideLoginModal() {
-    document.getElementById('loginModal').style.display = 'none';
-}
-
-function submitToken() {
-    const token = document.getElementById('tokenInput').value.trim();
-    if (token) {
-        setGistToken(token);
-        hideLoginModal();
-        if (isInitialLoad) {
-            location.reload();
-        }
-    } else {
-        alert('请输入有效的 token');
-    }
-}
-
-function useLocalData() {
-    hideLoginModal();
-    // 使用本地数据初始化
-    guziData = JSON.parse(localStorage.getItem('guziData')) || [];
-    claimRecords = JSON.parse(localStorage.getItem('claimRecords')) || [];
-    renderStockPage();
-    renderSummaryPage();
-}
-
-// 修改 DOMContentLoaded 事件处理
-document.addEventListener('DOMContentLoaded', async function() {
-    const token = getGistToken();
-    
-    if (!token) {
-        showLoginModal();
-        return;
-    }
-    
-    // 验证 token 是否有效
-    const isValid = await validateToken(token);
-    if (!isValid) {
-        alert('Token 无效或已过期，请重新输入');
-        clearGistToken();
-        showLoginModal();
-        return;
-    }
-    
-    // 原有加载逻辑...
-    const data = await fetchGuziDataFromGist();
-    guziData = data.guziData;
-    claimRecords = data.claimRecords;
-    
-    renderStockPage();
-    renderSummaryPage();
-    
-    isInitialLoad = false;
-    
-    // 监听网格尺寸选择变化
-    document.getElementById('gridSize').addEventListener('change', function() {
-        currentGridSize = this.value;
-    });
-    
-    // 结算页面搜索框支持回车搜索
-    document.getElementById('cnSearchInput').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') searchCN();
-    });
-    
-    // 库存主页面搜索框支持回车搜索
-    document.getElementById('stockSearchInput').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') searchStock();
-    });
-});
-</script>
 </body>
 </html>
