@@ -1046,11 +1046,11 @@
                             <option value="4x4">4×4（16个/张）</option>
                             <option value="5x5">5×5（25个/张）</option>
                         </select>
-                        <button class="btn preview-btn" onclick="previewStockGrid()">预览余量图</button>
+                        <button class="btn preview-btn" onclick="previewStockGrid()">确认规格</button>
                         <button class="btn print-btn" onclick="printPreview()" disabled>打印</button>
                     </div>
                     <div id="previewContainer" class="preview-container">
-                        <div class="preview-title">余量图预览（<span id="previewInfo">0张图，每张包含0个品类</span>）</div>
+                        <div class="preview-title">余量图规格（<span id="previewInfo">0张图，每张包含0个品类</span>）</div>
                         <div id="stockPreviewGrid" class="stock-preview-container"></div>
                     </div>
                 </div>
@@ -1574,7 +1574,7 @@
             
             // 检查是否有预览内容
             if (!previewContainer || !previewContainer.classList.contains('visible') || stockPreviewGrid.children.length === 0) {
-                alert('请先预览余量图！');
+                alert('请先确认要打印的规格！');
                 return;
             }
             
