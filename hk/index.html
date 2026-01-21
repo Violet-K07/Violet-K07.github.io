@@ -978,7 +978,6 @@
     <!-- 右上角登录按钮 -->
     <div id="authButtons" style="display: none;">
         <button id="logoutBtn" class="btn" onclick="logoutToken()">退出登录</button>
-        <button id="reLoginBtn" class="btn" onclick="showLoginModal()">重新登录</button>
     </div>
     
     <div class="container">
@@ -1074,48 +1073,25 @@
     <!-- 登录模态框 -->
     <div id="loginModal">
         <div class="modal-content">
-            <h3>🔐 GitHub Token 登录</h3>
-            <p>需要 GitHub Personal Access Token 来同步数据到云端</p>
+            <h3>🔐 登录</h3>
+            <p>需要 输入密钥登录 来同步数据到云端</p>
             
             <div class="form-group">
-                <label for="tokenInput">GitHub Token</label>
+                <label for="tokenInput">Password</label>
                 <input type="password" id="tokenInput" class="form-control" 
                        placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
                        autocomplete="off">
                 <small style="color: #666; display: block; margin-top: 5px;">
-                    Token 仅保存在您的浏览器本地，不会发送到任何服务器
+                    密钥仅保存在您的浏览器本地，不会发送到任何服务器;
+                </small>
+				<small style="color: #666; display: block; margin-top: 5px;">
+                    不使用特定秘钥时，不能够将排谷数据上传云端。
                 </small>
             </div>
             
-            <div class="help-text">
-                <strong>📋 如何获取 Token：</strong>
-                <ol class="token-steps">
-                    <li><a href="https://github.com/settings/tokens" target="_blank" class="btn btn-gh-link">
-                        🔗 点击前往 GitHub Token 页面
-                    </a></li>
-                    <li>点击 "Generate new token"</li>
-                    <li>输入名称：<code>排谷系统</code></li>
-                    <li><strong>只勾选 "gist" 权限</strong></li>
-                    <li>设置过期时间（建议 90 天）</li>
-                    <li>点击 "Generate token"</li>
-                    <li><strong>立即复制生成的 Token</strong>（只会显示一次！）</li>
-                    <li>粘贴到上面的输入框中</li>
-                </ol>
-                
-                <div style="margin-top: 10px; padding: 10px; background: #fff3cd; border-radius: 4px;">
-                    <strong>⚠️ 安全提醒：</strong>
-                    <ul style="margin: 5px 0 0 20px;">
-                        <li>请使用自己的 GitHub Token</li>
-                        <li>不要分享 Token 给任何人</li>
-                        <li>Token 泄露可能导致数据被窃取</li>
-                        <li>随时可以点击"退出登录"清除 Token</li>
-                    </ul>
-                </div>
-            </div>
-            
+                        
             <div class="modal-actions">
                 <button class="btn btn-primary" onclick="submitToken()" style="flex: 1;">确认并登录</button>
-                <button class="btn btn-secondary" onclick="hideLoginModal()" style="flex: 1;">取消</button>
             </div>
         </div>
     </div>
@@ -1162,7 +1138,7 @@
                 if (!isValid) {
                     // Token无效，清除并提示重新登录
                     clearGistToken();
-                    alert('Token 无效或已过期，请重新登录');
+                    alert('密钥 无效或已过期，请重新登录');
                     showLoginModal();
                     return;
                 }
@@ -1171,8 +1147,8 @@
                 isLoggedIn = true;
                 document.getElementById('authButtons').style.display = 'flex';
             } catch (error) {
-                console.error('验证Token失败:', error);
-                alert('验证Token失败，请检查网络连接');
+                console.error('验证 密钥 失败:', error);
+                alert('验证 密钥 失败，请检查网络连接');
                 showLoginModal();
             }
         }
@@ -1195,14 +1171,14 @@
             const token = tokenInput.value.trim();
             
             if (!token) {
-                alert('请输入 GitHub Token');
+                alert('请输入 密钥');
                 tokenInput.focus();
                 return;
             }
             
             // 验证Token格式
             if (!token.startsWith('ghp_') && !token.startsWith('github_pat_')) {
-                if (!confirm('Token格式似乎不正确。标准的GitHub Token以"ghp_"开头。\n\n是否继续使用这个Token？')) {
+                if (!confirm('密钥 格式似乎不正确。标准的密钥以"ghp_"开头。\n\n是否继续使用这个Token？')) {
                     tokenInput.focus();
                     return;
                 }
@@ -1212,7 +1188,7 @@
                 // 验证Token有效性
                 const isValid = await validateToken(token);
                 if (!isValid) {
-                    alert('Token 无效，请检查是否正确');
+                    alert('密钥 无效，请检查是否正确');
                     return;
                 }
                 
@@ -1230,13 +1206,13 @@
                 // 显示成功提示
                 showSyncTip('登录成功！数据已加载');
             } catch (error) {
-                console.error('提交Token失败:', error);
+                console.error('提交密钥失败:', error);
                 alert('登录失败：' + error.message);
             }
         }
 
         function logoutToken() {
-            if (!confirm('确定要退出登录吗？这将清除本地保存的Token，但不会删除云端数据。')) {
+            if (!confirm('确定要退出登录吗？这将清除你的登录记录，下次需要重新输入密钥，但不会删除云端数据。')) {
                 return;
             }
             
@@ -1278,7 +1254,7 @@
                 console.error('加载数据失败:', error);
                 
                 if (error.message.includes('Token') || error.message.includes('401') || error.message.includes('403')) {
-                    alert('Token 无效或已过期，请重新登录');
+                    alert('密钥无效或已过期，请重新尝试或联系管理员');
                     logoutToken();
                 } else {
                     alert('加载数据失败：' + error.message);
