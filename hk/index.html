@@ -966,6 +966,143 @@
             margin-bottom: 8px;
             line-height: 1.4;
         }
+
+        /* 查看认领情况按钮样式 */
+        .view-claims-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .view-claims-btn:hover {
+            background-color: #5a6268;
+        }
+
+        /* 认领详情模态框样式 */
+        .claims-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .claims-modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80%;
+            overflow-y: auto;
+            position: relative;
+        }
+        
+        .claims-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            color: #666;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        
+        .claims-modal-close:hover {
+            background-color: #e9ecef;
+        }
+        
+        .claims-modal h3 {
+            color: #2c3e50;
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .claims-statistics {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .stat-item {
+            flex: 1;
+            min-width: 120px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-item .stat-label {
+            font-size: 14px;
+            color: #6c757d;
+            margin-bottom: 5px;
+        }
+        
+        .stat-item .stat-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #007bff;
+        }
+        
+        .claims-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        
+        .claims-table th {
+            background-color: #e9ecef;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #495057;
+            border-bottom: 2px solid #dee2e6;
+        }
+        
+        .claims-table td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+            color: #495057;
+        }
+        
+        .claims-table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .no-claims {
+            text-align: center;
+            padding: 30px;
+            color: #6c757d;
+            font-style: italic;
+        }
     </style>
     <!-- 引入SheetJS库用于Excel导出 -->
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -1034,10 +1171,10 @@
                     <div class="export-tips">
                         <strong>使用提示：</strong>
                         <ul>
-                            <li>先选择打印余量图的规格，确认后点击“确认规格”查看效果后，最后按“打印”开始打印</li>
-							<li>使用iphone safari打印时，推荐使用规格5*5 缩放35%效果比较好</li>
+                            <li>先选择打印余量图的规格，确认后点击"确认规格"查看效果后，最后按"打印"开始打印</li>
+                            <li>使用iphone safari打印时，推荐使用规格5*5 缩放35%效果比较好</li>
                             <li>余量图采用与库存卡片相同的设计，余量数字显示在图片右下角，捆序上谷子右上角会显示捆序</li>
-							<li>规格预览效果仅作参考，会因为使用的浏览器不同，打印效果有所差别</li>
+                            <li>规格预览效果仅作参考，会因为使用的浏览器不同，打印效果有所差别</li>
                         </ul>
                     </div>
                     
@@ -1066,6 +1203,49 @@
         <img class="img-modal-content" id="modalImg">
     </div>
     
+    <!-- 认领详情模态框 -->
+    <div class="claims-modal" id="claimsModal">
+        <div class="claims-modal-content">
+            <button class="claims-modal-close" onclick="closeClaimsModal()">×</button>
+            <h3 id="claimsModalTitle">认领详情</h3>
+            <div class="claims-statistics">
+                <div class="stat-item">
+                    <div class="stat-label">总库存</div>
+                    <div class="stat-value" id="totalStock">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">剩余库存</div>
+                    <div class="stat-value" id="remainingStock">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">已认领</div>
+                    <div class="stat-value" id="claimedCount">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">认领人数</div>
+                    <div class="stat-value" id="claimersCount">0</div>
+                </div>
+            </div>
+            <div id="claimsList">
+                <table class="claims-table">
+                    <thead>
+                        <tr>
+                            <th>认领人</th>
+                            <th>认领数量</th>
+                            <th>认领金额</th>
+                        </tr>
+                    </thead>
+                    <tbody id="claimsTableBody">
+                        <!-- 认领记录将在这里动态生成 -->
+                    </tbody>
+                </table>
+                <div id="noClaimsMessage" class="no-claims" style="display: none;">
+                    暂无认领记录
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- 同步提示 -->
     <div class="sync-tip" id="syncTip">数据已同步到云端！</div>
     
@@ -1086,7 +1266,7 @@
                 <small style="color: #666; display: block; margin-top: 5px;">
                     密钥仅保存在您的浏览器本地，不会发送到任何服务器;
                 </small>
-				<small style="color: #666; display: block; margin-top: 5px;">
+                <small style="color: #666; display: block; margin-top: 5px;">
                     不使用特定秘钥时，不能够将排谷数据上传云端。
                 </small>
             </div>
@@ -1110,6 +1290,7 @@
         let currentGridSize = '3x3'; // 当前选择的网格尺寸
         let currentExportFilter = 'inStock';
         let currentExportSearch = '';
+        let currentClaimDetailsIndex = -1; // 当前查看认领详情的谷子索引
         
         // 登录状态
         let isLoggedIn = false;
@@ -1291,6 +1472,13 @@
                     hideLoginModal();
                 }
             });
+            
+            // 点击认领详情模态框外部关闭
+            document.getElementById('claimsModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeClaimsModal();
+                }
+            });
         }
 
         // ==================== 数据同步函数 ====================
@@ -1387,6 +1575,7 @@
                     // 有库存卡片：展示认领表单
                     cardBackContent = `
                         <h3>认领 ${item.category}</h3>
+                        <button class="view-claims-btn" onclick="showClaimDetails(${index})">查看认领情况</button>
                         <div class="claim-form-group">
                             <label for="claimer-name-${index}">认领人CN</label>
                             <input type="text" id="claimer-name-${index}" class="claim-input" placeholder="请输入你的CN名称">
@@ -1427,7 +1616,7 @@
                 
                 // 修复卡片点击反转bug：仅点击正面非按钮区域才翻转
                 card.querySelector('.card-front').addEventListener('click', function(e) {
-                    if (!e.target.closest('.close-btn') && !e.target.closest('.claim-btn')) {
+                    if (!e.target.closest('.close-btn') && !e.target.closest('.claim-btn') && !e.target.closest('.view-claims-btn')) {
                         card.classList.add('flipped');
                     }
                 });
@@ -1439,6 +1628,83 @@
                 
                 stockContainer.appendChild(card);
             });
+        }
+
+        // 显示认领详情模态框
+        function showClaimDetails(index) {
+            currentClaimDetailsIndex = index;
+            const item = guziData[index];
+            
+            // 更新模态框标题
+            document.getElementById('claimsModalTitle').textContent = `${item.category} 认领详情`;
+            
+            // 计算统计信息
+            const totalStock = item.stock + item.claimers.length; // 总库存 = 剩余库存 + 已认领数量
+            const remainingStock = item.stock;
+            const claimedCount = item.claimers.length;
+            
+            // 统计认领人数量
+            const claimersMap = {};
+            item.claimers.forEach(name => {
+                claimersMap[name] = (claimersMap[name] || 0) + 1;
+            });
+            const claimersCount = Object.keys(claimersMap).length;
+            
+            // 更新统计信息
+            document.getElementById('totalStock').textContent = totalStock;
+            document.getElementById('remainingStock').textContent = remainingStock;
+            document.getElementById('claimedCount').textContent = claimedCount;
+            document.getElementById('claimersCount').textContent = claimersCount;
+            
+            // 更新认领记录表格
+            const claimsTableBody = document.getElementById('claimsTableBody');
+            const noClaimsMessage = document.getElementById('noClaimsMessage');
+            
+            if (claimedCount > 0) {
+                // 有认领记录，显示表格
+                claimsTableBody.innerHTML = '';
+                let totalAmount = 0;
+                
+                Object.entries(claimersMap).forEach(([name, count]) => {
+                    const amount = count * item.price;
+                    totalAmount += amount;
+                    
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${name}</td>
+                        <td>${count} 个</td>
+                        <td>¥${amount.toFixed(2)}</td>
+                    `;
+                    claimsTableBody.appendChild(row);
+                });
+                
+                // 添加总计行
+                const totalRow = document.createElement('tr');
+                totalRow.style.fontWeight = 'bold';
+                totalRow.style.backgroundColor = '#f8f9fa';
+                totalRow.innerHTML = `
+                    <td>总计</td>
+                    <td>${claimedCount} 个</td>
+                    <td>¥${totalAmount.toFixed(2)}</td>
+                `;
+                claimsTableBody.appendChild(totalRow);
+                
+                claimsTableBody.style.display = 'table-row-group';
+                noClaimsMessage.style.display = 'none';
+            } else {
+                // 无认领记录，显示提示信息
+                claimsTableBody.style.display = 'none';
+                noClaimsMessage.style.display = 'block';
+            }
+            
+            // 显示模态框
+            document.getElementById('claimsModal').style.display = 'flex';
+        }
+
+        // 关闭认领详情模态框
+        function closeClaimsModal() {
+            document.getElementById('claimsModal').style.display = 'none';
+            currentClaimDetailsIndex = -1;
         }
 
         function flipStockCard(index) {
