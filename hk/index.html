@@ -1034,8 +1034,10 @@
                     <div class="export-tips">
                         <strong>使用提示：</strong>
                         <ul>
-                            <li>使用"打印"功能，生成pdf文件，方便保存</li>
-                            <li>余量图采用与库存卡片相同的设计，余量数字显示在图片右下角</li>
+                            <li>先选择打印余量图的规格，确认后点击“确认规格”查看效果后，最后按“打印”开始打印</li>
+							<li>使用iphone safari打印时，推荐使用规格5*5 缩放35%效果比较好</li>
+                            <li>余量图采用与库存卡片相同的设计，余量数字显示在图片右下角，捆序上谷子左上角会显示捆序</li>
+							<li>规格预览效果仅作参考，会因为使用的浏览器不同，打印效果有所差别</li>
                         </ul>
                     </div>
                     
@@ -1050,7 +1052,7 @@
                         <button class="btn print-btn" onclick="printPreview()" disabled>打印</button>
                     </div>
                     <div id="previewContainer" class="preview-container">
-                        <div class="preview-title">余量图规格（<span id="previewInfo">0张图，每张包含0个品类</span>）</div>
+                        <div class="preview-title">余量图规格：<span id="previewInfo">0张图，每张包含0个品类</span></div>
                         <div id="stockPreviewGrid" class="stock-preview-container"></div>
                     </div>
                 </div>
@@ -1464,7 +1466,7 @@
                 return;
             }
             
-            if (confirm(`确认由【${claimerName}】认领【${guziData[index].category}】${claimQuantity}个吗？`)) {
+            if (confirm(`确认由【${claimerName}】认领【${guziData[index].category}】${claimQuantity}个吗？无特殊原因不允许撤排，请确认认领该谷子的话点击确认，否则点击取消`)) {
                 // 添加认领记录
                 for (let i = 0; i < claimQuantity; i++) {
                     guziData[index].claimers.push(claimerName);
@@ -1536,9 +1538,9 @@
                 previewInfo = `共${totalItems}个品类，生成1张图`;
             } else {
                 if (lastPageItems === itemsPerPage) {
-                    previewInfo = `共${totalItems}个品类。将会${totalPages}张图，每张包含${itemsPerPage}个品类`;
+                    previewInfo = `共${totalItems}个品类。将会生成${totalPages}张图，每张包含${itemsPerPage}个品类`;
                 } else {
-                    previewInfo = `共${totalItems}个品类。将会${totalPages}张图，每张包含${itemsPerPage}个品类（最后一张${lastPageItems}个）`;
+                    previewInfo = `共${totalItems}个品类。将会生成${totalPages}张图，每张包含${itemsPerPage}个品类（最后一张${lastPageItems}个）`;
                 }
             }
             
