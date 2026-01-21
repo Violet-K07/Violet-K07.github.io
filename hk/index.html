@@ -1034,7 +1034,7 @@
                     <div class="export-tips">
                         <strong>使用提示：</strong>
                         <ul>
-                            <li>使用"打印预览"功能，可以获得更好的打印效果</li>
+                            <li>使用"打印"功能，生成pdf文件，方便保存</li>
                             <li>余量图采用与库存卡片相同的设计，余量数字显示在图片右下角</li>
                         </ul>
                     </div>
@@ -1047,7 +1047,7 @@
                             <option value="5x5">5×5（25个/张）</option>
                         </select>
                         <button class="btn preview-btn" onclick="previewStockGrid()">预览余量图</button>
-                        <button class="btn print-btn" onclick="printPreview()" disabled>打印预览</button>
+                        <button class="btn print-btn" onclick="printPreview()" disabled>打印</button>
                     </div>
                     <div id="previewContainer" class="preview-container">
                         <div class="preview-title">余量图预览（<span id="previewInfo">0张图，每张包含0个品类</span>）</div>
@@ -1567,7 +1567,7 @@
             document.querySelector('.print-btn').disabled = false;
         }
 
-        // ==================== 打印预览功能 ====================
+        // ==================== 打印功能 ====================
         function printPreview() {
             const previewContainer = document.getElementById('previewContainer');
             const stockPreviewGrid = document.getElementById('stockPreviewGrid');
