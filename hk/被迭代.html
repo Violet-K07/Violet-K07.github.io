@@ -1000,7 +1000,7 @@
 
         <!-- 新版库存余量+排谷页面 -->
         <div id="stock-page" class="page active">
-            <h2>快认领你的谷子吧~</h2>
+            <h2>快认领你的谷子吧</h2>
             
             <!-- 库存页面子标签页 -->
             <div class="sub-tabs">
@@ -1523,26 +1523,9 @@
             stockPreviewGrid.innerHTML = '';
             previewedGridData = [];
 
-            // 计算总页数和最后一页的品类数
-            const totalItems = filteredData.length;
-            const totalPages = Math.ceil(totalItems / itemsPerPage);
-            const lastPageItems = totalItems % itemsPerPage || itemsPerPage; // 如果余数为0，最后一页也是满的
-            
-            // 生成提示信息
-            let previewInfo = '';
-            if (totalPages === 0) {
-                previewInfo = '没有符合条件的品类';
-            } else if (totalPages === 1) {
-                previewInfo = `共${totalItems}个品类，生成1张图`;
-            } else {
-                if (lastPageItems === itemsPerPage) {
-                    previewInfo = `共${totalItems}个品类。将会${totalPages}张图，每张包含${itemsPerPage}个品类`;
-                } else {
-                    previewInfo = `共${totalItems}个品类。将会${totalPages}张图，每张包含${itemsPerPage}个品类（最后一张${lastPageItems}个）`;
-                }
-            }
-            
-            document.getElementById('previewInfo').innerText = previewInfo;
+            // 计算总页数
+            const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+            document.getElementById('previewInfo').innerText = `${totalPages}张图，每张包含${itemsPerPage}个品类`;
 
             // 生成每页的网格
             for (let page = 0; page < totalPages; page++) {
@@ -1552,7 +1535,6 @@
                 const pageGrid = document.createElement('div');
                 pageGrid.className = `stock-grid-preview grid-${gridSize}`;
                 pageGrid.style.marginBottom = '20px';
-
 
                 // 生成当前页的每个卡片 - 使用库存卡片设计
                 pageData.forEach(item => {
