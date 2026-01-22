@@ -1251,7 +1251,6 @@
                         <tr>
                             <th>认领人</th>
                             <th>认领数量</th>
-                            <th>认领金额</th>
                         </tr>
                     </thead>
                     <tbody id="claimsTableBody">
@@ -1692,21 +1691,10 @@
                     row.innerHTML = `
                         <td>${name}</td>
                         <td>${count} 个</td>
-                        <td>¥${amount.toFixed(2)}</td>
                     `;
                     claimsTableBody.appendChild(row);
                 });
                 
-                // 添加总计行
-                const totalRow = document.createElement('tr');
-                totalRow.style.fontWeight = 'bold';
-                totalRow.style.backgroundColor = '#f8f9fa';
-                totalRow.innerHTML = `
-                    <td>总计</td>
-                    <td>${claimedCount} 个</td>
-                    <td>¥${totalAmount.toFixed(2)}</td>
-                `;
-                claimsTableBody.appendChild(totalRow);
                 
                 claimsTableBody.style.display = 'table-row-group';
                 noClaimsMessage.style.display = 'none';
