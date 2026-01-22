@@ -495,7 +495,7 @@ function renderStockPage() {
                     ${item.kunxu !== '不捆' ? `<div class="kunxu-tag">${item.kunxu}</div>` : ''}
                     <img src="${imgSrc}" alt="${item.category}">
                     <div class="category-name">${item.category}</div>
-                    <div class="stock-num">${item.stock}</div>
+                    <div class="stock-num">余${item.stock}</div>
                     <div class="stock-status">${isOutOfStock ? '已售罄' : '可认领'}</div>
                     <div class="price-info">单价：¥${item.price.toFixed(2)}</div>
                 </div>
