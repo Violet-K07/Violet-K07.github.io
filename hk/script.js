@@ -10,6 +10,7 @@ let currentGridSize = '3x3'; // 当前选择的网格尺寸
 let currentExportFilter = 'inStock';
 let currentExportSearch = '';
 let currentClaimDetailsIndex = -1; // 当前查看认领详情的谷子索引
+let currentPreviewScale = 1; // 预览缩放比例
 
 // 登录状态
 let isLoggedIn = false;
@@ -756,6 +757,10 @@ function previewStockGrid() {
         const pageGrid = document.createElement('div');
         pageGrid.className = `stock-grid-preview grid-${gridSize}`;
         pageGrid.style.marginBottom = '20px';
+        pageGrid.style.transform = `scale(${currentPreviewScale})`;
+        pageGrid.style.transformOrigin = 'top center';
+        pageGrid.style.width = 'fit-content';
+        pageGrid.style.margin = '0 auto';
 
         // 生成当前页的每个卡片 - 固定尺寸确保一致性
         pageData.forEach(item => {
@@ -788,6 +793,66 @@ function previewStockGrid() {
     // 显示预览容器，启用打印按钮
     previewContainer.classList.add('visible');
     printBtn.disabled = false;
+    
+    // 创建缩放控制按钮
+    createPreviewZoomControls();
+}
+
+// 创建预览缩放控制按钮
+function createPreviewZoomControls() {
+    const previewContainer = document.getElementById('previewContainer');
+    const zoomControls = document.querySelector('.preview-zoom-controls');
+    
+    if (zoomControls) {
+        zoomControls.remove();
+    }
+    
+    const zoomContainer = document.createElement('div');
+    zoomContainer.className = 'preview-zoom-controls';
+    zoomContainer.innerHTML = `
+        <div class="zoom-label">预览缩放：</div>
+        <button class="btn zoom-out-btn" onclick="zoomPreview(-0.1)">缩小</button>
+        <div class="zoom-display">${Math.round(currentPreviewScale * 100)}%</div>
+        <button class="btn zoom-in-btn" onclick="zoomPreview(0.1)">放大</button>
+        <button class="btn zoom-reset-btn" onclick="resetPreviewZoom()">重置</button>
+    `;
+    
+    previewContainer.appendChild(zoomContainer);
+}
+
+// 缩放预览
+function zoomPreview(delta) {
+    currentPreviewScale += delta;
+    currentPreviewScale = Math.max(0.3, Math.min(2, currentPreviewScale));
+    
+    // 更新所有预览网格的缩放
+    const previewGrids = document.querySelectorAll('.stock-grid-preview');
+    previewGrids.forEach(grid => {
+        grid.style.transform = `scale(${currentPreviewScale})`;
+    });
+    
+    // 更新缩放显示
+    const zoomDisplay = document.querySelector('.zoom-display');
+    if (zoomDisplay) {
+        zoomDisplay.textContent = `${Math.round(currentPreviewScale * 100)}%`;
+    }
+}
+
+// 重置预览缩放
+function resetPreviewZoom() {
+    currentPreviewScale = 1;
+    
+    // 更新所有预览网格的缩放
+    const previewGrids = document.querySelectorAll('.stock-grid-preview');
+    previewGrids.forEach(grid => {
+        grid.style.transform = `scale(${currentPreviewScale})`;
+    });
+    
+    // 更新缩放显示
+    const zoomDisplay = document.querySelector('.zoom-display');
+    if (zoomDisplay) {
+        zoomDisplay.textContent = `${Math.round(currentPreviewScale * 100)}%`;
+    }
 }
 
 // ==================== 打印功能 ====================

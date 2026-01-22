@@ -984,7 +984,8 @@ body {
     background-color: var(--container-bg);
     max-height: 600px;
     overflow-y: auto;
-    overflow-x: hidden;
+    overflow-x: auto; /* 允许横向滚动 */
+    position: relative;
 }
 
 .preview-container.visible {
@@ -998,6 +999,10 @@ body {
     margin-bottom: 15px;
     padding-bottom: 8px;
     border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    background-color: var(--container-bg);
+    z-index: 10;
 }
 
 /* 打印按钮样式 */
@@ -1015,40 +1020,84 @@ body {
     cursor: not-allowed;
 }
 
+/* 预览缩放控制 */
+.preview-zoom-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: var(--light-bg);
+    border-radius: 6px;
+    border: 1px solid var(--light-border);
+    flex-wrap: wrap;
+}
+
+.zoom-label {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.zoom-out-btn, .zoom-in-btn, .zoom-reset-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+}
+
+.zoom-out-btn {
+    background-color: var(--warning-color);
+    color: white;
+}
+
+.zoom-in-btn {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.zoom-reset-btn {
+    background-color: var(--gray-color);
+    color: white;
+}
+
+.zoom-display {
+    min-width: 50px;
+    text-align: center;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
 /* 网格布局的余量图样式 - 修复卡片大小一致性 */
 .stock-preview-container {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    width: 100%;
+    width: fit-content;
+    min-width: 100%;
+    margin: 0 auto;
 }
 
 .stock-grid-preview {
     display: grid;
     gap: 20px;
-    width: 100%;
-    justify-content: center;
+    width: fit-content;
+    margin: 0 auto;
+    transition: transform 0.2s ease;
 }
 
+/* 固定网格列数，不响应式 */
 .grid-3x3 {
-    grid-template-columns: repeat(3, 1fr);
-    max-width: 900px;
-    margin: 0 auto;
+    grid-template-columns: repeat(3, 320px);
 }
 
 .grid-4x4 {
-    grid-template-columns: repeat(4, 1fr);
-    max-width: 1100px;
-    margin: 0 auto;
+    grid-template-columns: repeat(4, 320px);
 }
 
 .grid-5x5 {
-    grid-template-columns: repeat(5, 1fr);
-    max-width: 1300px;
-    margin: 0 auto;
+    grid-template-columns: repeat(5, 320px);
 }
 
-/* 修复：余量图卡片 - 确保大小一致 */
+/* 修复：余量图卡片 - 确保大小一致，移除hover动画 */
 .export-card-front {
     background: linear-gradient(135deg, var(--light-bg) 0%, var(--light-border) 100%);
     border: 1px solid var(--light-border);
@@ -1056,19 +1105,21 @@ body {
     text-align: center;
     box-shadow: var(--card-shadow);
     height: 400px; /* 固定高度，确保所有卡片大小一致 */
+    width: 300px; /* 固定宽度，确保所有卡片大小一致 */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     position: relative;
-    transition: transform 0.2s;
     overflow: hidden;
     padding: 15px;
 }
 
+/* 移除预览卡片的hover效果 */
 .export-card-front:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    /* 移除transform效果，只保留轻微的阴影变化 */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transform: none; /* 确保没有位置变化 */
 }
 
 .export-card-front::before {
@@ -1094,6 +1145,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0; /* 防止图片容器缩小 */
 }
 
 .export-card-img {
@@ -1135,6 +1187,7 @@ body {
     flex-direction: column;
     justify-content: center;
     width: 100%;
+    overflow: hidden;
 }
 
 .export-card-front .category-name {
@@ -1147,6 +1200,7 @@ body {
     text-overflow: ellipsis;
     max-width: 100%;
     padding: 0 5px;
+    flex-shrink: 0; /* 防止文字容器缩小 */
 }
 
 .export-card-front .price-info {
@@ -1154,6 +1208,7 @@ body {
     font-size: 18px;
     color: var(--primary-color);
     font-weight: 700;
+    flex-shrink: 0; /* 防止价格容器缩小 */
 }
 
 .export-card-front .kunxu-tag {
@@ -1400,7 +1455,7 @@ body {
     }
     
     /* 隐藏所有按钮 */
-    .btn, button, .print-btn, .back-to-top {
+    .btn, button, .print-btn, .back-to-top, .preview-zoom-controls {
         display: none !important;
     }
 }
@@ -1470,8 +1525,15 @@ body {
         align-items: stretch;
     }
     
-    .grid-3x3, .grid-4x4, .grid-5x5 {
-        grid-template-columns: repeat(2, 1fr);
+    .preview-zoom-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+    
+    .zoom-label {
+        width: 100%;
+        text-align: center;
     }
     
     .stock-filter-toggle {
@@ -1501,10 +1563,31 @@ body {
     /* 移动端预览容器调整 */
     .preview-container {
         max-height: 500px;
+        padding: 10px;
     }
     
+    /* 移动端预览网格固定宽度，允许横向滚动 */
+    .stock-grid-preview {
+        width: fit-content !important;
+        margin: 0 auto;
+    }
+    
+    .grid-3x3 {
+        grid-template-columns: repeat(3, 280px) !important;
+    }
+    
+    .grid-4x4 {
+        grid-template-columns: repeat(4, 280px) !important;
+    }
+    
+    .grid-5x5 {
+        grid-template-columns: repeat(5, 280px) !important;
+    }
+    
+    /* 移动端卡片稍微缩小 */
     .export-card-front {
-        height: 350px; /* 移动端稍微减小高度 */
+        height: 350px;
+        width: 260px;
     }
     
     .export-card-image-container {
