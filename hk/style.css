@@ -19,6 +19,7 @@
     --success-color: #28a745;
     --danger-color: #dc3545;
     --warning-color: #ffc107;
+    --warning-hover: #e0a800;
     --gray-color: #6c757d;
     --light-bg: #f8f9fa;
     --light-border: #e9ecef;
@@ -39,7 +40,8 @@
     --primary-hover: #339af0;
     --success-color: #51cf66;
     --danger-color: #ff6b6b;
-    --warning-color: #ffd43b;
+    --warning-color: #ffc107;
+    --warning-hover: #e0a800;
     --gray-color: #868e96;
     --light-bg: #2d2d2d;
     --light-border: #3d3d3d;
@@ -326,7 +328,7 @@ body {
     font-weight: 600;
 }
 
-/* 返回顶部按钮 */
+/* 回到顶部按钮 */
 .back-to-top {
     position: fixed;
     bottom: 30px;
@@ -960,12 +962,16 @@ body {
     color: var(--text-color);
 }
 
+/* 修改：预览按钮样式，使文字更清晰 */
 .preview-btn {
-    background-color: var(--warning-color);
+    background-color: #d97706; /* 更深的橙色，文字更清晰 */
     color: white;
+    font-weight: 600;
+    border: 1px solid #b45309;
 }
 
 .preview-btn:hover {
+    background-color: #b45309; /* 更深的悬停色 */
     opacity: 0.9;
 }
 
@@ -976,6 +982,9 @@ body {
     border: 1px dashed var(--primary-color);
     border-radius: 8px;
     background-color: var(--container-bg);
+    max-height: 600px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .preview-container.visible {
@@ -1007,23 +1016,36 @@ body {
 }
 
 /* 网格布局的余量图样式 */
+.stock-preview-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+}
+
 .stock-grid-preview {
     display: grid;
     gap: 20px;
+    width: 100%;
     justify-content: center;
-    margin: 0 auto;
 }
 
 .grid-3x3 {
-    grid-template-columns: repeat(3, 280px);
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .grid-4x4 {
-    grid-template-columns: repeat(4, 240px);
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
 .grid-5x5 {
-    grid-template-columns: repeat(5, 220px);
+    grid-template-columns: repeat(5, 1fr);
+    max-width: 1300px;
+    margin: 0 auto;
 }
 
 /* 余量图卡片 */
@@ -1031,15 +1053,21 @@ body {
     background: linear-gradient(135deg, var(--light-bg) 0%, var(--light-border) 100%);
     border: 1px solid var(--light-border);
     border-radius: 12px;
-    padding: 20px;
+    padding: 15px;
     text-align: center;
     box-shadow: var(--card-shadow);
-    height: 400px;
+    height: 320px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     position: relative;
+    transition: transform 0.2s;
+}
+
+.export-card-front:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
 }
 
 .export-card-front::before {
@@ -1057,11 +1085,11 @@ body {
 }
 
 .export-card-front img {
-    width: 180px;
-    height: 180px;
+    width: 140px;
+    height: 140px;
     object-fit: cover;
     border-radius: 8px;
-    margin: 15px auto;
+    margin: 10px auto;
     border: 2px solid var(--container-bg);
     box-shadow: var(--card-shadow);
     position: relative;
@@ -1071,14 +1099,14 @@ body {
     position: absolute;
     bottom: 5px;
     right: 5px;
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(255, 255, 255, 0.95);
     border-radius: 50%;
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     color: var(--success-color);
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
@@ -1092,18 +1120,19 @@ body {
 
 .export-card-front .category-name {
     font-weight: 600;
-    font-size: 18px;
+    font-size: 16px;
     color: var(--text-color);
-    margin-bottom: 8px;
+    margin: 8px 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 90%;
+    padding: 0 5px;
 }
 
 .export-card-front .price-info {
-    margin-top: 10px;
-    font-size: 20px;
+    margin-top: 5px;
+    font-size: 18px;
     color: var(--primary-color);
     font-weight: 700;
 }
@@ -1112,11 +1141,11 @@ body {
     position: absolute;
     top: 10px;
     right: 10px;
-    font-size: 12px;
-    padding: 2px 8px;
+    font-size: 11px;
+    padding: 2px 6px;
     background-color: var(--primary-color);
     color: white;
-    border-radius: 12px;
+    border-radius: 10px;
 }
 
 /* 用于打印的临时容器 */
@@ -1447,5 +1476,19 @@ body {
         right: 20px;
         width: 45px;
         height: 45px;
+    }
+    
+    /* 移动端预览容器调整 */
+    .preview-container {
+        max-height: 500px;
+    }
+    
+    .export-card-front {
+        height: 280px;
+    }
+    
+    .export-card-front img {
+        width: 120px;
+        height: 120px;
     }
 }

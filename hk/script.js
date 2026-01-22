@@ -43,6 +43,8 @@ document.addEventListener('DOMContentLoaded', async function() {
 function initBackToTopButton() {
     const backToTopBtn = document.getElementById('backToTopBtn');
     
+    if (!backToTopBtn) return;
+    
     // 滚动事件监听
     window.addEventListener('scroll', function() {
         if (window.pageYOffset > 300) {
@@ -280,38 +282,66 @@ async function loadData() {
 
 function setupEventListeners() {
     // 监听网格尺寸选择变化
-    document.getElementById('gridSize').addEventListener('change', function() {
-        currentGridSize = this.value;
-    });
+    const gridSizeSelect = document.getElementById('gridSize');
+    if (gridSizeSelect) {
+        gridSizeSelect.addEventListener('change', function() {
+            currentGridSize = this.value;
+        });
+    }
     
     // 结算页面搜索框支持回车搜索
-    document.getElementById('cnSearchInput').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') searchCN();
-    });
+    const cnSearchInput = document.getElementById('cnSearchInput');
+    if (cnSearchInput) {
+        cnSearchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') searchCN();
+        });
+    }
     
     // 库存主页面搜索框支持回车搜索
-    document.getElementById('stockSearchInput').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') searchStock();
-    });
+    const stockSearchInput = document.getElementById('stockSearchInput');
+    if (stockSearchInput) {
+        stockSearchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') searchStock();
+        });
+    }
     
     // 登录框输入框支持回车提交
-    document.getElementById('tokenInput').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') submitToken();
-    });
+    const tokenInput = document.getElementById('tokenInput');
+    if (tokenInput) {
+        tokenInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') submitToken();
+        });
+    }
     
     // 点击登录框外部关闭
-    document.getElementById('loginModal').addEventListener('click', function(e) {
-        if (e.target === this) {
-            hideLoginModal();
-        }
-    });
+    const loginModal = document.getElementById('loginModal');
+    if (loginModal) {
+        loginModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideLoginModal();
+            }
+        });
+    }
     
     // 点击认领详情模态框外部关闭
-    document.getElementById('claimsModal').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeClaimsModal();
-        }
-    });
+    const claimsModal = document.getElementById('claimsModal');
+    if (claimsModal) {
+        claimsModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeClaimsModal();
+            }
+        });
+    }
+    
+    // 图片放大弹窗点击外部关闭
+    const imgModal = document.getElementById('imgModal');
+    if (imgModal) {
+        imgModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeImgModal();
+            }
+        });
+    }
 }
 
 // ==================== 数据同步函数 ====================
@@ -329,29 +359,63 @@ function saveDataToLocalStorage() {
 // ==================== 辅助函数 ====================
 function showSyncTip(message = '数据已同步到云端！') {
     const tip = document.getElementById('syncTip');
+    if (!tip) return;
+    
     tip.textContent = message;
     tip.style.display = "block";
-    setTimeout(() => tip.style.display = "none", 3000);
+    setTimeout(() => {
+        tip.style.display = "none";
+    }, 3000);
 }
 
 // ==================== 页面切换函数 ====================
 function switchPage(pageId) {
-    document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-    document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-    document.getElementById(pageId).classList.add('active');
-    event.target.classList.add('active');
+    // 获取所有页面和标签
+    const pages = document.querySelectorAll('.page');
+    const tabs = document.querySelectorAll('.tab');
+    
+    // 移除所有active类
+    pages.forEach(page => page.classList.remove('active'));
+    tabs.forEach(tab => tab.classList.remove('active'));
+    
+    // 添加active类到目标页面和标签
+    const targetPage = document.getElementById(pageId);
+    if (targetPage) {
+        targetPage.classList.add('active');
+    }
+    
+    if (event && event.target) {
+        event.target.classList.add('active');
+    }
 }
 
 function switchSubPage(subPageId) {
-    document.querySelectorAll('.sub-page').forEach(page => page.classList.remove('active'));
-    document.querySelectorAll('.sub-tab').forEach(tab => tab.classList.remove('active'));
-    document.getElementById(subPageId).classList.add('active');
-    event.target.classList.add('active');
+    // 获取所有子页面和子标签
+    const subPages = document.querySelectorAll('.sub-page');
+    const subTabs = document.querySelectorAll('.sub-tab');
+    
+    // 移除所有active类
+    subPages.forEach(page => page.classList.remove('active'));
+    subTabs.forEach(tab => tab.classList.remove('active'));
+    
+    // 添加active类到目标子页面和子标签
+    const targetSubPage = document.getElementById(subPageId);
+    if (targetSubPage) {
+        targetSubPage.classList.add('active');
+    }
+    
+    if (event && event.target) {
+        event.target.classList.add('active');
+    }
 }
 
 // ==================== 库存主页面功能 ====================
 function renderStockPage() {
     const stockContainer = document.getElementById('stock-container');
+    const totalAmountElement = document.querySelector('.stock-total-amount');
+    
+    if (!stockContainer || !totalAmountElement) return;
+    
     stockContainer.innerHTML = '';
     
     // 计算库存总金额
@@ -359,7 +423,7 @@ function renderStockPage() {
     guziData.forEach(item => {
         totalAmount += item.price * item.stock;
     });
-    document.querySelector('.stock-total-amount').innerText = `¥${totalAmount.toFixed(2)}`;
+    totalAmountElement.innerText = `¥${totalAmount.toFixed(2)}`;
     
     // 渲染库存卡片
     guziData.forEach((item, index) => {
@@ -388,11 +452,11 @@ function renderStockPage() {
         if (isOutOfStock) {
             // 已售罄卡片：展示认领人列表
             const claimersMap = {};
-            item.claimers.forEach(name => {
-                claimersMap[name] = (claimersMap[name] || 0) + 1;
+            item.claimers.forEach(claimerName => {
+                claimersMap[claimerName] = (claimersMap[claimerName] || 0) + 1;
             });
-            const claimersList = Object.entries(claimersMap).map(([name, count]) => 
-                `<div class="claimers-item">${name}：${count}个</div>`
+            const claimersList = Object.entries(claimersMap).map(([claimerName, count]) => 
+                `<div class="claimers-item">${claimerName}：${count}个</div>`
             ).join('');
             
             cardBackContent = `
@@ -406,7 +470,7 @@ function renderStockPage() {
                 </div>
             `;
         } else {
-            // 有库存卡片：展示认领表单（修改：将标题和查看按钮合并）
+            // 有库存卡片：展示认领表单
             cardBackContent = `
                 <button class="claim-title-btn" onclick="showClaimDetails(${index})">
                     ${item.category} 认领详情
@@ -447,19 +511,27 @@ function renderStockPage() {
         `;
         
         // 给卡片背面添加data-index属性，用于定位背景图
-        card.querySelector('.card-back').setAttribute('data-index', index);
+        const cardBack = card.querySelector('.card-back');
+        if (cardBack) {
+            cardBack.setAttribute('data-index', index);
+        }
         
         // 修复卡片点击反转bug：仅点击正面非按钮区域才翻转
-        card.querySelector('.card-front').addEventListener('click', function(e) {
-            if (!e.target.closest('.close-btn') && !e.target.closest('.claim-btn') && !e.target.closest('.claim-title-btn')) {
-                card.classList.add('flipped');
-            }
-        });
+        const cardFront = card.querySelector('.card-front');
+        if (cardFront) {
+            cardFront.addEventListener('click', function(e) {
+                if (!e.target.closest('.close-btn') && !e.target.closest('.claim-btn') && !e.target.closest('.claim-title-btn')) {
+                    card.classList.add('flipped');
+                }
+            });
+        }
         
         // 阻止背面内容点击触发翻转
-        card.querySelector('.card-back').addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
+        if (cardBack) {
+            cardBack.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        }
         
         stockContainer.appendChild(card);
     });
@@ -467,12 +539,16 @@ function renderStockPage() {
 
 // 显示认领详情模态框
 function showClaimDetails(index) {
-    event.stopPropagation(); // 防止触发卡片翻转
+    if (event) event.stopPropagation(); // 防止触发卡片翻转
+    
     currentClaimDetailsIndex = index;
     const item = guziData[index];
     
     // 更新模态框标题
-    document.getElementById('claimsModalTitle').textContent = `${item.category} 认领详情`;
+    const modalTitle = document.getElementById('claimsModalTitle');
+    if (modalTitle) {
+        modalTitle.textContent = `${item.category} 认领详情`;
+    }
     
     // 计算统计信息
     const totalStock = item.stock + item.claimers.length; // 总库存 = 剩余库存 + 已认领数量
@@ -481,16 +557,21 @@ function showClaimDetails(index) {
     
     // 统计认领人数量
     const claimersMap = {};
-    item.claimers.forEach(name => {
-        claimersMap[name] = (claimersMap[name] || 0) + 1;
+    item.claimers.forEach(claimerName => {
+        claimersMap[claimerName] = (claimersMap[claimerName] || 0) + 1;
     });
     const claimersCount = Object.keys(claimersMap).length;
     
     // 更新统计信息
-    document.getElementById('totalStock').textContent = totalStock;
-    document.getElementById('remainingStock').textContent = remainingStock;
-    document.getElementById('claimedCount').textContent = claimedCount;
-    document.getElementById('claimersCount').textContent = claimersCount;
+    const totalStockEl = document.getElementById('totalStock');
+    const remainingStockEl = document.getElementById('remainingStock');
+    const claimedCountEl = document.getElementById('claimedCount');
+    const claimersCountEl = document.getElementById('claimersCount');
+    
+    if (totalStockEl) totalStockEl.textContent = totalStock;
+    if (remainingStockEl) remainingStockEl.textContent = remainingStock;
+    if (claimedCountEl) claimedCountEl.textContent = claimedCount;
+    if (claimersCountEl) claimersCountEl.textContent = claimersCount;
     
     // 更新认领记录表格
     const claimsTableBody = document.getElementById('claimsTableBody');
@@ -498,51 +579,79 @@ function showClaimDetails(index) {
     
     if (claimedCount > 0) {
         // 有认领记录，显示表格
-        claimsTableBody.innerHTML = '';
+        if (claimsTableBody) {
+            claimsTableBody.innerHTML = '';
+            
+            Object.entries(claimersMap).forEach(([claimerName, count]) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${claimerName}</td>
+                    <td>${count} 个</td>
+                `;
+                claimsTableBody.appendChild(row);
+            });
+            
+            claimsTableBody.style.display = 'table-row-group';
+        }
         
-        Object.entries(claimersMap).forEach(([name, count]) => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${name}</td>
-                <td>${count} 个</td>
-            `;
-            claimsTableBody.appendChild(row);
-        });
-        
-        claimsTableBody.style.display = 'table-row-group';
-        noClaimsMessage.style.display = 'none';
+        if (noClaimsMessage) {
+            noClaimsMessage.style.display = 'none';
+        }
     } else {
         // 无认领记录，显示提示信息
-        claimsTableBody.style.display = 'none';
-        noClaimsMessage.style.display = 'block';
+        if (claimsTableBody) {
+            claimsTableBody.style.display = 'none';
+        }
+        
+        if (noClaimsMessage) {
+            noClaimsMessage.style.display = 'block';
+        }
     }
     
     // 显示模态框
-    document.getElementById('claimsModal').style.display = 'flex';
+    const claimsModal = document.getElementById('claimsModal');
+    if (claimsModal) {
+        claimsModal.style.display = 'flex';
+    }
 }
 
 // 关闭认领详情模态框
 function closeClaimsModal() {
-    document.getElementById('claimsModal').style.display = 'none';
+    const claimsModal = document.getElementById('claimsModal');
+    if (claimsModal) {
+        claimsModal.style.display = 'none';
+    }
     currentClaimDetailsIndex = -1;
 }
 
 function flipStockCard(index) {
-    event.stopPropagation(); // 防止触发卡片翻转
+    if (event) event.stopPropagation(); // 防止触发卡片翻转
+    
     const card = document.querySelector(`.stock-card[data-index="${index}"]`);
-    card.classList.remove('flipped');
+    if (card) {
+        card.classList.remove('flipped');
+    }
 }
 
 function submitClaim(index) {
-    event.stopPropagation(); // 防止触发卡片翻转
+    if (event) event.stopPropagation(); // 防止触发卡片翻转
+    
     if (!isLoggedIn) {
         alert('请先登录才能认领谷子');
         showLoginModal();
         return;
     }
     
-    const claimerName = document.getElementById(`claimer-name-${index}`).value.trim();
-    const claimQuantity = parseInt(document.getElementById(`claim-quantity-${index}`).value);
+    const claimerNameInput = document.getElementById(`claimer-name-${index}`);
+    const claimQuantityInput = document.getElementById(`claim-quantity-${index}`);
+    
+    if (!claimerNameInput || !claimQuantityInput) {
+        alert('无法找到认领表单元素');
+        return;
+    }
+    
+    const claimerName = claimerNameInput.value.trim();
+    const claimQuantity = parseInt(claimQuantityInput.value);
     
     if (!claimerName) {
         alert('请输入认领人CN！');
@@ -572,20 +681,33 @@ function submitClaim(index) {
 }
 
 function searchStock() {
-    currentStockSearch = document.getElementById('stockSearchInput').value.trim();
-    renderStockPage();
+    const stockSearchInput = document.getElementById('stockSearchInput');
+    if (stockSearchInput) {
+        currentStockSearch = stockSearchInput.value.trim();
+        renderStockPage();
+    }
 }
 
 function resetStockSearch() {
-    document.getElementById('stockSearchInput').value = '';
-    currentStockSearch = '';
-    renderStockPage();
+    const stockSearchInput = document.getElementById('stockSearchInput');
+    if (stockSearchInput) {
+        stockSearchInput.value = '';
+        currentStockSearch = '';
+        renderStockPage();
+    }
 }
 
 // ==================== 网格布局导出余量图功能 ====================
 function previewStockGrid() {
     const previewContainer = document.getElementById('previewContainer');
     const stockPreviewGrid = document.getElementById('stockPreviewGrid');
+    const previewInfoElement = document.getElementById('previewInfo');
+    const printBtn = document.querySelector('.print-btn');
+    
+    if (!previewContainer || !stockPreviewGrid || !previewInfoElement || !printBtn) {
+        return;
+    }
+    
     const gridSize = currentGridSize;
     const [cols, rows] = gridSize.split('x').map(Number);
     const itemsPerPage = cols * rows;
@@ -624,7 +746,7 @@ function previewStockGrid() {
         }
     }
     
-    document.getElementById('previewInfo').innerText = previewInfo;
+    previewInfoElement.innerText = previewInfo;
 
     // 生成每页的网格
     for (let page = 0; page < totalPages; page++) {
@@ -663,22 +785,23 @@ function previewStockGrid() {
 
     // 显示预览容器，启用打印按钮
     previewContainer.classList.add('visible');
-    document.querySelector('.print-btn').disabled = false;
+    printBtn.disabled = false;
 }
 
 // ==================== 打印功能 ====================
 function printPreview() {
     const previewContainer = document.getElementById('previewContainer');
     const stockPreviewGrid = document.getElementById('stockPreviewGrid');
+    const previewInfoElement = document.getElementById('previewInfo');
     
     // 检查是否有预览内容
-    if (!previewContainer || !previewContainer.classList.contains('visible') || stockPreviewGrid.children.length === 0) {
+    if (!previewContainer || !previewContainer.classList.contains('visible') || !stockPreviewGrid || stockPreviewGrid.children.length === 0) {
         alert('请先确认要打印的规格！');
         return;
     }
     
     // 获取预览标题信息
-    const previewInfo = document.getElementById('previewInfo').textContent;
+    const previewInfo = previewInfoElement ? previewInfoElement.textContent : '余量图打印';
     
     // 创建打印专用的HTML
     let printHTML = `
@@ -929,15 +1052,17 @@ function printPreview() {
     
     // 打开新窗口并打印
     const printWindow = window.open('', '_blank');
-    printWindow.document.write(printHTML);
-    printWindow.document.close();
-    
-    // 等待内容加载完成后打印
-    printWindow.onload = function() {
-        setTimeout(() => {
-            printWindow.print();
-        }, 500);
-    };
+    if (printWindow) {
+        printWindow.document.write(printHTML);
+        printWindow.document.close();
+        
+        // 等待内容加载完成后打印
+        printWindow.onload = function() {
+            setTimeout(() => {
+                printWindow.print();
+            }, 500);
+        };
+    }
 }
 
 // ==================== 结算统计页面功能 ====================
@@ -945,6 +1070,8 @@ function renderSummaryPage() {
     if (!currentSearchCN) return;
     
     const summaryContainer = document.getElementById('summary-container');
+    if (!summaryContainer) return;
+    
     summaryContainer.innerHTML = '';
     
     // 第一步：收集所有包含搜索关键词的CN名称（去重）
@@ -952,9 +1079,9 @@ function renderSummaryPage() {
     const matchedCNs = new Set();
     
     guziData.forEach(item => {
-        item.claimers.forEach(name => {
-            if (name.toLowerCase().includes(searchKeyword)) {
-                matchedCNs.add(name);
+        item.claimers.forEach(claimerName => {
+            if (claimerName.toLowerCase().includes(searchKeyword)) {
+                matchedCNs.add(claimerName);
             }
         });
     });
@@ -973,7 +1100,7 @@ function renderSummaryPage() {
         
         // 统计当前CN的所有认领记录
         guziData.forEach(item => {
-            const claimCount = item.claimers.filter(name => name === cn).length;
+            const claimCount = item.claimers.filter(claimerName => claimerName === cn).length;
             if (claimCount > 0) {
                 const cost = claimCount * item.price;
                 totalCost += cost;
@@ -1034,39 +1161,45 @@ function renderSummaryPage() {
 function openImgModal(imgUrl) {
     const modal = document.getElementById('imgModal');
     const modalImg = document.getElementById('modalImg');
+    
+    if (!modal || !modalImg) return;
+    
     modal.style.display = "flex";
     modalImg.src = imgUrl;
 }
 
 function closeImgModal() {
-    document.getElementById('imgModal').style.display = "none";
-}
-
-// 点击弹窗外区域关闭
-window.onclick = function(event) {
     const modal = document.getElementById('imgModal');
-    const claimsModal = document.getElementById('claimsModal');
-    if (event.target === modal) {
+    if (modal) {
         modal.style.display = "none";
-    }
-    if (event.target === claimsModal) {
-        claimsModal.style.display = "none";
     }
 }
 
 function searchCN() {
-    currentSearchCN = document.getElementById('cnSearchInput').value.trim();
-    if (!currentSearchCN) {
-        alert('请输入要查询的CN！');
-        return;
+    const cnSearchInput = document.getElementById('cnSearchInput');
+    if (cnSearchInput) {
+        currentSearchCN = cnSearchInput.value.trim();
+        if (!currentSearchCN) {
+            alert('请输入要查询的CN！');
+            return;
+        }
+        renderSummaryPage();
     }
-    renderSummaryPage();
 }
 
 function resetSearch() {
-    document.getElementById('cnSearchInput').value = '';
+    const cnSearchInput = document.getElementById('cnSearchInput');
+    const summaryContainer = document.getElementById('summary-container');
+    
+    if (cnSearchInput) {
+        cnSearchInput.value = '';
+    }
+    
     currentSearchCN = '';
-    document.getElementById('summary-container').innerHTML = '';
+    
+    if (summaryContainer) {
+        summaryContainer.innerHTML = '';
+    }
 }
 
 function exportUserSummary(cn, claims, totalCost, totalQuantity) {
