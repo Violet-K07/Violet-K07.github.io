@@ -236,12 +236,33 @@ body {
     opacity: 0.9;
 }
 
+/* 搜索输入组 - 手机自适应 */
+.search-input-group {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+}
+
+.search-input-group .search-input,
+.search-input-group .stock-search-input {
+    flex: 1;
+    min-width: 0; /* 防止flex item溢出 */
+}
+
+.search-buttons {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0; /* 防止按钮缩小 */
+}
+
 /* 修改：库存筛选三态开关 */
 .stock-filter-toggle {
     display: flex;
     align-items: center;
     gap: 15px;
     margin-left: 20px;
+    flex-wrap: wrap;
 }
 
 .toggle-label {
@@ -306,7 +327,7 @@ body {
     z-index: 1;
 }
 
-/* 滑块位置对应的状态 - 调整顺序后 */
+/* 滑块位置对应的状态 */
 .toggle-slider[data-position="0"] {
     transform: translateX(0%);
     background-color: var(--success-color); /* 有库存 - 绿色 */
@@ -371,18 +392,25 @@ body {
 /* 结算统计页面样式 */
 .search-container {
     margin-bottom: 20px;
-    display: flex;
-    align-items: center;
 }
 
 .search-input {
-    padding: 8px 10px;
+    padding: 10px 12px;
     border: 1px solid var(--border-color);
     border-radius: 4px;
     font-size: 14px;
-    width: 300px;
     background: var(--container-bg);
     color: var(--text-color);
+    width: 100%;
+}
+
+.no-summary-data {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-secondary);
+    background: var(--light-bg);
+    border-radius: 8px;
+    font-size: 16px;
 }
 
 #summary-container {
@@ -409,6 +437,7 @@ body {
     border-bottom: 1px solid var(--light-border);
 }
 
+/* 桌面版表格布局 */
 .summary-header {
     display: flex;
     justify-content: space-between;
@@ -498,6 +527,92 @@ body {
     gap: 30px;
 }
 
+/* 手机版个人排谷统计布局 */
+.summary-mobile-layout {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.summary-mobile-item {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    background-color: var(--container-bg);
+    border-radius: 8px;
+    border: 1px solid var(--light-border);
+    align-items: center;
+}
+
+.summary-mobile-img {
+    flex-shrink: 0;
+}
+
+.summary-mobile-img img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid var(--light-border);
+}
+
+.summary-mobile-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.summary-mobile-category {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text-color);
+}
+
+.summary-mobile-price {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.summary-mobile-quantity {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.summary-mobile-cost {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.summary-mobile-total {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: var(--light-bg);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.summary-mobile-total-label {
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--danger-color);
+}
+
+.summary-mobile-total-values {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.summary-mobile-total-values div {
+    font-size: 14px;
+    color: var(--text-color);
+}
+
 /* 图片放大弹窗 */
 .img-modal {
     position: fixed;
@@ -547,10 +662,19 @@ body {
     height: 450px;
     cursor: pointer;
     display: none;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.stock-card.stock-card-animate {
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .stock-card.visible {
     display: block;
+    opacity: 1;
+    transform: scale(1);
 }
 
 .card-inner {
@@ -561,6 +685,16 @@ body {
     transform-style: preserve-3d;
     box-shadow: var(--card-shadow);
     border-radius: 12px;
+}
+
+/* 排谷卡片hover效果 */
+.stock-card .card-front {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stock-card:hover .card-front {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .stock-card.flipped .card-inner {
@@ -884,21 +1018,20 @@ body {
 /* 库存页面搜索筛选栏 */
 .stock-search-filter {
     display: flex;
-    gap: 10px;
+    gap: 15px;
     margin-bottom: 20px;
     flex-wrap: wrap;
     align-items: center;
 }
 
 .stock-search-input {
-    flex: 1;
-    min-width: 200px;
-    padding: 8px 10px;
+    padding: 10px 12px;
     border: 1px solid var(--border-color);
     border-radius: 4px;
     font-size: 14px;
     background: var(--container-bg);
     color: var(--text-color);
+    width: 100%;
 }
 
 /* 提示信息样式 */
@@ -954,7 +1087,7 @@ body {
 }
 
 .grid-size-select {
-    padding: 8px 10px;
+    padding: 10px 12px;
     border: 1px solid var(--border-color);
     border-radius: 4px;
     font-size: 14px;
@@ -982,10 +1115,11 @@ body {
     border: 1px dashed var(--primary-color);
     border-radius: 8px;
     background-color: var(--container-bg);
-    max-height: 600px;
-    overflow-y: auto;
-    overflow-x: auto; /* 允许横向滚动 */
     position: relative;
+    overflow-x: auto; /* 允许横向滚动 */
+    overflow-y: visible; /* 移除竖向滚动条 */
+    min-height: 200px;
+    max-height: none; /* 移除固定高度 */
 }
 
 .preview-container.visible {
@@ -1003,6 +1137,59 @@ body {
     top: 0;
     background-color: var(--container-bg);
     z-index: 10;
+    padding-right: 120px; /* 为缩放控制按钮留出空间 */
+}
+
+/* 预览缩放控制按钮 - 右上角简约设计 */
+.preview-zoom-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--light-bg);
+    border-radius: 20px;
+    padding: 6px 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 20;
+    border: 1px solid var(--light-border);
+}
+
+.zoom-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--container-bg);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.zoom-btn:hover {
+    background-color: var(--light-border);
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+.zoom-out-btn, .zoom-in-btn, .zoom-reset-btn {
+    padding: 0;
+}
+
+.zoom-display {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary-color);
+    min-width: 60px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
 }
 
 /* 打印按钮样式 */
@@ -1020,60 +1207,15 @@ body {
     cursor: not-allowed;
 }
 
-/* 预览缩放控制 */
-.preview-zoom-controls {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
-    padding: 10px;
-    background-color: var(--light-bg);
-    border-radius: 6px;
-    border: 1px solid var(--light-border);
-    flex-wrap: wrap;
-}
-
-.zoom-label {
-    font-size: 14px;
-    color: var(--text-secondary);
-    font-weight: 500;
-}
-
-.zoom-out-btn, .zoom-in-btn, .zoom-reset-btn {
-    padding: 6px 12px;
-    font-size: 13px;
-}
-
-.zoom-out-btn {
-    background-color: var(--warning-color);
-    color: white;
-}
-
-.zoom-in-btn {
-    background-color: var(--success-color);
-    color: white;
-}
-
-.zoom-reset-btn {
-    background-color: var(--gray-color);
-    color: white;
-}
-
-.zoom-display {
-    min-width: 50px;
-    text-align: center;
-    font-weight: 600;
-    color: var(--primary-color);
-}
-
-/* 网格布局的余量图样式 - 修复卡片大小一致性 */
+/* 网格布局的余量图样式 */
 .stock-preview-container {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 40px;
     width: fit-content;
     min-width: 100%;
     margin: 0 auto;
+    padding-bottom: 20px;
 }
 
 .stock-grid-preview {
@@ -1097,7 +1239,7 @@ body {
     grid-template-columns: repeat(5, 320px);
 }
 
-/* 修复：余量图卡片 - 确保大小一致，移除hover动画 */
+/* 修复：余量图卡片 - 确保大小一致，移除hover效果 */
 .export-card-front {
     background: linear-gradient(135deg, var(--light-bg) 0%, var(--light-border) 100%);
     border: 1px solid var(--light-border);
@@ -1117,9 +1259,9 @@ body {
 
 /* 移除预览卡片的hover效果 */
 .export-card-front:hover {
-    /* 移除transform效果，只保留轻微的阴影变化 */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transform: none; /* 确保没有位置变化 */
+    /* 移除所有hover效果 */
+    transform: none;
+    box-shadow: var(--card-shadow);
 }
 
 .export-card-front::before {
@@ -1492,28 +1634,38 @@ body {
     .search-container, .stock-search-filter {
         flex-direction: column;
         align-items: stretch;
+        gap: 15px;
+    }
+    
+    .search-input-group {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
     }
     
     .search-input, .stock-search-input {
         width: 100%;
-        margin-bottom: 10px;
+        margin-bottom: 0;
     }
     
-    .summary-header, .summary-item {
-        flex-wrap: wrap;
-    }
-    
-    .summary-header .img-col,
-    .summary-header .category-col,
-    .summary-header .quantity-col,
-    .summary-header .cost-col,
-    .summary-item .img-col,
-    .summary-item .category-col,
-    .summary-item .quantity-col,
-    .summary-item .cost-col {
+    .search-buttons {
         width: 100%;
-        text-align: left;
-        margin-bottom: 5px;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .search-buttons .btn {
+        flex: 1;
+        text-align: center;
+    }
+    
+    /* 手机端隐藏桌面版表格布局，显示手机版布局 */
+    .summary-header, .summary-item, .summary-total {
+        display: none;
+    }
+    
+    .summary-mobile-layout, .summary-mobile-total {
+        display: flex;
     }
     
     .stock-container {
@@ -1523,23 +1675,25 @@ body {
     .export-stock-controls {
         flex-direction: column;
         align-items: stretch;
+        gap: 10px;
     }
     
     .preview-zoom-controls {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 8px;
+        top: 15px;
+        right: 15px;
+        padding: 5px 8px;
     }
     
-    .zoom-label {
-        width: 100%;
-        text-align: center;
+    .zoom-display {
+        min-width: 50px;
+        font-size: 12px;
     }
     
     .stock-filter-toggle {
         width: 100%;
         margin-top: 10px;
-        justify-content: center;
+        margin-left: 0;
+        justify-content: space-between;
     }
     
     .toggle-switch-container {
@@ -1551,6 +1705,8 @@ body {
         right: 10px;
         left: 10px;
         text-align: center;
+        font-size: 13px;
+        padding: 8px 12px;
     }
     
     .back-to-top {
@@ -1562,8 +1718,7 @@ body {
     
     /* 移动端预览容器调整 */
     .preview-container {
-        max-height: 500px;
-        padding: 10px;
+        padding: 15px 10px;
     }
     
     /* 移动端预览网格固定宽度，允许横向滚动 */
@@ -1593,5 +1748,24 @@ body {
     .export-card-image-container {
         width: 140px;
         height: 140px;
+    }
+    
+    /* 移动端排谷卡片动画调整 */
+    .stock-card {
+        height: 420px;
+    }
+    
+    .card-front img {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .stock-card .card-front {
+        padding: 15px;
+    }
+    
+    .stock-card:hover .card-front {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
     }
 }

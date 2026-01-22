@@ -67,9 +67,13 @@
 </ul>
             </div>
             <div class="search-container">
-                <input type="text" class="search-input" id="cnSearchInput" placeholder="请输入要查询的CN（支持模糊搜索）">
-                <button class="btn search-btn" onclick="searchCN()">搜索</button>
-                <button class="btn reset-search-btn" onclick="resetSearch()">重置</button>
+                <div class="search-input-group">
+                    <input type="text" class="search-input" id="cnSearchInput" placeholder="请输入要查询的CN（支持模糊搜索）">
+                    <div class="search-buttons">
+                        <button class="btn search-btn" onclick="searchCN()">搜索</button>
+                        <button class="btn reset-search-btn" onclick="resetSearch()">重置</button>
+                    </div>
+                </div>
             </div>
             <div id="summary-container"></div>
         </div>
@@ -99,18 +103,22 @@
 </ul>
                 </div>
                 <div class="stock-search-filter">
-                    <input type="text" class="stock-search-input" id="stockSearchInput" placeholder="搜索谷子名字/捆序...">
-                    <button class="btn search-btn" onclick="searchStock()">搜索</button>
-                    <button class="btn reset-search-btn" onclick="resetStockSearch()">重置</button>
+                    <div class="search-input-group">
+                        <input type="text" class="stock-search-input" id="stockSearchInput" placeholder="搜索谷子名字/捆序...">
+                        <div class="search-buttons">
+                            <button class="btn search-btn" onclick="searchStock()">搜索</button>
+                            <button class="btn reset-search-btn" onclick="resetStockSearch()">重置</button>
+                        </div>
+                    </div>
                     
                     <!-- 修改：库存筛选三态开关 -->
                     <div class="stock-filter-toggle">
                         <span class="toggle-label">库存筛选按钮</span>
                         <div class="toggle-switch-container">
                             <div class="toggle-options">
-                                <span class="toggle-option" data-value="outOfStock">有库存</span>
+                                <span class="toggle-option" data-value="inStock">有库存</span>
                                 <span class="toggle-option" data-value="all">全部</span>
-                                <span class="toggle-option" data-value="inStock">已售罄</span>
+                                <span class="toggle-option" data-value="outOfStock">已售罄</span>
                             </div>
                             <div class="toggle-track" id="toggleTrack">
                                 <div class="toggle-slider" id="toggleSlider"></div>
@@ -152,7 +160,9 @@
                         <button class="btn print-btn" onclick="printPreview()" disabled>打印</button>
                     </div>
                     <div id="previewContainer" class="preview-container">
-                        <div class="preview-title">余量图规格：<span id="previewInfo">0张图，每张包含0种谷子</span></div>
+                        <div class="preview-title">
+                            余量图规格：<span id="previewInfo">0张图，每张包含0种谷子</span>
+                        </div>
                         <div id="stockPreviewGrid" class="stock-preview-container"></div>
                     </div>
                 </div>

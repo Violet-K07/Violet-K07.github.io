@@ -93,7 +93,7 @@ function initStockFilterToggle() {
     const toggleSlider = document.getElementById('toggleSlider');
     const filterInput = document.getElementById('stockFilterValue');
     
-    // 设置初始状态 - 注意：现在顺序变了，inStock是第一个位置
+    // 设置初始状态
     let initialPosition = 0; // 默认选择"有库存"（第一个位置）
     if (currentStockFilter === 'all') {
         initialPosition = 1;
@@ -129,7 +129,7 @@ function updateTogglePosition(position) {
         }
     });
     
-    // 更新筛选值 - 注意：现在顺序变了
+    // 更新筛选值
     if (position === 0) {
         filterInput.value = 'inStock'; // 有库存
     } else if (position === 1) {
@@ -443,7 +443,14 @@ function renderStockPage() {
             isVisible = false;
         }
         
-        if (isVisible) card.classList.add('visible');
+        // 添加动画类
+        card.classList.add('stock-card-animate');
+        
+        if (isVisible) {
+            card.classList.add('visible');
+        } else {
+            card.classList.remove('visible');
+        }
         
         // 获取谷子图片地址
         const imgSrc = item.imgSrc || defaultImgUrl;
@@ -536,6 +543,15 @@ function renderStockPage() {
         
         stockContainer.appendChild(card);
     });
+    
+    // 强制重排以触发动画
+    setTimeout(() => {
+        const cards = document.querySelectorAll('.stock-card.visible');
+        cards.forEach(card => {
+            card.style.opacity = '1';
+            card.style.transform = 'scale(1)';
+        });
+    }, 10);
 }
 
 // 显示认领详情模态框
@@ -756,11 +772,12 @@ function previewStockGrid() {
 
         const pageGrid = document.createElement('div');
         pageGrid.className = `stock-grid-preview grid-${gridSize}`;
-        pageGrid.style.marginBottom = '20px';
+        pageGrid.style.marginBottom = '40px';
         pageGrid.style.transform = `scale(${currentPreviewScale})`;
         pageGrid.style.transformOrigin = 'top center';
         pageGrid.style.width = 'fit-content';
-        pageGrid.style.margin = '0 auto';
+        pageGrid.style.marginLeft = 'auto';
+        pageGrid.style.marginRight = 'auto';
 
         // 生成当前页的每个卡片 - 固定尺寸确保一致性
         pageData.forEach(item => {
@@ -801,23 +818,39 @@ function previewStockGrid() {
 // 创建预览缩放控制按钮
 function createPreviewZoomControls() {
     const previewContainer = document.getElementById('previewContainer');
-    const zoomControls = document.querySelector('.preview-zoom-controls');
+    let zoomControls = document.querySelector('.preview-zoom-controls');
     
     if (zoomControls) {
         zoomControls.remove();
     }
     
-    const zoomContainer = document.createElement('div');
-    zoomContainer.className = 'preview-zoom-controls';
-    zoomContainer.innerHTML = `
-        <div class="zoom-label">预览缩放：</div>
-        <button class="btn zoom-out-btn" onclick="zoomPreview(-0.1)">缩小</button>
-        <div class="zoom-display">${Math.round(currentPreviewScale * 100)}%</div>
-        <button class="btn zoom-in-btn" onclick="zoomPreview(0.1)">放大</button>
-        <button class="btn zoom-reset-btn" onclick="resetPreviewZoom()">重置</button>
+    zoomControls = document.createElement('div');
+    zoomControls.className = 'preview-zoom-controls';
+    zoomControls.innerHTML = `
+        <button class="zoom-btn zoom-out-btn" onclick="zoomPreview(-0.1)" title="缩小">
+            <svg viewBox="0 0 24 24" width="16" height="16">
+                <path fill="currentColor" d="M19,13H5V11H19V13Z" />
+            </svg>
+        </button>
+        <div class="zoom-display">
+            <svg viewBox="0 0 24 24" width="14" height="14" style="margin-right: 5px;">
+                <path fill="currentColor" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+            </svg>
+            ${Math.round(currentPreviewScale * 100)}%
+        </div>
+        <button class="zoom-btn zoom-in-btn" onclick="zoomPreview(0.1)" title="放大">
+            <svg viewBox="0 0 24 24" width="16" height="16">
+                <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+            </svg>
+        </button>
+        <button class="zoom-btn zoom-reset-btn" onclick="resetPreviewZoom()" title="重置缩放">
+            <svg viewBox="0 0 24 24" width="16" height="16">
+                <path fill="currentColor" d="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,12.5A1.5,1.5 0 0,1 10.5,11A1.5,1.5 0 0,1 12,9.5A1.5,1.5 0 0,1 13.5,11A1.5,1.5 0 0,1 12,12.5Z" />
+            </svg>
+        </button>
     `;
     
-    previewContainer.appendChild(zoomContainer);
+    previewContainer.appendChild(zoomControls);
 }
 
 // 缩放预览
@@ -834,7 +867,12 @@ function zoomPreview(delta) {
     // 更新缩放显示
     const zoomDisplay = document.querySelector('.zoom-display');
     if (zoomDisplay) {
-        zoomDisplay.textContent = `${Math.round(currentPreviewScale * 100)}%`;
+        zoomDisplay.innerHTML = `
+            <svg viewBox="0 0 24 24" width="14" height="14" style="margin-right: 5px;">
+                <path fill="currentColor" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+            </svg>
+            ${Math.round(currentPreviewScale * 100)}%
+        `;
     }
 }
 
@@ -851,7 +889,12 @@ function resetPreviewZoom() {
     // 更新缩放显示
     const zoomDisplay = document.querySelector('.zoom-display');
     if (zoomDisplay) {
-        zoomDisplay.textContent = `${Math.round(currentPreviewScale * 100)}%`;
+        zoomDisplay.innerHTML = `
+            <svg viewBox="0 0 24 24" width="14" height="14" style="margin-right: 5px;">
+                <path fill="currentColor" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+            </svg>
+            ${Math.round(currentPreviewScale * 100)}%
+        `;
     }
 }
 
@@ -1155,7 +1198,7 @@ function renderSummaryPage() {
     
     // 没有匹配的CN
     if (matchedCNs.size === 0) {
-        summaryContainer.innerHTML = '<div style="text-align: center; padding: 30px; color: #666; background: var(--light-bg); border-radius: 8px;">未查询到包含【' + currentSearchCN + '】的认领记录</div>';
+        summaryContainer.innerHTML = '<div class="no-summary-data">未查询到包含【' + currentSearchCN + '】的认领记录</div>';
         return;
     }
     
@@ -1187,25 +1230,24 @@ function renderSummaryPage() {
         summaryCard.className = 'summary-card';
         summaryCard.innerHTML = `
             <h3>${cn} 的排谷统计</h3>
-            <div class="summary-header">
-                <div class="img-col">图片</div>
-                <div class="category-col">谷子（单价）</div>
-                <div class="quantity-col">数量</div>
-                <div class="cost-col">金额</div>
-            </div>
-            ${userClaims.map(item => `
-                <div class="summary-item">
-                    <div class="img-col">
-                        <img src="${item.imgSrc}" alt="${item.category}" onclick="openImgModal('${item.imgSrc}')">
+            <div class="summary-mobile-layout">
+                ${userClaims.map(item => `
+                    <div class="summary-mobile-item">
+                        <div class="summary-mobile-img">
+                            <img src="${item.imgSrc}" alt="${item.category}" onclick="openImgModal('${item.imgSrc}')">
+                        </div>
+                        <div class="summary-mobile-details">
+                            <div class="summary-mobile-category">${item.category}</div>
+                            <div class="summary-mobile-price">单价：¥${item.price.toFixed(2)}/个</div>
+                            <div class="summary-mobile-quantity">数量：${item.quantity} 个</div>
+                            <div class="summary-mobile-cost">金额：¥${item.cost.toFixed(2)}</div>
+                        </div>
                     </div>
-                    <div class="category-col">${item.category}（¥${item.price.toFixed(2)}/个）</div>
-                    <div class="quantity-col">${item.quantity} 个</div>
-                    <div class="cost-col">¥${item.cost.toFixed(2)}</div>
-                </div>
-            `).join('')}
-            <div class="summary-total">
-                <div class="total-label">总计</div>
-                <div class="total-values">
+                `).join('')}
+            </div>
+            <div class="summary-mobile-total">
+                <div class="summary-mobile-total-label">总计</div>
+                <div class="summary-mobile-total-values">
                     <div>总谷子个数：${totalQuantity} 个</div>
                     <div>总金额：¥${totalCost.toFixed(2)}</div>
                 </div>
