@@ -1015,7 +1015,7 @@ body {
     cursor: not-allowed;
 }
 
-/* 网格布局的余量图样式 */
+/* 网格布局的余量图样式 - 修复卡片大小一致性 */
 .stock-preview-container {
     display: flex;
     flex-direction: column;
@@ -1048,21 +1048,22 @@ body {
     margin: 0 auto;
 }
 
-/* 余量图卡片 */
+/* 修复：余量图卡片 - 确保大小一致 */
 .export-card-front {
     background: linear-gradient(135deg, var(--light-bg) 0%, var(--light-border) 100%);
     border: 1px solid var(--light-border);
     border-radius: 12px;
-    padding: 15px;
     text-align: center;
     box-shadow: var(--card-shadow);
-    height: 320px;
+    height: 400px; /* 固定高度，确保所有卡片大小一致 */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     position: relative;
     transition: transform 0.2s;
+    overflow: hidden;
+    padding: 15px;
 }
 
 .export-card-front:hover {
@@ -1084,15 +1085,24 @@ body {
     background: linear-gradient(90deg, var(--danger-color), var(--warning-color));
 }
 
-.export-card-front img {
-    width: 140px;
-    height: 140px;
+/* 修复：图片容器确保一致大小 */
+.export-card-image-container {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.export-card-img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     border-radius: 8px;
-    margin: 10px auto;
     border: 2px solid var(--container-bg);
     box-shadow: var(--card-shadow);
-    position: relative;
 }
 
 .export-card-front .stock-num-overlay {
@@ -1118,15 +1128,24 @@ body {
     text-decoration: line-through;
 }
 
+.export-card-content {
+    margin-top: 15px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
 .export-card-front .category-name {
     font-weight: 600;
     font-size: 16px;
     color: var(--text-color);
-    margin: 8px 0;
+    margin-bottom: 8px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 90%;
+    max-width: 100%;
     padding: 0 5px;
 }
 
@@ -1146,6 +1165,7 @@ body {
     background-color: var(--primary-color);
     color: white;
     border-radius: 10px;
+    z-index: 10;
 }
 
 /* 用于打印的临时容器 */
@@ -1484,11 +1504,11 @@ body {
     }
     
     .export-card-front {
-        height: 280px;
+        height: 350px; /* 移动端稍微减小高度 */
     }
     
-    .export-card-front img {
-        width: 120px;
-        height: 120px;
+    .export-card-image-container {
+        width: 140px;
+        height: 140px;
     }
 }

@@ -757,7 +757,7 @@ function previewStockGrid() {
         pageGrid.className = `stock-grid-preview grid-${gridSize}`;
         pageGrid.style.marginBottom = '20px';
 
-        // 生成当前页的每个卡片 - 使用库存卡片设计
+        // 生成当前页的每个卡片 - 固定尺寸确保一致性
         pageData.forEach(item => {
             const gridItem = document.createElement('div');
             const isOutOfStock = item.stock <= 0;
@@ -766,15 +766,17 @@ function previewStockGrid() {
             // 获取谷子图片地址
             const imgSrc = item.imgSrc || defaultImgUrl;
             
-            // 创建卡片内容 - 沿用库存卡片设计但调整布局
+            // 创建卡片内容 - 固定尺寸确保一致性
             gridItem.innerHTML = `
                 ${item.kunxu !== '不捆' ? `<div class="kunxu-tag">${item.kunxu}</div>` : ''}
-                <div style="position: relative; display: inline-block;">
-                    <img src="${imgSrc}" alt="${item.category}">
+                <div class="export-card-image-container">
+                    <img src="${imgSrc}" alt="${item.category}" class="export-card-img">
                     <div class="stock-num-overlay">${item.stock}</div>
                 </div>
-                <div class="category-name">${item.category}</div>
-                <div class="price-info">单价：¥${item.price.toFixed(2)}</div>
+                <div class="export-card-content">
+                    <div class="category-name">${item.category}</div>
+                    <div class="price-info">单价：¥${item.price.toFixed(2)}</div>
+                </div>
             `;
             
             pageGrid.appendChild(gridItem);
@@ -1011,7 +1013,7 @@ function printPreview() {
         const gridItems = page.querySelectorAll('.export-card-front');
         gridItems.forEach(gridItem => {
             // 获取图片URL
-            const imgEl = gridItem.querySelector('img');
+            const imgEl = gridItem.querySelector('.export-card-img');
             const imgSrc = imgEl ? imgEl.src : '';
             
             // 获取文本内容
