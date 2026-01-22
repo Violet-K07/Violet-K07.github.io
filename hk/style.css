@@ -298,33 +298,72 @@ body {
     top: 0;
     width: 33.33%;
     height: 100%;
-    background-color: var(--success-color);
     border-radius: 14px;
     transition: transform 0.3s ease;
     transform: translateX(0%);
     z-index: 1;
 }
 
-/* 滑块位置对应的状态 */
+/* 滑块位置对应的状态 - 调整顺序后 */
 .toggle-slider[data-position="0"] {
     transform: translateX(0%);
-    background-color: var(--danger-color);
+    background-color: var(--success-color); /* 有库存 - 绿色 */
 }
 
 .toggle-slider[data-position="1"] {
     transform: translateX(100%);
-    background-color: var(--warning-color);
+    background-color: var(--warning-color); /* 全部 - 黄色 */
 }
 
 .toggle-slider[data-position="2"] {
     transform: translateX(200%);
-    background-color: var(--success-color);
+    background-color: var(--danger-color); /* 售罄 - 红色 */
 }
 
 /* 激活状态的选项文字 */
 .toggle-option.active {
     color: white;
     font-weight: 600;
+}
+
+/* 返回顶部按钮 */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-top svg {
+    width: 24px;
+    height: 24px;
+    stroke: white;
+    stroke-width: 2;
 }
 
 /* 结算统计页面样式 */
@@ -1312,7 +1351,7 @@ body {
     }
     
     /* 隐藏所有按钮 */
-    .btn, button, .print-btn {
+    .btn, button, .print-btn, .back-to-top {
         display: none !important;
     }
 }
@@ -1401,5 +1440,12 @@ body {
         right: 10px;
         left: 10px;
         text-align: center;
+    }
+    
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
     }
 }

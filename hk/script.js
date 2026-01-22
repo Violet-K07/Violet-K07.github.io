@@ -34,7 +34,32 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     // 初始化库存筛选开关
     initStockFilterToggle();
+    
+    // 初始化返回顶部按钮
+    initBackToTopButton();
 });
+
+// ==================== 返回顶部按钮功能 ====================
+function initBackToTopButton() {
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    
+    // 滚动事件监听
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
+    });
+    
+    // 点击事件
+    backToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
 
 // ==================== 主题切换功能 ====================
 function toggleTheme() {
@@ -65,12 +90,12 @@ function initStockFilterToggle() {
     const toggleSlider = document.getElementById('toggleSlider');
     const filterInput = document.getElementById('stockFilterValue');
     
-    // 设置初始状态
-    let initialPosition = 2; // 默认选择"有库存"
-    if (currentStockFilter === 'outOfStock') {
-        initialPosition = 0;
-    } else if (currentStockFilter === 'all') {
+    // 设置初始状态 - 注意：现在顺序变了，inStock是第一个位置
+    let initialPosition = 0; // 默认选择"有库存"（第一个位置）
+    if (currentStockFilter === 'all') {
         initialPosition = 1;
+    } else if (currentStockFilter === 'outOfStock') {
+        initialPosition = 2;
     }
     
     updateTogglePosition(initialPosition);
@@ -101,13 +126,13 @@ function updateTogglePosition(position) {
         }
     });
     
-    // 更新筛选值
+    // 更新筛选值 - 注意：现在顺序变了
     if (position === 0) {
-        filterInput.value = 'outOfStock';
+        filterInput.value = 'inStock'; // 有库存
     } else if (position === 1) {
-        filterInput.value = 'all';
+        filterInput.value = 'all'; // 全部
     } else {
-        filterInput.value = 'inStock';
+        filterInput.value = 'outOfStock'; // 售罄
     }
 }
 
@@ -388,7 +413,7 @@ function renderStockPage() {
                 </button>
                 <div class="claim-form-group">
                     <label for="claimer-name-${index}">认领人CN</label>
-                    <input type="text" id="claimer-name-${index}" class="claim-input" placeholder="请输入你的CN名称">
+                    <input type="text" id="claimer-name-${index}" class="claim-input" placeholder="请输入你的CN">
                 </div>
                 <div class="claim-form-group">
                     <label for="claim-quantity-${index}">认领数量</label>
@@ -520,7 +545,7 @@ function submitClaim(index) {
     const claimQuantity = parseInt(document.getElementById(`claim-quantity-${index}`).value);
     
     if (!claimerName) {
-        alert('请输入认领人CN名称！');
+        alert('请输入认领人CN！');
         return;
     }
     
@@ -1032,7 +1057,7 @@ window.onclick = function(event) {
 function searchCN() {
     currentSearchCN = document.getElementById('cnSearchInput').value.trim();
     if (!currentSearchCN) {
-        alert('请输入要查询的CN名称！');
+        alert('请输入要查询的CN！');
         return;
     }
     renderSummaryPage();

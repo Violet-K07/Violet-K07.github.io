@@ -48,16 +48,16 @@
         <div id="summary-page" class="page">
             <h2>个人结算统计</h2>
             <div class="settlement-tips">
-                <strong>使用提示：</strong>
-                <ul>
-                    <li>在搜索框输入CN名称（支持模糊搜索），点击「搜索」查询对应用户的结算数据</li>
-                    <li>结算单展示该CN认领的谷子的名字、数量、金额，底部汇总总计金额</li>
-                    <li>点击结算单内谷子图片可放大预览，点击弹窗右上角关闭按钮退出预览</li>
-                    <li>点击「重置」按钮可清空搜索条件，恢复初始页面状态</li>
-                </ul>
+<strong>🧾使用提示：</strong>
+<ul>
+    <li>搜索框输入<strong>CN</strong>名称（支持模糊搜索），点击<strong>「搜索」</strong>查询结算数据</li>
+    <li>结算单展示<strong>CN</strong>认领谷子的名称、数量、金额，底部汇总总计金额</li>
+    <li>点击结算单内谷子图片可放大预览，弹窗右上角关闭退出</li>
+    <li>点击<strong>「重置」</strong>清空搜索条件，恢复初始状态</li>
+</ul>
             </div>
             <div class="search-container">
-                <input type="text" class="search-input" id="cnSearchInput" placeholder="请输入要查询的CN名称（支持模糊搜索）">
+                <input type="text" class="search-input" id="cnSearchInput" placeholder="请输入要查询的CN（支持模糊搜索）">
                 <button class="btn search-btn" onclick="searchCN()">搜索</button>
                 <button class="btn reset-search-btn" onclick="resetSearch()">重置</button>
             </div>
@@ -77,12 +77,15 @@
             <!-- 库存卡片子页面 -->
             <div id="stock-main" class="sub-page active">
                 <div class="pai-gu-tips">
-                    <strong>排谷使用提示：</strong>
-<ul>
-    <li>默认展示<strong>有库存</strong>谷子，可通过<strong>库存筛选开关</strong>切换状态</li>
-    <li>点击谷子卡片翻转：<strong>有库存</strong>卡片可填<strong>CN</strong>、选<strong>认领数量</strong>完成认领（点<strong>详情</strong>查排谷记录）；<strong>已售罄</strong>卡片可查看认领列表</li>
-    <li>搜索框输入<strong>谷子名字/捆序</strong>可定位目标谷子，点击<strong>「重置」</strong>清空筛选条件</li>
-    <li>顶部卡片实时展示<strong>有库存</strong>谷子的总金额</li>
+                    <strong>📝 排谷使用提示：</strong>
+<ul style="padding-left: 20px; margin: 5px 0;">
+    <li>默认展示<strong>有库存</strong>谷子，可通过<strong>库存筛选按钮</strong>来切换</li>
+    <li>点击谷子卡片翻转：<br>
+      &nbsp;&nbsp;• 📦 <span style="color:#007bff; font-weight:bold;">有库存</span>：填<strong>CN</strong>、选<strong>认领数量</strong>认领（点<strong>详情</strong>查记录）<br>
+      &nbsp;&nbsp;• 📜 <span style="color:#dc3545; font-weight:bold;">已售罄</span>：直接查看认领列表
+    </li>
+    <li>搜索框输<strong>谷子名/捆序</strong>快速筛选特定谷子，点击<strong>「重置」</strong>清空筛选</li>
+    <li>顶部卡片实时显示<strong>有库存</strong>谷子总金额</li>
 </ul>
                 </div>
                 <div class="stock-search-filter">
@@ -92,12 +95,12 @@
                     
                     <!-- 修改：库存筛选三态开关 -->
                     <div class="stock-filter-toggle">
-                        <span class="toggle-label">筛选谷子：</span>
+                        <span class="toggle-label">库存筛选按钮</span>
                         <div class="toggle-switch-container">
                             <div class="toggle-options">
-                                <span class="toggle-option" data-value="outOfStock">售罄</span>
+                                <span class="toggle-option" data-value="outOfStock">有库存</span>
                                 <span class="toggle-option" data-value="all">全部</span>
-                                <span class="toggle-option" data-value="inStock">有库存</span>
+                                <span class="toggle-option" data-value="inStock">已售罄</span>
                             </div>
                             <div class="toggle-track" id="toggleTrack">
                                 <div class="toggle-slider" id="toggleSlider"></div>
@@ -116,17 +119,16 @@
             
             <!-- 余量图导出子页面 -->
             <div id="stock-export" class="sub-page">
-                <h3>库存余量图导出</h3>
               
                 <div class="export-stock-container">
                     <div class="export-tips">
-                        <strong>使用提示：</strong>
-                        <ul>
-                            <li>先选择打印余量图的规格，确认后点击"确认规格"查看效果后，最后按"打印"开始打印</li>
-                            <li>使用iphone safari打印时，推荐使用规格5*5 缩放35%效果比较好</li>
-                            <li>余量图采用与库存卡片相同的设计，余量数字显示在图片右下角，捆序上谷子右上角会显示捆序</li>
-                            <li>规格预览效果仅作参考，会因为使用的浏览器不同，打印效果有所差别</li>
-                        </ul>
+                        <strong>🖨️余量图导出使用提示：</strong>
+<ul>
+    <li>先选余量图规格，点击<strong>「确认规格」</strong>查看效果后，按<strong>「打印」</strong>开始打印</li>
+    <li>使用<strong>iPhone Safari</strong>打印时，推荐<strong>5*5规格+35%缩放</strong>效果更佳</li>
+    <li>余量图同库存卡片设计：<strong>余量数字</strong>在图片右下角，带捆序谷子<strong>捆序</strong>显示在右上角</li>
+    <li>规格预览效果<strong>仅作参考</strong>，不同浏览器打印效果略有差异</li>
+</ul>
                     </div>
                     
                     <div class="export-stock-controls">
