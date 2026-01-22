@@ -428,108 +428,54 @@ body {
     box-shadow: var(--card-shadow);
 }
 
-.summary-card h3 {
-    margin-bottom: 20px;
-    color: var(--text-color);
+/* 结算统计切换按钮样式 */
+.summary-toggle-btn {
+    background: none;
+    border: none;
     font-size: 18px;
     font-weight: 600;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--light-border);
-}
-
-/* 桌面版表格布局 */
-.summary-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 15px;
-    background-color: var(--light-border);
-    border-radius: 4px;
-    font-weight: 600;
-    color: var(--text-color);
-    margin-bottom: 10px;
-}
-
-.summary-header .img-col {
-    width: 80px;
-    text-align: center;
-}
-
-.summary-header .category-col {
-    flex: 1;
-    margin-left: 10px;
-}
-
-.summary-header .quantity-col, .summary-header .cost-col {
-    width: 120px;
-    text-align: center;
-}
-
-.summary-item {
-    display: flex;
-    justify-content: space-between;
+    color: var(--primary-color);
+    text-align: left;
     padding: 10px 15px;
-    border-bottom: 1px dashed var(--light-border);
-    align-items: center;
-}
-
-.summary-item:last-child {
-    border-bottom: none;
-}
-
-.summary-item .img-col {
-    width: 80px;
-    text-align: center;
-}
-
-.summary-item .img-col img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 4px;
+    margin: -25px -25px 15px -25px;
     cursor: pointer;
-    transition: transform 0.2s;
-    border: 1px solid var(--light-border);
-}
-
-.summary-item .img-col img:hover {
-    transform: scale(1.05);
-}
-
-.summary-item .category-col {
-    flex: 1;
-    margin-left: 10px;
-}
-
-.summary-item .quantity-col, .summary-item .cost-col {
-    width: 120px;
-    text-align: center;
-}
-
-.summary-total {
-    margin-top: 15px;
-    padding: 12px 15px;
-    background-color: var(--light-bg);
-    border-radius: 4px;
-    font-weight: bold;
-    font-size: 16px;
-    color: var(--text-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: calc(100% + 50px);
+    border-bottom: 1px solid var(--light-border);
+    transition: all 0.3s ease;
+    background-color: rgba(0, 123, 255, 0.05);
+    border-radius: 8px 8px 0 0;
 }
 
-.summary-total .total-label {
-    color: var(--danger-color);
+.summary-toggle-btn:hover {
+    background-color: rgba(0, 123, 255, 0.1);
 }
 
-.summary-total .total-values {
-    display: flex;
-    gap: 30px;
+.summary-toggle-btn.collapsed {
+    color: var(--text-color);
+    border-bottom: none;
+    background-color: var(--container-bg);
+}
+
+.toggle-arrow {
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.summary-toggle-btn.collapsed .toggle-arrow {
+    transform: rotate(-90deg);
+}
+
+/* 结算详情容器 */
+.summary-detail-container {
+    display: block; /* 默认显示 */
 }
 
 /* 手机版个人排谷统计布局 */
 .summary-mobile-layout {
-    display: none;
+    display: flex;
     flex-direction: column;
     gap: 15px;
 }
@@ -1133,18 +1079,22 @@ body {
     margin-bottom: 15px;
     padding-bottom: 8px;
     border-bottom: 1px solid var(--border-color);
-    position: sticky;
-    top: 0;
-    background-color: var(--container-bg);
-    z-index: 10;
-    padding-right: 120px; /* 为缩放控制按钮留出空间 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
-/* 预览缩放控制按钮 - 右上角简约设计 */
+#previewInfo {
+    color: var(--primary-color);
+    font-weight: normal;
+    font-size: 14px;
+    flex: 1;
+}
+
+/* 预览缩放控制按钮 */
 .preview-zoom-controls {
-    position: absolute;
-    top: 20px;
-    right: 20px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -1152,13 +1102,12 @@ body {
     border-radius: 20px;
     padding: 6px 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    z-index: 20;
     border: 1px solid var(--light-border);
 }
 
 .zoom-btn {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     border: none;
     background-color: var(--container-bg);
@@ -1173,23 +1122,14 @@ body {
 .zoom-btn:hover {
     background-color: var(--light-border);
     color: var(--primary-color);
-    transform: scale(1.1);
-}
-
-.zoom-out-btn, .zoom-in-btn, .zoom-reset-btn {
-    padding: 0;
 }
 
 .zoom-display {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     color: var(--primary-color);
-    min-width: 60px;
+    min-width: 40px;
     text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 5px;
 }
 
 /* 打印按钮样式 */
@@ -1211,11 +1151,11 @@ body {
 .stock-preview-container {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 20px;
     width: fit-content;
     min-width: 100%;
     margin: 0 auto;
-    padding-bottom: 20px;
+    padding: 20px 0;
 }
 
 .stock-grid-preview {
@@ -1223,7 +1163,7 @@ body {
     gap: 20px;
     width: fit-content;
     margin: 0 auto;
-    transition: transform 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 /* 固定网格列数，不响应式 */
@@ -1678,10 +1618,23 @@ body {
         gap: 10px;
     }
     
+    .preview-title {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+        padding-bottom: 15px;
+    }
+    
     .preview-zoom-controls {
-        top: 15px;
-        right: 15px;
-        padding: 5px 8px;
+        align-self: flex-end;
+        order: 2;
+        margin-top: -10px;
+    }
+    
+    #previewInfo {
+        order: 1;
+        width: 100%;
+        text-align: center;
     }
     
     .zoom-display {
@@ -1750,6 +1703,19 @@ body {
         height: 140px;
     }
     
+    .export-card-front .category-name {
+        font-size: 14px;
+    }
+    
+    .export-card-front .price-info {
+        font-size: 16px;
+    }
+    
+    .stock-grid-preview {
+        gap: 10px !important;
+        margin-bottom: 20px !important;
+    }
+    
     /* 移动端排谷卡片动画调整 */
     .stock-card {
         height: 420px;
@@ -1767,5 +1733,12 @@ body {
     .stock-card:hover .card-front {
         transform: translateY(-3px);
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    }
+    
+    /* 结算统计切换按钮在移动端调整 */
+    .summary-toggle-btn {
+        margin: -15px -15px 15px -15px;
+        width: calc(100% + 30px);
+        padding: 12px 15px;
     }
 }

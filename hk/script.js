@@ -772,12 +772,13 @@ function previewStockGrid() {
 
         const pageGrid = document.createElement('div');
         pageGrid.className = `stock-grid-preview grid-${gridSize}`;
-        pageGrid.style.marginBottom = '40px';
+        pageGrid.style.marginBottom = `${40 * currentPreviewScale}px`;
         pageGrid.style.transform = `scale(${currentPreviewScale})`;
         pageGrid.style.transformOrigin = 'top center';
         pageGrid.style.width = 'fit-content';
         pageGrid.style.marginLeft = 'auto';
         pageGrid.style.marginRight = 'auto';
+        pageGrid.style.gap = `${20 * currentPreviewScale}px`;
 
         // 生成当前页的每个卡片 - 固定尺寸确保一致性
         pageData.forEach(item => {
@@ -818,6 +819,7 @@ function previewStockGrid() {
 // 创建预览缩放控制按钮
 function createPreviewZoomControls() {
     const previewContainer = document.getElementById('previewContainer');
+    const previewTitle = document.querySelector('.preview-title');
     let zoomControls = document.querySelector('.preview-zoom-controls');
     
     if (zoomControls) {
@@ -833,9 +835,6 @@ function createPreviewZoomControls() {
             </svg>
         </button>
         <div class="zoom-display">
-            <svg viewBox="0 0 24 24" width="14" height="14" style="margin-right: 5px;">
-                <path fill="currentColor" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
-            </svg>
             ${Math.round(currentPreviewScale * 100)}%
         </div>
         <button class="zoom-btn zoom-in-btn" onclick="zoomPreview(0.1)" title="放大">
@@ -850,7 +849,12 @@ function createPreviewZoomControls() {
         </button>
     `;
     
-    previewContainer.appendChild(zoomControls);
+    // 将缩放控制按钮添加到预览标题内
+    if (previewTitle) {
+        previewTitle.appendChild(zoomControls);
+    } else {
+        previewContainer.appendChild(zoomControls);
+    }
 }
 
 // 缩放预览
@@ -858,21 +862,19 @@ function zoomPreview(delta) {
     currentPreviewScale += delta;
     currentPreviewScale = Math.max(0.3, Math.min(2, currentPreviewScale));
     
-    // 更新所有预览网格的缩放
+    // 更新所有预览网格的缩放和间距
     const previewGrids = document.querySelectorAll('.stock-grid-preview');
     previewGrids.forEach(grid => {
         grid.style.transform = `scale(${currentPreviewScale})`;
+        // 动态调整间距
+        grid.style.gap = `${20 * currentPreviewScale}px`;
+        grid.style.marginBottom = `${40 * currentPreviewScale}px`;
     });
     
     // 更新缩放显示
     const zoomDisplay = document.querySelector('.zoom-display');
     if (zoomDisplay) {
-        zoomDisplay.innerHTML = `
-            <svg viewBox="0 0 24 24" width="14" height="14" style="margin-right: 5px;">
-                <path fill="currentColor" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
-            </svg>
-            ${Math.round(currentPreviewScale * 100)}%
-        `;
+        zoomDisplay.textContent = `${Math.round(currentPreviewScale * 100)}%`;
     }
 }
 
@@ -880,21 +882,18 @@ function zoomPreview(delta) {
 function resetPreviewZoom() {
     currentPreviewScale = 1;
     
-    // 更新所有预览网格的缩放
+    // 更新所有预览网格的缩放和间距
     const previewGrids = document.querySelectorAll('.stock-grid-preview');
     previewGrids.forEach(grid => {
         grid.style.transform = `scale(${currentPreviewScale})`;
+        grid.style.gap = `20px`;
+        grid.style.marginBottom = `40px`;
     });
     
     // 更新缩放显示
     const zoomDisplay = document.querySelector('.zoom-display');
     if (zoomDisplay) {
-        zoomDisplay.innerHTML = `
-            <svg viewBox="0 0 24 24" width="14" height="14" style="margin-right: 5px;">
-                <path fill="currentColor" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
-            </svg>
-            ${Math.round(currentPreviewScale * 100)}%
-        `;
+        zoomDisplay.textContent = `${Math.round(currentPreviewScale * 100)}%`;
     }
 }
 
@@ -1225,45 +1224,65 @@ function renderSummaryPage() {
             }
         });
         
+        // 生成唯一的ID用于切换
+        const detailId = `summary-detail-${cn.replace(/\s+/g, '-')}`;
+        
         // 生成当前CN的统计卡片
         const summaryCard = document.createElement('div');
         summaryCard.className = 'summary-card';
         summaryCard.innerHTML = `
-            <h3>${cn} 的排谷统计</h3>
-            <div class="summary-mobile-layout">
-                ${userClaims.map(item => `
-                    <div class="summary-mobile-item">
-                        <div class="summary-mobile-img">
-                            <img src="${item.imgSrc}" alt="${item.category}" onclick="openImgModal('${item.imgSrc}')">
+            <button class="summary-toggle-btn" onclick="toggleSummaryDetail('${detailId}', this)">
+                ${cn} 的排谷详情
+                <span class="toggle-arrow">▼</span>
+            </button>
+            <div id="${detailId}" class="summary-detail-container">
+                <div class="summary-mobile-layout">
+                    ${userClaims.map(item => `
+                        <div class="summary-mobile-item">
+                            <div class="summary-mobile-img">
+                                <img src="${item.imgSrc}" alt="${item.category}" onclick="openImgModal('${item.imgSrc}')">
+                            </div>
+                            <div class="summary-mobile-details">
+                                <div class="summary-mobile-category">${item.category}</div>
+                                <div class="summary-mobile-price">单价：¥${item.price.toFixed(2)}/个</div>
+                                <div class="summary-mobile-quantity">数量：${item.quantity} 个</div>
+                                <div class="summary-mobile-cost">金额：¥${item.cost.toFixed(2)}</div>
+                            </div>
                         </div>
-                        <div class="summary-mobile-details">
-                            <div class="summary-mobile-category">${item.category}</div>
-                            <div class="summary-mobile-price">单价：¥${item.price.toFixed(2)}/个</div>
-                            <div class="summary-mobile-quantity">数量：${item.quantity} 个</div>
-                            <div class="summary-mobile-cost">金额：¥${item.cost.toFixed(2)}</div>
-                        </div>
-                    </div>
-                `).join('')}
-            </div>
-            <div class="summary-mobile-total">
-                <div class="summary-mobile-total-label">总计</div>
-                <div class="summary-mobile-total-values">
-                    <div>总谷子个数：${totalQuantity} 个</div>
-                    <div>总金额：¥${totalCost.toFixed(2)}</div>
+                    `).join('')}
                 </div>
+                <div class="summary-mobile-total">
+                    <div class="summary-mobile-total-label">总计</div>
+                    <div class="summary-mobile-total-values">
+                        <div>总谷子个数：${totalQuantity} 个</div>
+                        <div>总金额：¥${totalCost.toFixed(2)}</div>
+                    </div>
+                </div>
+                <button class="btn export-btn" onclick="exportUserSummary('${cn}', ${JSON.stringify(userClaims).replace(/"/g, '&quot;')}, ${totalCost}, ${totalQuantity})">
+                    导出${cn}的结算单
+                </button>
             </div>
         `;
         
-        // 添加导出按钮（每个CN独立导出）
-        const exportBtn = document.createElement('button');
-        exportBtn.className = 'btn export-btn';
-        exportBtn.innerText = `导出${cn}的结算单`;
-        exportBtn.style.marginTop = '15px';
-        exportBtn.onclick = () => exportUserSummary(cn, userClaims, totalCost, totalQuantity);
-        summaryCard.appendChild(exportBtn);
-        
         summaryContainer.appendChild(summaryCard);
     });
+}
+
+// 切换结算详情的显示/隐藏
+function toggleSummaryDetail(detailId, button) {
+    const detailContainer = document.getElementById(detailId);
+    if (!detailContainer) return;
+    
+    const isHidden = detailContainer.style.display === 'none';
+    if (isHidden) {
+        detailContainer.style.display = 'block';
+        button.innerHTML = button.textContent.replace('统计', '详情') + ' <span class="toggle-arrow">▼</span>';
+        button.classList.remove('collapsed');
+    } else {
+        detailContainer.style.display = 'none';
+        button.innerHTML = button.textContent.replace('详情', '统计') + ' <span class="toggle-arrow">▶</span>';
+        button.classList.add('collapsed');
+    }
 }
 
 // 图片放大弹窗功能
