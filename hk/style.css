@@ -426,9 +426,10 @@ body {
     border-radius: 8px;
     border-left: 4px solid var(--primary-color);
     box-shadow: var(--card-shadow);
+    overflow: hidden;
 }
 
-/* 结算统计切换按钮样式 */
+/* 结算统计切换按钮样式 - 修复版本 */
 .summary-toggle-btn {
     background: none;
     border: none;
@@ -462,15 +463,30 @@ body {
 .toggle-arrow {
     font-size: 12px;
     transition: transform 0.3s ease;
+    margin-left: 10px;
 }
 
 .summary-toggle-btn.collapsed .toggle-arrow {
     transform: rotate(-90deg);
 }
 
-/* 结算详情容器 */
+.toggle-text {
+    flex: 1;
+    text-align: left;
+}
+
+/* 修复：总计和导出按钮容器 - 始终显示在详情下面 */
+.summary-total-export-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+    transition: opacity 0.3s ease;
+}
+
+/* 修改：结算详情容器 - 移除高度限制，只控制显示/隐藏 */
 .summary-detail-container {
-    display: block; /* 默认显示 */
+    overflow: hidden;
 }
 
 /* 手机版个人排谷统计布局 */
@@ -478,6 +494,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    transition: opacity 0.3s ease;
 }
 
 .summary-mobile-item {
@@ -540,6 +557,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .summary-mobile-total-label {
@@ -601,6 +619,8 @@ body {
     gap: 20px;
     margin-top: 20px;
     padding: 10px;
+    position: relative;
+    min-height: 200px;
 }
 
 .stock-card {
@@ -610,17 +630,50 @@ body {
     display: none;
     opacity: 0;
     transform: scale(0.9);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease;
 }
 
 .stock-card.stock-card-animate {
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease;
 }
 
 .stock-card.visible {
     display: block;
     opacity: 1;
     transform: scale(1);
+}
+
+/* 卡片淡入动画 */
+.stock-card.fade-in {
+    animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* 卡片淡出动画 */
+.stock-card.fade-out {
+    animation: fadeOut 0.3s ease forwards;
+    pointer-events: none;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
 }
 
 .card-inner {
@@ -688,6 +741,12 @@ body {
     margin: 15px auto;
     border: 2px solid var(--container-bg);
     box-shadow: var(--card-shadow);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.card-front img:hover {
+    transform: scale(1.02);
 }
 
 .card-front .category-name {
@@ -1669,6 +1728,12 @@ body {
         height: 45px;
     }
     
+    /* 移动端结算统计总计导出容器调整 */
+    .summary-total-export-container {
+        margin-top: 15px;
+        gap: 12px;
+    }
+    
     /* 移动端预览容器调整 */
     .preview-container {
         padding: 15px 10px;
@@ -1740,5 +1805,41 @@ body {
         margin: -15px -15px 15px -15px;
         width: calc(100% + 30px);
         padding: 12px 15px;
+        font-size: 16px;
+    }
+    
+    .summary-toggle-btn .toggle-arrow {
+        margin-left: 5px;
+    }
+    
+    /* 移动端卡片动画优化 */
+    .stock-card.fade-in {
+        animation: fadeIn 0.4s ease forwards;
+    }
+    
+    .stock-card.fade-out {
+        animation: fadeOut 0.3s ease forwards;
+    }
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(15px) scale(0.97);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+    
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+            transform: scale(1);
+        }
+        to {
+            opacity: 0;
+            transform: scale(0.97);
+        }
     }
 }

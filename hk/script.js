@@ -1,7 +1,7 @@
 // ==================== 全局变量 ====================
 let guziData = [];          
 let claimRecords = [];      
-const defaultImgUrl = "https://via.placeholder.com/180";
+const defaultImgUrl = "https://k.sinaimg.cn/n/sinakd20101/644/w722h722/20231018/010c-7e8d43cb4b970f280203cc75c541b89a.jpg/w700d1q75cms.jpg";
 let currentSearchCN = '';   
 let currentStockFilter = 'inStock'; 
 let currentStockSearch = '';
@@ -142,7 +142,7 @@ function updateTogglePosition(position) {
 function applyStockFilter() {
     const filterValue = document.getElementById('stockFilterValue').value;
     currentStockFilter = filterValue;
-    renderStockPage();
+    renderStockPageWithAnimation();
 }
 
 // ==================== 登录相关功能 ====================
@@ -412,12 +412,14 @@ function switchSubPage(subPageId) {
 
 // ==================== 库存主页面功能 ====================
 function renderStockPage() {
+    renderStockPageWithAnimation(false); // 不使用动画
+}
+
+function renderStockPageWithAnimation(useAnimation = true) {
     const stockContainer = document.getElementById('stock-container');
     const totalAmountElement = document.querySelector('.stock-total-amount');
     
     if (!stockContainer || !totalAmountElement) return;
-    
-    stockContainer.innerHTML = '';
     
     // 计算库存总金额
     let totalAmount = 0;
@@ -426,132 +428,164 @@ function renderStockPage() {
     });
     totalAmountElement.innerText = `¥${totalAmount.toFixed(2)}`;
     
-    // 渲染库存卡片
-    guziData.forEach((item, index) => {
-        const isOutOfStock = item.stock <= 0;
-        const card = document.createElement('div');
-        card.className = `stock-card ${isOutOfStock ? 'out-of-stock' : ''}`;
-        card.dataset.index = index;
-        
-        // 筛选逻辑
-        let isVisible = true;
-        if (currentStockFilter === 'inStock' && isOutOfStock) isVisible = false;
-        if (currentStockFilter === 'outOfStock' && !isOutOfStock) isVisible = false;
-        // 如果currentStockFilter是'all'，则显示全部，不做过滤
-        if (currentStockSearch && !item.category.toLowerCase().includes(currentStockSearch.toLowerCase()) && 
-            !item.kunxu.toLowerCase().includes(currentStockSearch.toLowerCase())) {
-            isVisible = false;
-        }
-        
-        // 添加动画类
-        card.classList.add('stock-card-animate');
-        
-        if (isVisible) {
-            card.classList.add('visible');
+    // 先标记所有卡片为待移除
+    const existingCards = document.querySelectorAll('.stock-card');
+    existingCards.forEach(card => {
+        if (useAnimation) {
+            card.classList.add('fade-out');
         } else {
-            card.classList.remove('visible');
+            card.remove();
         }
-        
-        // 获取谷子图片地址
-        const imgSrc = item.imgSrc || defaultImgUrl;
-        
-        // 构建卡片内容
-        let cardBackContent = '';
-        if (isOutOfStock) {
-            // 已售罄卡片：展示认领人列表
-            const claimersMap = {};
-            item.claimers.forEach(claimerName => {
-                claimersMap[claimerName] = (claimersMap[claimerName] || 0) + 1;
-            });
-            const claimersList = Object.entries(claimersMap).map(([claimerName, count]) => 
-                `<div class="claimers-item">${claimerName}：${count}个</div>`
-            ).join('');
-            
-            cardBackContent = `
-                <h3>${item.category} 认领记录</h3>
-                <div class="claimers-list">
-                    <h4>认领人列表（共${item.claimers.length}个）</h4>
-                    ${claimersList || '<div class="claimers-item">暂无认领记录</div>'}
-                </div>
-                <div class="claimers-stat">
-                    总认领数量：${item.claimers.length} 个
-                </div>
-            `;
-        } else {
-            // 有库存卡片：展示认领表单
-            cardBackContent = `
-                <button class="claim-title-btn" onclick="showClaimDetails(${index})">
-                    ${item.category} 认领详情
-                </button>
-                <div class="claim-form-group">
-                    <label for="claimer-name-${index}">认领人CN</label>
-                    <input type="text" id="claimer-name-${index}" class="claim-input" placeholder="请输入你的CN">
-                </div>
-                <div class="claim-form-group">
-                    <label for="claim-quantity-${index}">认领数量</label>
-                    <input type="number" id="claim-quantity-${index}" class="quantity-input" min="1" max="${item.stock}" value="1">
-                    <div class="quantity-tip">剩余可认领：${item.stock} 个</div>
-                </div>
-                <button class="claim-btn" onclick="submitClaim(${index})">确认认领</button>
-            `;
-        }
-        
-        card.innerHTML = `
-            <div class="card-inner">
-                <div class="card-front">
-                    ${item.kunxu !== '不捆' ? `<div class="kunxu-tag">${item.kunxu}</div>` : ''}
-                    <img src="${imgSrc}" alt="${item.category}">
-                    <div class="category-name">${item.category}</div>
-                    <div class="stock-num">余${item.stock}</div>
-                    <div class="stock-status">${isOutOfStock ? '已售罄' : '可认领'}</div>
-                    <div class="price-info">单价：¥${item.price.toFixed(2)}</div>
-                </div>
-                <div class="card-back" style="--bg-img: url('${imgSrc}')">
-                    <style>
-                        .card-back[data-index="${index}"]::before {
-                            background-image: var(--bg-img);
-                        }
-                    </style>
-                    <button class="close-btn" onclick="flipStockCard(${index})">×</button>
-                    ${cardBackContent}
-                </div>
-            </div>
-        `;
-        
-        // 给卡片背面添加data-index属性，用于定位背景图
-        const cardBack = card.querySelector('.card-back');
-        if (cardBack) {
-            cardBack.setAttribute('data-index', index);
-        }
-        
-        // 修复卡片点击反转bug：仅点击正面非按钮区域才翻转
-        const cardFront = card.querySelector('.card-front');
-        if (cardFront) {
-            cardFront.addEventListener('click', function(e) {
-                if (!e.target.closest('.close-btn') && !e.target.closest('.claim-btn') && !e.target.closest('.claim-title-btn')) {
-                    card.classList.add('flipped');
-                }
-            });
-        }
-        
-        // 阻止背面内容点击触发翻转
-        if (cardBack) {
-            cardBack.addEventListener('click', function(e) {
-                e.stopPropagation();
-            });
-        }
-        
-        stockContainer.appendChild(card);
     });
     
-    // 强制重排以触发动画
-    setTimeout(() => {
-        const cards = document.querySelectorAll('.stock-card.visible');
-        cards.forEach(card => {
-            card.style.opacity = '1';
-            card.style.transform = 'scale(1)';
+    // 等待淡出动画完成后再重新渲染
+    if (useAnimation) {
+        setTimeout(() => {
+            stockContainer.innerHTML = '';
+            renderStockCards();
+        }, 300);
+    } else {
+        stockContainer.innerHTML = '';
+        renderStockCards();
+    }
+    
+    function renderStockCards() {
+        // 渲染库存卡片
+        guziData.forEach((item, index) => {
+            const isOutOfStock = item.stock <= 0;
+            const card = document.createElement('div');
+            card.className = `stock-card ${isOutOfStock ? 'out-of-stock' : ''}`;
+            card.dataset.index = index;
+            
+            // 筛选逻辑
+            let isVisible = true;
+            if (currentStockFilter === 'inStock' && isOutOfStock) isVisible = false;
+            if (currentStockFilter === 'outOfStock' && !isOutOfStock) isVisible = false;
+            // 如果currentStockFilter是'all'，则显示全部，不做过滤
+            if (currentStockSearch && !item.category.toLowerCase().includes(currentStockSearch.toLowerCase()) && 
+                !item.kunxu.toLowerCase().includes(currentStockSearch.toLowerCase())) {
+                isVisible = false;
+            }
+            
+            // 添加动画类
+            card.classList.add('stock-card-animate');
+            
+            if (isVisible) {
+                card.classList.add('visible');
+                if (useAnimation) {
+                    card.classList.add('fade-in');
+                }
+            } else {
+                card.classList.remove('visible');
+            }
+            
+            // 获取谷子图片地址
+            const imgSrc = item.imgSrc || defaultImgUrl;
+            
+            // 构建卡片内容
+            let cardBackContent = '';
+            if (isOutOfStock) {
+                // 已售罄卡片：展示认领人列表
+                const claimersMap = {};
+                item.claimers.forEach(claimerName => {
+                    claimersMap[claimerName] = (claimersMap[claimerName] || 0) + 1;
+                });
+                const claimersList = Object.entries(claimersMap).map(([claimerName, count]) => 
+                    `<div class="claimers-item">${claimerName}：${count}个</div>`
+                ).join('');
+                
+                cardBackContent = `
+                    <h3>${item.category} 认领记录</h3>
+                    <div class="claimers-list">
+                        <h4>认领人列表（共${item.claimers.length}个）</h4>
+                        ${claimersList || '<div class="claimers-item">暂无认领记录</div>'}
+                    </div>
+                    <div class="claimers-stat">
+                        总认领数量：${item.claimers.length} 个
+                    </div>
+                `;
+            } else {
+                // 有库存卡片：展示认领表单
+                cardBackContent = `
+                    <button class="claim-title-btn" onclick="showClaimDetails(${index})">
+                        ${item.category} 认领详情
+                    </button>
+                    <div class="claim-form-group">
+                        <label for="claimer-name-${index}">认领人CN</label>
+                        <input type="text" id="claimer-name-${index}" class="claim-input" placeholder="请输入你的CN">
+                    </div>
+                    <div class="claim-form-group">
+                        <label for="claim-quantity-${index}">认领数量</label>
+                        <input type="number" id="claim-quantity-${index}" class="quantity-input" min="1" max="${item.stock}" value="1">
+                        <div class="quantity-tip">剩余可认领：${item.stock} 个</div>
+                    </div>
+                    <button class="claim-btn" onclick="submitClaim(${index})">确认认领</button>
+                `;
+            }
+            
+            // 修改：在卡片正面的img标签添加onclick事件，用于图片放大预览
+            card.innerHTML = `
+                <div class="card-inner">
+                    <div class="card-front">
+                        ${item.kunxu !== '不捆' ? `<div class="kunxu-tag">${item.kunxu}</div>` : ''}
+                        <img src="${imgSrc}" alt="${item.category}" onclick="openImgModal('${imgSrc}'); event.stopPropagation();">
+                        <div class="category-name">${item.category}</div>
+                        <div class="stock-num">余${item.stock}</div>
+                        <div class="stock-status">${isOutOfStock ? '已售罄' : '可认领'}</div>
+                        <div class="price-info">单价：¥${item.price.toFixed(2)}</div>
+                    </div>
+                    <div class="card-back" style="--bg-img: url('${imgSrc}')">
+                        <style>
+                            .card-back[data-index="${index}"]::before {
+                                background-image: var(--bg-img);
+                            }
+                        </style>
+                        <button class="close-btn" onclick="flipStockCard(${index})">×</button>
+                        ${cardBackContent}
+                    </div>
+                </div>
+            `;
+            
+            // 给卡片背面添加data-index属性，用于定位背景图
+            const cardBack = card.querySelector('.card-back');
+            if (cardBack) {
+                cardBack.setAttribute('data-index', index);
+            }
+            
+            // 修复卡片点击反转bug：仅点击正面非按钮区域才翻转
+            const cardFront = card.querySelector('.card-front');
+            if (cardFront) {
+                cardFront.addEventListener('click', function(e) {
+                    // 如果点击的是图片，已经处理了放大预览，不再翻转
+                    if (e.target.tagName === 'IMG') {
+                        return;
+                    }
+                    if (!e.target.closest('.close-btn') && !e.target.closest('.claim-btn') && !e.target.closest('.claim-title-btn')) {
+                        card.classList.add('flipped');
+                    }
+                });
+            }
+            
+            // 阻止背面内容点击触发翻转
+            if (cardBack) {
+                cardBack.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+            
+            stockContainer.appendChild(card);
         });
-    }, 10);
+        
+        // 强制重排以触发动画
+        setTimeout(() => {
+            const cards = document.querySelectorAll('.stock-card.visible');
+            cards.forEach(card => {
+                card.style.opacity = '1';
+                card.style.transform = 'scale(1)';
+                card.classList.remove('fade-in');
+            });
+        }, 10);
+    }
 }
 
 // 显示认领详情模态框
@@ -701,7 +735,7 @@ function searchStock() {
     const stockSearchInput = document.getElementById('stockSearchInput');
     if (stockSearchInput) {
         currentStockSearch = stockSearchInput.value.trim();
-        renderStockPage();
+        renderStockPageWithAnimation();
     }
 }
 
@@ -710,7 +744,7 @@ function resetStockSearch() {
     if (stockSearchInput) {
         stockSearchInput.value = '';
         currentStockSearch = '';
-        renderStockPage();
+        renderStockPageWithAnimation();
     }
 }
 
@@ -1227,12 +1261,12 @@ function renderSummaryPage() {
         // 生成唯一的ID用于切换
         const detailId = `summary-detail-${cn.replace(/\s+/g, '-')}`;
         
-        // 生成当前CN的统计卡片
+        // 生成当前CN的统计卡片 - 修改结构，将总计和导出按钮放在排谷详情下面，但在详情容器外部
         const summaryCard = document.createElement('div');
         summaryCard.className = 'summary-card';
         summaryCard.innerHTML = `
             <button class="summary-toggle-btn" onclick="toggleSummaryDetail('${detailId}', this)">
-                ${cn} 的排谷详情
+                <span class="toggle-text">${cn} 的排谷详情</span>
                 <span class="toggle-arrow">▼</span>
             </button>
             <div id="${detailId}" class="summary-detail-container">
@@ -1251,6 +1285,8 @@ function renderSummaryPage() {
                         </div>
                     `).join('')}
                 </div>
+            </div>
+            <div class="summary-total-export-container">
                 <div class="summary-mobile-total">
                     <div class="summary-mobile-total-label">总计</div>
                     <div class="summary-mobile-total-values">
@@ -1268,20 +1304,25 @@ function renderSummaryPage() {
     });
 }
 
-// 切换结算详情的显示/隐藏
+// 切换结算详情的显示/隐藏 - 简化版本，不使用过渡动画
 function toggleSummaryDetail(detailId, button) {
     const detailContainer = document.getElementById(detailId);
-    if (!detailContainer) return;
+    const toggleArrow = button.querySelector('.toggle-arrow');
     
-    const isHidden = detailContainer.style.display === 'none';
-    if (isHidden) {
-        detailContainer.style.display = 'block';
-        button.innerHTML = button.textContent.replace('统计', '详情') + ' <span class="toggle-arrow">▼</span>';
-        button.classList.remove('collapsed');
-    } else {
+    if (!detailContainer || !toggleArrow) return;
+    
+    const isExpanded = detailContainer.style.display !== 'none';
+    
+    if (isExpanded) {
+        // 收起详情
         detailContainer.style.display = 'none';
-        button.innerHTML = button.textContent.replace('详情', '统计') + ' <span class="toggle-arrow">▶</span>';
+        toggleArrow.textContent = '▶';
         button.classList.add('collapsed');
+    } else {
+        // 展开详情
+        detailContainer.style.display = 'block';
+        toggleArrow.textContent = '▼';
+        button.classList.remove('collapsed');
     }
 }
 
