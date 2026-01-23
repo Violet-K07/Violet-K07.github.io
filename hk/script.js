@@ -1316,7 +1316,7 @@ function renderSummaryPage() {
                                 <div class="summary-mobile-category">${item.category}</div>
                                 <div class="summary-mobile-price">单价：¥${item.price.toFixed(2)}/个</div>
                                 <div class="summary-mobile-quantity">数量：${item.quantity} 个</div>
-                                <div class="summary-mobile-cost">金额：¥${item.cost.toFixed(2)}</div>
+                                <div class="summary-mobile-cost">小计：¥${item.cost.toFixed(2)}</div>
                             </div>
                         </div>
                     `).join('')}
