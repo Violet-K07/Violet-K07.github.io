@@ -491,7 +491,7 @@ function renderStockPageWithAnimation(useAnimation = true) {
                     claimersMap[claimerName] = (claimersMap[claimerName] || 0) + 1;
                 });
                 const claimersList = Object.entries(claimersMap).map(([claimerName, count]) => 
-                    `<div class="claimers-item">${claimerName}：${count}个</div>`
+                    `<div class="claimers-item">${claimerName}：${count}点</div>`
                 ).join('');
                 
                 cardBackContent = `
@@ -501,7 +501,7 @@ function renderStockPageWithAnimation(useAnimation = true) {
                         ${claimersList || '<div class="claimers-item">暂无认领记录</div>'}
                     </div>
                     <div class="claimers-stat">
-                        总认领数量：${item.claimers.length} 个
+                        总认领数量：${item.claimers.length} 点
                     </div>
                 `;
             } else {
@@ -517,7 +517,7 @@ function renderStockPageWithAnimation(useAnimation = true) {
                     <div class="claim-form-group">
                         <label for="claim-quantity-${index}">认领数量</label>
                         <input type="number" id="claim-quantity-${index}" class="quantity-input" min="1" max="${item.stock}" value="1">
-                        <div class="quantity-tip">剩余可认领：${item.stock} 个</div>
+                        <div class="quantity-tip">剩余可认领：${item.stock} 点</div>
                     </div>
                     <button class="claim-btn" onclick="submitClaim(${index})">确认认领</button>
                 `;
@@ -639,7 +639,7 @@ function showClaimDetails(index) {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${claimerName}</td>
-                    <td>${count} 个</td>
+                    <td>${count} 点</td>
                 `;
                 claimsTableBody.appendChild(row);
             });
@@ -716,7 +716,7 @@ function submitClaim(index) {
         return;
     }
     
-    if (confirm(`确认由【${claimerName}】认领【${guziData[index].category}】${claimQuantity}个吗？无特殊原因不允许撤排，请确认认领该谷子的话点击确认，否则点击取消`)) {
+    if (confirm(`确认由【${claimerName}】认领【${guziData[index].category}】【${claimQuantity}】点吗？无特殊原因不允许撤排，请确认认领该谷子的话点击确认，否则点击取消`)) {
         // 添加认领记录
         for (let i = 0; i < claimQuantity; i++) {
             guziData[index].claimers.push(claimerName);
@@ -1314,8 +1314,8 @@ function renderSummaryPage() {
                             </div>
                             <div class="summary-mobile-details">
                                 <div class="summary-mobile-category">${item.category}</div>
-                                <div class="summary-mobile-price">单价：¥${item.price.toFixed(2)}/个</div>
-                                <div class="summary-mobile-quantity">数量：${item.quantity} 个</div>
+                                <div class="summary-mobile-price">单价：¥${item.price.toFixed(2)}/点</div>
+                                <div class="summary-mobile-quantity">数量：${item.quantity} 点</div>
                                 <div class="summary-mobile-cost">小计：¥${item.cost.toFixed(2)}</div>
                             </div>
                         </div>
@@ -1326,7 +1326,7 @@ function renderSummaryPage() {
                 <div class="summary-mobile-total">
                     <div class="summary-mobile-total-label">总计</div>
                     <div class="summary-mobile-total-values">
-                        <div>总谷子个数：${totalQuantity} 个</div>
+                        <div>总谷子点数：${totalQuantity} 点</div>
                         <div>总金额：¥${totalCost.toFixed(2)}</div>
                     </div>
                 </div>
@@ -1424,7 +1424,7 @@ function exportUserSummary(cn, claims, totalCost, totalQuantity) {
     ]);
     wsData.unshift(['谷子', '单价', '认领数量', '金额']);
     wsData.push(['', '', '总计', '']);
-    wsData.push(['', '', `总谷子个数：${totalQuantity} 个`, `总金额：¥${totalCost.toFixed(2)}`]);
+    wsData.push(['', '', `总谷子点数：${totalQuantity} 点`, `总金额：¥${totalCost.toFixed(2)}`]);
     
     const ws = XLSX.utils.aoa_to_sheet(wsData);
     const wb = XLSX.utils.book_new();
