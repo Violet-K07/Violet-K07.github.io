@@ -949,7 +949,7 @@ function printPreview() {
     // 获取预览标题信息
     const previewInfo = previewInfoElement ? previewInfoElement.textContent : '余量图打印';
     
-    // 创建打印专用的HTML
+    // 创建打印专用的HTML - 修复图片onerror处理
     let printHTML = `
         <!DOCTYPE html>
         <html lang="zh-CN">
@@ -1133,6 +1133,32 @@ function printPreview() {
                     }
                 }
             </style>
+            <script>
+                // 定义默认图片URL，确保在打印窗口中可用
+                const defaultImgUrl = "${defaultImgUrl}";
+                
+                // 图片错误处理函数
+                function handleImgError(img) {
+                    if (img.src !== defaultImgUrl) {
+                        console.log('图片加载失败，替换为默认图片:', img.src);
+                        img.src = defaultImgUrl;
+                        img.onerror = null; // 防止无限循环
+                    }
+                }
+                
+                // 页面加载完成后为所有图片添加错误处理
+                window.addEventListener('load', function() {
+                    const images = document.querySelectorAll('img');
+                    images.forEach(img => {
+                        // 如果图片已经有onerror处理，就不重复添加
+                        if (!img.onerror) {
+                            img.onerror = function() {
+                                handleImgError(this);
+                            };
+                        }
+                    });
+                });
+            <\/script>
         </head>
         <body>
             <div class="print-header">
@@ -1156,9 +1182,9 @@ function printPreview() {
         // 复制每个网格项目
         const gridItems = page.querySelectorAll('.export-card-front');
         gridItems.forEach(gridItem => {
-            // 获取图片URL
+            // 获取图片URL - 这里需要获取实际显示的图片URL，而不是原始URL
             const imgEl = gridItem.querySelector('.export-card-img');
-            const imgSrc = imgEl ? imgEl.src : '';
+            let imgSrc = imgEl ? imgEl.src : '';
             
             // 获取文本内容
             const kunxuEl = gridItem.querySelector('.kunxu-tag');
@@ -1174,10 +1200,14 @@ function printPreview() {
             // 检查是否为已售罄
             const isOutOfStock = gridItem.classList.contains('out-of-stock');
             
+            // 如果图片URL是默认图片，直接使用
+            // 如果不是，我们需要确保在打印窗口中也能正确处理错误
             printHTML += `
                 <div class="print-card ${isOutOfStock ? 'out-of-stock' : ''}">
                     ${kunxu ? `<div class="kunxu-tag">${kunxu}</div>` : ''}
-                    ${imgSrc ? `<img src="${imgSrc}" alt="${name}" onerror="this.src='${defaultImgUrl}'; this.onerror=null;"><div class="stock-num-overlay">${stockNum}</div>` : ''}
+                    <img src="${imgSrc}" alt="${name}" 
+                         onerror="if(this.src !== '${defaultImgUrl}') { this.src='${defaultImgUrl}'; this.onerror=null; }">
+                    <div class="stock-num-overlay">${stockNum}</div>
                     <div class="category-name">${name}</div>
                     <div class="price-info">${price}</div>
                 </div>
@@ -1204,9 +1234,10 @@ function printPreview() {
         
         // 等待内容加载完成后打印
         printWindow.onload = function() {
+            // 给图片一点时间加载和错误处理
             setTimeout(() => {
                 printWindow.print();
-            }, 500);
+            }, 1000);
         };
     }
 }
