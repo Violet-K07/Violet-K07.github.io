@@ -1,7 +1,7 @@
 // ==================== 全局变量 ====================
 let guziData = [];          
 let claimRecords = [];      
-const defaultImgUrl = "https://k.sinaimg.cn/n/sinakd20101/644/w722h722/20231018/010c-7e8d43cb4b970f280203cc75c541b89a.jpg/w700d1q75cms.jpg";
+const defaultImgUrl = "ERROR.PNG";
 let currentSearchCN = '';   
 let currentStockFilter = 'inStock'; 
 let currentStockSearch = '';
@@ -528,7 +528,9 @@ function renderStockPageWithAnimation(useAnimation = true) {
                 <div class="card-inner">
                     <div class="card-front">
                         ${item.kunxu !== '不捆' ? `<div class="kunxu-tag">${item.kunxu}</div>` : ''}
-                        <img src="${imgSrc}" alt="${item.category}" onclick="openImgModal('${imgSrc}'); event.stopPropagation();">
+                        <img src="${imgSrc}" alt="${item.category}" 
+                             onerror="this.src='${defaultImgUrl}'; this.onerror=null;" 
+                             onclick="openImgModal(this.src); event.stopPropagation();">
                         <div class="category-name">${item.category}</div>
                         <div class="stock-num">余${item.stock}</div>
                         <div class="stock-status">${isOutOfStock ? '已售罄' : '可认领'}</div>
@@ -537,7 +539,7 @@ function renderStockPageWithAnimation(useAnimation = true) {
                     <div class="card-back" style="--bg-img: url('${imgSrc}')">
                         <style>
                             .card-back[data-index="${index}"]::before {
-                                background-image: var(--bg-img);
+                                background-image: var(--bg-img), linear-gradient(135deg, #667eea 0%, #764ba2 100%);
                             }
                         </style>
                         <button class="close-btn" onclick="flipStockCard(${index})">×</button>
@@ -827,7 +829,8 @@ function previewStockGrid() {
             gridItem.innerHTML = `
                 ${item.kunxu !== '不捆' ? `<div class="kunxu-tag">${item.kunxu}</div>` : ''}
                 <div class="export-card-image-container">
-                    <img src="${imgSrc}" alt="${item.category}" class="export-card-img">
+                    <img src="${imgSrc}" alt="${item.category}" class="export-card-img" 
+                         onerror="this.src='${defaultImgUrl}'; this.onerror=null;">
                     <div class="stock-num-overlay">${item.stock}</div>
                 </div>
                 <div class="export-card-content">
@@ -1174,7 +1177,7 @@ function printPreview() {
             printHTML += `
                 <div class="print-card ${isOutOfStock ? 'out-of-stock' : ''}">
                     ${kunxu ? `<div class="kunxu-tag">${kunxu}</div>` : ''}
-                    ${imgSrc ? `<img src="${imgSrc}" alt="${name}"><div class="stock-num-overlay">${stockNum}</div>` : ''}
+                    ${imgSrc ? `<img src="${imgSrc}" alt="${name}" onerror="this.src='${defaultImgUrl}'; this.onerror=null;"><div class="stock-num-overlay">${stockNum}</div>` : ''}
                     <div class="category-name">${name}</div>
                     <div class="price-info">${price}</div>
                 </div>
@@ -1274,7 +1277,9 @@ function renderSummaryPage() {
                     ${userClaims.map(item => `
                         <div class="summary-mobile-item">
                             <div class="summary-mobile-img">
-                                <img src="${item.imgSrc}" alt="${item.category}" onclick="openImgModal('${item.imgSrc}')">
+                                <img src="${item.imgSrc}" alt="${item.category}" 
+                                     onerror="this.src='${defaultImgUrl}'; this.onerror=null;" 
+                                     onclick="openImgModal(this.src)">
                             </div>
                             <div class="summary-mobile-details">
                                 <div class="summary-mobile-category">${item.category}</div>
@@ -1332,6 +1337,13 @@ function openImgModal(imgUrl) {
     const modalImg = document.getElementById('modalImg');
     
     if (!modal || !modalImg) return;
+    
+    // 设置图片加载错误处理
+    modalImg.onerror = function() {
+        console.warn('放大图片加载失败，使用默认图片:', imgUrl);
+        this.src = defaultImgUrl;
+        this.onerror = null; // 防止无限循环
+    };
     
     modal.style.display = "flex";
     modalImg.src = imgUrl;
