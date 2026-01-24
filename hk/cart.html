@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SXES32L5B9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-SXES32L5B9');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 网页标题和描述 -->
+    <title>智能排谷管理系统 - 购物车批量认领</title>
+    <meta name="description" content="智能排谷管理系统购物车功能，批量认领谷子">
+    
+    <!-- PWA相关配置 -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="排谷购物车">
+    
+    <!-- 主题颜色 -->
+    <meta name="theme-color" content="#4a90e2">
+    <meta name="msapplication-TileColor" content="#4a90e2">
+    
+    <!-- 图标配置 -->
+    <link rel="shortcut icon" type="image/x-icon" href="icon.png">
+    <link rel="icon" type="image/x-icon" href="icon.png">
+    <link rel="apple-touch-icon" href="icon.png">
+    
+    <!-- Web App Manifest (PWA) -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="智能排谷管理系统 - 购物车批量认领">
+    <meta property="og:description" content="智能排谷管理系统购物车功能，批量认领谷子">
+    <meta property="og:image" content="icon.png">
+    <meta property="og:url" content="https://your-domain.com/cart.html">
+    <meta property="og:type" content="website">
+    
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="style.css">
+    <!-- 引入购物车专用样式 -->
+    <link rel="stylesheet" href="cart.css">
+    <!-- 引入SheetJS库用于Excel导出 -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <!-- 引入Gist工具库 -->
+    <script src="gist-utils.js"></script>
+</head>
+<body>
+    <!-- 顶部控制栏 -->
+    <div class="top-controls">
+        <!-- 左上角：深色模式按钮 -->
+        <div id="themeToggle" class="theme-toggle">
+            <button id="themeBtn" class="theme-btn" onclick="toggleTheme()">
+                <span class="theme-icon">🌙</span> 深色模式
+            </button>
+        </div>
+        
+        <!-- 右上角：登录按钮 -->
+        <div id="authButtons" class="auth-buttons">
+            <button id="logoutBtn" class="btn" onclick="logoutToken()">退出登录</button>
+        </div>
+    </div>
+    
+    <!-- 固定顶部购物车汇总栏 -->
+    <div class="cart-summary-fixed" id="cartSummaryFixed">
+        <div class="cart-summary-fixed-content">
+            <div class="cart-summary-fixed-stats">
+                <div class="cart-summary-fixed-stat">
+                    <div class="cart-summary-fixed-label">总点数</div>
+                    <div class="cart-summary-fixed-value" id="cartFixedTotalPoints">0</div>
+                </div>
+                <div class="cart-summary-fixed-stat">
+                    <div class="cart-summary-fixed-label">总金额</div>
+                    <div class="cart-summary-fixed-value" id="cartFixedTotalAmount">¥0.00</div>
+                </div>
+                <div class="cart-summary-fixed-stat">
+                    <div class="cart-summary-fixed-label">种类数</div>
+                    <div class="cart-summary-fixed-value" id="cartFixedItemCount">0</div>
+                </div>
+                <div class="cart-summary-fixed-stat">
+                    <div class="cart-summary-fixed-label">金额差</div>
+                    <div class="cart-summary-fixed-value" id="cartFixedAmountDiff">¥0.00</div>
+                </div>
+            </div>
+            <div class="cart-summary-fixed-buttons">
+                <button class="btn copy-summary-btn" onclick="copyCartSummary()" title="复制购物车摘要">
+                    复制摘要
+                </button>
+                <button class="btn clear-cart-btn" onclick="clearCart()" title="清空购物车">
+                    清空购物车
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container cart-container">
+        <!-- 主标题 -->
+        <h1 class="cart-title">购物车批量认领</h1>
+        
+        <!-- 使用说明 -->
+        <div class="cart-tips">
+            <strong>🛒 购物车使用说明：</strong>
+            <ul>
+                <li>点击谷子卡片<strong>正面</strong>可翻转查看该谷子的认领详情</li>
+                <li>点击谷子卡片正面的<strong>「+」</strong>按钮增加认领数量，<strong>「-」</strong>按钮减少数量</li>
+                <li>可以直接在数量输入框中输入具体数字</li>
+                <li>购物车汇总实时显示已选择的谷子，点击<strong>「展开/收起详情」</strong>查看详细信息</li>
+                <li>复制购物车摘要后，可以使用<strong>「粘贴摘要」</strong>功能批量添加到购物车</li>
+                <li>确认认领前请确保已登录并填写正确的CN</li>
+                <li>点击<strong>「确认认领购物车」</strong>一次性认领所有已选谷子</li>
+                <li>设置<strong>「目标金额」</strong>可以帮你控制预算，实时显示与目标金额的差值</li>
+                <li>当购物车金额小于目标金额时，可以使用<strong>「一键补齐」</strong>功能自动添加谷子</li>
+            </ul>
+        </div>
+        
+        <!-- 购物车汇总区域 -->
+        <div class="cart-summary-container">
+            <div class="cart-summary-header">
+                <h3>购物车汇总</h3>
+                <div class="cart-summary-controls">
+                    <button class="btn copy-summary-btn" onclick="copyCartSummary()" title="复制购物车摘要">
+                        复制摘要
+                    </button>
+                    <button class="btn paste-summary-btn" onclick="openPasteModal()" title="粘贴摘要到购物车">
+                        粘贴摘要
+                    </button>
+                    <button class="btn clear-cart-btn" onclick="clearCart()" title="清空购物车">
+                        清空购物车
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 购物车摘要 -->
+            <div class="cart-summary-text" id="cartSummaryText">
+                购物车为空
+            </div>
+            
+            <!-- 购物车统计信息 -->
+            <div class="cart-stats">
+                <div class="cart-stat-item">
+                    <div class="cart-stat-label">总点数</div>
+                    <div class="cart-stat-value" id="cartTotalPoints">0</div>
+                </div>
+                <div class="cart-stat-item">
+                    <div class="cart-stat-label">总金额</div>
+                    <div class="cart-stat-value" id="cartTotalAmount">¥0.00</div>
+                </div>
+                <div class="cart-stat-item">
+                    <div class="cart-stat-label">种类数</div>
+                    <div class="cart-stat-value" id="cartItemCount">0</div>
+                </div>
+                <div class="cart-stat-item">
+                    <div class="cart-stat-label">金额差</div>
+                    <div class="cart-stat-value" id="cartAmountDiff">¥0.00</div>
+                </div>
+            </div>
+            
+            <!-- 目标金额设置 -->
+            <div class="target-amount-container">
+                <div class="target-amount-header">
+                    <div class="target-amount-title">🎯 目标金额设置</div>
+                    <div class="target-amount-input-group">
+                        <input type="number" id="targetAmountInput" class="target-amount-input" placeholder="输入目标金额" min="0" step="0.01">
+                        <button class="target-amount-btn" onclick="setTargetAmount()">设置</button>
+                    </div>
+                </div>
+                <div class="target-amount-display">
+                    <div class="target-amount-current">
+                        当前金额: <span id="currentAmountValue">¥0.00</span>
+                    </div>
+                    <div class="target-amount-diff" id="targetAmountDiff">
+                        目标金额: 未设置
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 一键补齐功能 -->
+            <div class="auto-fill-container" id="autoFillContainer">
+                <div class="auto-fill-header">
+                    <div class="auto-fill-title">🤖 一键补齐功能</div>
+                    <div class="auto-fill-amount">
+                        还需补齐: <span id="remainingAmount">¥0.00</span>
+                    </div>
+                </div>
+                <div class="auto-fill-controls">
+                    <div class="strategy-select-group">
+                        <div class="strategy-select-label">补齐策略:</div>
+                        <select id="autoFillStrategy" class="strategy-select">
+                            <option value="points_min">点数最多优先</option>
+                            <option value="points_max">点数最少优先</option>
+                            <option value="price_min">单价最低优先</option>
+                            <option value="price_max">单价最高优先</option>
+                        </select>
+                    </div>
+                    <button class="btn auto-fill-btn" onclick="autoFillCart()">
+                        <span>⚡ 一键补齐</span>
+                    </button>
+                </div>
+                <div class="auto-fill-note">
+                    系统将根据您选择的策略，自动添加谷子直到达到目标金额
+                </div>
+            </div>
+            
+            <!-- 购物车详情展开/收起 -->
+            <button class="cart-detail-toggle" id="cartDetailToggle" onclick="toggleCartDetails()">
+                <span class="toggle-text">展开/收起详情</span>
+                <span class="toggle-arrow">▼</span>
+            </button>
+            
+            <!-- 购物车详情 -->
+            <div class="cart-detail-container" id="cartDetailContainer">
+                <div id="cartDetailContent">
+                    <!-- 购物车详情将在这里动态生成 -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- 确认认领区域 -->
+        <div class="cart-checkout-container">
+            <div class="checkout-form">
+                <div class="form-group">
+                    <label for="cartCNInput">认领人CN</label>
+                    <input type="text" id="cartCNInput" class="form-control" placeholder="请输入你的CN">
+                </div>
+                <button class="btn checkout-btn" onclick="checkoutCart()">确认认领购物车</button>
+            </div>
+        </div>
+        
+        <!-- 筛选和搜索 -->
+        <div class="cart-filter-container">
+            <div class="search-input-group">
+                <input type="text" class="cart-search-input" id="cartSearchInput" placeholder="搜索谷子名字/捆序...">
+                <div class="search-buttons">
+                    <button class="btn search-btn" onclick="searchCartItems()">搜索</button>
+                    <button class="btn reset-search-btn" onclick="resetCartSearch()">重置</button>
+                </div>
+            </div>
+            
+            <div class="price-filter-group">
+                <span class="price-filter-label">价格筛选：</span>
+                <select id="priceFilter" class="price-filter-select">
+                    <option value="all">全部价格</option>
+                    <option value="0-100">0-100元</option>
+                    <option value="101-500">101-500元</option>
+                    <option value="501-1000">501-1000元</option>
+                    <option value="1000+">1000元以上</option>
+                    <option value="custom">自定义区间</option>
+                </select>
+                
+                <!-- 自定义价格区间输入框 -->
+                <div id="customPriceContainer" class="custom-price-container" style="display: none;">
+                    <input type="number" id="customPriceMin" class="custom-price-input" placeholder="最低价" min="0" step="0.01">
+                    <span class="custom-price-separator">-</span>
+                    <input type="number" id="customPriceMax" class="custom-price-input" placeholder="最高价" min="0" step="0.01">
+                    <button class="custom-price-btn" onclick="applyCustomPriceFilter()">筛选</button>
+                </div>
+            </div>
+            
+            <div class="cart-filter-toggle">
+                <span class="toggle-label">库存筛选</span>
+                <div class="toggle-switch-container">
+                    <div class="toggle-options">
+                        <span class="toggle-option" data-value="inStock">有库存</span>
+                        <span class="toggle-option" data-value="all">全部</span>
+                        <span class="toggle-option" data-value="outOfStock">已售罄</span>
+                    </div>
+                    <div class="toggle-track" id="cartToggleTrack">
+                        <div class="toggle-slider" id="cartToggleSlider"></div>
+                    </div>
+                    <input type="hidden" id="cartFilterValue" value="inStock">
+                </div>
+            </div>
+        </div>
+        
+        <!-- 谷子卡片容器 -->
+        <div id="cartStockContainer" class="cart-stock-container"></div>
+    </div>
+    
+    <!-- 图片放大弹窗 -->
+    <div class="img-modal" id="imgModal">
+        <span class="img-modal-close" onclick="closeImgModal()">&times;</span>
+        <img class="img-modal-content" id="modalImg">
+    </div>
+    
+    <!-- 认领详情模态框 -->
+    <div class="claims-modal" id="claimsModal">
+        <div class="claims-modal-content">
+            <button class="claims-modal-close" onclick="closeClaimsModal()">×</button>
+            <h3 id="claimsModalTitle">认领详情</h3>
+            <div class="claims-statistics">
+                <div class="stat-item">
+                    <div class="stat-label">总库存</div>
+                    <div class="stat-value" id="totalStock">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">剩余库存</div>
+                    <div class="stat-value" id="remainingStock">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">已认领</div>
+                    <div class="stat-value" id="claimedCount">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">认领人数</div>
+                    <div class="stat-value" id="claimersCount">0</div>
+                </div>
+            </div>
+            <div id="claimsList">
+                <table class="claims-table">
+                    <thead>
+                        <tr>
+                            <th>认领人</th>
+                            <th>认领数量</th>
+                        </tr>
+                    </thead>
+                    <tbody id="claimsTableBody">
+                        <!-- 认领记录将在这里动态生成 -->
+                    </tbody>
+                </table>
+                <div id="noClaimsMessage" class="no-claims" style="display: none;">
+                    暂无认领记录
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 粘贴摘要模态框 -->
+    <div id="pasteModal" class="paste-modal">
+        <div class="modal-content">
+            <h3>📋 粘贴购物车摘要</h3>
+            <p>请粘贴之前复制的购物车摘要，格式如：【谷子A*2、谷子B*1】</p>
+            
+            <div class="form-group">
+                <label for="pasteCNInput">认领人CN（可选）</label>
+                <input type="text" id="pasteCNInput" class="form-control" 
+                       placeholder="请输入你的CN（将自动填充到认领人输入框）">
+            </div>
+            
+            <div class="form-group">
+                <label for="pasteInput">购物车摘要</label>
+                <textarea id="pasteInput" class="form-control paste-textarea" 
+                          placeholder="在此粘贴购物车摘要，例如：【谷子A*2、谷子B*1】或 谷子A*2、谷子B*1"
+                          rows="6"></textarea>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closePasteModal()">取消</button>
+                <button class="btn btn-primary" onclick="parsePastedSummary()">确认并添加到购物车</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 同步提示 -->
+    <div class="sync-tip" id="syncTip">数据已同步到云端！</div>
+    
+    <!-- 登录模态框 -->
+    <div id="loginModal">
+        <div class="modal-content">
+            <h3>🔐 登录</h3>
+            <p>需要输入密钥登录来同步数据到云端</p>
+            
+            <div class="form-group">
+                <label for="tokenInput">Password</label>
+                <input type="password" id="tokenInput" class="form-control" 
+                       placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
+                       autocomplete="off">
+                <small style="color: #666; display: block; margin-top: 5px;">
+                    密钥仅保存在您的浏览器本地，不会发送到任何服务器;
+                </small>
+                <small style="color: #666; display: block; margin-top: 5px;">
+                    不使用特定秘钥时，不能够将排谷数据上传云端。
+                </small>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="submitToken()" style="flex: 1;">确认并登录</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 回到顶部按钮 -->
+    <button id="backToTopBtn" class="back-to-top" title="回到顶部">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+            <path fill="none" stroke="currentColor" stroke-width="2" d="M12 5l-7 7h4v7h6v-7h4z"/>
+        </svg>
+    </button>
+    
+    <script src="cart.js"></script>
+</body>
+</html>
