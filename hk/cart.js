@@ -8,6 +8,7 @@ let currentCartSearch = '';
 let currentPriceFilter = 'all'; // 新增：价格筛选
 let isLoggedIn = false;
 let targetAmount = 0; // 目标金额
+let autoFillPlan = []; // 一键补齐方案
 
 // ==================== 页面初始化 ====================
 document.addEventListener('DOMContentLoaded', async function() {
@@ -404,6 +405,20 @@ function autoFillCart() {
     
     // 根据策略排序
     switch(strategy) {
+        case 'diff_min':
+            // 差值最小优先：优先选择能让最终金额最接近目标金额的谷子
+            availableItems.sort((a, b) => {
+                // 计算每个谷子能带来的最小增加量
+                const priceA = a.item.price;
+                const priceB = b.item.price;
+                
+                // 计算每个谷子添加1个的差值
+                const diffA = Math.abs(remainingAmount - priceA);
+                const diffB = Math.abs(remainingAmount - priceB);
+                
+                return diffA - diffB;
+            });
+            break;
         case 'points_min':
             // 点数最少优先（按单价升序）
             availableItems.sort((a, b) => a.item.price - b.item.price);
@@ -422,32 +437,188 @@ function autoFillCart() {
             break;
     }
     
-    // 开始补齐
+    // 开始计算补齐方案
+    autoFillPlan = [];
     let addedAmount = 0;
-    let addedItems = [];
+    
+    // 尝试多种组合来找到最接近目标金额的方案
+    let bestPlan = [];
+    let bestDiff = remainingAmount;
+    let bestAmount = 0;
+    
+    // 对于差值最小策略，尝试更智能的搜索
+    if (strategy === 'diff_min') {
+        // 使用动态规划找到最接近的组合
+        const dp = new Array(Math.floor(remainingAmount * 100) + 1).fill(false);
+        const itemCount = new Array(Math.floor(remainingAmount * 100) + 1).fill(0);
+        const usedItems = new Array(Math.floor(remainingAmount * 100) + 1).fill([]);
+        
+        dp[0] = true;
+        usedItems[0] = [];
+        
+        const targetCents = Math.floor(remainingAmount * 100);
+        
+        availableItems.forEach(({ index, item, availableQuantity }) => {
+            const priceCents = Math.round(item.price * 100);
+            const maxQuantity = Math.min(availableQuantity, Math.ceil(remainingAmount / item.price));
+            
+            // 尝试添加1到maxQuantity个
+            for (let qty = 1; qty <= maxQuantity; qty++) {
+                const addAmount = priceCents * qty;
+                
+                for (let j = targetCents; j >= addAmount; j--) {
+                    if (dp[j - addAmount] && !dp[j]) {
+                        dp[j] = true;
+                        usedItems[j] = [...usedItems[j - addAmount], { index, item, quantity: qty, amount: item.price * qty }];
+                    }
+                }
+            }
+        });
+        
+        // 找到最接近目标金额的组合
+        for (let j = targetCents; j >= 0; j--) {
+            if (dp[j]) {
+                bestPlan = usedItems[j];
+                bestDiff = (remainingAmount * 100 - j) / 100;
+                bestAmount = j / 100;
+                break;
+            }
+        }
+        
+        // 如果没有找到精确的组合，尝试贪心算法
+        if (bestPlan.length === 0) {
+            bestPlan = findGreedyPlan(availableItems, remainingAmount, strategy);
+            bestAmount = bestPlan.reduce((sum, item) => sum + item.amount, 0);
+            bestDiff = Math.abs(remainingAmount - bestAmount);
+        }
+    } else {
+        // 其他策略使用贪心算法
+        bestPlan = findGreedyPlan(availableItems, remainingAmount, strategy);
+        bestAmount = bestPlan.reduce((sum, item) => sum + item.amount, 0);
+        bestDiff = Math.abs(remainingAmount - bestAmount);
+    }
+    
+    // 如果没有找到任何方案
+    if (bestPlan.length === 0) {
+        alert('无法找到合适的补齐方案，请尝试其他筛选条件或策略');
+        return;
+    }
+    
+    autoFillPlan = bestPlan;
+    
+    // 显示确认模态框
+    showAutoFillConfirm(bestAmount, bestDiff);
+}
+
+function findGreedyPlan(availableItems, remainingAmount, strategy) {
+    const plan = [];
+    let addedAmount = 0;
     
     for (let i = 0; i < availableItems.length && addedAmount < remainingAmount; i++) {
         const { index, item, availableQuantity } = availableItems[i];
         const price = item.price;
         
         // 计算最多可以添加多少个该谷子
-        const maxCanAdd = Math.min(
+        let maxCanAdd = Math.min(
             availableQuantity,
             Math.ceil((remainingAmount - addedAmount) / price)
         );
         
+        // 对于差值最小策略，尝试找到最接近的组合
+        if (strategy === 'diff_min' && maxCanAdd > 1) {
+            let bestQty = 1;
+            let bestDiff = Math.abs(remainingAmount - (addedAmount + price));
+            
+            for (let qty = 2; qty <= maxCanAdd; qty++) {
+                const newAmount = addedAmount + price * qty;
+                const diff = Math.abs(remainingAmount - newAmount);
+                
+                if (diff < bestDiff) {
+                    bestDiff = diff;
+                    bestQty = qty;
+                }
+            }
+            
+            maxCanAdd = bestQty;
+        }
+        
         if (maxCanAdd > 0) {
-            // 添加到购物车
-            const currentQuantity = cartItems[index] || 0;
-            cartItems[index] = currentQuantity + maxCanAdd;
-            addedAmount += maxCanAdd * price;
-            addedItems.push({
-                name: item.category,
+            plan.push({
+                index: index,
+                item: item,
                 quantity: maxCanAdd,
                 amount: maxCanAdd * price
             });
+            addedAmount += maxCanAdd * price;
         }
     }
+    
+    return plan;
+}
+
+function showAutoFillConfirm(finalAmount, diffAmount) {
+    const modal = document.getElementById('autoFillConfirmModal');
+    const currentAmount = calculateTotalAmount();
+    
+    // 更新统计信息
+    document.getElementById('autoFillTargetAmount').textContent = `¥${targetAmount.toFixed(2)}`;
+    document.getElementById('autoFillCurrentAmount').textContent = `¥${currentAmount.toFixed(2)}`;
+    document.getElementById('autoFillFinalAmount').textContent = `¥${(currentAmount + finalAmount).toFixed(2)}`;
+    document.getElementById('autoFillDiffAmount').textContent = `¥${diffAmount.toFixed(2)}`;
+    
+    // 更新项目列表
+    const itemsList = document.getElementById('autoFillItemsList');
+    itemsList.innerHTML = '';
+    
+    autoFillPlan.forEach(item => {
+        const itemElement = document.createElement('div');
+        itemElement.className = 'auto-fill-item';
+        itemElement.innerHTML = `
+            <div class="auto-fill-item-name">${item.item.category}</div>
+            <div class="auto-fill-item-quantity">×${item.quantity}</div>
+            <div class="auto-fill-item-amount">¥${item.amount.toFixed(2)}</div>
+        `;
+        itemsList.appendChild(itemElement);
+    });
+    
+    // 更新说明
+    const noteBox = document.getElementById('autoFillNoteBox');
+    const strategy = document.getElementById('autoFillStrategy').value;
+    let strategyName = '';
+    
+    switch(strategy) {
+        case 'diff_min': strategyName = '差值最小优先'; break;
+        case 'points_min': strategyName = '点数最少优先'; break;
+        case 'points_max': strategyName = '点数最多优先'; break;
+        case 'price_min': strategyName = '单价最低优先'; break;
+        case 'price_max': strategyName = '单价最高优先'; break;
+    }
+    
+    noteBox.innerHTML = `
+        <div>使用策略：<strong>${strategyName}</strong></div>
+        <div style="margin-top: 5px;">${diffAmount < 0.01 ? '🎯 完美达成目标金额！' : diffAmount <= 10 ? '✅ 非常接近目标金额！' : '⚠️ 由于库存限制，无法完全达到目标金额'}</div>
+    `;
+    
+    // 显示模态框
+    modal.style.display = 'flex';
+}
+
+function closeAutoFillConfirm() {
+    document.getElementById('autoFillConfirmModal').style.display = 'none';
+    autoFillPlan = [];
+}
+
+function applyAutoFill() {
+    if (autoFillPlan.length === 0) {
+        alert('没有可应用的补齐方案');
+        return;
+    }
+    
+    // 应用补齐方案到购物车
+    autoFillPlan.forEach(({ index, quantity }) => {
+        const currentQuantity = cartItems[index] || 0;
+        cartItems[index] = currentQuantity + quantity;
+    });
     
     // 保存到本地存储
     saveCartToStorage();
@@ -456,24 +627,22 @@ function autoFillCart() {
     updateCartSummary();
     renderCartPage();
     
-    // 显示结果
-    if (addedItems.length > 0) {
-        let message = `已成功添加 ${addedItems.length} 种谷子，增加金额 ¥${addedAmount.toFixed(2)}:\n\n`;
-        addedItems.forEach(item => {
-            message += `• ${item.name} ×${item.quantity} (¥${item.amount.toFixed(2)})\n`;
-        });
-        
-        if (addedAmount < remainingAmount) {
-            message += `\n注意：由于库存限制，仅补齐了 ¥${addedAmount.toFixed(2)}，还需 ¥${(remainingAmount - addedAmount).toFixed(2)}`;
-        } else {
-            message += `\n✅ 已成功达到目标金额！`;
-        }
-        
-        alert(message);
-        showSyncTip('一键补齐完成');
+    // 关闭模态框
+    closeAutoFillConfirm();
+    
+    // 显示成功提示
+    const finalAmount = autoFillPlan.reduce((sum, item) => sum + item.amount, 0);
+    const diffAmount = Math.abs(targetAmount - (calculateTotalAmount() - finalAmount));
+    
+    if (diffAmount < 0.01) {
+        showSyncTip('✅ 完美达成目标金额！');
+    } else if (diffAmount <= 10) {
+        showSyncTip(`✅ 已成功补齐，与目标金额仅差 ¥${diffAmount.toFixed(2)}`);
     } else {
-        alert('无法添加任何谷子，请检查筛选条件或谷子库存');
+        showSyncTip(`✅ 已成功补齐 ¥${finalAmount.toFixed(2)}`);
     }
+    
+    autoFillPlan = [];
 }
 
 // ==================== 登录相关功能 ====================
@@ -680,6 +849,16 @@ function setupEventListeners() {
         pasteModal.addEventListener('click', function(e) {
             if (e.target === this) {
                 closePasteModal();
+            }
+        });
+    }
+    
+    // 一键补齐确认模态框点击外部关闭
+    const autoFillConfirmModal = document.getElementById('autoFillConfirmModal');
+    if (autoFillConfirmModal) {
+        autoFillConfirmModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAutoFillConfirm();
             }
         });
     }
@@ -900,7 +1079,7 @@ function renderCartPage() {
             const imgSrc = item.imgSrc || defaultImgUrl;
             const cartQuantity = cartItems[index] || 0;
             
-            // 构建卡片内容
+            // 构建卡片内容（不再有翻转功能）
             const cartQuantityControls = isOutOfStock ? '' : `
                 <div class="cart-quantity-controls">
                     <button class="quantity-btn minus-btn" onclick="removeFromCart(${index}, 1); event.stopPropagation();" ${cartQuantity <= 0 ? 'disabled' : ''}>-</button>
@@ -911,36 +1090,33 @@ function renderCartPage() {
                 </div>
             `;
             
-            // 构建完整卡片 - 修复背面布局问题
+            // 构建完整卡片 - 不再有背面
             card.innerHTML = `
                 <div class="cart-card-inner">
-                    <div class="cart-card-front">
-                        ${item.kunxu !== '不捆' ? `<div class="kunxu-tag">${item.kunxu}</div>` : ''}
-                        <div class="cart-card-img-container">
-                            <img src="${imgSrc}" alt="${item.category}" class="cart-card-img"
-                                 onerror="this.src='${defaultImgUrl}'; this.onerror=null;" 
-                                 onclick="openImgModal(this.src); event.stopPropagation();">
-                        </div>
-                        <div class="cart-card-content">
-                            <div class="cart-card-name">${item.category}</div>
-                            <div class="cart-card-info">
-                                <div class="cart-card-price-stock">
-                                    <div class="cart-card-price">
-                                        <div class="cart-card-price-value">¥${item.price.toFixed(2)}</div>
-                                        <div class="cart-card-price-label">单价</div>
-                                    </div>
-                                    <div class="cart-card-stock">
-                                        <div class="cart-card-stock-value">${item.stock}</div>
-                                        <div class="cart-card-stock-label">库存</div>
-                                    </div>
+                    ${item.kunxu !== '不捆' ? `<div class="kunxu-tag">${item.kunxu}</div>` : ''}
+                    <div class="cart-card-img-container">
+                        <img src="${imgSrc}" alt="${item.category}" class="cart-card-img"
+                             onerror="this.src='${defaultImgUrl}'; this.onerror=null;" 
+                             onclick="openImgModal(this.src); event.stopPropagation();">
+                    </div>
+                    <div class="cart-card-content">
+                        <div class="cart-card-name">${item.category}</div>
+                        <div class="cart-card-info">
+                            <div class="cart-card-price-stock">
+                                <div class="cart-card-price">
+                                    <div class="cart-card-price-value">¥${item.price.toFixed(2)}</div>
+                                    <div class="cart-card-price-label">单价</div>
+                                </div>
+                                <div class="cart-card-stock">
+                                    <div class="cart-card-stock-value">${item.stock}</div>
+                                    <div class="cart-card-stock-label">库存</div>
                                 </div>
                             </div>
-                            ${cartQuantityControls}
                         </div>
-                    </div>
-                    <div class="cart-card-back">
-                        <button class="cart-card-close-btn" onclick="flipCartCard(${index}); event.stopPropagation();">×</button>
-                        ${isOutOfStock ? renderOutOfStockBack(item) : renderInStockBack(item, index, cartQuantity)}
+                        <button class="cart-detail-btn" onclick="showClaimDetails(${index}); event.stopPropagation();">
+                            认领详情
+                        </button>
+                        ${cartQuantityControls}
                     </div>
                 </div>
             `;
@@ -952,74 +1128,8 @@ function renderCartPage() {
                 card.classList.add('visible');
                 card.classList.remove('hiding');
             }, 10);
-            
-            // 为卡片添加点击事件以触发翻转
-            card.addEventListener('click', function(e) {
-                // 检查点击的不是特定元素（按钮、输入框、图片等）
-                if (!e.target.closest('.cart-card-close-btn') && 
-                    !e.target.closest('.cart-claim-title-btn') &&
-                    !e.target.closest('.quantity-btn') &&
-                    !e.target.closest('.quantity-input') &&
-                    !e.target.closest('.cart-card-img')) {
-                    // 翻转卡片
-                    card.classList.toggle('flipped');
-                }
-            });
         });
     }, 50); // 50ms延迟确保动画效果
-}
-
-// 渲染已售罄卡片背面
-function renderOutOfStockBack(item) {
-    // 已售罄卡片：展示认领人列表
-    const claimersMap = {};
-    item.claimers.forEach(claimerName => {
-        claimersMap[claimerName] = (claimersMap[claimerName] || 0) + 1;
-    });
-    const claimersList = Object.entries(claimersMap).map(([claimerName, count]) => 
-        `<div class="cart-claimers-item">${claimerName}：${count}点</div>`
-    ).join('');
-    
-    return `
-        <div class="cart-out-of-stock-back">
-            <div class="out-of-stock-title">${item.category} 认领详情</div>
-            <div class="cart-claimers-list">
-                <h4>认领人列表（共${item.claimers.length}点）</h4>
-                ${claimersList || '<div class="cart-claimers-item">暂无认领记录</div>'}
-            </div>
-            <div class="cart-claimers-stat">
-                总认领数量：${item.claimers.length} 点
-            </div>
-        </div>
-    `;
-}
-
-// 渲染有库存卡片背面
-function renderInStockBack(item, index, cartQuantity) {
-    return `
-        <div class="cart-in-stock-back">
-            <button class="cart-claim-title-btn" onclick="showClaimDetails(${index}); event.stopPropagation();">
-                ${item.category} 认领详情
-            </button>
-            <div class="cart-back-quantity-controls">
-                <button class="quantity-btn minus-btn" onclick="removeFromCart(${index}, 1); event.stopPropagation();" ${cartQuantity <= 0 ? 'disabled' : ''}>-</button>
-                <input type="number" class="quantity-input" value="${cartQuantity}" min="0" max="${item.stock}" 
-                       onchange="setCartQuantity(${index}, parseInt(this.value)); event.stopPropagation();"
-                       onclick="event.stopPropagation();">
-                <button class="quantity-btn plus-btn" onclick="addToCart(${index}, 1); event.stopPropagation();" ${cartQuantity >= item.stock ? 'disabled' : ''}>+</button>
-            </div>
-            <div class="cart-back-stock-info">
-                剩余可认领：${item.stock} 点
-            </div>
-        </div>
-    `;
-}
-
-function flipCartCard(index) {
-    const card = document.querySelector(`.cart-card[data-index="${index}"]`);
-    if (card) {
-        card.classList.remove('flipped');
-    }
 }
 
 // ==================== 购物车汇总更新 ====================
