@@ -9,6 +9,8 @@ let currentPriceFilter = 'all'; // 新增：价格筛选
 let isLoggedIn = false;
 let targetAmount = 0; // 目标金额
 let autoFillPlan = []; // 一键补齐方案
+let currentAutoFillStrategy = 'diff_min'; // 当前补齐策略
+let randomFillAttempts = 0; // 随机补齐尝试次数
 
 // ==================== 页面初始化 ====================
 document.addEventListener('DOMContentLoaded', async function() {
@@ -226,8 +228,10 @@ function applyPriceFilter(item) {
     const price = item.price;
     
     switch(currentPriceFilter) {
-        case '0-100':
-            return price >= 0 && price <= 100;
+        case '0-50':
+            return price >= 0 && price <= 50;
+        case '51-100':
+            return price > 50 && price <= 100;
         case '101-500':
             return price > 100 && price <= 500;
         case '501-1000':
@@ -344,7 +348,176 @@ function calculateTotalAmount() {
     return totalAmount;
 }
 
-// ==================== 一键补齐功能 ====================
+// ==================== 一键补齐功能 - 改进的随机算法 ====================
+function calculateRandomPlan(availableItems, remainingAmount) {
+    // 使用动态规划寻找最接近的解决方案，但加入随机性
+    const targetCents = Math.floor(remainingAmount * 100);
+    const maxAttempts = 20;
+    let bestPlan = [];
+    let bestDiff = Infinity;
+    
+    for (let attempt = 0; attempt < maxAttempts; attempt++) {
+        // 每次尝试都打乱物品顺序，产生不同的随机组合
+        const shuffledItems = [...availableItems].sort(() => Math.random() - 0.5);
+        
+        // 使用动态规划寻找最接近的方案
+        const dp = new Array(targetCents + 1).fill(false);
+        dp[0] = true;
+        const itemsAtAmount = new Array(targetCents + 1).fill([]);
+        
+        // 多重背包的动态规划
+        for (const { index, item, availableQuantity } of shuffledItems) {
+            const priceCents = Math.round(item.price * 100);
+            
+            for (let amount = targetCents; amount >= priceCents; amount--) {
+                if (dp[amount - priceCents]) {
+                    dp[amount] = true;
+                    // 记录物品组合（如果当前位置还没有组合，或者新组合包含更少的物品数量）
+                    if (itemsAtAmount[amount].length === 0 || 
+                        itemsAtAmount[amount - priceCents].length + 1 < itemsAtAmount[amount].length) {
+                        itemsAtAmount[amount] = [...itemsAtAmount[amount - priceCents], { 
+                            index, 
+                            item, 
+                            quantity: 1,
+                            amount: item.price
+                        }];
+                    }
+                    
+                    // 尝试添加多个（但限制数量）
+                    const maxQuantity = Math.min(availableQuantity, Math.floor(remainingAmount / item.price) + 2);
+                    for (let qty = 2; qty <= maxQuantity; qty++) {
+                        const addAmount = priceCents * qty;
+                        if (amount >= addAmount && dp[amount - addAmount]) {
+                            dp[amount] = true;
+                            if (itemsAtAmount[amount - addAmount].length + 1 < itemsAtAmount[amount].length) {
+                                itemsAtAmount[amount] = [...itemsAtAmount[amount - addAmount], {
+                                    index,
+                                    item,
+                                    quantity: qty,
+                                    amount: item.price * qty
+                                }];
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        // 找到最接近且大于等于目标金额的组合
+        for (let amount = targetCents; amount <= Math.min(targetCents * 2, dp.length - 1); amount++) {
+            if (dp[amount] && amount >= targetCents) {
+                // 合并相同物品的数量
+                const mergedItems = {};
+                itemsAtAmount[amount].forEach(item => {
+                    if (!mergedItems[item.index]) {
+                        mergedItems[item.index] = { ...item, quantity: 0, amount: 0 };
+                    }
+                    mergedItems[item.index].quantity += item.quantity;
+                    mergedItems[item.index].amount += item.amount;
+                });
+                
+                const plan = Object.values(mergedItems);
+                const finalTotal = plan.reduce((sum, item) => sum + item.amount, 0);
+                const diff = Math.abs(finalTotal - remainingAmount);
+                
+                // 选择最接近目标的方案
+                if (diff < bestDiff) {
+                    bestPlan = plan;
+                    bestDiff = diff;
+                }
+                break; // 找到第一个可行方案就跳出，因为是按金额从小到大找的
+            }
+        }
+    }
+    
+    // 如果找到了方案，返回
+    if (bestPlan.length > 0) {
+        return bestPlan;
+    }
+    
+    // 如果动态规划找不到，回退到贪心算法
+    return calculateRandomPlanFallback(availableItems, remainingAmount);
+}
+
+function calculateRandomPlanFallback(availableItems, remainingAmount) {
+    // 简单的随机贪心算法作为后备
+    const shuffledItems = [...availableItems].sort(() => Math.random() - 0.5);
+    const plan = [];
+    let totalAdded = 0;
+    
+    for (const { index, item, availableQuantity } of shuffledItems) {
+        if (totalAdded >= remainingAmount * 1.1) break; // 允许稍微超支10%
+        
+        // 计算最多可以添加的数量
+        const maxByStock = availableQuantity;
+        const maxByBudget = Math.floor(remainingAmount * 1.2 / item.price);
+        const maxAdd = Math.min(maxByStock, maxByBudget);
+        
+        if (maxAdd > 0) {
+            // 随机决定添加数量，但倾向于添加使总金额接近目标的数量
+            const needed = Math.ceil((remainingAmount - totalAdded) / item.price);
+            const quantity = Math.min(maxAdd, needed);
+            
+            if (quantity > 0) {
+                plan.push({
+                    index,
+                    item,
+                    quantity,
+                    amount: item.price * quantity
+                });
+                totalAdded += item.price * quantity;
+            }
+        }
+    }
+    
+    return plan;
+}
+
+// 重新随机补齐 - 也使用差值最小逻辑
+function calculateRandomPlanForReRandom(remainingAmount) {
+    // 获取可用谷子列表
+    let availableItems = [];
+    
+    guziData.forEach((item, index) => {
+        if (item.stock > 0) {
+            // 检查是否满足当前筛选条件
+            let isVisible = true;
+            const isOutOfStock = item.stock <= 0;
+            
+            if (currentCartFilter === 'inStock' && isOutOfStock) isVisible = false;
+            if (currentCartFilter === 'outOfStock' && !isOutOfStock) isVisible = false;
+            if (currentCartSearch && 
+                !item.category.toLowerCase().includes(currentCartSearch.toLowerCase()) && 
+                !item.kunxu.toLowerCase().includes(currentCartSearch.toLowerCase())) {
+                isVisible = false;
+            }
+            if (!applyPriceFilter(item)) isVisible = false;
+            
+            if (isVisible) {
+                const currentQuantity = cartItems[index] || 0;
+                const availableQuantity = item.stock - currentQuantity;
+                
+                if (availableQuantity > 0) {
+                    availableItems.push({
+                        index: index,
+                        item: item,
+                        availableQuantity: availableQuantity,
+                        currentQuantity: currentQuantity,
+                        price: item.price
+                    });
+                }
+            }
+        }
+    });
+    
+    if (availableItems.length === 0) {
+        return [];
+    }
+    
+    // 使用改进的随机算法
+    return calculateRandomPlan(availableItems, remainingAmount);
+}
+
 function autoFillCart() {
     const currentAmount = calculateTotalAmount();
     
@@ -361,7 +534,27 @@ function autoFillCart() {
         return;
     }
     
-    const strategy = document.getElementById('autoFillStrategy').value;
+    currentAutoFillStrategy = document.getElementById('autoFillStrategy').value;
+    randomFillAttempts = 0;
+    
+    // 调用对应的补齐算法
+    const plan = calculateAutoFillPlan(currentAutoFillStrategy, currentAmount);
+    
+    if (!plan || plan.length === 0) {
+        alert('没有可用的谷子可以添加');
+        return;
+    }
+    
+    autoFillPlan = plan;
+    const finalAmount = plan.reduce((sum, item) => sum + item.amount, 0);
+    const diffAmount = Math.abs((currentAmount + finalAmount) - targetAmount);
+    
+    // 显示确认模态框
+    showAutoFillConfirm(finalAmount, diffAmount);
+}
+
+// 计算补齐方案的核心函数
+function calculateAutoFillPlan(strategy, currentAmount) {
     const remainingAmount = targetAmount - currentAmount;
     
     // 获取可用谷子列表（有库存且不在购物车中或购物车数量未达上限）
@@ -391,7 +584,8 @@ function autoFillCart() {
                         index: index,
                         item: item,
                         availableQuantity: availableQuantity,
-                        currentQuantity: currentQuantity
+                        currentQuantity: currentQuantity,
+                        price: item.price
                     });
                 }
             }
@@ -399,166 +593,161 @@ function autoFillCart() {
     });
     
     if (availableItems.length === 0) {
-        alert('没有可用的谷子可以添加');
-        return;
+        return [];
     }
     
-    // 根据策略排序
+    // 根据策略计算方案
     switch(strategy) {
-        case 'diff_min':
-            // 差值最小优先：优先选择能让最终金额最接近目标金额的谷子
-            availableItems.sort((a, b) => {
-                // 计算每个谷子能带来的最小增加量
-                const priceA = a.item.price;
-                const priceB = b.item.price;
-                
-                // 计算每个谷子添加1个的差值
-                const diffA = Math.abs(remainingAmount - priceA);
-                const diffB = Math.abs(remainingAmount - priceB);
-                
-                return diffA - diffB;
-            });
-            break;
+        case 'random':
+            return calculateRandomPlan(availableItems, remainingAmount);
         case 'points_min':
-            // 点数最少优先（按单价升序）
-            availableItems.sort((a, b) => a.item.price - b.item.price);
-            break;
+            // 点数最少优先：按单价升序，差值最小
+            availableItems.sort((a, b) => a.price - b.price);
+            return calculateDiffMinPlan(availableItems, remainingAmount, 'asc');
         case 'points_max':
-            // 点数最多优先（按单价降序）
-            availableItems.sort((a, b) => b.item.price - a.item.price);
-            break;
+            // 点数最多优先：按单价降序，差值最小
+            availableItems.sort((a, b) => b.price - a.price);
+            return calculateDiffMinPlan(availableItems, remainingAmount, 'desc');
         case 'price_min':
-            // 单价最低优先（按单价升序）
-            availableItems.sort((a, b) => a.item.price - b.item.price);
-            break;
+            // 单价最低优先：按单价升序，差值最小
+            availableItems.sort((a, b) => a.price - b.price);
+            return calculateDiffMinPlan(availableItems, remainingAmount, 'asc');
         case 'price_max':
-            // 单价最高优先（按单价降序）
-            availableItems.sort((a, b) => b.item.price - a.item.price);
-            break;
+            // 单价最高优先：按单价降序，差值最小
+            availableItems.sort((a, b) => b.price - a.price);
+            return calculateDiffMinPlan(availableItems, remainingAmount, 'desc');
+        default: // diff_min
+            // 差值最小优先：不排序，直接找最优解
+            return calculateDiffMinPlan(availableItems, remainingAmount, 'none');
+    }
+}
+
+// 计算差值最小的方案（动态规划）
+function calculateDiffMinPlan(availableItems, remainingAmount, sortOrder = 'none') {
+    const targetCents = Math.floor(remainingAmount * 100);
+    
+    // 动态规划数组：dp[金额] = 是否可达
+    const dp = new Array(targetCents + 1).fill(false);
+    dp[0] = true;
+    
+    // 记录每个金额对应的物品组合
+    const itemsAtAmount = new Array(targetCents + 1).fill([]);
+    
+    // 先按指定顺序排序（如果需要）
+    if (sortOrder === 'asc') {
+        availableItems.sort((a, b) => a.price - b.price);
+    } else if (sortOrder === 'desc') {
+        availableItems.sort((a, b) => b.price - a.price);
     }
     
-    // 开始计算补齐方案
-    autoFillPlan = [];
-    let addedAmount = 0;
-    
-    // 尝试多种组合来找到最接近目标金额的方案
-    let bestPlan = [];
-    let bestDiff = remainingAmount;
-    let bestAmount = 0;
-    
-    // 对于差值最小策略，尝试更智能的搜索
-    if (strategy === 'diff_min') {
-        // 使用动态规划找到最接近的组合
-        const dp = new Array(Math.floor(remainingAmount * 100) + 1).fill(false);
-        const itemCount = new Array(Math.floor(remainingAmount * 100) + 1).fill(0);
-        const usedItems = new Array(Math.floor(remainingAmount * 100) + 1).fill([]);
+    // 多重背包的动态规划
+    for (const { index, item, availableQuantity } of availableItems) {
+        const priceCents = Math.round(item.price * 100);
         
-        dp[0] = true;
-        usedItems[0] = [];
-        
-        const targetCents = Math.floor(remainingAmount * 100);
-        
-        availableItems.forEach(({ index, item, availableQuantity }) => {
-            const priceCents = Math.round(item.price * 100);
-            const maxQuantity = Math.min(availableQuantity, Math.ceil(remainingAmount / item.price));
-            
-            // 尝试添加1到maxQuantity个
-            for (let qty = 1; qty <= maxQuantity; qty++) {
-                const addAmount = priceCents * qty;
+        for (let amount = targetCents; amount >= priceCents; amount--) {
+            if (dp[amount - priceCents]) {
+                dp[amount] = true;
+                // 记录物品组合（如果当前位置还没有组合，或者新组合包含更少的物品数量）
+                if (itemsAtAmount[amount].length === 0 || 
+                    itemsAtAmount[amount - priceCents].length + 1 < itemsAtAmount[amount].length) {
+                    itemsAtAmount[amount] = [...itemsAtAmount[amount - priceCents], { 
+                        index, 
+                        item, 
+                        quantity: 1,
+                        amount: item.price
+                    }];
+                }
                 
-                for (let j = targetCents; j >= addAmount; j--) {
-                    if (dp[j - addAmount] && !dp[j]) {
-                        dp[j] = true;
-                        usedItems[j] = [...usedItems[j - addAmount], { index, item, quantity: qty, amount: item.price * qty }];
+                // 尝试添加多个
+                for (let qty = 2; qty <= availableQuantity; qty++) {
+                    const addAmount = priceCents * qty;
+                    if (amount >= addAmount && dp[amount - addAmount]) {
+                        dp[amount] = true;
+                        if (itemsAtAmount[amount - addAmount].length + 1 < itemsAtAmount[amount].length) {
+                            itemsAtAmount[amount] = [...itemsAtAmount[amount - addAmount], {
+                                index,
+                                item,
+                                quantity: qty,
+                                amount: item.price * qty
+                            }];
+                        }
                     }
                 }
             }
-        });
-        
-        // 找到最接近目标金额的组合
-        for (let j = targetCents; j >= 0; j--) {
-            if (dp[j]) {
-                bestPlan = usedItems[j];
-                bestDiff = (remainingAmount * 100 - j) / 100;
-                bestAmount = j / 100;
-                break;
-            }
         }
-        
-        // 如果没有找到精确的组合，尝试贪心算法
-        if (bestPlan.length === 0) {
-            bestPlan = findGreedyPlan(availableItems, remainingAmount, strategy);
-            bestAmount = bestPlan.reduce((sum, item) => sum + item.amount, 0);
-            bestDiff = Math.abs(remainingAmount - bestAmount);
-        }
-    } else {
-        // 其他策略使用贪心算法
-        bestPlan = findGreedyPlan(availableItems, remainingAmount, strategy);
-        bestAmount = bestPlan.reduce((sum, item) => sum + item.amount, 0);
-        bestDiff = Math.abs(remainingAmount - bestAmount);
     }
     
-    // 如果没有找到任何方案
-    if (bestPlan.length === 0) {
-        alert('无法找到合适的补齐方案，请尝试其他筛选条件或策略');
+    // 找到最接近且大于等于目标金额的组合（优先找正好等于的）
+    for (let amount = targetCents; amount <= Math.min(targetCents * 2, dp.length - 1); amount++) {
+        if (dp[amount] && amount >= targetCents) {
+            // 合并相同物品的数量
+            const mergedItems = {};
+            itemsAtAmount[amount].forEach(item => {
+                if (!mergedItems[item.index]) {
+                    mergedItems[item.index] = { ...item, quantity: 0, amount: 0 };
+                }
+                mergedItems[item.index].quantity += item.quantity;
+                mergedItems[item.index].amount += item.amount;
+            });
+            
+            return Object.values(mergedItems);
+        }
+    }
+    
+    return [];
+}
+
+// 重新随机补齐
+function reRandomAutoFill() {
+    if (currentAutoFillStrategy !== 'random') {
         return;
     }
     
-    autoFillPlan = bestPlan;
+    randomFillAttempts++;
+    const currentAmount = calculateTotalAmount();
+    const remainingAmount = targetAmount - currentAmount;
     
-    // 显示确认模态框
-    showAutoFillConfirm(bestAmount, bestDiff);
-}
-
-function findGreedyPlan(availableItems, remainingAmount, strategy) {
-    const plan = [];
-    let addedAmount = 0;
+    const plan = calculateRandomPlanForReRandom(remainingAmount);
     
-    for (let i = 0; i < availableItems.length && addedAmount < remainingAmount; i++) {
-        const { index, item, availableQuantity } = availableItems[i];
-        const price = item.price;
-        
-        // 计算最多可以添加多少个该谷子
-        let maxCanAdd = Math.min(
-            availableQuantity,
-            Math.ceil((remainingAmount - addedAmount) / price)
-        );
-        
-        // 对于差值最小策略，尝试找到最接近的组合
-        if (strategy === 'diff_min' && maxCanAdd > 1) {
-            let bestQty = 1;
-            let bestDiff = Math.abs(remainingAmount - (addedAmount + price));
-            
-            for (let qty = 2; qty <= maxCanAdd; qty++) {
-                const newAmount = addedAmount + price * qty;
-                const diff = Math.abs(remainingAmount - newAmount);
-                
-                if (diff < bestDiff) {
-                    bestDiff = diff;
-                    bestQty = qty;
-                }
-            }
-            
-            maxCanAdd = bestQty;
-        }
-        
-        if (maxCanAdd > 0) {
-            plan.push({
-                index: index,
-                item: item,
-                quantity: maxCanAdd,
-                amount: maxCanAdd * price
-            });
-            addedAmount += maxCanAdd * price;
-        }
+    if (!plan || plan.length === 0) {
+        alert('无法生成新的随机方案');
+        return;
     }
     
-    return plan;
+    autoFillPlan = plan;
+    const finalAmount = plan.reduce((sum, item) => sum + item.amount, 0);
+    const diffAmount = Math.abs((currentAmount + finalAmount) - targetAmount);
+    
+    // 更新确认模态框
+    showAutoFillConfirm(finalAmount, diffAmount);
 }
 
 function showAutoFillConfirm(finalAmount, diffAmount) {
     const modal = document.getElementById('autoFillConfirmModal');
     const currentAmount = calculateTotalAmount();
+    const randomRefillBtn = document.getElementById('randomRefillBtn');
+    
+    // 更新标题
+    const modalTitle = document.getElementById('autoFillConfirmTitle');
+    let strategyName = '';
+    
+    switch(currentAutoFillStrategy) {
+        case 'diff_min': strategyName = '差值最小优先'; break;
+        case 'points_min': strategyName = '点数最少优先'; break;
+        case 'points_max': strategyName = '点数最多优先'; break;
+        case 'price_min': strategyName = '单价最低优先'; break;
+        case 'price_max': strategyName = '单价最高优先'; break;
+        case 'random': strategyName = '随机补齐'; break;
+    }
+    
+    modalTitle.textContent = `一键补齐方案确认 (${strategyName})`;
+    
+    // 显示/隐藏重新随机按钮
+    if (currentAutoFillStrategy === 'random') {
+        randomRefillBtn.style.display = 'flex';
+    } else {
+        randomRefillBtn.style.display = 'none';
+    }
     
     // 更新统计信息
     document.getElementById('autoFillTargetAmount').textContent = `¥${targetAmount.toFixed(2)}`;
@@ -583,21 +772,34 @@ function showAutoFillConfirm(finalAmount, diffAmount) {
     
     // 更新说明
     const noteBox = document.getElementById('autoFillNoteBox');
-    const strategy = document.getElementById('autoFillStrategy').value;
-    let strategyName = '';
     
-    switch(strategy) {
-        case 'diff_min': strategyName = '差值最小优先'; break;
-        case 'points_min': strategyName = '点数最少优先'; break;
-        case 'points_max': strategyName = '点数最多优先'; break;
-        case 'price_min': strategyName = '单价最低优先'; break;
-        case 'price_max': strategyName = '单价最高优先'; break;
+    let noteText = '';
+    if (currentAutoFillStrategy === 'random') {
+        noteText = `
+            <div>使用策略：<strong>${strategyName}</strong> (尝试次数: ${randomFillAttempts + 1})</div>
+            <div style="margin-top: 5px;">
+                ${diffAmount < 0.01 ? '🎯 完美达成目标金额！' : 
+                  diffAmount <= 10 ? '✅ 非常接近目标金额！' : 
+                  '⚠️ 随机方案，金额可能有偏差'}
+            </div>
+            <div style="margin-top: 5px; font-size: 12px;">
+                不满意这个方案？点击"重新随机"按钮生成新的随机方案。
+            </div>
+        `;
+    } else {
+        noteText = `
+            <div>使用策略：<strong>${strategyName}</strong></div>
+            <div style="margin-top: 5px;">
+                ${diffAmount < 0.01 ? '🎯 完美达成目标金额！' : 
+                  diffAmount <= 10 ? '✅ 非常接近目标金额！' : 
+                  '⚠️ 由于库存限制，无法完全达到目标金额'}
+            </div>
+            ${finalAmount + currentAmount < targetAmount ? 
+              '<div style="margin-top: 5px; color: var(--warning-color);">注意：补齐后金额仍低于目标金额，可能是库存不足。</div>' : ''}
+        `;
     }
     
-    noteBox.innerHTML = `
-        <div>使用策略：<strong>${strategyName}</strong></div>
-        <div style="margin-top: 5px;">${diffAmount < 0.01 ? '🎯 完美达成目标金额！' : diffAmount <= 10 ? '✅ 非常接近目标金额！' : '⚠️ 由于库存限制，无法完全达到目标金额'}</div>
-    `;
+    noteBox.innerHTML = noteText;
     
     // 显示模态框
     modal.style.display = 'flex';
@@ -612,6 +814,16 @@ function applyAutoFill() {
     if (autoFillPlan.length === 0) {
         alert('没有可应用的补齐方案');
         return;
+    }
+    
+    // 检查补齐后是否超过目标金额（必须超过或等于，不能少于）
+    const currentAmount = calculateTotalAmount();
+    const finalAmount = autoFillPlan.reduce((sum, item) => sum + item.amount, 0);
+    
+    if (currentAmount + finalAmount < targetAmount) {
+        if (!confirm('补齐后金额仍低于目标金额，是否继续？')) {
+            return;
+        }
     }
     
     // 应用补齐方案到购物车
@@ -631,8 +843,7 @@ function applyAutoFill() {
     closeAutoFillConfirm();
     
     // 显示成功提示
-    const finalAmount = autoFillPlan.reduce((sum, item) => sum + item.amount, 0);
-    const diffAmount = Math.abs(targetAmount - (calculateTotalAmount() - finalAmount));
+    const diffAmount = Math.abs(targetAmount - (currentAmount + finalAmount));
     
     if (diffAmount < 0.01) {
         showSyncTip('✅ 完美达成目标金额！');
@@ -870,6 +1081,27 @@ function setupEventListeners() {
             if (e.key === 'Enter') checkoutCart();
         });
     }
+    
+    // 点击购物车详情模态框外部关闭
+    const cartDetailModal = document.getElementById('cartDetailModal');
+    if (cartDetailModal) {
+        cartDetailModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCartDetailModal();
+            }
+        });
+    }
+    
+    // 监听ESC键关闭模态框
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeCartDetailModal();
+            closePasteModal();
+            closeAutoFillConfirm();
+            closeClaimsModal();
+            closeClaimSuccessModal();
+        }
+    });
 }
 
 // ==================== 购物车数据存储 ====================
@@ -940,6 +1172,9 @@ function addToCart(index, quantity = 1) {
     updateCartCardQuantity(index);
     
     showSyncTip('已添加到购物车');
+    
+    // 更新购物车详情模态框
+    updateCartDetailModal();
 }
 
 function removeFromCart(index, quantity = 1) {
@@ -963,6 +1198,9 @@ function removeFromCart(index, quantity = 1) {
     updateCartCardQuantity(index);
     
     showSyncTip('已从购物车移除');
+    
+    // 更新购物车详情模态框
+    updateCartDetailModal();
 }
 
 function setCartQuantity(index, quantity) {
@@ -992,6 +1230,9 @@ function setCartQuantity(index, quantity) {
     
     // 更新详情中的数量显示
     updateCartDetailsQuantity(index, quantity);
+    
+    // 更新购物车详情模态框
+    updateCartDetailModal();
 }
 
 function updateCartCardQuantity(index) {
@@ -1079,7 +1320,7 @@ function renderCartPage() {
             const imgSrc = item.imgSrc || defaultImgUrl;
             const cartQuantity = cartItems[index] || 0;
             
-            // 构建卡片内容（不再有翻转功能）
+            // 构建卡片内容
             const cartQuantityControls = isOutOfStock ? '' : `
                 <div class="cart-quantity-controls">
                     <button class="quantity-btn minus-btn" onclick="removeFromCart(${index}, 1); event.stopPropagation();" ${cartQuantity <= 0 ? 'disabled' : ''}>-</button>
@@ -1090,7 +1331,7 @@ function renderCartPage() {
                 </div>
             `;
             
-            // 构建完整卡片 - 不再有背面
+            // 构建完整卡片 - 已售罄的卡片也显示认领详情按钮
             card.innerHTML = `
                 <div class="cart-card-inner">
                     ${item.kunxu !== '不捆' ? `<div class="kunxu-tag">${item.kunxu}</div>` : ''}
@@ -1113,10 +1354,12 @@ function renderCartPage() {
                                 </div>
                             </div>
                         </div>
-                        <button class="cart-detail-btn" onclick="showClaimDetails(${index}); event.stopPropagation();">
+                        ${cartQuantityControls}
+                        <button class="cart-detail-btn ${isOutOfStock ? 'out-of-stock-btn' : ''}" 
+                                onclick="showClaimDetails(${index}); event.stopPropagation();"
+                                ${isOutOfStock ? 'style="opacity: 0.7;"' : ''}>
                             认领详情
                         </button>
-                        ${cartQuantityControls}
                     </div>
                 </div>
             `;
@@ -1328,6 +1571,117 @@ function toggleCartDetails() {
         detailContainer.classList.add('expanded');
         toggleBtn.classList.add('collapsed');
         toggleArrow.textContent = '▲';
+    }
+}
+
+// ==================== 购物车详情模态框功能 ====================
+function openCartDetailModal() {
+    const modal = document.getElementById('cartDetailModal');
+    const modalBody = document.getElementById('cartDetailModalBody');
+    
+    if (!modal || !modalBody) return;
+    
+    // 生成购物车详情HTML
+    modalBody.innerHTML = generateCartDetailHTML();
+    
+    // 显示模态框
+    modal.style.display = 'flex';
+    
+    // 阻止背景滚动
+    document.body.style.overflow = 'hidden';
+}
+
+function closeCartDetailModal() {
+    const modal = document.getElementById('cartDetailModal');
+    if (modal) {
+        modal.style.display = 'none';
+        // 恢复背景滚动
+        document.body.style.overflow = '';
+    }
+}
+
+function generateCartDetailHTML() {
+    // 如果没有商品
+    if (Object.keys(cartItems).length === 0) {
+        return '<div style="text-align: center; color: var(--text-secondary); padding: 20px;">购物车为空</div>';
+    }
+    
+    let html = '';
+    let totalPoints = 0;
+    let totalAmount = 0;
+    
+    Object.keys(cartItems).forEach(index => {
+        const itemIndex = parseInt(index);
+        const item = guziData[itemIndex];
+        const quantity = cartItems[index];
+        
+        if (item && quantity > 0) {
+            const itemAmount = quantity * item.price;
+            totalPoints += quantity;
+            totalAmount += itemAmount;
+            
+            // 获取谷子图片地址
+            const imgSrc = item.imgSrc || defaultImgUrl;
+            
+            html += `
+                <div class="cart-detail-item" data-index="${itemIndex}">
+                    <div class="cart-detail-img-container" onclick="openImgModal('${imgSrc}'); event.stopPropagation();">
+                        <img src="${imgSrc}" alt="${item.category}" class="cart-detail-img" 
+                             onerror="this.src='${defaultImgUrl}'; this.onerror=null;">
+                    </div>
+                    <div class="cart-detail-info">
+                        <div class="cart-detail-name">${item.category}</div>
+                        <div class="cart-detail-price">单价：<strong>¥${item.price.toFixed(2)}</strong>/点</div>
+                    </div>
+                    <div class="cart-detail-controls">
+                        <div class="cart-detail-quantity-controls">
+                            <button class="cart-detail-quantity-btn minus-btn" onclick="removeFromCart(${itemIndex}, 1); updateCartDetailModal(); event.stopPropagation();">-</button>
+                            <input type="number" class="cart-detail-quantity-input" value="${quantity}" min="0" max="${item.stock}" 
+                                   onchange="setCartQuantity(${itemIndex}, parseInt(this.value)); updateCartDetailModal(); event.stopPropagation();"
+                                   onclick="event.stopPropagation();">
+                            <button class="cart-detail-quantity-btn plus-btn" onclick="addToCart(${itemIndex}, 1); updateCartDetailModal(); event.stopPropagation();">+</button>
+                        </div>
+                        <div class="cart-detail-total">小计：¥${itemAmount.toFixed(2)}</div>
+                    </div>
+                </div>
+            `;
+        }
+    });
+    
+    // 计算与目标金额的差值
+    let diffText = '';
+    if (targetAmount > 0) {
+        const diffAmount = totalAmount - targetAmount;
+        if (diffAmount > 0) {
+            diffText = `<span style="font-size: 12px; opacity: 0.9; color: var(--danger-color);">(超支: +¥${diffAmount.toFixed(2)})</span>`;
+        } else if (diffAmount < 0) {
+            diffText = `<span style="font-size: 12px; opacity: 0.9; color: var(--success-color);">(剩余: ¥${Math.abs(diffAmount).toFixed(2)})</span>`;
+        } else {
+            diffText = `<span style="font-size: 12px; opacity: 0.9; color: var(--primary-color);">(达成目标!)</span>`;
+        }
+    }
+    
+    // 添加总计行
+    html += `
+        <div class="cart-detail-total-item">
+            <div class="cart-detail-total-label">
+                <span>总计 ${diffText}</span>
+                <span class="cart-detail-total-points">共 ${totalPoints} 点</span>
+            </div>
+            <div class="cart-detail-total-amount">¥${totalAmount.toFixed(2)}</div>
+        </div>
+    `;
+    
+    return html;
+}
+
+function updateCartDetailModal() {
+    const modal = document.getElementById('cartDetailModal');
+    const modalBody = document.getElementById('cartDetailModalBody');
+    
+    // 如果模态框是打开的，更新其内容
+    if (modal && modal.style.display === 'flex' && modalBody) {
+        modalBody.innerHTML = generateCartDetailHTML();
     }
 }
 
@@ -1553,10 +1907,8 @@ function resetCartSearch() {
     renderCartPage();
 }
 
-// ==================== 购物车确认认领功能 ====================
+// ==================== 购物车确认认领功能 - 完整实现 ====================
 async function checkoutCart() {
-    // 这里需要实现购物车批量认领的逻辑
-    // 由于这部分逻辑依赖于具体的后端API，这里只提供框架
     const cnInput = document.getElementById('cartCNInput');
     const cn = cnInput.value.trim();
     
@@ -1573,7 +1925,7 @@ async function checkoutCart() {
     
     // 检查库存是否足够
     let stockCheckPassed = true;
-    let stockErrorMessage = '';
+    let stockErrorMessages = [];
     
     Object.keys(cartItems).forEach(index => {
         const itemIndex = parseInt(index);
@@ -1582,53 +1934,374 @@ async function checkoutCart() {
         
         if (item && quantity > 0 && quantity > item.stock) {
             stockCheckPassed = false;
-            stockErrorMessage = `"${item.category}" 库存不足！仅剩 ${item.stock} 点，但购物车中有 ${quantity} 点`;
+            stockErrorMessages.push(`"${item.category}" 库存不足！仅剩 ${item.stock} 点，但购物车中有 ${quantity} 点`);
         }
     });
     
     if (!stockCheckPassed) {
-        alert(stockErrorMessage);
+        alert(stockErrorMessages.join('\n'));
         return;
     }
     
-    // 确认认领
-    if (!confirm(`确认以 "${cn}" 的CN认领购物车中的所有谷子吗？\n\n总点数: ${document.getElementById('cartTotalPoints').textContent}\n总金额: ${document.getElementById('cartTotalAmount').textContent}`)) {
+    // 生成认领详情预览
+    let claimDetails = '';
+    let totalPoints = 0;
+    let totalAmount = 0;
+    
+    Object.keys(cartItems).forEach(index => {
+        const itemIndex = parseInt(index);
+        const item = guziData[itemIndex];
+        const quantity = cartItems[index];
+        
+        if (item && quantity > 0) {
+            const itemAmount = quantity * item.price;
+            totalPoints += quantity;
+            totalAmount += itemAmount;
+            claimDetails += `\n${item.category} × ${quantity} = ¥${itemAmount.toFixed(2)}`;
+        }
+    });
+    
+    // 确认认领 - 使用更友好的确认对话框
+    const confirmMessage = `确认以 "${cn}" 的CN认领购物车中的所有谷子吗？\n\n认领详情：${claimDetails}\n\n总计：${totalPoints}点，¥${totalAmount.toFixed(2)}\n\n注意：认领后库存将立即扣减，请确认信息无误。`;
+    
+    if (!confirm(confirmMessage)) {
         return;
     }
     
-    // 这里应该调用API进行批量认领
-    // 由于缺少具体的API，这里只显示提示
-    showSyncTip('购物车认领功能暂未实现，请等待后续更新');
-    
-    // 以下是示例代码，实际使用时需要根据您的API进行修改
-    /*
     try {
-        const response = await fetch('/api/cart/checkout', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                cn: cn,
-                items: cartItems
-            })
+        // 备份当前数据，用于可能的回滚
+        const backupGuziData = JSON.parse(JSON.stringify(guziData));
+        const backupClaimRecords = JSON.parse(JSON.stringify(claimRecords));
+        
+        // 遍历购物车中的所有项目，逐个进行认领
+        const claimsToSubmit = [];
+        
+        Object.keys(cartItems).forEach(index => {
+            const itemIndex = parseInt(index);
+            const item = guziData[itemIndex];
+            const quantity = cartItems[index];
+            
+            if (item && quantity > 0) {
+                // 检查当前库存是否足够（二次检查，防止在确认期间库存被其他用户修改）
+                if (quantity > item.stock) {
+                    throw new Error(`"${item.category}" 库存已不足！当前库存：${item.stock}，认领数量：${quantity}`);
+                }
+                
+                // 扣减本地库存
+                item.stock -= quantity;
+                
+                // 添加到认领记录
+                for (let i = 0; i < quantity; i++) {
+                    item.claimers.push(cn);
+                }
+                
+                // 记录认领信息
+                claimsToSubmit.push({
+                    cn: cn,
+                    category: item.category,
+                    quantity: quantity,
+                    timestamp: new Date().toISOString(),
+                    price: item.price,
+                    totalAmount: item.price * quantity,
+                    itemIndex: itemIndex // 添加索引用于回溯
+                });
+                
+                // 添加到全局认领记录（用于结算统计）
+                for (let i = 0; i < quantity; i++) {
+                    claimRecords.push({
+                        cn: cn,
+                        category: item.category,
+                        quantity: 1,
+                        timestamp: new Date().toISOString(),
+                        price: item.price,
+                        totalAmount: item.price
+                    });
+                }
+            }
         });
         
-        if (response.ok) {
-            showSyncTip('认领成功！');
-            // 清空购物车
-            cartItems = {};
-            saveCartToStorage();
-            updateCartSummary();
-            renderCartPage();
+        // 同步数据到云端
+        if (isLoggedIn) {
+            try {
+                await saveGuziDataToGist({
+                    guziData: guziData,
+                    claimRecords: claimRecords
+                });
+            } catch (error) {
+                // 如果云端保存失败，回滚本地修改
+                console.error('云端同步失败，回滚本地修改:', error);
+                rollbackClaim(claimsToSubmit, backupGuziData, backupClaimRecords);
+                throw new Error('云端同步失败，请检查网络连接后重试');
+            }
         } else {
-            alert('认领失败，请重试');
+            // 如果未登录，只更新本地数据
+            localStorage.setItem('guziData_backup', JSON.stringify(guziData));
+            localStorage.setItem('claimRecords_backup', JSON.stringify(claimRecords));
         }
+        
+        // 清空购物车
+        cartItems = {};
+        saveCartToStorage();
+        
+        // 更新界面
+        updateCartSummary();
+        renderCartPage();
+        
+        // 显示认领成功模态框
+        showClaimSuccessModal(claimsToSubmit, cn, totalPoints, totalAmount);
+        
+        // 显示成功提示
+        showSyncTip(`认领成功！已认领 ${totalPoints} 点，总金额 ¥${totalAmount.toFixed(2)}`);
+        
     } catch (error) {
         console.error('认领失败:', error);
-        alert('认领失败，请检查网络连接');
+        
+        // 重新加载数据，确保界面与服务器数据一致
+        if (isLoggedIn) {
+            try {
+                await loadData();
+            } catch (reloadError) {
+                console.error('重新加载数据失败:', reloadError);
+            }
+        }
+        
+        alert('认领失败：' + error.message);
     }
-    */
+}
+
+// 回滚认领操作
+function rollbackClaim(claimsToSubmit, backupGuziData, backupClaimRecords) {
+    // 恢复原始数据
+    guziData = backupGuziData;
+    claimRecords = backupClaimRecords;
+}
+
+// 改进的生成认领收据函数
+function generateClaimReceipt(claims, cn, totalPoints, totalAmount) {
+    let receipt = `【${cn}的购物车认领收据】\n`;
+    receipt += `认领时间：${new Date().toLocaleString('zh-CN')}\n`;
+    receipt += '='.repeat(40) + '\n';
+    
+    // 按谷子分类汇总
+    const groupedClaims = {};
+    claims.forEach(claim => {
+        if (!groupedClaims[claim.category]) {
+            groupedClaims[claim.category] = {
+                quantity: 0,
+                totalAmount: 0,
+                price: claim.price
+            };
+        }
+        groupedClaims[claim.category].quantity += claim.quantity;
+        groupedClaims[claim.category].totalAmount += claim.totalAmount;
+    });
+    
+    // 生成详细列表
+    Object.entries(groupedClaims).forEach(([category, data]) => {
+        receipt += `${category} × ${data.quantity} = ¥${data.totalAmount.toFixed(2)} (单价: ¥${data.price.toFixed(2)})\n`;
+    });
+    
+    receipt += '='.repeat(40) + '\n';
+    receipt += `总计：${totalPoints}点，¥${totalAmount.toFixed(2)}\n`;
+    receipt += `感谢您的认领！请截图保存此记录作为凭证。\n`;
+    receipt += `购物车认领完成时间：${new Date().toLocaleString('zh-CN')}`;
+    
+    return receipt;
+}
+
+// ==================== 快速认领功能 ====================
+function quickClaimCart() {
+    const cnInput = document.getElementById('cartCNInput');
+    const cn = cnInput.value.trim();
+    
+    if (!cn) {
+        alert('请输入认领人CN');
+        cnInput.focus();
+        return;
+    }
+    
+    // 快速检查是否有商品
+    if (Object.keys(cartItems).length === 0) {
+        alert('购物车为空');
+        return;
+    }
+    
+    // 快速库存检查
+    let hasError = false;
+    Object.keys(cartItems).forEach(index => {
+        const itemIndex = parseInt(index);
+        const item = guziData[itemIndex];
+        const quantity = cartItems[index];
+        
+        if (item && quantity > 0 && quantity > item.stock) {
+            hasError = true;
+            alert(`"${item.category}" 库存不足！仅剩 ${item.stock} 点`);
+        }
+    });
+    
+    if (hasError) return;
+    
+    // 快速认领确认
+    if (confirm(`确认以 "${cn}" 的CN认领购物车中的所有谷子吗？`)) {
+        checkoutCart();
+    }
+}
+
+// ==================== 认领成功模态框功能 ====================
+function showClaimSuccessModal(claims, cn, totalPoints, totalAmount) {
+    const modal = document.getElementById('claimSuccessModal');
+    const message = document.getElementById('claimSuccessMessage');
+    const details = document.getElementById('claimSuccessDetails');
+    const total = document.getElementById('claimSuccessTotal');
+    
+    if (!modal || !message || !details || !total) return;
+    
+    // 更新消息
+    message.textContent = `${cn}，您的认领已成功处理！`;
+    
+    // 生成认领详情
+    const groupedClaims = {};
+    claims.forEach(claim => {
+        if (!groupedClaims[claim.category]) {
+            groupedClaims[claim.category] = {
+                quantity: 0,
+                totalAmount: 0,
+                price: claim.price
+            };
+        }
+        groupedClaims[claim.category].quantity += claim.quantity;
+        groupedClaims[claim.category].totalAmount += claim.totalAmount;
+    });
+    
+    let detailsHTML = '<h4>认领详情：</h4>';
+    Object.entries(groupedClaims).forEach(([category, data]) => {
+        detailsHTML += `
+            <div style="margin: 5px 0; padding: 5px; background: rgba(255,255,255,0.1); border-radius: 4px;">
+                ${category} × ${data.quantity} = ¥${data.totalAmount.toFixed(2)}
+            </div>
+        `;
+    });
+    details.innerHTML = detailsHTML;
+    
+    // 更新总计
+    total.textContent = `总计：${totalPoints}点，¥${totalAmount.toFixed(2)}`;
+    
+    // 显示模态框
+    modal.style.display = 'flex';
+}
+
+function closeClaimSuccessModal() {
+    const modal = document.getElementById('claimSuccessModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+function copyClaimReceipt() {
+    const cnInput = document.getElementById('cartCNInput');
+    const cn = cnInput.value.trim();
+    
+    if (!cn) {
+        alert('无法获取认领人CN');
+        return;
+    }
+    
+    // 从购物车中获取认领详情
+    let claims = [];
+    let totalPoints = 0;
+    let totalAmount = 0;
+    
+    Object.keys(cartItems).forEach(index => {
+        const itemIndex = parseInt(index);
+        const item = guziData[itemIndex];
+        const quantity = cartItems[index];
+        
+        if (item && quantity > 0) {
+            const itemAmount = quantity * item.price;
+            totalPoints += quantity;
+            totalAmount += itemAmount;
+            
+            claims.push({
+                cn: cn,
+                category: item.category,
+                quantity: quantity,
+                timestamp: new Date().toISOString(),
+                price: item.price,
+                totalAmount: itemAmount
+            });
+        }
+    });
+    
+    // 如果没有购物车数据，从当前显示的汇总中获取
+    if (claims.length === 0) {
+        const cartTotalPoints = document.getElementById('cartTotalPoints').textContent;
+        const cartTotalAmount = document.getElementById('cartTotalAmount').textContent;
+        
+        totalPoints = parseInt(cartTotalPoints) || 0;
+        totalAmount = parseFloat(cartTotalAmount.replace('¥', '')) || 0;
+        
+        // 尝试从购物车详情中获取
+        const detailItems = document.querySelectorAll('.cart-detail-item');
+        detailItems.forEach(item => {
+            const nameElement = item.querySelector('.cart-detail-name');
+            const priceElement = item.querySelector('.cart-detail-price strong');
+            const quantityInput = item.querySelector('.cart-detail-quantity-input');
+            
+            if (nameElement && priceElement && quantityInput) {
+                const itemName = nameElement.textContent;
+                const itemPrice = parseFloat(priceElement.textContent.replace('¥', ''));
+                const itemQuantity = parseInt(quantityInput.value) || 0;
+                
+                if (itemQuantity > 0) {
+                    claims.push({
+                        cn: cn,
+                        category: itemName,
+                        quantity: itemQuantity,
+                        timestamp: new Date().toISOString(),
+                        price: itemPrice,
+                        totalAmount: itemPrice * itemQuantity
+                    });
+                }
+            }
+        });
+    }
+    
+    // 生成收据
+    const receipt = generateClaimReceipt(claims, cn, totalPoints, totalAmount);
+    
+    // 复制到剪贴板
+    navigator.clipboard.writeText(receipt).then(() => {
+        showSyncTip('认领记录已复制到剪贴板');
+        closeClaimSuccessModal();
+    }).catch(err => {
+        console.error('复制失败:', err);
+        // 降级方案
+        const textArea = document.createElement('textarea');
+        textArea.value = receipt;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            showSyncTip('认领记录已复制到剪贴板');
+            closeClaimSuccessModal();
+        } catch (e) {
+            alert('复制失败，请手动复制');
+        }
+        document.body.removeChild(textArea);
+    });
+}
+
+// ==================== 批量认领后的刷新功能 ====================
+function refreshAfterClaim() {
+    // 重新加载数据，确保界面与服务器数据一致
+    if (isLoggedIn) {
+        loadData().then(() => {
+            showSyncTip('数据已刷新');
+        }).catch(error => {
+            console.error('刷新数据失败:', error);
+            showSyncTip('刷新数据失败，请检查网络连接');
+        });
+    }
 }
 
 // ==================== 共享功能（从原script.js复制） ====================

@@ -14,7 +14,7 @@
     
     <!-- 网页标题和描述 -->
     <title>智能排谷管理系统 - 购物车批量认领</title>
-    <meta name="description" content="智能排谷管理系统购物车功能，批量认领谷子">
+    <meta name="description" content="智能排谷管理系统购物车功能，批量认领谷子，支持目标金额设置和一键补齐">
     
     <!-- PWA相关配置 -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -32,11 +32,11 @@
     <link rel="apple-touch-icon" href="icon.png">
     
     <!-- Web App Manifest (PWA) -->
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="manifest_cart.json">
     
     <!-- Open Graph / Social Media -->
     <meta property="og:title" content="智能排谷管理系统 - 购物车批量认领">
-    <meta property="og:description" content="智能排谷管理系统购物车功能，批量认领谷子">
+    <meta property="og:description" content="智能排谷管理系统购物车功能，批量认领谷子，支持目标金额设置和一键补齐">
     <meta property="og:image" content="icon.png">
     <meta property="og:url" content="https://your-domain.com/cart.html">
     <meta property="og:type" content="website">
@@ -88,8 +88,8 @@
                 </div>
             </div>
             <div class="cart-summary-fixed-buttons">
-                <button class="btn copy-summary-btn" onclick="copyCartSummary()" title="复制购物车摘要">
-                    复制摘要
+                <button class="btn view-detail-btn" onclick="openCartDetailModal()" title="查看购物车详情">
+                    查看详情
                 </button>
                 <button class="btn clear-cart-btn" onclick="clearCart()" title="清空购物车">
                     清空购物车
@@ -115,6 +115,7 @@
                 <li>点击<strong>「确认认领购物车」</strong>一次性认领所有已选谷子</li>
                 <li>设置<strong>「目标金额」</strong>可以帮你控制预算，实时显示与目标金额的差值</li>
                 <li>当购物车金额小于目标金额时，可以使用<strong>「一键补齐」</strong>功能自动添加谷子</li>
+                <li>补齐策略中<strong>「随机补齐」</strong>可以随机选择谷子补齐，不满意可以重新随机</li>
             </ul>
         </div>
         
@@ -196,6 +197,7 @@
                             <option value="points_max">点数最多优先</option>
                             <option value="price_min">单价最低优先</option>
                             <option value="price_max">单价最高优先</option>
+                            <option value="random">随机补齐</option>
                         </select>
                     </div>
                     <button class="btn auto-fill-btn" onclick="autoFillCart()">
@@ -229,6 +231,11 @@
                     <input type="text" id="cartCNInput" class="form-control" placeholder="请输入你的CN">
                 </div>
                 <button class="btn checkout-btn" onclick="checkoutCart()">确认认领购物车</button>
+                <!-- 添加快速认领按钮 -->
+                <button class="btn quick-checkout-btn" onclick="quickClaimCart()">快速认领</button>
+            </div>
+            <div class="claim-tips">
+                💡 提示：点击"确认认领购物车"会显示详细预览，点击"快速认领"会直接确认认领
             </div>
         </div>
         
@@ -246,7 +253,8 @@
                 <span class="price-filter-label">价格筛选：</span>
                 <select id="priceFilter" class="price-filter-select">
                     <option value="all">全部价格</option>
-                    <option value="0-100">0-100元</option>
+                    <option value="0-50">0-50元</option>
+                    <option value="51-100">51-100元</option>
                     <option value="101-500">101-500元</option>
                     <option value="501-1000">501-1000元</option>
                     <option value="1000+">1000元以上</option>
@@ -359,7 +367,7 @@
     <!-- 一键补齐确认模态框 -->
     <div id="autoFillConfirmModal" class="auto-fill-confirm-modal">
         <div class="auto-fill-confirm-content">
-            <div class="auto-fill-confirm-title">一键补齐方案确认</div>
+            <div class="auto-fill-confirm-title" id="autoFillConfirmTitle">一键补齐方案确认</div>
             
             <div class="auto-fill-stats">
                 <div class="auto-fill-stat">
@@ -393,7 +401,40 @@
             
             <div class="auto-fill-confirm-actions">
                 <button class="btn btn-secondary" onclick="closeAutoFillConfirm()">取消</button>
+                <button class="btn random-refill-btn" id="randomRefillBtn" onclick="reRandomAutoFill()" style="display: none;">重新随机</button>
                 <button class="btn btn-success" onclick="applyAutoFill()">确认补齐</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 购物车详情模态框 -->
+    <div id="cartDetailModal" class="cart-detail-modal">
+        <div class="cart-detail-modal-content">
+            <button class="cart-detail-modal-close" onclick="closeCartDetailModal()">×</button>
+            <h3>购物车详情</h3>
+            <div class="cart-detail-modal-body" id="cartDetailModalBody">
+                <!-- 购物车详情将在这里动态生成 -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- 认领成功模态框 -->
+    <div id="claimSuccessModal" class="claim-success-modal">
+        <div class="claim-success-content">
+            <div class="claim-success-title">认领成功！</div>
+            <div id="claimSuccessMessage">您的认领已成功处理</div>
+            
+            <div class="claim-success-details" id="claimSuccessDetails">
+                <!-- 认领详情将在这里动态生成 -->
+            </div>
+            
+            <div class="claim-success-total" id="claimSuccessTotal">
+                总计：0点，¥0.00
+            </div>
+            
+            <div class="claim-success-actions">
+                <button class="btn btn-secondary" onclick="closeClaimSuccessModal()">关闭</button>
+                <button class="btn btn-success" onclick="copyClaimReceipt()">复制认领记录</button>
             </div>
         </div>
     </div>

@@ -259,7 +259,7 @@
     color: var(--text-color);
     font-size: 14px;
     cursor: pointer;
-    min-width: 160px;
+    min-width: 180px;
     transition: all 0.3s ease;
     appearance: none;
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
@@ -563,7 +563,7 @@
     text-align: right;
 }
 
-/* 确认认领区域 */
+/* 确认认领区域 - 改进CN输入框样式为紫色系 */
 .cart-checkout-container {
     background-color: var(--light-bg);
     border-radius: 10px;
@@ -589,42 +589,92 @@
     margin-bottom: 8px;
     font-weight: 500;
     color: var(--text-color);
+    font-size: 14px;
 }
 
 .checkout-form .form-control {
     width: 100%;
-    padding: 12px 15px;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
+    padding: 14px 16px;
+    border: 2px solid #6f42c1; /* 紫色边框 */
+    border-radius: 8px;
     font-size: 16px;
-    background: var(--container-bg);
+    background: rgba(111, 66, 193, 0.05);
     color: var(--text-color);
     transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(111, 66, 193, 0.1);
 }
 
 .checkout-form .form-control:focus {
     outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+    border-color: #5a32a3; /* 深紫色 */
+    box-shadow: 0 0 0 3px rgba(111, 66, 193, 0.1);
+    background: var(--container-bg);
+}
+
+.checkout-form .form-control::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
 }
 
 .checkout-btn {
-    padding: 12px 30px;
-    background-color: var(--success-color);
+    padding: 14px 30px;
+    background: linear-gradient(135deg, #6f42c1, #5a32a3); /* 紫色渐变 */
     color: white;
     font-size: 16px;
     font-weight: 600;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
-    height: 46px;
+    height: 50px;
     min-width: 180px;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(111, 66, 193, 0.2);
 }
 
 .checkout-btn:hover {
-    opacity: 0.9;
-    transform: translateY(-1px);
+    opacity: 0.95;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(111, 66, 193, 0.3);
+}
+
+.checkout-btn:active {
+    transform: translateY(0);
+}
+
+/* 快速认领按钮样式 */
+.quick-checkout-btn {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(255, 107, 107, 0.2);
+    min-width: 120px;
+    height: 50px;
+}
+
+.quick-checkout-btn:hover {
+    opacity: 0.95;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255, 107, 107, 0.3);
+}
+
+.quick-checkout-btn:active {
+    transform: translateY(0);
+}
+
+/* 认领提示信息样式 */
+.claim-tips {
+    background: rgba(0, 123, 255, 0.1);
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin-top: 15px;
+    border: 1px solid rgba(0, 123, 255, 0.2);
+    font-size: 13px;
+    color: var(--text-secondary);
 }
 
 /* 筛选容器 */
@@ -777,22 +827,6 @@
     border-radius: 6px;
     cursor: pointer;
     font-weight: 500;
-}
-
-/* CN输入框特殊样式 */
-.cart-checkout-container .form-control {
-    border: 2px solid var(--success-color);
-    background-color: rgba(40, 167, 69, 0.05);
-}
-
-.cart-checkout-container .form-control:focus {
-    border-color: var(--success-color);
-    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
-}
-
-.cart-checkout-container .form-control::placeholder {
-    color: var(--text-secondary);
-    opacity: 0.8;
 }
 
 /* 购物车谷子卡片容器 */
@@ -1011,27 +1045,6 @@
     margin-top: 2px;
 }
 
-/* 认领详情按钮 */
-.cart-detail-btn {
-    width: 100%;
-    padding: 8px 12px;
-    background-color: var(--container-bg);
-    border: 2px solid var(--primary-color);
-    color: var(--primary-color);
-    font-size: 14px;
-    font-weight: 600;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    margin-bottom: 8px;
-    text-align: center;
-}
-
-.cart-detail-btn:hover {
-    background-color: rgba(0, 123, 255, 0.1);
-    transform: translateY(-1px);
-}
-
 /* 数量控制 */
 .cart-quantity-controls {
     display: flex;
@@ -1039,6 +1052,7 @@
     justify-content: center;
     gap: 8px;
     margin-top: 5px;
+    margin-bottom: 8px;
 }
 
 .quantity-btn {
@@ -1083,6 +1097,40 @@
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+}
+
+/* 认领详情按钮 - 放在数量控制下面 */
+.cart-detail-btn {
+    width: 100%;
+    padding: 8px 12px;
+    background-color: var(--container-bg);
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.cart-detail-btn:hover {
+    background-color: rgba(0, 123, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+/* 已售罄卡片的认领详情按钮样式 */
+.cart-detail-btn.out-of-stock-btn {
+    border-color: var(--gray-color);
+    color: var(--gray-color);
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.cart-detail-btn.out-of-stock-btn:hover {
+    background-color: rgba(108, 117, 125, 0.1);
+    opacity: 1;
 }
 
 /* 固定顶部购物车汇总栏 */
@@ -1145,7 +1193,7 @@
     gap: 10px;
 }
 
-/* 粘贴模态框 */
+/* 粘贴模态框 - 重新设计 */
 .paste-modal {
     display: none;
     position: fixed;
@@ -1153,7 +1201,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--modal-overlay);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
     align-items: center;
     justify-content: center;
     z-index: 10000;
@@ -1162,39 +1211,124 @@
 .paste-modal .modal-content {
     background: var(--modal-bg);
     padding: 30px;
-    border-radius: 8px;
+    border-radius: 12px;
     max-width: 500px;
     width: 90%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--light-border);
+}
+
+.paste-modal h3 {
+    font-size: 22px;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.paste-modal h3::before {
+    content: "📋";
+    font-size: 24px;
+}
+
+.paste-modal p {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.5;
 }
 
 .paste-textarea {
     width: 100%;
-    padding: 12px;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
+    padding: 14px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
     margin-top: 8px;
     background: var(--container-bg);
     color: var(--text-color);
     font-size: 15px;
     resize: vertical;
-    min-height: 100px;
+    min-height: 120px;
+    line-height: 1.5;
+    transition: all 0.3s ease;
+}
+
+.paste-textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.paste-modal .form-group {
+    margin-bottom: 20px;
+}
+
+.paste-modal .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+.paste-modal .form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 15px;
+    background: var(--container-bg);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.paste-modal .form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
 }
 
 .paste-modal .modal-actions {
     display: flex;
-    gap: 10px;
-    margin-top: 20px;
+    gap: 15px;
+    margin-top: 25px;
 }
 
 .paste-modal .btn-secondary {
     background: var(--gray-color);
     color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    flex: 1;
+    transition: all 0.2s ease;
+}
+
+.paste-modal .btn-secondary:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
 }
 
 .paste-modal .btn-primary {
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), #4a6bff);
     color: white;
-    flex: 1;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    flex: 2;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+}
+
+.paste-modal .btn-primary:hover {
+    opacity: 0.95;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(0, 123, 255, 0.3);
 }
 
 /* 一键补齐确认模态框 */
@@ -1361,19 +1495,245 @@
 .auto-fill-confirm-actions .btn-secondary {
     background: var(--gray-color);
     color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
     flex: 1;
+    transition: all 0.2s ease;
+}
+
+.auto-fill-confirm-actions .btn-secondary:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
 }
 
 .auto-fill-confirm-actions .btn-primary {
     background: var(--primary-color);
     color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
     flex: 2;
+    transition: all 0.2s ease;
 }
 
 .auto-fill-confirm-actions .btn-success {
+    background: linear-gradient(135deg, var(--success-color), #2ecc71);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    flex: 2;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.2);
+}
+
+.auto-fill-confirm-actions .btn-success:hover {
+    opacity: 0.95;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(40, 167, 69, 0.3);
+}
+
+/* 随机补齐按钮 */
+.random-refill-btn {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    flex: 1;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 8px rgba(255, 107, 107, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.random-refill-btn:hover {
+    opacity: 0.95;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(255, 107, 107, 0.3);
+}
+
+.random-refill-btn::before {
+    content: "🎲";
+    font-size: 16px;
+}
+
+/* 购物车详情模态框 */
+.cart-detail-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    align-items: center;
+    justify-content: center;
+    z-index: 10002;
+}
+
+.cart-detail-modal-content {
+    background: var(--modal-bg);
+    padding: 25px;
+    border-radius: 12px;
+    max-width: 700px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--light-border);
+    position: relative;
+}
+
+.cart-detail-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: var(--text-color);
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.cart-detail-modal-content h3 {
+    font-size: 22px;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    margin-top: 0;
+    padding-right: 30px;
+}
+
+.cart-detail-modal-body {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+/* 认领成功模态框 */
+.claim-success-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    align-items: center;
+    justify-content: center;
+    z-index: 10003;
+}
+
+.claim-success-content {
+    background: var(--modal-bg);
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--light-border);
+    text-align: center;
+}
+
+.claim-success-title {
+    font-size: 24px;
+    color: var(--success-color);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.claim-success-title::before {
+    content: "✅";
+    font-size: 28px;
+}
+
+.claim-success-details {
+    background: rgba(40, 167, 69, 0.1);
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    border: 1px solid var(--success-color);
+    text-align: left;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.claim-success-details h4 {
+    margin-top: 0;
+    color: var(--success-color);
+}
+
+.claim-success-total {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin: 15px 0;
+}
+
+.claim-success-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.claim-success-actions .btn {
+    flex: 1;
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.claim-success-actions .btn-secondary {
+    background: var(--gray-color);
+    color: white;
+}
+
+.claim-success-actions .btn-secondary:hover {
+    opacity: 0.9;
+}
+
+.claim-success-actions .btn-success {
     background: var(--success-color);
     color: white;
-    flex: 2;
+}
+
+.claim-success-actions .btn-success:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+/* 固定顶部栏的查看详情按钮样式 */
+.view-detail-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.view-detail-btn:hover {
+    opacity: 0.9;
 }
 
 /* 响应式调整 */
@@ -1445,6 +1805,12 @@
     
     .checkout-btn {
         width: 100%;
+    }
+    
+    .quick-checkout-btn {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 10px;
     }
     
     .cart-filter-container {
@@ -1591,6 +1957,35 @@
     
     .cart-detail-quantity-controls {
         justify-content: center;
+    }
+    
+    .paste-modal .modal-actions {
+        flex-direction: column;
+    }
+    
+    .paste-modal .btn-secondary,
+    .paste-modal .btn-primary {
+        width: 100%;
+        flex: none;
+    }
+    
+    .auto-fill-confirm-actions {
+        flex-direction: column;
+    }
+    
+    .auto-fill-confirm-actions .btn-secondary,
+    .auto-fill-confirm-actions .btn-success,
+    .auto-fill-confirm-actions .random-refill-btn {
+        width: 100%;
+        flex: none;
+    }
+    
+    .claim-success-actions {
+        flex-direction: column;
+    }
+    
+    .claim-success-actions .btn {
+        width: 100%;
     }
 }
 
