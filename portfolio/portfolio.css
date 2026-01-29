@@ -82,25 +82,6 @@
     max-width: 600px;
 }
 
-.hero-subtitle .highlight {
-    color: var(--primary-color);
-    font-weight: 600;
-    position: relative;
-    display: inline-block;
-}
-
-.hero-subtitle .highlight::after {
-    content: '';
-    position: absolute;
-    bottom: 2px;
-    left: 0;
-    width: 100%;
-    height: 8px;
-    background-color: rgba(74, 110, 224, 0.15);
-    z-index: -1;
-    border-radius: 4px;
-}
-
 /* CTA按钮 */
 .hero-cta {
     display: flex;
@@ -207,142 +188,114 @@
     }
 }
 
-/* 右侧统计卡片 */
+/* 右侧技能卡片样式 */
 .hero-right {
     flex: 0 0 380px;
 }
 
-.stats-card {
-    background-color: var(--card-bg);
-    border-radius: var(--border-radius);
-    padding: 30px;
-    box-shadow: var(--shadow);
-    margin-bottom: 20px;
-}
-
-.stat-item {
-    display: flex;
-    align-items: center;
-    padding: 20px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.stat-item:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-}
-
-.stat-item:first-child {
-    padding-top: 0;
-}
-
-.stat-item.featured {
-    background: linear-gradient(135deg, 
-        rgba(74, 110, 224, 0.05), 
-        rgba(108, 92, 231, 0.05));
-    border-radius: 10px;
-    padding: 25px;
-    margin: -5px;
-    border-bottom: none;
-}
-
-.stat-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 20px;
-    color: white;
-    font-size: 1.2rem;
-}
-
-.stat-info {
-    flex: 1;
-}
-
-.stat-number {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--text-color);
-    line-height: 1;
-    margin-bottom: 5px;
-}
-
-.stat-label {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-}
-
-/* 平台卡片 */
-.platforms-card {
+.skills-card {
     background-color: var(--card-bg);
     border-radius: var(--border-radius);
     padding: 25px;
     box-shadow: var(--shadow);
 }
 
-.platforms-title {
+.skills-section {
+    margin-bottom: 25px;
+}
+
+.skills-section:last-child {
+    margin-bottom: 0;
+}
+
+.skills-title {
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--text-color);
-    margin-bottom: 20px;
-    text-align: center;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
 }
 
-.platform-icons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
+.skills-title i {
+    margin-right: 8px;
+    color: var(--primary-color);
 }
 
-.platform-icon {
+.skills-list {
     display: flex;
     flex-direction: column;
+    gap: 12px;
+}
+
+.skill-item {
+    display: flex;
     align-items: center;
-    padding: 15px;
-    border-radius: 10px;
-    transition: all 0.3s ease;
+    justify-content: space-between;
 }
 
-.platform-icon:hover {
-    transform: translateY(-5px);
-}
-
-.platform-icon i {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-}
-
-.platform-icon span {
+.skill-name {
     font-size: 0.9rem;
-    font-weight: 500;
-}
-
-.platform-icon.douyin {
-    color: #FF0050;
-    background-color: rgba(255, 0, 80, 0.05);
-    border: 1px solid rgba(255, 0, 80, 0.1);
-}
-
-.platform-icon.kuaishou {
-    color: #FF7B00;
-    background-color: rgba(255, 123, 0, 0.05);
-    border: 1px solid rgba(255, 123, 0, 0.1);
-}
-
-.platform-icon.bilibili {
-    color: #FB7299;
-    background-color: rgba(251, 114, 153, 0.05);
-    border: 1px solid rgba(251, 114, 153, 0.1);
-}
-
-.platform-icon.github {
     color: var(--text-color);
+    flex: 0 0 140px;
+}
+
+.skill-bar {
+    flex: 1;
+    height: 8px;
     background-color: rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.skill-level {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 4px;
+    transition: width 1s ease-in-out;
+}
+
+.skill-level-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 4px 10px;
+    border-radius: 12px;
+}
+
+/* 滚动到视频部分的回到顶部按钮 */
+.section-back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.section-back-to-top.show {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-back-to-top:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 25px rgba(74, 110, 224, 0.3);
 }
 
 /* 向下滚动指示 */
@@ -471,12 +424,26 @@
         text-align: center;
     }
     
-    .stat-number {
-        font-size: 1.8rem;
+    .skill-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
     }
     
-    .platform-icons {
-        grid-template-columns: repeat(2, 1fr);
+    .skill-bar {
+        width: 100%;
+    }
+    
+    .skill-level-label {
+        align-self: flex-end;
+    }
+    
+    .section-back-to-top {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+        bottom: 20px;
+        right: 20px;
     }
 }
 

@@ -12,6 +12,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 添加向下滚动功能
     initScrollIndicator();
+    
+    // 初始化滚动到视频部分的回到顶部按钮
+    initSectionBackToTop();
+    
+    // 添加技能条动画
+    initSkillBars();
 });
 
 // 初始化复制链接功能
@@ -192,6 +198,62 @@ function initSmoothScroll() {
                 });
             }
         });
+    });
+}
+
+// 初始化滚动到视频部分显示回到顶部按钮
+function initSectionBackToTop() {
+    const button = document.querySelector('.section-back-to-top');
+    
+    // 添加点击事件
+    if (button) {
+        button.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+    
+    // 监听滚动事件
+    window.addEventListener('scroll', function() {
+        const videoSection = document.getElementById('video-editing');
+        
+        if (videoSection && button) {
+            const videoSectionTop = videoSection.offsetTop;
+            const currentScroll = window.pageYOffset;
+            
+            // 当滚动到视频部分时显示按钮
+            if (currentScroll >= videoSectionTop - 200) {
+                button.classList.add('show');
+            } else {
+                button.classList.remove('show');
+            }
+        }
+    });
+}
+
+// 初始化技能条动画
+function initSkillBars() {
+    // 检查技能条是否在视图中，如果在则触发动画
+    const skillBars = document.querySelectorAll('.skill-level');
+    
+    // 创建Intersection Observer来检测技能条是否进入视图
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // 技能条已经进入视图，宽度已经在CSS中设置
+                // 这里可以添加额外的动画效果
+                entry.target.style.opacity = '1';
+                entry.target.style.transition = 'width 1s ease-in-out, opacity 0.5s ease';
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    // 观察每个技能条
+    skillBars.forEach(bar => {
+        bar.style.opacity = '0.8';
+        observer.observe(bar);
     });
 }
 
