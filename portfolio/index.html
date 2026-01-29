@@ -22,11 +22,6 @@
     <button id="theme-toggle" class="theme-toggle-btn">
         <i class="fas fa-moon"></i>
     </button>
-    
-    <!-- 滚动到视频部分时显示的回到顶部按钮 -->
-    <button class="section-back-to-top" title="回到顶部">
-        <i class="fas fa-arrow-up"></i>
-    </button>
 
     <!-- 导航栏 -->
     <header>
@@ -76,7 +71,7 @@
                     <div class="skills-cloud">
                         <div class="skill-bubble">短视频运营</div>
                         <div class="skill-bubble">内容策划</div>
-                        <div class="skill-bubble">HTML/CSS/JS</div>
+                        <div class="skill-bubble">摄影摄像</div>
                         <div class="skill-bubble">UI/UX设计</div>
                         <div class="skill-bubble">全栈开发</div>
                         <div class="skill-bubble">数据分析</div>
@@ -101,6 +96,12 @@
                                     <div class="skill-name">设计工具 (PS/可画/AI)</div>
                                     <div class="skill-bar">
                                         <div class="skill-level" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <div class="skill-name">摄影摄像</div>
+                                    <div class="skill-bar">
+                                        <div class="skill-level" style="width: 80%"></div>
                                     </div>
                                 </div>
                                 <div class="skill-item">
@@ -183,102 +184,195 @@
                 </h3>
                 <div class="portfolio-grid">
                     <!-- 作品1 -->
-                    <div class="portfolio-item detailed">
-                        <div class="portfolio-header">
-                            <div class="portfolio-platform platform-douyin">
+                    <div class="video-card">
+                        <div class="video-card-header platform-douyin">
+                            <div class="video-platform">
                                 <i class="fab fa-tiktok"></i> 抖音 · 原创剪辑
                             </div>
-                            <div class="portfolio-metrics">
-                                <span class="metric">剧情解说</span>
+                            <div class="video-stats">
+                                <i class="fas fa-eye"></i> 剧情解说
                             </div>
                         </div>
-                        <div class="portfolio-content">
-                            <h4>好心提醒却反被壁咚警告？！究竟如何才能驯服这只傲娇...</h4>
-                            <p class="portfolio-description">
-                                <strong>创作亮点：</strong>基于快看漫画的剧情解说，节奏紧凑，悬念设置巧妙
-                                <br><strong>技术特点：</strong>关键帧动画，字幕特效，背景音乐同步
-                                <br><strong>目标受众：</strong>喜欢恋爱喜剧漫画的年轻女性观众
-                            </p>
-                            <div class="portfolio-tags">
-                                <span class="tag">漫画解说</span>
-                                <span class="tag">剧情剪辑</span>
-                                <span class="tag">快看漫画</span>
-                                <span class="tag">恋爱喜剧</span>
+                        
+                        <div class="video-preview-container">
+                            <div class="video-preview platform-thumbnail-douyin" data-video-id="Emzp4B6YPh8" data-platform="douyin">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="portfolio-footer">
-                            <a href="https://v.douyin.com/Emzp4B6YPh8/" target="_blank" class="btn btn-primary">
-                                <i class="fas fa-external-link-alt"></i> 查看作品
-                            </a>
-                            <button class="btn btn-secondary copy-link" data-url="https://v.douyin.com/Emzp4B6YPh8/">
+                        
+                        <div class="video-info">
+                            <h4 class="video-title">好心提醒却反被壁咚警告？！究竟如何才能驯服这只傲娇...</h4>
+                            
+                            <div class="video-meta">
+                                <span class="video-meta-item">
+                                    <i class="fas fa-clock"></i> 1:45
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-calendar"></i> 2023-08
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-heart"></i> 恋爱喜剧
+                                </span>
+                            </div>
+                            
+                            <div class="video-highlights">
+                                <div class="highlight-title">
+                                    <i class="fas fa-lightbulb"></i> 创作亮点
+                                </div>
+                                <div class="highlight-content">
+                                    选取漫画中最具戏剧性的"壁咚"场景作为开头，通过悬念式标题吸引用户点击。解说节奏紧凑，在1分45秒内完整呈现故事情节发展，保留原漫画的幽默感和人物性格特点。
+                                </div>
+                            </div>
+                            
+                            <div class="video-tech">
+                                <span class="tech-tag">剧情节奏把控</span>
+                                <span class="tech-tag">悬念设置</span>
+                                <span class="tech-tag">关键帧动画</span>
+                                <span class="tech-tag">字幕特效</span>
+                                <span class="tech-tag">背景音乐同步</span>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card-footer">
+                            <button class="btn btn-primary watch-video-btn" 
+                                    data-video-id="Emzp4B6YPh8" 
+                                    data-platform="douyin">
+                                <i class="fas fa-play-circle"></i> 观看视频
+                            </button>
+                            <button class="btn btn-secondary copy-link" 
+                                    data-url="https://v.douyin.com/Emzp4B6YPh8/">
                                 <i class="fas fa-copy"></i> 复制链接
                             </button>
                         </div>
                     </div>
 
                     <!-- 作品2 -->
-                    <div class="portfolio-item detailed">
-                        <div class="portfolio-header">
-                            <div class="portfolio-platform platform-kuaishou">
+                    <div class="video-card">
+                        <div class="video-card-header platform-kuaishou">
+                            <div class="video-platform">
                                 <i class="fas fa-video"></i> 快手 · 快看漫画纯享版
                             </div>
-                            <div class="portfolio-metrics">
-                                <span class="metric">穿越题材</span>
+                            <div class="video-stats">
+                                <i class="fas fa-magic"></i> 穿越题材
                             </div>
                         </div>
-                        <div class="portfolio-content">
-                            <h4>刚穿越就因为太丑要被噶了？！炮灰闺女的生存方式漫画</h4>
-                            <p class="portfolio-description">
-                                <strong>创作亮点：</strong>穿越题材创新解读，突出主角逆袭爽点
-                                <br><strong>技术特点：</strong>画面调色，节奏控制，悬念剪辑
-                                <br><strong>目标受众：</strong>喜欢穿越逆袭题材的年轻读者
-                            </p>
-                            <div class="portfolio-tags">
-                                <span class="tag">穿越题材</span>
-                                <span class="tag">剧情解说</span>
-                                <span class="tag">逆袭爽文</span>
-                                <span class="tag">快手短视频</span>
+                        
+                        <div class="video-preview-container">
+                            <div class="video-preview platform-thumbnail-kuaishou" data-video-id="2AkLqkB" data-platform="kuaishou">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="portfolio-footer">
-                            <a href="https://v.kuaishou.com/2AkLqkB" target="_blank" class="btn btn-primary">
-                                <i class="fas fa-external-link-alt"></i> 查看作品
-                            </a>
-                            <button class="btn btn-secondary copy-link" data-url="https://v.kuaishou.com/2AkLqkB">
+                        
+                        <div class="video-info">
+                            <h4 class="video-title">刚穿越就因为太丑要被噶了？！炮灰闺女的生存方式漫画</h4>
+                            
+                            <div class="video-meta">
+                                <span class="video-meta-item">
+                                    <i class="fas fa-clock"></i> 2:10
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-calendar"></i> 2023-09
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-sync-alt"></i> 穿越逆袭
+                                </span>
+                            </div>
+                            
+                            <div class="video-highlights">
+                                <div class="highlight-title">
+                                    <i class="fas fa-lightbulb"></i> 创作亮点
+                                </div>
+                                <div class="highlight-content">
+                                    以"穿越+颜值逆袭"为主题，精准抓住当下热门网文元素。视频前半部分突出主角困境制造悬念，后半部分展现逆袭过程带来爽感。使用对比剪辑手法强化颜值变化，增强视觉冲击力。
+                                </div>
+                            </div>
+                            
+                            <div class="video-tech">
+                                <span class="tech-tag">对比剪辑</span>
+                                <span class="tech-tag">画面调色</span>
+                                <span class="tech-tag">悬念设置</span>
+                                <span class="tech-tag">节奏控制</span>
+                                <span class="tech-tag">情感渲染</span>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card-footer">
+                            <button class="btn btn-primary watch-video-btn" 
+                                    data-video-id="2AkLqkB" 
+                                    data-platform="kuaishou">
+                                <i class="fas fa-play-circle"></i> 观看视频
+                            </button>
+                            <button class="btn btn-secondary copy-link" 
+                                    data-url="https://v.kuaishou.com/2AkLqkB">
                                 <i class="fas fa-copy"></i> 复制链接
                             </button>
                         </div>
                     </div>
 
                     <!-- 作品3 -->
-                    <div class="portfolio-item detailed">
-                        <div class="portfolio-header">
-                            <div class="portfolio-platform platform-kuaishou">
+                    <div class="video-card">
+                        <div class="video-card-header platform-kuaishou">
+                            <div class="video-platform">
                                 <i class="fas fa-video"></i> 快手 · 夏日暴击
                             </div>
-                            <div class="portfolio-metrics">
-                                <span class="metric">BL题材</span>
+                            <div class="video-stats">
+                                <i class="fas fa-heart"></i> BL题材
                             </div>
                         </div>
-                        <div class="portfolio-content">
-                            <h4>小狗主动出击，顾狐狸如何应对？《针锋对决》</h4>
-                            <p class="portfolio-description">
-                                <strong>创作亮点：</strong>BL题材情感细腻呈现，角色互动张力十足
-                                <br><strong>技术特点：</strong>情感节奏把控，画面情感符号强化
-                                <br><strong>目标受众：</strong>喜爱BL题材的年轻女性观众
-                            </p>
-                            <div class="portfolio-tags">
-                                <span class="tag">BL题材</span>
-                                <span class="tag">人物互动</span>
-                                <span class="tag">情感剪辑</span>
-                                <span class="tag">针锋对决</span>
+                        
+                        <div class="video-preview-container">
+                            <div class="video-preview platform-thumbnail-kuaishou" data-video-id="2BFF26D" data-platform="kuaishou">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="portfolio-footer">
-                            <a href="https://v.kuaishou.com/2BFF26D" target="_blank" class="btn btn-primary">
-                                <i class="fas fa-external-link-alt"></i> 查看作品
-                            </a>
-                            <button class="btn btn-secondary copy-link" data-url="https://v.kuaishou.com/2BFF26D">
+                        
+                        <div class="video-info">
+                            <h4 class="video-title">小狗主动出击，顾狐狸如何应对？《针锋对决》</h4>
+                            
+                            <div class="video-meta">
+                                <span class="video-meta-item">
+                                    <i class="fas fa-clock"></i> 1:55
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-calendar"></i> 2023-07
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-users"></i> 人物互动
+                                </span>
+                            </div>
+                            
+                            <div class="video-highlights">
+                                <div class="highlight-title">
+                                    <i class="fas fa-lightbulb"></i> 创作亮点
+                                </div>
+                                <div class="highlight-content">
+                                    聚焦BL作品中经典的人物关系设定，通过"小狗与狐狸"的比喻生动表现角色性格差异。选取角色互动中的高光时刻，展现人物关系的微妙变化和情感张力，满足目标受众的情感需求。
+                                </div>
+                            </div>
+                            
+                            <div class="video-tech">
+                                <span class="tech-tag">情感节奏把控</span>
+                                <span class="tech-tag">人物表情特写</span>
+                                <span class="tech-tag">画面情感符号强化</span>
+                                <span class="tech-tag">背景音乐适配</span>
+                                <span class="tech-tag">情绪渲染</span>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card-footer">
+                            <button class="btn btn-primary watch-video-btn" 
+                                    data-video-id="2BFF26D" 
+                                    data-platform="kuaishou">
+                                <i class="fas fa-play-circle"></i> 观看视频
+                            </button>
+                            <button class="btn btn-secondary copy-link" 
+                                    data-url="https://v.kuaishou.com/2BFF26D">
                                 <i class="fas fa-copy"></i> 复制链接
                             </button>
                         </div>
@@ -293,74 +387,134 @@
                 </h3>
                 <div class="portfolio-grid">
                     <!-- 作品1 -->
-                    <div class="portfolio-item detailed">
-                        <div class="portfolio-header">
-                            <div class="portfolio-platform platform-kuaishou">
+                    <div class="video-card">
+                        <div class="video-card-header platform-kuaishou">
+                            <div class="video-platform">
                                 <i class="fas fa-video"></i> 快手 · 秋日暴击
                             </div>
-                            <div class="portfolio-metrics">
-                                <span class="metric">恋爱混剪</span>
+                            <div class="video-stats">
+                                <i class="fas fa-heart"></i> 恋爱混剪
                             </div>
                         </div>
-                        <div class="portfolio-content">
-                            <h4>再不乖乖许愿，我就要勾引你了哦~《狐狸的陷阱》</h4>
-                            <p class="portfolio-description">
-                                <strong>创作亮点：</strong>奇幻恋爱题材混剪，浪漫氛围营造出色
-                                <br><strong>技术特点：</strong>音乐节奏同步，转场特效自然
-                                <br><strong>目标受众：</strong>喜欢奇幻恋爱故事的年轻观众
-                            </p>
-                            <div class="portfolio-tags">
-                                <span class="tag">恋爱题材</span>
-                                <span class="tag">音乐混剪</span>
-                                <span class="tag">氛围营造</span>
-                                <span class="tag">狐狸的陷阱</span>
+                        
+                        <div class="video-preview-container">
+                            <div class="video-preview platform-thumbnail-kuaishou" data-video-id="2E2K5aI" data-platform="kuaishou">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="portfolio-footer">
-                            <a href="https://v.kuaishou.com/2E2K5aI" target="_blank" class="btn btn-primary">
-                                <i class="fas fa-external-link-alt"></i> 查看作品
-                            </a>
-                            <button class="btn btn-secondary copy-link" data-url="https://v.kuaishou.com/2E2K5aI">
+                        
+                        <div class="video-info">
+                            <h4 class="video-title">再不乖乖许愿，我就要勾引你了哦~《狐狸的陷阱》</h4>
+                            
+                            <div class="video-meta">
+                                <span class="video-meta-item">
+                                    <i class="fas fa-clock"></i> 2:05
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-calendar"></i> 2023-10
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-magic"></i> 奇幻恋爱
+                                </span>
+                            </div>
+                            
+                            <div class="video-highlights">
+                                <div class="highlight-title">
+                                    <i class="fas fa-lightbulb"></i> 创作亮点
+                                </div>
+                                <div class="highlight-content">
+                                    将奇幻元素与恋爱题材结合，营造神秘浪漫氛围。使用暖色调滤镜增强秋季氛围感，配合轻柔背景音乐打造沉浸式观看体验。选取角色互动中的暧昧瞬间，展现"狐狸"角色的魅惑特质。
+                                </div>
+                            </div>
+                            
+                            <div class="video-tech">
+                                <span class="tech-tag">色彩分级</span>
+                                <span class="tech-tag">音乐节奏同步</span>
+                                <span class="tech-tag">转场特效</span>
+                                <span class="tech-tag">氛围营造</span>
+                                <span class="tech-tag">滤镜应用</span>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card-footer">
+                            <button class="btn btn-primary watch-video-btn" 
+                                    data-video-id="2E2K5aI" 
+                                    data-platform="kuaishou">
+                                <i class="fas fa-play-circle"></i> 观看视频
+                            </button>
+                            <button class="btn btn-secondary copy-link" 
+                                    data-url="https://v.kuaishou.com/2E2K5aI">
                                 <i class="fas fa-copy"></i> 复制链接
                             </button>
                         </div>
                     </div>
 
                     <!-- 作品2 -->
-                    <div class="portfolio-item detailed">
-                        <div class="portfolio-header">
-                            <div class="portfolio-platform platform-kuaishou">
+                    <div class="video-card">
+                        <div class="video-card-header platform-kuaishou">
+                            <div class="video-platform">
                                 <i class="fas fa-video"></i> 快手 · 漫剧改编
                             </div>
-                            <div class="portfolio-metrics">
-                                <span class="metric">剧集改编</span>
+                            <div class="video-stats">
+                                <i class="fas fa-film"></i> 剧集改编
                             </div>
                         </div>
-                        <div class="portfolio-content">
-                            <h4>用漫剧打开赵露思的新剧《偷偷藏不住》</h4>
-                            <p class="portfolio-description">
-                                <strong>创作亮点：</strong>真人剧集漫剧化改编，创新呈现方式
-                                <br><strong>技术特点：</strong>画面风格转换，关键情节提取
-                                <br><strong>目标受众：</strong>《偷偷藏不住》剧粉和漫剧爱好者
-                            </p>
-                            <div class="portfolio-tags">
-                                <span class="tag">漫剧改编</span>
-                                <span class="tag">剧集剪辑</span>
-                                <span class="tag">风格转换</span>
-                                <span class="tag">赵露思</span>
+                        
+                        <div class="video-preview-container">
+                            <div class="video-preview platform-thumbnail-kuaishou" data-video-id="2Dx9RNE" data-platform="kuaishou">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="portfolio-footer">
-                            <a href="https://v.kuaishou.com/2Dx9RNE" target="_blank" class="btn btn-primary">
-                                <i class="fas fa-external-link-alt"></i> 查看作品
-                            </a>
-                            <button class="btn btn-secondary copy-link" data-url="https://v.kuaishou.com/2Dx9RNE">
+                        
+                        <div class="video-info">
+                            <h4 class="video-title">用漫剧打开赵露思的新剧《偷偷藏不住》</h4>
+                            
+                            <div class="video-meta">
+                                <span class="video-meta-item">
+                                    <i class="fas fa-clock"></i> 2:20
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-calendar"></i> 2023-11
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-retweet"></i> 风格转换
+                                </span>
+                            </div>
+                            
+                            <div class="video-highlights">
+                                <div class="highlight-title">
+                                    <i class="fas fa-lightbulb"></i> 创作亮点
+                                </div>
+                                <div class="highlight-content">
+                                    创新性地将真人剧集转换为漫剧形式，满足不同观众的观看偏好。保留原剧核心情感线和关键情节，通过漫画风格处理突出青春校园氛围。结合当下热门演员赵露思的流量，实现跨圈层传播。
+                                </div>
+                            </div>
+                            
+                            <div class="video-tech">
+                                <span class="tech-tag">风格转换</span>
+                                <span class="tech-tag">关键情节提取</span>
+                                <span class="tech-tag">漫画滤镜</span>
+                                <span class="tech-tag">节奏把控</span>
+                                <span class="tech-tag">情感线梳理</span>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card-footer">
+                            <button class="btn btn-primary watch-video-btn" 
+                                    data-video-id="2Dx9RNE" 
+                                    data-platform="kuaishou">
+                                <i class="fas fa-play-circle"></i> 观看视频
+                            </button>
+                            <button class="btn btn-secondary copy-link" 
+                                    data-url="https://v.kuaishou.com/2Dx9RNE">
                                 <i class="fas fa-copy"></i> 复制链接
                             </button>
                         </div>
                     </div>
-
-                    
                 </div>
             </div>
 
@@ -374,102 +528,195 @@
                 <h4 class="subcategory-title">旅游门票真人口播信息流短视频</h4>
                 <div class="portfolio-grid">
                     <!-- 作品1 -->
-                    <div class="portfolio-item detailed">
-                        <div class="portfolio-header">
-                            <div class="portfolio-platform platform-douyin">
+                    <div class="video-card">
+                        <div class="video-card-header platform-douyin">
+                            <div class="video-platform">
                                 <i class="fab fa-tiktok"></i> 抖音 · 旅游攻略
                             </div>
-                            <div class="portfolio-metrics">
-                                <span class="metric">真人口播</span>
+                            <div class="video-stats">
+                                <i class="fas fa-user"></i> 真人口播
                             </div>
                         </div>
-                        <div class="portfolio-content">
-                            <h4>欧乐堡会惩罚每个不做攻略的人，欧乐堡游玩攻略！</h4>
-                            <p class="portfolio-description">
-                                <strong>创作亮点：</strong>真人出镜增强信任感，实用信息密集
-                                <br><strong>技术特点：</strong>多机位剪辑，字幕信息强化，节奏紧凑
-                                <br><strong>目标受众：</strong>计划前往欧乐堡的游客
-                            </p>
-                            <div class="portfolio-tags">
-                                <span class="tag">旅游攻略</span>
-                                <span class="tag">真人口播</span>
-                                <span class="tag">信息流</span>
-                                <span class="tag">欧乐堡</span>
+                        
+                        <div class="video-preview-container">
+                            <div class="video-preview platform-thumbnail-douyin" data-video-id="5zQW8ZVXMOg" data-platform="douyin">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="portfolio-footer">
-                            <a href="https://v.douyin.com/5zQW8ZVXMOg/" target="_blank" class="btn btn-primary">
-                                <i class="fas fa-external-link-alt"></i> 查看作品
-                            </a>
-                            <button class="btn btn-secondary copy-link" data-url="https://v.douyin.com/5zQW8ZVXMOg/">
+                        
+                        <div class="video-info">
+                            <h4 class="video-title">欧乐堡会惩罚每个不做攻略的人，欧乐堡游玩攻略！</h4>
+                            
+                            <div class="video-meta">
+                                <span class="video-meta-item">
+                                    <i class="fas fa-clock"></i> 1:30
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-calendar"></i> 2023-06
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-map-marker-alt"></i> 游乐园攻略
+                                </span>
+                            </div>
+                            
+                            <div class="video-highlights">
+                                <div class="highlight-title">
+                                    <i class="fas fa-lightbulb"></i> 创作亮点
+                                </div>
+                                <div class="highlight-content">
+                                    采用第一人称视角拍摄，增强观众代入感。通过"惩罚"等网络热词吸引年轻用户关注。视频内容实用性强，涵盖票价、排队时间、必玩项目等关键信息，帮助用户高效规划行程。
+                                </div>
+                            </div>
+                            
+                            <div class="video-tech">
+                                <span class="tech-tag">多机位剪辑</span>
+                                <span class="tech-tag">字幕信息强化</span>
+                                <span class="tech-tag">节奏紧凑</span>
+                                <span class="tech-tag">信息可视化</span>
+                                <span class="tech-tag">实景拍摄</span>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card-footer">
+                            <button class="btn btn-primary watch-video-btn" 
+                                    data-video-id="5zQW8ZVXMOg" 
+                                    data-platform="douyin">
+                                <i class="fas fa-play-circle"></i> 观看视频
+                            </button>
+                            <button class="btn btn-secondary copy-link" 
+                                    data-url="https://v.douyin.com/5zQW8ZVXMOg/">
                                 <i class="fas fa-copy"></i> 复制链接
                             </button>
                         </div>
                     </div>
 
                     <!-- 作品2 -->
-                    <div class="portfolio-item detailed">
-                        <div class="portfolio-header">
-                            <div class="portfolio-platform platform-douyin">
+                    <div class="video-card">
+                        <div class="video-card-header platform-douyin">
+                            <div class="video-platform">
                                 <i class="fab fa-tiktok"></i> 抖音 · 博物馆攻略
                             </div>
-                            <div class="portfolio-metrics">
-                                <span class="metric">预约技巧</span>
+                            <div class="video-stats">
+                                <i class="fas fa-ticket-alt"></i> 预约技巧
                             </div>
                         </div>
-                        <div class="portfolio-content">
-                            <h4>洛阳博物馆预约难度排全国前五！不提前抢票预约你是进不去的</h4>
-                            <p class="portfolio-description">
-                                <strong>创作亮点：</strong>抓住用户痛点，提供实用解决方案
-                                <br><strong>技术特点：</strong>屏幕录制演示，步骤清晰分解
-                                <br><strong>目标受众：</strong>计划参观博物馆的游客
-                            </p>
-                            <div class="portfolio-tags">
-                                <span class="tag">博物馆攻略</span>
-                                <span class="tag">预约技巧</span>
-                                <span class="tag">旅游贴士</span>
-                                <span class="tag">洛阳博物馆</span>
+                        
+                        <div class="video-preview-container">
+                            <div class="video-preview platform-thumbnail-douyin" data-video-id="OLdxI_1KFFA" data-platform="douyin">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="portfolio-footer">
-                            <a href="https://v.douyin.com/OLdxI_1KFFA/" target="_blank" class="btn btn-primary">
-                                <i class="fas fa-external-link-alt"></i> 查看作品
-                            </a>
-                            <button class="btn btn-secondary copy-link" data-url="https://v.douyin.com/OLdxI_1KFFA/">
+                        
+                        <div class="video-info">
+                            <h4 class="video-title">洛阳博物馆预约难度排全国前五！不提前抢票预约你是进不去的</h4>
+                            
+                            <div class="video-meta">
+                                <span class="video-meta-item">
+                                    <i class="fas fa-clock"></i> 1:15
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-calendar"></i> 2023-07
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-university"></i> 博物馆攻略
+                                </span>
+                            </div>
+                            
+                            <div class="video-highlights">
+                                <div class="highlight-title">
+                                    <i class="fas fa-lightbulb"></i> 创作亮点
+                                </div>
+                                <div class="highlight-content">
+                                    抓住节假日博物馆预约难的用户痛点，通过"全国前五"的对比数据制造紧迫感。采用屏幕录制+真人解说的方式，一步步展示预约流程，降低用户操作门槛，提高内容实用性。
+                                </div>
+                            </div>
+                            
+                            <div class="video-tech">
+                                <span class="tech-tag">屏幕录制演示</span>
+                                <span class="tech-tag">步骤分解</span>
+                                <span class="tech-tag">痛点挖掘</span>
+                                <span class="tech-tag">信息传达清晰</span>
+                                <span class="tech-tag">字幕标注</span>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card-footer">
+                            <button class="btn btn-primary watch-video-btn" 
+                                    data-video-id="OLdxI_1KFFA" 
+                                    data-platform="douyin">
+                                <i class="fas fa-play-circle"></i> 观看视频
+                            </button>
+                            <button class="btn btn-secondary copy-link" 
+                                    data-url="https://v.douyin.com/OLdxI_1KFFA/">
                                 <i class="fas fa-copy"></i> 复制链接
                             </button>
                         </div>
                     </div>
 
                     <!-- 作品3 -->
-                    <div class="portfolio-item detailed">
-                        <div class="portfolio-header">
-                            <div class="portfolio-platform platform-douyin">
+                    <div class="video-card">
+                        <div class="video-card-header platform-douyin">
+                            <div class="video-platform">
                                 <i class="fab fa-tiktok"></i> 抖音 · 乐园对比
                             </div>
-                            <div class="portfolio-metrics">
-                                <span class="metric">性价比分析</span>
+                            <div class="video-stats">
+                                <i class="fas fa-balance-scale"></i> 性价比分析
                             </div>
                         </div>
-                        <div class="portfolio-content">
-                            <h4>北京欢乐谷、天津欢乐谷缺点大PK！看看是谁不值票价</h4>
-                            <p class="portfolio-description">
-                                <strong>创作亮点：</strong>对比分析帮助决策，直言不讳的风格
-                                <br><strong>技术特点：</strong>对比表格可视化，优缺点归纳
-                                <br><strong>目标受众：</strong>在选择乐园的消费者
-                            </p>
-                            <div class="portfolio-tags">
-                                <span class="tag">乐园对比</span>
-                                <span class="tag">消费指南</span>
-                                <span class="tag">性价比分析</span>
-                                <span class="tag">欢乐谷</span>
+                        
+                        <div class="video-preview-container">
+                            <div class="video-preview platform-thumbnail-douyin" data-video-id="BajXf6rkYdo" data-platform="douyin">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="portfolio-footer">
-                            <a href="https://v.douyin.com/BajXf6rkYdo/" target="_blank" class="btn btn-primary">
-                                <i class="fas fa-external-link-alt"></i> 查看作品
-                            </a>
-                            <button class="btn btn-secondary copy-link" data-url="https://v.douyin.com/BajXf6rkYdo/">
+                        
+                        <div class="video-info">
+                            <h4 class="video-title">北京欢乐谷、天津欢乐谷缺点大PK！看看是谁不值票价</h4>
+                            
+                            <div class="video-meta">
+                                <span class="video-meta-item">
+                                    <i class="fas fa-clock"></i> 2:00
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-calendar"></i> 2023-08
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-chart-bar"></i> 对比分析
+                                </span>
+                            </div>
+                            
+                            <div class="video-highlights">
+                                <div class="highlight-title">
+                                    <i class="fas fa-lightbulb"></i> 创作亮点
+                                </div>
+                                <div class="highlight-content">
+                                    打破常规的"优点介绍"模式，聚焦两个乐园的"缺点"进行对比，引发用户好奇心和讨论。客观分析两地乐园的优劣势，帮助用户根据自身需求做出选择，内容真实有参考价值。
+                                </div>
+                            </div>
+                            
+                            <div class="video-tech">
+                                <span class="tech-tag">对比表格可视化</span>
+                                <span class="tech-tag">优缺点归纳</span>
+                                <span class="tech-tag">客观分析</span>
+                                <span class="tech-tag">数据呈现</span>
+                                <span class="tech-tag">用户视角</span>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card-footer">
+                            <button class="btn btn-primary watch-video-btn" 
+                                    data-video-id="BajXf6rkYdo" 
+                                    data-platform="douyin">
+                                <i class="fas fa-play-circle"></i> 观看视频
+                            </button>
+                            <button class="btn btn-secondary copy-link" 
+                                    data-url="https://v.douyin.com/BajXf6rkYdo/">
                                 <i class="fas fa-copy"></i> 复制链接
                             </button>
                         </div>
@@ -480,68 +727,130 @@
                 <h4 class="subcategory-title">旅游攻略类真人口播短视频</h4>
                 <div class="portfolio-grid">
                     <!-- 作品1 -->
-                    <div class="portfolio-item detailed">
-                        <div class="portfolio-header">
-                            <div class="portfolio-platform platform-douyin">
+                    <div class="video-card">
+                        <div class="video-card-header platform-douyin">
+                            <div class="video-platform">
                                 <i class="fab fa-tiktok"></i> 抖音 · 酒店攻略
                             </div>
-                            <div class="portfolio-metrics">
-                                <span class="metric">团购优惠</span>
+                            <div class="video-stats">
+                                <i class="fas fa-tags"></i> 团购优惠
                             </div>
                         </div>
-                        <div class="portfolio-content">
-                            <h4>兰州酒店团购 #兰州旅游 #兰州</h4>
-                            <p class="portfolio-description">
-                                <strong>创作亮点：</strong>结合团购优惠，提供实用省钱建议
-                                <br><strong>技术特点：</strong>价格对比展示，优惠信息突出
-                                <br><strong>目标受众：</strong>计划前往兰州旅游的游客
-                            </p>
-                            <div class="portfolio-tags">
-                                <span class="tag">酒店攻略</span>
-                                <span class="tag">团购优惠</span>
-                                <span class="tag">地方旅游</span>
-                                <span class="tag">兰州旅游</span>
+                        
+                        <div class="video-preview-container">
+                            <div class="video-preview platform-thumbnail-douyin" data-video-id="B9J6SP-pgtc" data-platform="douyin">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="portfolio-footer">
-                            <a href="https://v.douyin.com/B9J6SP-pgtc/" target="_blank" class="btn btn-primary">
-                                <i class="fas fa-external-link-alt"></i> 查看作品
-                            </a>
-                            <button class="btn btn-secondary copy-link" data-url="https://v.douyin.com/B9J6SP-pgtc/">
+                        
+                        <div class="video-info">
+                            <h4 class="video-title">兰州酒店团购 #兰州旅游 #兰州</h4>
+                            
+                            <div class="video-meta">
+                                <span class="video-meta-item">
+                                    <i class="fas fa-clock"></i> 1:10
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-calendar"></i> 2023-09
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-hotel"></i> 地方旅游
+                                </span>
+                            </div>
+                            
+                            <div class="video-highlights">
+                                <div class="highlight-title">
+                                    <i class="fas fa-lightbulb"></i> 创作亮点
+                                </div>
+                                <div class="highlight-content">
+                                    结合旅游热点城市兰州，提供实用的酒店团购信息。视频中展示多家酒店的实际环境和价格对比，帮助用户做出性价比最高的选择。添加相关话题标签，提高视频曝光率和搜索可见度。
+                                </div>
+                            </div>
+                            
+                            <div class="video-tech">
+                                <span class="tech-tag">价格对比展示</span>
+                                <span class="tech-tag">优惠信息突出</span>
+                                <span class="tech-tag">实景拍摄</span>
+                                <span class="tech-tag">标签优化</span>
+                                <span class="tech-tag">信息提炼</span>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card-footer">
+                            <button class="btn btn-primary watch-video-btn" 
+                                    data-video-id="B9J6SP-pgtc" 
+                                    data-platform="douyin">
+                                <i class="fas fa-play-circle"></i> 观看视频
+                            </button>
+                            <button class="btn btn-secondary copy-link" 
+                                    data-url="https://v.douyin.com/B9J6SP-pgtc/">
                                 <i class="fas fa-copy"></i> 复制链接
                             </button>
                         </div>
                     </div>
 
                     <!-- 作品2 -->
-                    <div class="portfolio-item detailed">
-                        <div class="portfolio-header">
-                            <div class="portfolio-platform platform-douyin">
+                    <div class="video-card">
+                        <div class="video-card-header platform-douyin">
+                            <div class="video-platform">
                                 <i class="fab fa-tiktok"></i> 抖音 · 门票秒杀
                             </div>
-                            <div class="portfolio-metrics">
-                                <span class="metric">活动推广</span>
+                            <div class="video-stats">
+                                <i class="fas fa-bolt"></i> 活动推广
                             </div>
                         </div>
-                        <div class="portfolio-content">
-                            <h4>海昌海洋公园门票秒杀</h4>
-                            <p class="portfolio-description">
-                                <strong>创作亮点：</strong>限时优惠营造紧迫感，促成转化
-                                <br><strong>技术特点：</strong>倒计时特效，优惠码展示清晰
-                                <br><strong>目标受众：</strong>计划前往海洋公园的游客
-                            </p>
-                            <div class="portfolio-tags">
-                                <span class="tag">门票秒杀</span>
-                                <span class="tag">优惠信息</span>
-                                <span class="tag">活动推广</span>
-                                <span class="tag">海昌海洋公园</span>
+                        
+                        <div class="video-preview-container">
+                            <div class="video-preview platform-thumbnail-douyin" data-video-id="GJlnX9KYLeI" data-platform="douyin">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="portfolio-footer">
-                            <a href="https://v.douyin.com/GJlnX9KYLeI/" target="_blank" class="btn btn-primary">
-                                <i class="fas fa-external-link-alt"></i> 查看作品
-                            </a>
-                            <button class="btn btn-secondary copy-link" data-url="https://v.douyin.com/GJlnX9KYLeI/">
+                        
+                        <div class="video-info">
+                            <h4 class="video-title">海昌海洋公园门票秒杀</h4>
+                            
+                            <div class="video-meta">
+                                <span class="video-meta-item">
+                                    <i class="fas fa-clock"></i> 0:45
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-calendar"></i> 2023-10
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-stopwatch"></i> 限时优惠
+                                </span>
+                            </div>
+                            
+                            <div class="video-highlights">
+                                <div class="highlight-title">
+                                    <i class="fas fa-lightbulb"></i> 创作亮点
+                                </div>
+                                <div class="highlight-content">
+                                    针对限时秒杀活动制作超短视频，通过倒计时特效营造紧迫感，促使观众立即行动。视频简短精炼，直击主题，在最短时间内传达核心优惠信息，提高转化率。
+                                </div>
+                            </div>
+                            
+                            <div class="video-tech">
+                                <span class="tech-tag">倒计时特效</span>
+                                <span class="tech-tag">优惠码展示清晰</span>
+                                <span class="tech-tag">节奏快速</span>
+                                <span class="tech-tag">视觉冲击</span>
+                                <span class="tech-tag">促动转化</span>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card-footer">
+                            <button class="btn btn-primary watch-video-btn" 
+                                    data-video-id="GJlnX9KYLeI" 
+                                    data-platform="douyin">
+                                <i class="fas fa-play-circle"></i> 观看视频
+                            </button>
+                            <button class="btn btn-secondary copy-link" 
+                                    data-url="https://v.douyin.com/GJlnX9KYLeI/">
                                 <i class="fas fa-copy"></i> 复制链接
                             </button>
                         </div>
@@ -552,136 +861,260 @@
                 <h4 class="subcategory-title">交通订票类短视频</h4>
                 <div class="portfolio-grid">
                     <!-- 火车订票1 -->
-                    <div class="portfolio-item detailed">
-                        <div class="portfolio-header">
-                            <div class="portfolio-platform platform-douyin">
+                    <div class="video-card">
+                        <div class="video-card-header platform-douyin">
+                            <div class="video-platform">
                                 <i class="fab fa-tiktok"></i> 抖音 · 抢票技巧
                             </div>
-                            <div class="portfolio-metrics">
-                                <span class="metric">学生票</span>
+                            <div class="video-stats">
+                                <i class="fas fa-graduation-cap"></i> 学生票
                             </div>
                         </div>
-                        <div class="portfolio-content">
-                            <h4>国庆大学生高铁超前预约抢票通道！看这里！专属于大学</h4>
-                            <p class="portfolio-description">
-                                <strong>创作亮点：</strong>针对学生群体痛点，提供专属解决方案
-                                <br><strong>技术特点：</strong>屏幕录制演示，步骤分解清晰
-                                <br><strong>目标受众：</strong>节假日需要购票的大学生
-                            </p>
-                            <div class="portfolio-tags">
-                                <span class="tag">火车票</span>
-                                <span class="tag">学生票</span>
-                                <span class="tag">抢票技巧</span>
-                                <span class="tag">国庆出行</span>
+                        
+                        <div class="video-preview-container">
+                            <div class="video-preview platform-thumbnail-douyin" data-video-id="p7fOhK2kdk4" data-platform="douyin">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="portfolio-footer">
-                            <a href="https://v.douyin.com/p7fOhK2kdk4/" target="_blank" class="btn btn-primary">
-                                <i class="fas fa-external-link-alt"></i> 查看作品
-                            </a>
-                            <button class="btn btn-secondary copy-link" data-url="https://v.douyin.com/p7fOhK2kdk4/">
+                        
+                        <div class="video-info">
+                            <h4 class="video-title">国庆大学生高铁超前预约抢票通道！看这里！专属于大学</h4>
+                            
+                            <div class="video-meta">
+                                <span class="video-meta-item">
+                                    <i class="fas fa-clock"></i> 1:25
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-calendar"></i> 2023-09
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-train"></i> 国庆出行
+                                </span>
+                            </div>
+                            
+                            <div class="video-highlights">
+                                <div class="highlight-title">
+                                    <i class="fas fa-lightbulb"></i> 创作亮点
+                                </div>
+                                <div class="highlight-content">
+                                    针对大学生群体在国庆期间的购票痛点，提供专属解决方案。视频内容实用性强，一步步演示抢票流程，降低操作难度。结合"国庆"热点，提高视频的时效性和传播价值。
+                                </div>
+                            </div>
+                            
+                            <div class="video-tech">
+                                <span class="tech-tag">屏幕录制演示</span>
+                                <span class="tech-tag">步骤分解清晰</span>
+                                <span class="tech-tag">痛点解决</span>
+                                <span class="tech-tag">热点结合</span>
+                                <span class="tech-tag">目标群体定位</span>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card-footer">
+                            <button class="btn btn-primary watch-video-btn" 
+                                    data-video-id="p7fOhK2kdk4" 
+                                    data-platform="douyin">
+                                <i class="fas fa-play-circle"></i> 观看视频
+                            </button>
+                            <button class="btn btn-secondary copy-link" 
+                                    data-url="https://v.douyin.com/p7fOhK2kdk4/">
                                 <i class="fas fa-copy"></i> 复制链接
                             </button>
                         </div>
                     </div>
 
                     <!-- 火车订票2 -->
-                    <div class="portfolio-item detailed">
-                        <div class="portfolio-header">
-                            <div class="portfolio-platform platform-douyin">
+                    <div class="video-card">
+                        <div class="video-card-header platform-douyin">
+                            <div class="video-platform">
                                 <i class="fab fa-tiktok"></i> 抖音 · 暑期出行
                             </div>
-                            <div class="portfolio-metrics">
-                                <span class="metric">高铁票</span>
+                            <div class="video-stats">
+                                <i class="fas fa-sun"></i> 高铁票
                             </div>
                         </div>
-                        <div class="portfolio-content">
-                            <h4>高铁学生暑假出行可用学生证买票</h4>
-                            <p class="portfolio-description">
-                                <strong>创作亮点：</strong>暑期专题，解决学生出行购票问题
-                                <br><strong>技术特点：</strong>证件展示，购票流程可视化
-                                <br><strong>目标受众：</strong>暑期计划出行的大学生
-                            </p>
-                            <div class="portfolio-tags">
-                                <span class="tag">高铁票</span>
-                                <span class="tag">学生证</span>
-                                <span class="tag">暑期出行</span>
-                                <span class="tag">购票指南</span>
+                        
+                        <div class="video-preview-container">
+                            <div class="video-preview platform-thumbnail-douyin" data-video-id="LuIHG7GvVH4" data-platform="douyin">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="portfolio-footer">
-                            <a href="https://v.douyin.com/LuIHG7GvVH4/" target="_blank" class="btn btn-primary">
-                                <i class="fas fa-external-link-alt"></i> 查看作品
-                            </a>
-                            <button class="btn btn-secondary copy-link" data-url="https://v.douyin.com/LuIHG7GvVH4/">
+                        
+                        <div class="video-info">
+                            <h4 class="video-title">高铁学生暑假出行可用学生证买票</h4>
+                            
+                            <div class="video-meta">
+                                <span class="video-meta-item">
+                                    <i class="fas fa-clock"></i> 1:05
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-calendar"></i> 2023-06
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-id-card"></i> 学生证
+                                </span>
+                            </div>
+                            
+                            <div class="video-highlights">
+                                <div class="highlight-title">
+                                    <i class="fas fa-lightbulb"></i> 创作亮点
+                                </div>
+                                <div class="highlight-content">
+                                    针对暑期学生出行高峰，提供学生证购票的实用指南。视频简明扼要，突出学生证的使用方法和注意事项，帮助大学生群体节省出行成本。结合季节性需求，提高内容的相关性。
+                                </div>
+                            </div>
+                            
+                            <div class="video-tech">
+                                <span class="tech-tag">证件展示</span>
+                                <span class="tech-tag">购票流程可视化</span>
+                                <span class="tech-tag">信息简明</span>
+                                <span class="tech-tag">季节性内容</span>
+                                <span class="tech-tag">实用指南</span>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card-footer">
+                            <button class="btn btn-primary watch-video-btn" 
+                                    data-video-id="LuIHG7GvVH4" 
+                                    data-platform="douyin">
+                                <i class="fas fa-play-circle"></i> 观看视频
+                            </button>
+                            <button class="btn btn-secondary copy-link" 
+                                    data-url="https://v.douyin.com/LuIHG7GvVH4/">
                                 <i class="fas fa-copy"></i> 复制链接
                             </button>
                         </div>
                     </div>
 
                     <!-- 机票订票 -->
-                    <div class="portfolio-item detailed">
-                        <div class="portfolio-header">
-                            <div class="portfolio-platform platform-douyin">
+                    <div class="video-card">
+                        <div class="video-card-header platform-douyin">
+                            <div class="video-platform">
                                 <i class="fab fa-tiktok"></i> 抖音 · 航空公司
                             </div>
-                            <div class="portfolio-metrics">
-                                <span class="metric">飞机票</span>
+                            <div class="video-stats">
+                                <i class="fas fa-plane"></i> 飞机票
                             </div>
                         </div>
-                        <div class="portfolio-content">
-                            <h4>飞机学生票怎么买，看这里</h4>
-                            <p class="portfolio-description">
-                                <strong>创作亮点：</strong>航空学生票专题，比较各航空公司政策
-                                <br><strong>技术特点：</strong>政策对比表格，优惠信息汇总
-                                <br><strong>目标受众：</strong>需要购买机票的学生群体
-                            </p>
-                            <div class="portfolio-tags">
-                                <span class="tag">飞机票</span>
-                                <span class="tag">学生票</span>
-                                <span class="tag">航空公司</span>
-                                <span class="tag">政策对比</span>
+                        
+                        <div class="video-preview-container">
+                            <div class="video-preview platform-thumbnail-douyin" data-video-id="udCP3wa68L4" data-platform="douyin">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="portfolio-footer">
-                            <a href="https://v.douyin.com/udCP3wa68L4/" target="_blank" class="btn btn-primary">
-                                <i class="fas fa-external-link-alt"></i> 查看作品
-                            </a>
-                            <button class="btn btn-secondary copy-link" data-url="https://v.douyin.com/udCP3wa68L4/">
+                        
+                        <div class="video-info">
+                            <h4 class="video-title">飞机学生票怎么买，看这里</h4>
+                            
+                            <div class="video-meta">
+                                <span class="video-meta-item">
+                                    <i class="fas fa-clock"></i> 1:35
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-calendar"></i> 2023-08
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-chart-line"></i> 政策对比
+                                </span>
+                            </div>
+                            
+                            <div class="video-highlights">
+                                <div class="highlight-title">
+                                    <i class="fas fa-lightbulb"></i> 创作亮点
+                                </div>
+                                <div class="highlight-content">
+                                    针对航空学生票这一细分领域，系统梳理各大航空公司的相关政策。通过对比表格直观展示不同航空公司的优惠力度和适用条件，帮助学生群体做出最优选择，节省出行成本。
+                                </div>
+                            </div>
+                            
+                            <div class="video-tech">
+                                <span class="tech-tag">政策对比表格</span>
+                                <span class="tech-tag">优惠信息汇总</span>
+                                <span class="tech-tag">系统梳理</span>
+                                <span class="tech-tag">数据可视化</span>
+                                <span class="tech-tag">信息整合</span>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card-footer">
+                            <button class="btn btn-primary watch-video-btn" 
+                                    data-video-id="udCP3wa68L4" 
+                                    data-platform="douyin">
+                                <i class="fas fa-play-circle"></i> 观看视频
+                            </button>
+                            <button class="btn btn-secondary copy-link" 
+                                    data-url="https://v.douyin.com/udCP3wa68L4/">
                                 <i class="fas fa-copy"></i> 复制链接
                             </button>
                         </div>
                     </div>
 
                     <!-- 酒店住宿 -->
-                    <div class="portfolio-item detailed">
-                        <div class="portfolio-header">
-                            <div class="portfolio-platform platform-douyin">
+                    <div class="video-card">
+                        <div class="video-card-header platform-douyin">
+                            <div class="video-platform">
                                 <i class="fab fa-tiktok"></i> 抖音 · 安全指南
                             </div>
-                            <div class="portfolio-metrics">
-                                <span class="metric">女性出行</span>
+                            <div class="video-stats">
+                                <i class="fas fa-female"></i> 女性出行
                             </div>
                         </div>
-                        <div class="portfolio-content">
-                            <h4>女生怎么住酒店安全？酒店老爸教你怎么保护自己！</h4>
-                            <p class="portfolio-description">
-                                <strong>创作亮点：</strong>关注女性安全话题，实用性强
-                                <br><strong>技术特点：</strong>场景重现演示，安全要点归纳
-                                <br><strong>目标受众：</strong>独自出行的女性旅客
-                            </p>
-                            <div class="portfolio-tags">
-                                <span class="tag">酒店安全</span>
-                                <span class="tag">女性出行</span>
-                                <span class="tag">安全指南</span>
-                                <span class="tag">实用技巧</span>
+                        
+                        <div class="video-preview-container">
+                            <div class="video-preview platform-thumbnail-douyin" data-video-id="7Z-sgzPgLJs" data-platform="douyin">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="portfolio-footer">
-                            <a href="https://v.douyin.com/7Z-sgzPgLJs/" target="_blank" class="btn btn-primary">
-                                <i class="fas fa-external-link-alt"></i> 查看作品
-                            </a>
-                            <button class="btn btn-secondary copy-link" data-url="https://v.douyin.com/7Z-sgzPgLJs/">
+                        
+                        <div class="video-info">
+                            <h4 class="video-title">女生怎么住酒店安全？酒店老爸教你怎么保护自己！</h4>
+                            
+                            <div class="video-meta">
+                                <span class="video-meta-item">
+                                    <i class="fas fa-clock"></i> 1:50
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-calendar"></i> 2023-07
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-shield-alt"></i> 安全指南
+                                </span>
+                            </div>
+                            
+                            <div class="video-highlights">
+                                <div class="highlight-title">
+                                    <i class="fas fa-lightbulb"></i> 创作亮点
+                                </div>
+                                <div class="highlight-content">
+                                    关注女性出行安全这一社会议题，以"酒店老爸"的亲切视角提供实用建议。内容涵盖从入住到退房的全过程安全注意事项，通过场景重现增强代入感，提高女性旅客的安全意识。
+                                </div>
+                            </div>
+                            
+                            <div class="video-tech">
+                                <span class="tech-tag">场景重现演示</span>
+                                <span class="tech-tag">安全要点归纳</span>
+                                <span class="tech-tag">亲切视角</span>
+                                <span class="tech-tag">社会议题关注</span>
+                                <span class="tech-tag">实用技巧</span>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card-footer">
+                            <button class="btn btn-primary watch-video-btn" 
+                                    data-video-id="7Z-sgzPgLJs" 
+                                    data-platform="douyin">
+                                <i class="fas fa-play-circle"></i> 观看视频
+                            </button>
+                            <button class="btn btn-secondary copy-link" 
+                                    data-url="https://v.douyin.com/7Z-sgzPgLJs/">
                                 <i class="fas fa-copy"></i> 复制链接
                             </button>
                         </div>
@@ -705,37 +1138,34 @@
                 </h3>
                 <div class="portfolio-grid">
                     <!-- 网页作品1 -->
-                    <div class="portfolio-item detailed">
-                        <div class="portfolio-header">
-                            <div class="portfolio-platform platform-website">
+                    <div class="web-project-card">
+                        <div class="web-project-header platform-website">
+                            <div class="video-platform">
                                 <i class="fas fa-globe"></i> GitHub Pages · 个人网站
                             </div>
-                            <div class="portfolio-metrics">
-                                <span class="metric">响应式设计</span>
+                            <div class="video-stats">
+                                <i class="fas fa-mobile-alt"></i> 响应式设计
                             </div>
                         </div>
-                        <div class="portfolio-content">
-    <h4>MLTD专题百科网站</h4>
-    <p class="portfolio-description">
-        <strong>技术栈：</strong>HTML5, CSS3, JavaScript, Bootstrap 4.6, jQuery, 响应式设计
-        <br><strong>设计亮点：</strong>偶像大师系列风格，渐变色背景，圆角卡片设计，悬停交互效果
-        <br><strong>功能特点：</strong>
-        <br>• 完整的游戏介绍页面，包括四大场景展示
-        <br>• 52位偶像分类展示（Princess/Fairy/Angel），支持点击查看详细信息
-        <br>• 响应式导航栏，支持移动端折叠菜单
-        <br>• 图片轮播展示当前活动和卡池信息
-    </p>
-    <div class="portfolio-tags">
-        <span class="tag">偶像大师</span>
-        <span class="tag">MLTD</span>
-        <span class="tag">游戏专题</span>
-        <span class="tag">Bootstrap</span>
-        <span class="tag">响应式设计</span>
-        <span class="tag">内容聚合</span>
-    </div>
-</div>
-
-                        <div class="portfolio-footer">
+                        
+                        <div class="web-project-content">
+                            <h4>MLTD专题百科网站</h4>
+                            <p class="project-description">
+                                <strong>技术栈：</strong>HTML5, CSS3, JavaScript, Bootstrap 4.6, jQuery, 响应式设计
+                                <br><strong>设计亮点：</strong>偶像大师系列风格，渐变色背景，圆角卡片设计，悬停交互效果
+                                <br><strong>功能特点：</strong>完整的游戏介绍页面，包括四大场景展示；52位偶像分类展示（Princess/Fairy/Angel），支持点击查看详细信息；响应式导航栏，支持移动端折叠菜单；图片轮播展示当前活动和卡池信息。
+                            </p>
+                            <div class="project-tags">
+                                <span class="project-tag">偶像大师</span>
+                                <span class="project-tag">MLTD</span>
+                                <span class="project-tag">游戏专题</span>
+                                <span class="project-tag">Bootstrap</span>
+                                <span class="project-tag">响应式设计</span>
+                                <span class="project-tag">内容聚合</span>
+                            </div>
+                        </div>
+                        
+                        <div class="web-project-footer">
                             <a href="https://violet-k07.github.io/mltd/" target="_blank" class="btn btn-primary">
                                 <i class="fas fa-external-link-alt"></i> 访问网站
                             </a>
@@ -746,37 +1176,34 @@
                     </div>
 
                     <!-- 网页作品2 -->
-                    <div class="portfolio-item detailed">
-                        <div class="portfolio-header">
-                            <div class="portfolio-platform platform-website">
+                    <div class="web-project-card">
+                        <div class="web-project-header platform-website">
+                            <div class="video-platform">
                                 <i class="fas fa-globe"></i> GitHub Pages · 个人网站
                             </div>
-                            <div class="portfolio-metrics">
-                                <span class="metric">前端开发</span>
+                            <div class="video-stats">
+                                <i class="fas fa-code"></i> 前端开发
                             </div>
                         </div>
-                        <div class="portfolio-content">
-    <h4>智能拼团管理系统</h4>
-    <p class="portfolio-description">
-        <strong>技术栈：</strong>HTML5, CSS3, JavaScript, PWA, GitHub Gist API, SheetJS
-        <br><strong>设计亮点：</strong>响应式设计，深色/浅色主题切换，卡片式交互界面
-        <br><strong>功能特点：</strong>
-        <br>• 实时库存管理，支持按CN查询认领记录和结算统计
-        <br>• 余量图导出功能，支持多种网格规格打印
-        <br>• 云端数据同步
-        <br>• Excel格式结算单导出
-	 <br>• 购物车批量认领系统，支持目标金额设置和一键补齐
-    </p>
-    <div class="portfolio-tags">
-        <span class="tag">拼团管理</span>
-        <span class="tag">PWA应用</span>
-        <span class="tag">库存系统</span>
-        <span class="tag">批量认领</span>
-		<span class="tag"></span>
-        <span class="tag">数据同步</span>
-    </div>
-</div>
-                        <div class="portfolio-footer">
+                        
+                        <div class="web-project-content">
+                            <h4>智能拼团管理系统</h4>
+                            <p class="project-description">
+                                <strong>技术栈：</strong>HTML5, CSS3, JavaScript, PWA, GitHub Gist API, SheetJS
+                                <br><strong>设计亮点：</strong>响应式设计，深色/浅色主题切换，卡片式交互界面
+                                <br><strong>功能特点：</strong>实时库存管理，支持按CN查询认领记录和结算统计；余量图导出功能，支持多种网格规格打印；云端数据同步；Excel格式结算单导出；购物车批量认领系统，支持目标金额设置和一键补齐。
+                            </p>
+                            <div class="project-tags">
+                                <span class="project-tag">拼团管理</span>
+                                <span class="project-tag">PWA应用</span>
+                                <span class="project-tag">库存系统</span>
+                                <span class="project-tag">批量认领</span>
+                                <span class="project-tag">数据同步</span>
+                                <span class="project-tag">Excel导出</span>
+                            </div>
+                        </div>
+                        
+                        <div class="web-project-footer">
                             <a href="https://violet-k07.github.io/hk/" target="_blank" class="btn btn-primary">
                                 <i class="fas fa-external-link-alt"></i> 访问网站
                             </a>
@@ -793,30 +1220,34 @@
                     <i class="fas fa-users"></i> 合作完成的网页作品
                 </h3>
                 <div class="portfolio-grid">
-                    <div class="portfolio-item detailed">
-                        <div class="portfolio-header">
-                            <div class="portfolio-platform platform-website">
+                    <div class="web-project-card">
+                        <div class="web-project-header platform-website">
+                            <div class="video-platform">
                                 <i class="fas fa-globe"></i> GitHub Pages · 团队项目
                             </div>
-                            <div class="portfolio-metrics">
-                                <span class="metric">旅游网站</span>
+                            <div class="video-stats">
+                                <i class="fas fa-suitcase"></i> 旅游网站
                             </div>
                         </div>
-                        <div class="portfolio-content">
+                        
+                        <div class="web-project-content">
                             <h4>Wanderland 旅游网站</h4>
-                            <p class="portfolio-description">
+                            <p class="project-description">
                                 <strong>合作角色：</strong>前端开发、部分UI设计
                                 <br><strong>技术栈：</strong>HTML, CSS, JavaScript, Git协作
-                                <br><strong>项目亮点：</strong>团队协作开发，旅游主题设计，用户友好界面
+                                <br><strong>项目亮点：</strong>团队协作开发，旅游主题设计，用户友好界面，响应式布局，景点分类展示，用户评价系统。
                             </p>
-                            <div class="portfolio-tags">
-                                <span class="tag">团队协作</span>
-                                <span class="tag">旅游网站</span>
-                                <span class="tag">Git协作</span>
-                                <span class="tag">前端开发</span>
+                            <div class="project-tags">
+                                <span class="project-tag">团队协作</span>
+                                <span class="project-tag">旅游网站</span>
+                                <span class="project-tag">Git协作</span>
+                                <span class="project-tag">前端开发</span>
+                                <span class="project-tag">UI设计</span>
+                                <span class="project-tag">响应式布局</span>
                             </div>
                         </div>
-                        <div class="portfolio-footer">
+                        
+                        <div class="web-project-footer">
                             <a href="https://violet-k07.github.io/wanderland/" target="_blank" class="btn btn-primary">
                                 <i class="fas fa-external-link-alt"></i> 访问网站
                             </a>
@@ -845,138 +1276,258 @@
                 </h3>
                 <div class="portfolio-grid">
                     <!-- 商业广告作品 -->
-                    <div class="portfolio-item detailed">
-                        <div class="portfolio-header">
-                            <div class="portfolio-platform platform-drive">
+                    <div class="video-card">
+                        <div class="video-card-header platform-drive">
+                            <div class="video-platform">
                                 <i class="fas fa-ad"></i> Google Drive · 商业广告
                             </div>
-                            <div class="portfolio-metrics">
-                                <span class="metric">产品推广</span>
+                            <div class="video-stats">
+                                <i class="fas fa-chart-line"></i> 产品推广
                             </div>
                         </div>
-                        <div class="portfolio-content">
-                            <h4>商业广告作品展示</h4>
-                            <p class="portfolio-description">
-                                <strong>作品类型：</strong>商业广告视频
-                                <br><strong>创作亮点：</strong>产品卖点突出，品牌调性一致
-                                <br><strong>技术特点：</strong>专业级剪辑，色彩校正，音效设计
-                            </p>
-                            <div class="portfolio-tags">
-                                <span class="tag">商业广告</span>
-                                <span class="tag">产品推广</span>
-                                <span class="tag">营销策划</span>
-                                <span class="tag">专业剪辑</span>
+                        
+                        <div class="video-preview-container">
+                            <div class="video-preview platform-thumbnail-website" data-video-type="drive" data-video-url="https://drive.google.com/file/d/1kPgNLJfPNrPqZKsbADyfPLpmwGz93RmJ/view?usp=sharing">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="portfolio-footer">
-                            <a href="https://drive.google.com/file/d/1kPgNLJfPNrPqZKsbADyfPLpmwGz93RmJ/view?usp=sharing" target="_blank" class="btn btn-primary">
-                                <i class="fas fa-external-link-alt"></i> 查看作品
-                            </a>
-                            <button class="btn btn-secondary copy-link" data-url="https://drive.google.com/file/d/1kPgNLJfPNrPqZKsbADyfPLpmwGz93RmJ/view?usp=sharing">
+                        
+                        <div class="video-info">
+                            <h4 class="video-title">商业广告作品展示</h4>
+                            
+                            <div class="video-meta">
+                                <span class="video-meta-item">
+                                    <i class="fas fa-clock"></i> 0:30
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-calendar"></i> 2023-05
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-briefcase"></i> 商业合作
+                                </span>
+                            </div>
+                            
+                            <div class="video-highlights">
+                                <div class="highlight-title">
+                                    <i class="fas fa-lightbulb"></i> 创作亮点
+                                </div>
+                                <div class="highlight-content">
+                                    针对某品牌产品特点，突出核心卖点和品牌调性。通过精准的镜头语言和节奏把控，在30秒内完整传达产品优势。结合目标受众喜好，采用年轻化的视觉风格和音乐选择。
+                                </div>
+                            </div>
+                            
+                            <div class="video-tech">
+                                <span class="tech-tag">品牌调性一致</span>
+                                <span class="tech-tag">产品卖点突出</span>
+                                <span class="tech-tag">专业级剪辑</span>
+                                <span class="tech-tag">色彩校正</span>
+                                <span class="tech-tag">音效设计</span>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card-footer">
+                            <button class="btn btn-primary watch-video-btn" 
+                                    data-video-type="drive" 
+                                    data-video-url="https://drive.google.com/file/d/1kPgNLJfPNrPqZKsbADyfPLpmwGz93RmJ/view?usp=sharing">
+                                <i class="fas fa-play-circle"></i> 观看视频
+                            </button>
+                            <button class="btn btn-secondary copy-link" 
+                                    data-url="https://drive.google.com/file/d/1kPgNLJfPNrPqZKsbADyfPLpmwGz93RmJ/view?usp=sharing">
                                 <i class="fas fa-copy"></i> 复制链接
                             </button>
                         </div>
                     </div>
 
                     <!-- 个人作品：我和我的大学 -->
-                    <div class="portfolio-item detailed">
-                        <div class="portfolio-header">
-                            <div class="portfolio-platform platform-baidu">
+                    <div class="video-card">
+                        <div class="video-card-header platform-baidu">
+                            <div class="video-platform">
                                 <i class="fas fa-graduation-cap"></i> 百度网盘 · 个人作品
                             </div>
-                            <div class="portfolio-metrics">
-                                <span class="metric">校园生活</span>
+                            <div class="video-stats">
+                                <i class="fas fa-university"></i> 校园生活
                             </div>
                         </div>
-                        <div class="portfolio-content">
-                            <h4>《我和我的大学》个人纪念视频</h4>
-                            <p class="portfolio-description">
-                                <strong>作品类型：</strong>校园生活纪念视频
-                                <br><strong>创作亮点：</strong>记录大学时光，情感真挚，画面优美
-                                <br><strong>技术特点：</strong>多素材合成，情感节奏把控，配乐精选
-                                <br><strong>个人感悟：</strong>这部作品记录了我大学四年的点滴，展现了青春的活力与成长的轨迹
-                            </p>
-                            <div class="portfolio-tags">
-                                <span class="tag">校园生活</span>
-                                <span class="tag">纪念视频</span>
-                                <span class="tag">情感叙事</span>
-                                <span class="tag">个人作品</span>
+                        
+                        <div class="video-preview-container">
+                            <div class="video-preview platform-thumbnail-baidu" data-video-type="baidu" data-baidu-url="https://pan.baidu.com/s/1-c-FLEvqCu7e1iRS0YozAg" data-extract-code="ch7z">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="portfolio-footer">
+                        
+                        <div class="video-info">
+                            <h4 class="video-title">《我和我的大学》个人纪念视频</h4>
+                            
+                            <div class="video-meta">
+                                <span class="video-meta-item">
+                                    <i class="fas fa-clock"></i> 4:30
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-calendar"></i> 2022-06
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-heart"></i> 情感叙事
+                                </span>
+                            </div>
+                            
+                            <div class="video-highlights">
+                                <div class="highlight-title">
+                                    <i class="fas fa-lightbulb"></i> 创作亮点
+                                </div>
+                                <div class="highlight-content">
+                                    记录大学四年的成长轨迹，从入学到毕业的情感变化。通过个人视角展现校园生活的点滴，结合四季变化象征时间流逝。情感真挚，画面优美，配乐与画面情绪高度契合。
+                                </div>
+                            </div>
+                            
+                            <div class="video-tech">
+                                <span class="tech-tag">多素材合成</span>
+                                <span class="tech-tag">情感节奏把控</span>
+                                <span class="tech-tag">配乐精选</span>
+                                <span class="tech-tag">色彩分级</span>
+                                <span class="tech-tag">叙事结构</span>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card-footer">
                             <button class="btn btn-primary" onclick="showUniversityVideoInfo()">
                                 <i class="fas fa-info-circle"></i> 查看详情
                             </button>
                         </div>
                     </div>
-					<!-- 作品3 -->
-                    <div class="portfolio-item detailed">
-                        <div class="portfolio-header">
-                            <div class="portfolio-platform platform-bilibili">
+					
+                    <!-- 作品3 -->
+                    <div class="video-card">
+                        <div class="video-card-header platform-bilibili">
+                            <div class="video-platform">
                                 <i class="fab fa-bilibili"></i> Bilibili · 动漫混剪
                             </div>
-                            <div class="portfolio-metrics">
-                                <span class="metric">多素材合成</span>
+                            <div class="video-stats">
+                                <i class="fas fa-layer-group"></i> 多素材合成
                             </div>
                         </div>
-                        <div class="portfolio-content">
-                            <h4>Bilibili动漫混剪作品 - 多作品融合</h4>
-                            <p class="portfolio-description">
-                                <strong>创作亮点：</strong>多部动漫精彩片段融合，情感主线明确
-                                <br><strong>技术特点：</strong>多素材时间线对齐，音乐情绪匹配
-                                <br><strong>目标受众：</strong>动漫爱好者和混剪视频观众
-                            </p>
-                            <div class="portfolio-tags">
-                                <span class="tag">动漫混剪</span>
-                                <span class="tag">Bilibili</span>
-                                <span class="tag">多素材合成</span>
-                                <span class="tag">情感主线</span>
+                        
+                        <div class="video-preview-container">
+                            <div class="video-preview platform-thumbnail-bilibili" data-video-id="BV1KF411a7s3" data-platform="bilibili">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="portfolio-footer">
-                            <a href="https://www.bilibili.com/video/BV1KF411a7s3/" target="_blank" class="btn btn-primary">
-                                <i class="fas fa-external-link-alt"></i> 查看作品
-                            </a>
-                            <button class="btn btn-secondary copy-link" data-url="https://www.bilibili.com/video/BV1KF411a7s3/">
+                        
+                        <div class="video-info">
+                            <h4 class="video-title">Bilibili动漫混剪作品 - 多作品融合</h4>
+                            
+                            <div class="video-meta">
+                                <span class="video-meta-item">
+                                    <i class="fas fa-clock"></i> 3:15
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-calendar"></i> 2023-03
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-heartbeat"></i> 情感主线
+                                </span>
+                            </div>
+                            
+                            <div class="video-highlights">
+                                <div class="highlight-title">
+                                    <i class="fas fa-lightbulb"></i> 创作亮点
+                                </div>
+                                <div class="highlight-content">
+                                    将多部动漫的精彩片段按照情感发展主线进行融合，从相遇、相知到共同成长，构建完整的情感叙事。每部作品的片段选择都服务于整体情感表达，避免单纯堆砌名场面。
+                                </div>
+                            </div>
+                            
+                            <div class="video-tech">
+                                <span class="tech-tag">多素材时间线对齐</span>
+                                <span class="tech-tag">音乐情绪匹配</span>
+                                <span class="tech-tag">情感叙事结构</span>
+                                <span class="tech-tag">转场设计</span>
+                                <span class="tech-tag">色彩统一</span>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card-footer">
+                            <button class="btn btn-primary watch-video-btn" 
+                                    data-video-id="BV1KF411a7s3" 
+                                    data-platform="bilibili">
+                                <i class="fas fa-play-circle"></i> 观看视频
+                            </button>
+                            <button class="btn btn-secondary copy-link" 
+                                    data-url="https://www.bilibili.com/video/BV1KF411a7s3/">
                                 <i class="fas fa-copy"></i> 复制链接
                             </button>
                         </div>
                     </div>
 
                     <!-- 作品4 -->
-                    <div class="portfolio-item detailed">
-                        <div class="portfolio-header">
-                            <div class="portfolio-platform platform-bilibili">
+                    <div class="video-card">
+                        <div class="video-card-header platform-bilibili">
+                            <div class="video-platform">
                                 <i class="fab fa-bilibili"></i> Bilibili · 动作混剪
                             </div>
-                            <div class="portfolio-metrics">
-                                <span class="metric">节奏控制</span>
+                            <div class="video-stats">
+                                <i class="fas fa-tachometer-alt"></i> 节奏控制
                             </div>
                         </div>
-                        <div class="portfolio-content">
-                            <h4>Bilibili动漫混剪作品 - 动作场面特辑</h4>
-                            <p class="portfolio-description">
-                                <strong>创作亮点：</strong>动作场面精心挑选，节奏感强烈
-                                <br><strong>技术特点：</strong>快速剪辑，音效同步，视觉冲击力强
-                                <br><strong>目标受众：</strong>喜欢动作场面和快节奏剪辑的观众
-                            </p>
-                            <div class="portfolio-tags">
-                                <span class="tag">动作混剪</span>
-                                <span class="tag">节奏控制</span>
-                                <span class="tag">视觉冲击</span>
-                                <span class="tag">音效同步</span>
+                        
+                        <div class="video-preview-container">
+                            <div class="video-preview platform-thumbnail-bilibili" data-video-id="BV18u411D7m4" data-platform="bilibili">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="portfolio-footer">
-                            <a href="https://www.bilibili.com/video/BV18u411D7m4/" target="_blank" class="btn btn-primary">
-                                <i class="fas fa-external-link-alt"></i> 查看作品
-                            </a>
-                            <button class="btn btn-secondary copy-link" data-url="https://www.bilibili.com/video/BV18u411D7m4/">
+                        
+                        <div class="video-info">
+                            <h4 class="video-title">Bilibili动漫混剪作品 - 动作场面特辑</h4>
+                            
+                            <div class="video-meta">
+                                <span class="video-meta-item">
+                                    <i class="fas fa-clock"></i> 2:45
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-calendar"></i> 2023-04
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-bolt"></i> 视觉冲击
+                                </span>
+                            </div>
+                            
+                            <div class="video-highlights">
+                                <div class="highlight-title">
+                                    <i class="fas fa-lightbulb"></i> 创作亮点
+                                </div>
+                                <div class="highlight-content">
+                                    专注于动漫中的精彩动作场面，通过快速剪辑和节奏变化营造紧张刺激的观看体验。动作片段的选择注重多样性和连贯性，从格斗、枪战到魔法对决，展现不同风格的动作设计。
+                                </div>
+                            </div>
+                            
+                            <div class="video-tech">
+                                <span class="tech-tag">快速剪辑</span>
+                                <span class="tech-tag">音效同步</span>
+                                <span class="tech-tag">视觉冲击</span>
+                                <span class="tech-tag">节奏感强</span>
+                                <span class="tech-tag">动作匹配</span>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card-footer">
+                            <button class="btn btn-primary watch-video-btn" 
+                                    data-video-id="BV18u411D7m4" 
+                                    data-platform="bilibili">
+                                <i class="fas fa-play-circle"></i> 观看视频
+                            </button>
+                            <button class="btn btn-secondary copy-link" 
+                                    data-url="https://www.bilibili.com/video/BV18u411D7m4/">
                                 <i class="fas fa-copy"></i> 复制链接
                             </button>
                         </div>
                     </div>
-					
                 </div>
             </div>
 
@@ -987,64 +1538,123 @@
                 </h3>
                 <div class="portfolio-grid">
                     <!-- 3D动画 -->
-                    <div class="portfolio-item detailed">
-                        <div class="portfolio-header">
-                            <div class="portfolio-platform platform-bilibili">
+                    <div class="video-card">
+                        <div class="video-card-header platform-bilibili">
+                            <div class="video-platform">
                                 <i class="fab fa-bilibili"></i> Bilibili · 3D动画
                             </div>
-                            <div class="portfolio-metrics">
-                                <span class="metric">赛博朋克</span>
+                            <div class="video-stats">
+                                <i class="fas fa-city"></i> 赛博朋克
                             </div>
                         </div>
-                        <div class="portfolio-content">
-                            <h4>3D动画《RECREATE THE CITY OF CYBERPUNK》</h4>
-                            <p class="portfolio-description">
-                                <strong>合作角色：</strong>视频剪辑、后期制作
-                                <br><strong>作品亮点：</strong>赛博朋克风格城市展现，视觉冲击力强
-                                <br><strong>技术特点：</strong>3D动画剪辑，特效合成，色彩分级
-                            </p>
-                            <div class="portfolio-tags">
-                                <span class="tag">3D动画</span>
-                                <span class="tag">赛博朋克</span>
-                                <span class="tag">合作项目</span>
-                                <span class="tag">后期制作</span>
+                        
+                        <div class="video-preview-container">
+                            <div class="video-preview platform-thumbnail-bilibili" data-video-id="BV1VL411W7Uq" data-platform="bilibili">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="portfolio-footer">
-                            <a href="https://www.bilibili.com/video/BV1VL411W7Uq/" target="_blank" class="btn btn-primary">
-                                <i class="fas fa-external-link-alt"></i> 查看作品
-                            </a>
-                            <button class="btn btn-secondary copy-link" data-url="https://www.bilibili.com/video/BV1VL411W7Uq/">
+                        
+                        <div class="video-info">
+                            <h4 class="video-title">3D动画《RECREATE THE CITY OF CYBERPUNK》</h4>
+                            
+                            <div class="video-meta">
+                                <span class="video-meta-item">
+                                    <i class="fas fa-clock"></i> 2:30
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-calendar"></i> 2023-02
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-users"></i> 合作项目
+                                </span>
+                            </div>
+                            
+                            <div class="video-highlights">
+                                <div class="highlight-title">
+                                    <i class="fas fa-lightbulb"></i> 创作亮点
+                                </div>
+                                <div class="highlight-content">
+                                    合作完成赛博朋克风格城市展现，通过剪辑强化3D动画的视觉冲击力。在合作中负责视频节奏把控和特效合成，确保最终成片符合赛博朋克美学风格，展现未来城市的科技感与疏离感。
+                                </div>
+                            </div>
+                            
+                            <div class="video-tech">
+                                <span class="tech-tag">3D动画剪辑</span>
+                                <span class="tech-tag">特效合成</span>
+                                <span class="tech-tag">色彩分级</span>
+                                <span class="tech-tag">赛博朋克美学</span>
+                                <span class="tech-tag">团队协作</span>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card-footer">
+                            <button class="btn btn-primary watch-video-btn" 
+                                    data-video-id="BV1VL411W7Uq" 
+                                    data-platform="bilibili">
+                                <i class="fas fa-play-circle"></i> 观看视频
+                            </button>
+                            <button class="btn btn-secondary copy-link" 
+                                    data-url="https://www.bilibili.com/video/BV1VL411W7Uq/">
                                 <i class="fas fa-copy"></i> 复制链接
                             </button>
                         </div>
                     </div>
 
                     <!-- 纪录片 -->
-                    <div class="portfolio-item detailed">
-                        <div class="portfolio-header">
-                            <div class="portfolio-platform platform-drive">
+                    <div class="video-card">
+                        <div class="video-card-header platform-baidu">
+                            <div class="video-platform">
                                 <i class="fas fa-video"></i> 百度网盘 · 纪录片
                             </div>
-                            <div class="portfolio-metrics">
-                                <span class="metric">合作剪辑</span>
+                            <div class="video-stats">
+                                <i class="fas fa-users"></i> 合作剪辑
                             </div>
                         </div>
-                        <div class="portfolio-content">
-                            <h4>纪录片《海底农民》</h4>
-                            <p class="portfolio-description">
-                                <strong>合作角色：</strong>视频剪辑、音效处理
-                                <br><strong>作品亮点：</strong>记录海底农业奇妙世界，题材新颖
-                                <br><strong>技术特点：</strong>纪录片叙事节奏，环境音效设计，画面调色
-                            </p>
-                            <div class="portfolio-tags">
-                                <span class="tag">纪录片</span>
-                                <span class="tag">合作剪辑</span>
-                                <span class="tag">音效处理</span>
-                                <span class="tag">叙事节奏</span>
+                        
+                        <div class="video-preview-container">
+                            <div class="video-preview platform-thumbnail-baidu" data-video-type="baidu" data-baidu-url="https://pan.baidu.com/s/1w76e5AkbY-NIbnv9cK9yKQ" data-extract-code="9a2i">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="portfolio-footer">
+                        
+                        <div class="video-info">
+                            <h4 class="video-title">纪录片《海底农民》</h4>
+                            
+                            <div class="video-meta">
+                                <span class="video-meta-item">
+                                    <i class="fas fa-clock"></i> 8:15
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-calendar"></i> 2022-11
+                                </span>
+                                <span class="video-meta-item">
+                                    <i class="fas fa-water"></i> 海洋题材
+                                </span>
+                            </div>
+                            
+                            <div class="video-highlights">
+                                <div class="highlight-title">
+                                    <i class="fas fa-lightbulb"></i> 创作亮点
+                                </div>
+                                <div class="highlight-content">
+                                    合作记录海底农业的奇妙世界，展现人类与海洋和谐共生的可能。在合作中负责视频剪辑和音效处理部分，通过叙事节奏把控和声音设计，增强纪录片的沉浸感和教育意义。
+                                </div>
+                            </div>
+                            
+                            <div class="video-tech">
+                                <span class="tech-tag">纪录片叙事节奏</span>
+                                <span class="tech-tag">环境音效设计</span>
+                                <span class="tech-tag">画面调色</span>
+                                <span class="tech-tag">合作剪辑</span>
+                                <span class="tech-tag">信息传达</span>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card-footer">
                             <button class="btn btn-primary" onclick="showDocumentaryInfo()">
                                 <i class="fas fa-info-circle"></i> 查看详情
                             </button>
@@ -1139,6 +1749,8 @@
         </div>
     </div>
 
+    <!-- 视频播放模态框（由JS动态创建） -->
+    
     <!-- 复制成功提示 -->
     <div id="copy-notification" class="copy-notification">
         链接已复制到剪贴板！

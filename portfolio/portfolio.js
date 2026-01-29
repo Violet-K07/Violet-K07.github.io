@@ -13,17 +13,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // 添加向下滚动功能
     initScrollIndicator();
     
-    // 初始化滚动到视频部分的回到顶部按钮
-    initSectionBackToTop();
-    
     // 添加技能条动画
     initSkillBars();
+    
+    // 初始化视频播放功能
+    initVideoPlayers();
 });
 
 // 初始化复制链接功能
 function initCopyLinks() {
     const copyButtons = document.querySelectorAll('.copy-link');
-    const notification = document.getElementById('copy-notification');
+    const copyTextButtons = document.querySelectorAll('.copy-text');
     
     copyButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -35,8 +35,6 @@ function initCopyLinks() {
         });
     });
     
-    // 初始化复制文本按钮
-    const copyTextButtons = document.querySelectorAll('.copy-text');
     copyTextButtons.forEach(button => {
         button.addEventListener('click', function() {
             const text = this.getAttribute('data-text');
@@ -201,38 +199,6 @@ function initSmoothScroll() {
     });
 }
 
-// 初始化滚动到视频部分显示回到顶部按钮
-function initSectionBackToTop() {
-    const button = document.querySelector('.section-back-to-top');
-    
-    // 添加点击事件
-    if (button) {
-        button.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    }
-    
-    // 监听滚动事件
-    window.addEventListener('scroll', function() {
-        const videoSection = document.getElementById('video-editing');
-        
-        if (videoSection && button) {
-            const videoSectionTop = videoSection.offsetTop;
-            const currentScroll = window.pageYOffset;
-            
-            // 当滚动到视频部分时显示按钮
-            if (currentScroll >= videoSectionTop - 200) {
-                button.classList.add('show');
-            } else {
-                button.classList.remove('show');
-            }
-        }
-    });
-}
-
 // 初始化技能条动画
 function initSkillBars() {
     // 检查技能条是否在视图中，如果在则触发动画
@@ -257,8 +223,339 @@ function initSkillBars() {
     });
 }
 
+// 初始化视频播放功能
+function initVideoPlayers() {
+    const videoPreviews = document.querySelectorAll('.video-preview');
+    const watchButtons = document.querySelectorAll('.watch-video-btn');
+    
+    // 创建视频模态框
+    const videoModal = document.createElement('div');
+    videoModal.className = 'video-modal';
+    videoModal.innerHTML = `
+        <div class="video-modal-content">
+            <div class="video-modal-header">
+                <div class="video-modal-title">视频播放</div>
+                <button class="video-modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="video-modal-body">
+                <div class="video-embed-container" id="videoEmbedContainer">
+                    <!-- 视频将动态嵌入到这里 -->
+                </div>
+                <div class="video-description-modal" id="videoDescriptionModal">
+                    <!-- 视频描述将动态添加到这里 -->
+                </div>
+            </div>
+            <div class="video-modal-footer">
+                <a href="#" class="video-link" id="externalVideoLink" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> 在原始平台观看
+                </a>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(videoModal);
+    
+    // 关闭模态框
+    const closeModal = () => {
+        videoModal.style.display = 'none';
+        const container = document.getElementById('videoEmbedContainer');
+        const descriptionContainer = document.getElementById('videoDescriptionModal');
+        container.innerHTML = ''; // 清除嵌入的视频
+        descriptionContainer.innerHTML = ''; // 清除描述
+        document.body.style.overflow = 'auto';
+    };
+    
+    videoModal.querySelector('.video-modal-close').addEventListener('click', closeModal);
+    videoModal.addEventListener('click', (e) => {
+        if (e.target === videoModal) closeModal();
+    });
+    
+    // 按ESC键关闭模态框
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && videoModal.style.display === 'flex') {
+            closeModal();
+        }
+    });
+    
+    // 播放视频函数
+    const playVideo = (videoId, platform, videoCard) => {
+        const container = document.getElementById('videoEmbedContainer');
+        const descriptionContainer = document.getElementById('videoDescriptionModal');
+        const externalLink = document.getElementById('externalVideoLink');
+        const modalTitle = videoModal.querySelector('.video-modal-title');
+        
+        let embedCode = '';
+        let externalUrl = '';
+        let description = '';
+        
+        // 获取视频信息
+        const videoTitle = videoCard ? videoCard.querySelector('.video-title').textContent : '';
+        const videoHighlights = videoCard ? videoCard.querySelector('.highlight-content').textContent : '';
+        const videoTech = videoCard ? Array.from(videoCard.querySelectorAll('.tech-tag')).map(tag => tag.textContent).join(', ') : '';
+        
+        // 根据不同平台生成不同的嵌入代码
+        switch(platform) {
+            case 'douyin':
+                externalUrl = `https://v.douyin.com/${videoId}/`;
+                embedCode = `
+                    <div class="platform-notice">
+                        <div class="notice-icon">
+                            <i class="fab fa-tiktok"></i>
+                        </div>
+                        <h3>抖音视频播放提示</h3>
+                        <p>抖音视频需在抖音APP内观看以获得最佳体验</p>
+                        <div class="notice-actions">
+                            <a href="${externalUrl}" target="_blank" class="notice-btn">
+                                <i class="fas fa-external-link-alt"></i> 前往抖音观看
+                            </a>
+                            <button class="notice-btn secondary" onclick="copyToClipboard('${externalUrl}'); showNotification('链接已复制到剪贴板！')">
+                                <i class="fas fa-copy"></i> 复制链接
+                            </button>
+                        </div>
+                        <p class="notice-tip"><i class="fas fa-lightbulb"></i> 提示：复制链接后打开抖音APP即可观看</p>
+                    </div>
+                `;
+                break;
+                
+            case 'kuaishou':
+                externalUrl = `https://v.kuaishou.com/${videoId}`;
+                embedCode = `
+                    <div class="platform-notice">
+                        <div class="notice-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3>快手视频播放提示</h3>
+                        <p>快手视频需在快手APP内观看以获得最佳体验</p>
+                        <div class="notice-actions">
+                            <a href="${externalUrl}" target="_blank" class="notice-btn">
+                                <i class="fas fa-external-link-alt"></i> 前往快手观看
+                            </a>
+                            <button class="notice-btn secondary" onclick="copyToClipboard('${externalUrl}'); showNotification('链接已复制到剪贴板！')">
+                                <i class="fas fa-copy"></i> 复制链接
+                            </button>
+                        </div>
+                        <p class="notice-tip"><i class="fas fa-lightbulb"></i> 提示：复制链接后打开快手APP即可观看</p>
+                    </div>
+                `;
+                break;
+                
+            case 'bilibili':
+                // B站支持iframe嵌入
+                embedCode = `<iframe src="//player.bilibili.com/player.html?bvid=${videoId}&page=1&high_quality=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>`;
+                externalUrl = `https://www.bilibili.com/video/${videoId}`;
+                break;
+                
+            case 'drive':
+                const driveUrl = videoId; // 这里videoId实际上是URL
+                embedCode = `
+                    <div class="platform-notice">
+                        <div class="notice-icon">
+                            <i class="fab fa-google-drive"></i>
+                        </div>
+                        <h3>Google Drive视频</h3>
+                        <p>视频存储在Google Drive中，需要访问链接观看</p>
+                        <div class="notice-actions">
+                            <a href="${driveUrl}" target="_blank" class="notice-btn">
+                                <i class="fas fa-external-link-alt"></i> 前往Google Drive观看
+                            </a>
+                            <button class="notice-btn secondary" onclick="copyToClipboard('${driveUrl}'); showNotification('链接已复制到剪贴板！')">
+                                <i class="fas fa-copy"></i> 复制链接
+                            </button>
+                        </div>
+                    </div>
+                `;
+                externalUrl = driveUrl;
+                break;
+                
+            case 'baidu':
+                const baiduUrl = videoId; // 这里videoId实际上是URL
+                const extractCode = platform === 'baidu' ? videoCard.getAttribute('data-extract-code') : '';
+                embedCode = `
+                    <div class="platform-notice">
+                        <div class="notice-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3>百度网盘视频</h3>
+                        <p>视频存储在百度网盘中，需要访问链接并输入提取码观看</p>
+                        <div class="notice-info">
+                            <p><strong>链接:</strong> ${baiduUrl}</p>
+                            <p><strong>提取码:</strong> ${extractCode}</p>
+                        </div>
+                        <div class="notice-actions">
+                            <a href="${baiduUrl}" target="_blank" class="notice-btn">
+                                <i class="fas fa-external-link-alt"></i> 前往百度网盘
+                            </a>
+                            <button class="notice-btn secondary" onclick="copyToClipboard('${baiduUrl}'); showNotification('链接已复制到剪贴板！')">
+                                <i class="fas fa-copy"></i> 复制链接
+                            </button>
+                            <button class="notice-btn secondary" onclick="copyToClipboard('${extractCode}'); showNotification('提取码已复制到剪贴板！')">
+                                <i class="fas fa-copy"></i> 复制提取码
+                            </button>
+                        </div>
+                        <p class="notice-tip"><i class="fas fa-lightbulb"></i> 提示：复制链接和提取码到百度网盘APP即可观看</p>
+                    </div>
+                `;
+                externalUrl = baiduUrl;
+                break;
+        }
+        
+        // 生成视频描述
+        description = `
+            <h4>${videoTitle}</h4>
+            <p><strong>创作亮点:</strong> ${videoHighlights}</p>
+            <p><strong>技术特点:</strong> ${videoTech}</p>
+        `;
+        
+        container.innerHTML = embedCode;
+        descriptionContainer.innerHTML = description;
+        externalLink.href = externalUrl;
+        modalTitle.textContent = videoTitle;
+        videoModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    };
+    
+    // 为所有预览和按钮添加点击事件
+    videoPreviews.forEach(preview => {
+        preview.addEventListener('click', () => {
+            const videoId = preview.getAttribute('data-video-id');
+            const platform = preview.getAttribute('data-platform');
+            const videoType = preview.getAttribute('data-video-type');
+            const videoUrl = preview.getAttribute('data-video-url');
+            const baiduUrl = preview.getAttribute('data-baidu-url');
+            const extractCode = preview.getAttribute('data-extract-code');
+            
+            let finalVideoId = videoId;
+            let finalPlatform = platform;
+            
+            if (videoType === 'drive') {
+                finalVideoId = videoUrl;
+                finalPlatform = 'drive';
+            } else if (videoType === 'baidu') {
+                finalVideoId = baiduUrl;
+                finalPlatform = 'baidu';
+                // 将提取码添加到预览元素上，供playVideo函数使用
+                preview.setAttribute('data-extract-code', extractCode);
+            }
+            
+            playVideo(finalVideoId, finalPlatform, preview.closest('.video-card'));
+        });
+    });
+    
+    watchButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const videoId = button.getAttribute('data-video-id');
+            const platform = button.getAttribute('data-platform');
+            const videoType = button.getAttribute('data-video-type');
+            const videoUrl = button.getAttribute('data-video-url');
+            
+            let finalVideoId = videoId;
+            let finalPlatform = platform;
+            
+            if (videoType === 'drive') {
+                finalVideoId = videoUrl;
+                finalPlatform = 'drive';
+            }
+            
+            playVideo(finalVideoId, finalPlatform, button.closest('.video-card'));
+        });
+    });
+    
+    // 添加平台通知的CSS样式
+    const style = document.createElement('style');
+    style.textContent = `
+        .platform-notice {
+            padding: 40px 20px;
+            text-align: center;
+            background: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .notice-icon {
+            font-size: 48px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .platform-notice h3 {
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
+        
+        .platform-notice p {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        
+        .notice-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .notice-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .notice-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        .notice-btn.secondary {
+            background: rgba(0, 0, 0, 0.1);
+            color: var(--text-color);
+        }
+        
+        .notice-btn.secondary:hover {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .notice-btn i {
+            margin-right: 8px;
+        }
+        
+        .notice-tip {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            margin-top: 20px;
+        }
+        
+        .notice-tip i {
+            margin-right: 5px;
+        }
+        
+        .notice-info {
+            background: rgba(0, 0, 0, 0.05);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .notice-info p {
+            margin-bottom: 5px;
+        }
+    `;
+    document.head.appendChild(style);
+}
+
 // 全局函数供HTML调用
 window.showDocumentaryInfo = showDocumentaryInfo;
 window.closeDocumentaryModal = closeDocumentaryModalFunc;
 window.showUniversityVideoInfo = showUniversityVideoInfo;
 window.closeUniversityModal = closeUniversityModalFunc;
+window.copyToClipboard = copyToClipboard;
+window.showNotification = showNotification;
