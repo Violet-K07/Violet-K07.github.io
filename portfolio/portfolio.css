@@ -472,20 +472,132 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
+/* ========== 抖音配色方案 - 黑红蓝渐变 ========== */
+.platform-douyin {
+    background: linear-gradient(135deg, #000000 0%, #FF0050 50%, #0000FF 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+    position: relative;
+}
+
+.platform-douyin::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(255, 0, 80, 0.2), 
+        rgba(0, 0, 255, 0.1));
+    pointer-events: none;
+}
+
 .platform-thumbnail-douyin {
-    background: linear-gradient(135deg, #FF0050, #FFAA00);
+    background: linear-gradient(135deg, #000000 0%, #FF0050 50%, #0000FF 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+.platform-thumbnail-douyin::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(255, 0, 80, 0.3), 
+        rgba(0, 0, 255, 0.3));
+    z-index: 1;
+}
+
+.platform-thumbnail-douyin .play-button {
+    background: rgba(255, 255, 255, 0.95);
+    color: #FF0050;
+    z-index: 2;
+}
+
+/* ========== 为其他卡片添加动态渐变效果 ========== */
+.platform-kuaishou {
+    background: linear-gradient(135deg, #FF5A00 0%, #FFD200 50%, #FF9500 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
 }
 
 .platform-thumbnail-kuaishou {
-    background: linear-gradient(135deg, #FF5A00, #FFD200);
+    background: linear-gradient(135deg, #FF5A00 0%, #FFD200 50%, #FF9500 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+}
+
+.platform-bilibili {
+    background: linear-gradient(135deg, #FB7299 0%, #FFB6C1 50%, #FF69B4 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
 }
 
 .platform-thumbnail-bilibili {
-    background: linear-gradient(135deg, #FB7299, #FFB6C1);
+    background: linear-gradient(135deg, #FB7299 0%, #FFB6C1 50%, #FF69B4 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+}
+
+.platform-website {
+    background: linear-gradient(135deg, #4a6ee0 0%, #6c5ce7 50%, #0984e3 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
 }
 
 .platform-thumbnail-website {
-    background: linear-gradient(135deg, #4a6ee0, #6c5ce7);
+    background: linear-gradient(135deg, #4a6ee0 0%, #6c5ce7 50%, #0984e3 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+}
+
+.platform-drive {
+    background: linear-gradient(135deg, #4285F4 0%, #34A853 50%, #0F9D58 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+}
+
+.platform-baidu {
+    background: linear-gradient(135deg, #2932E1 0%, #0D5AE5 50%, #1A73E8 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+}
+
+.platform-thumbnail-baidu {
+    background: linear-gradient(135deg, #2932E1 0%, #0D5AE5 50%, #1A73E5 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+}
+
+/* 视频卡片头部统一添加动态效果 */
+.video-card-header {
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+}
+
+/* 网页作品卡片头部也添加动态效果 */
+.web-project-header {
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+}
+
+/* 渐变动画 */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .play-button {
@@ -504,6 +616,7 @@
     font-size: 1.5rem;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
+    z-index: 2;
 }
 
 .video-preview:hover .play-button {
@@ -614,31 +727,6 @@
     border-top: 1px solid rgba(0, 0, 0, 0.05);
     display: flex;
     gap: 10px;
-}
-
-/* ========== 平台特定样式 ========== */
-.platform-douyin {
-    background: linear-gradient(135deg, #FF0050, #FFAA00);
-}
-
-.platform-kuaishou {
-    background: linear-gradient(135deg, #FF5A00, #FFD200);
-}
-
-.platform-bilibili {
-    background: linear-gradient(135deg, #FB7299, #FFB6C1);
-}
-
-.platform-website {
-    background: linear-gradient(135deg, #4a6ee0, #6c5ce7);
-}
-
-.platform-drive {
-    background: linear-gradient(135deg, #4285F4, #34A853);
-}
-
-.platform-baidu {
-    background: linear-gradient(135deg, #2932E1, #0D5AE5);
 }
 
 /* ========== 嵌入视频模态框 ========== */
