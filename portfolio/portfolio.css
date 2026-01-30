@@ -558,6 +558,7 @@
     flex-grow: 1;
 }
 
+/* 视频亮点样式（保留用于其他作品） */
 .video-highlights {
     background: rgba(74, 110, 224, 0.05);
     border-radius: 8px;
