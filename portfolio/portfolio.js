@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 初始化视频播放功能
     initVideoPlayers();
+    
+    // 初始化回到顶部按钮
+    initBackToTop();
 });
 
 // 初始化复制链接功能
@@ -199,27 +202,141 @@ function initSmoothScroll() {
     });
 }
 
-// 初始化技能条动画
+// 初始化技能条动画增强版
 function initSkillBars() {
-    // 检查技能条是否在视图中，如果在则触发动画
-    const skillBars = document.querySelectorAll('.skill-level');
+    // 获取所有技能条
+    const skillBars = document.querySelectorAll('.skill-bar');
     
     // 创建Intersection Observer来检测技能条是否进入视图
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // 技能条已经进入视图，宽度已经在CSS中设置
-                // 这里可以添加额外的动画效果
-                entry.target.style.opacity = '1';
-                entry.target.style.transition = 'width 1s ease-in-out, opacity 0.5s ease';
+                // 技能条进入视图，触发动画
+                const skillBar = entry.target;
+                const skillLevel = skillBar.querySelector('.skill-level');
+                
+                if (skillLevel) {
+                    const targetWidth = skillLevel.style.width;
+                    
+                    // 重置状态
+                    skillBar.style.opacity = '0.8';
+                    skillBar.style.transform = 'scaleY(0.8)';
+                    skillLevel.style.width = '0%';
+                    skillLevel.style.opacity = '0';
+                    skillLevel.style.transform = 'scaleX(0)';
+                    
+                    // 添加进入动画类
+                    skillBar.classList.add('skill-bar-animate-in');
+                    
+                    // 延迟后开始动画
+                    setTimeout(() => {
+                        skillBar.style.opacity = '1';
+                        skillBar.style.transform = 'scaleY(1)';
+                        skillLevel.style.width = targetWidth;
+                        skillLevel.style.opacity = '1';
+                        skillLevel.classList.add('animated');
+                        
+                        // 添加波纹效果
+                        skillLevel.style.transform = 'scaleX(1)';
+                        
+                        // 触发背景条动画
+                        skillBar.style.animation = 'skillBarPulse 2s ease-in-out';
+                        
+                        // 动画完成后的效果
+                        setTimeout(() => {
+                            skillBar.style.animation = '';
+                            skillBar.classList.remove('skill-bar-animate-in');
+                            skillBar.classList.add('skill-bar-animated');
+                        }, 2000);
+                        
+                    }, 300);
+                    
+                    // 停止观察此元素
+                    observer.unobserve(skillBar);
+                }
             }
         });
-    }, { threshold: 0.5 });
+    }, { 
+        threshold: 0.3,
+        rootMargin: '0px 0px -50px 0px' // 提前触发
+    });
     
-    // 观察每个技能条
+    // 观察每个技能条容器
     skillBars.forEach(bar => {
-        bar.style.opacity = '0.8';
+        // 初始状态
+        bar.style.opacity = '0.6';
+        bar.style.transform = 'scaleY(0.8)';
+        bar.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        
+        // 开始观察
         observer.observe(bar);
+    });
+    
+    // 为技能项添加悬停效果
+    const skillItems = document.querySelectorAll('.skill-item');
+    skillItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            const skillLevel = item.querySelector('.skill-level');
+            const skillBar = item.querySelector('.skill-bar');
+            
+            if (skillLevel && skillBar) {
+                skillLevel.style.transform = 'scaleX(1.05)';
+                skillLevel.style.filter = 'brightness(1.2)';
+                skillLevel.style.transition = 'transform 0.3s ease, filter 0.3s ease';
+                
+                skillBar.style.transform = 'scaleY(1.3)';
+                skillBar.style.boxShadow = '0 0 20px rgba(74, 110, 224, 0.4)';
+                skillBar.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+            }
+        });
+        
+        item.addEventListener('mouseleave', () => {
+            const skillLevel = item.querySelector('.skill-level');
+            const skillBar = item.querySelector('.skill-bar');
+            
+            if (skillLevel && skillBar) {
+                skillLevel.style.transform = 'scaleX(1)';
+                skillLevel.style.filter = 'brightness(1)';
+                
+                skillBar.style.transform = 'scaleY(1)';
+                skillBar.style.boxShadow = '';
+                
+                // 如果已经完成动画，保持动画类
+                if (skillBar.classList.contains('skill-bar-animated')) {
+                    skillBar.style.opacity = '1';
+                }
+            }
+        });
+    });
+}
+
+// 初始化回到顶部按钮
+function initBackToTop() {
+    const backToTopBtn = document.getElementById('backToTop');
+    const videoEditingSection = document.getElementById('video-editing');
+    
+    if (!backToTopBtn || !videoEditingSection) return;
+    
+    // 监听滚动事件
+    window.addEventListener('scroll', function() {
+        const scrollPosition = window.scrollY;
+        const videoSectionTop = videoEditingSection.offsetTop;
+        const videoSectionHeight = videoEditingSection.offsetHeight;
+        
+        // 如果滚动到视频剪辑部分或更下方，显示按钮
+        if (scrollPosition >= videoSectionTop - 100) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
+    });
+    
+    // 点击回到顶部
+    backToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     });
 }
 
@@ -291,7 +408,7 @@ function initVideoPlayers() {
         
         // 获取视频信息
         const videoTitle = videoCard ? videoCard.querySelector('.video-title').textContent : '';
-        const videoHighlights = videoCard ? videoCard.querySelector('.highlight-content').textContent : '';
+        const videoHighlights = videoCard ? videoCard.querySelector('.highlight-content')?.textContent : '';
         const videoTech = videoCard ? Array.from(videoCard.querySelectorAll('.tech-tag')).map(tag => tag.textContent).join(', ') : '';
         
         // 根据不同平台生成不同的嵌入代码
@@ -341,7 +458,8 @@ function initVideoPlayers() {
                 break;
                 
             case 'bilibili':
-                // B站支持iframe嵌入
+                // B站支持iframe嵌入 - 实际使用时需要替换为正确的BVID
+                // 例如：BV1KF411a7s3 需要转换为 player.bilibili.com/player.html?bvid=BV1KF411a7s3
                 embedCode = `<iframe src="//player.bilibili.com/player.html?bvid=${videoId}&page=1&high_quality=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>`;
                 externalUrl = `https://www.bilibili.com/video/${videoId}`;
                 break;
@@ -370,7 +488,7 @@ function initVideoPlayers() {
                 
             case 'baidu':
                 const baiduUrl = videoId; // 这里videoId实际上是URL
-                const extractCode = platform === 'baidu' ? videoCard.getAttribute('data-extract-code') : '';
+                const extractCode = videoCard.getAttribute('data-extract-code') || '';
                 embedCode = `
                     <div class="platform-notice">
                         <div class="notice-icon">
@@ -403,8 +521,8 @@ function initVideoPlayers() {
         // 生成视频描述
         description = `
             <h4>${videoTitle}</h4>
-            <p><strong>创作亮点:</strong> ${videoHighlights}</p>
-            <p><strong>技术特点:</strong> ${videoTech}</p>
+            ${videoHighlights ? `<p><strong>创作亮点:</strong> ${videoHighlights}</p>` : ''}
+            ${videoTech ? `<p><strong>技术特点:</strong> ${videoTech}</p>` : ''}
         `;
         
         container.innerHTML = embedCode;
@@ -461,95 +579,101 @@ function initVideoPlayers() {
         });
     });
     
-    // 添加平台通知的CSS样式
-    const style = document.createElement('style');
-    style.textContent = `
-        .platform-notice {
-            padding: 40px 20px;
-            text-align: center;
-            background: var(--card-bg);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .notice-icon {
-            font-size: 48px;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-        
-        .platform-notice h3 {
-            color: var(--text-color);
-            margin-bottom: 10px;
-        }
-        
-        .platform-notice p {
-            color: var(--text-secondary);
-            margin-bottom: 25px;
-            line-height: 1.5;
-        }
-        
-        .notice-actions {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .notice-btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 10px 20px;
-            background: var(--primary-color);
-            color: white;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .notice-btn:hover {
-            background: var(--secondary-color);
-            transform: translateY(-2px);
-        }
-        
-        .notice-btn.secondary {
-            background: rgba(0, 0, 0, 0.1);
-            color: var(--text-color);
-        }
-        
-        .notice-btn.secondary:hover {
-            background: rgba(0, 0, 0, 0.2);
-        }
-        
-        .notice-btn i {
-            margin-right: 8px;
-        }
-        
-        .notice-tip {
-            font-size: 0.9rem;
-            color: var(--accent-color);
-            margin-top: 20px;
-        }
-        
-        .notice-tip i {
-            margin-right: 5px;
-        }
-        
-        .notice-info {
-            background: rgba(0, 0, 0, 0.05);
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        
-        .notice-info p {
-            margin-bottom: 5px;
-        }
-    `;
-    document.head.appendChild(style);
+    // 添加平台通知的CSS样式（如果尚未添加）
+    if (!document.querySelector('#platform-notice-styles')) {
+        const style = document.createElement('style');
+        style.id = 'platform-notice-styles';
+        style.textContent = `
+            .platform-notice {
+                padding: 40px 20px;
+                text-align: center;
+                background: var(--card-bg);
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            .notice-icon {
+                font-size: 48px;
+                color: var(--primary-color);
+                margin-bottom: 20px;
+            }
+            
+            .platform-notice h3 {
+                color: var(--text-color);
+                margin-bottom: 10px;
+            }
+            
+            .platform-notice p {
+                color: var(--text-secondary);
+                margin-bottom: 25px;
+                line-height: 1.5;
+            }
+            
+            .notice-actions {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+                margin-bottom: 20px;
+                flex-wrap: wrap;
+            }
+            
+            .notice-btn {
+                display: inline-flex;
+                align-items: center;
+                padding: 10px 20px;
+                background: var(--primary-color);
+                color: white;
+                border-radius: 5px;
+                text-decoration: none;
+                font-weight: 500;
+                transition: all 0.3s ease;
+                border: none;
+                cursor: pointer;
+                font-size: 0.95rem;
+            }
+            
+            .notice-btn:hover {
+                background: var(--secondary-color);
+                transform: translateY(-2px);
+            }
+            
+            .notice-btn.secondary {
+                background: rgba(0, 0, 0, 0.1);
+                color: var(--text-color);
+            }
+            
+            .notice-btn.secondary:hover {
+                background: rgba(0, 0, 0, 0.2);
+            }
+            
+            .notice-btn i {
+                margin-right: 8px;
+            }
+            
+            .notice-tip {
+                font-size: 0.9rem;
+                color: var(--accent-color);
+                margin-top: 20px;
+            }
+            
+            .notice-tip i {
+                margin-right: 5px;
+            }
+            
+            .notice-info {
+                background: rgba(0, 0, 0, 0.05);
+                padding: 15px;
+                border-radius: 5px;
+                margin-bottom: 20px;
+                text-align: left;
+            }
+            
+            .notice-info p {
+                margin-bottom: 5px;
+            }
+        `;
+        document.head.appendChild(style);
+    }
 }
 
 // 全局函数供HTML调用

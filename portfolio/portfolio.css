@@ -6,9 +6,26 @@
     position: relative;
     overflow: hidden;
     background: linear-gradient(135deg, 
-        rgba(74, 110, 224, 0.1) 0%, 
-        rgba(108, 92, 231, 0.1) 50%, 
-        rgba(0, 206, 201, 0.05) 100%);
+        rgba(74, 110, 224, 0.15) 0%, 
+        rgba(108, 92, 231, 0.15) 50%, 
+        rgba(0, 206, 201, 0.08) 100%);
+    background-size: 300% 300%;
+    animation: gradientBackground 12s ease infinite;
+}
+
+@keyframes gradientBackground {
+    0% {
+        background-position: 0% 50%;
+        background-size: 300% 300%;
+    }
+    50% {
+        background-position: 100% 50%;
+        background-size: 400% 400%;
+    }
+    100% {
+        background-position: 0% 50%;
+        background-size: 300% 300%;
+    }
 }
 
 .portfolio-hero::before {
@@ -19,10 +36,30 @@
     width: 100%;
     height: 100%;
     background-image: 
-        radial-gradient(circle at 10% 20%, rgba(74, 110, 224, 0.05) 0%, transparent 20%),
-        radial-gradient(circle at 90% 30%, rgba(108, 92, 231, 0.05) 0%, transparent 20%),
-        radial-gradient(circle at 50% 80%, rgba(0, 206, 201, 0.05) 0%, transparent 20%);
+        radial-gradient(circle at 10% 20%, rgba(74, 110, 224, 0.1) 0%, transparent 25%),
+        radial-gradient(circle at 90% 30%, rgba(108, 92, 231, 0.1) 0%, transparent 25%),
+        radial-gradient(circle at 50% 80%, rgba(0, 206, 201, 0.08) 0%, transparent 25%);
     z-index: 0;
+    animation: floatingBackground 15s ease-in-out infinite;
+}
+
+@keyframes floatingBackground {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.6;
+    }
+    25% {
+        transform: translate(-30px, 20px) scale(1.05);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translate(20px, -30px) scale(0.95);
+        opacity: 0.7;
+    }
+    75% {
+        transform: translate(-20px, -20px) scale(1.02);
+        opacity: 0.8;
+    }
 }
 
 .portfolio-hero-content {
@@ -51,6 +88,16 @@
     font-weight: 500;
     margin-bottom: 30px;
     box-shadow: 0 5px 15px rgba(74, 110, 224, 0.2);
+    animation: badgePulse 2s infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% {
+        box-shadow: 0 5px 15px rgba(74, 110, 224, 0.2);
+    }
+    50% {
+        box-shadow: 0 5px 25px rgba(74, 110, 224, 0.4);
+    }
 }
 
 .hero-badge i {
@@ -240,19 +287,115 @@
     flex: 0 0 140px;
 }
 
+/* ========== 技能条动画增强 ========== */
 .skill-bar {
     flex: 1;
     height: 8px;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(0, 0, 0, 0.08);
     border-radius: 4px;
     overflow: hidden;
+    position: relative;
+    transition: all 0.5s ease;
+    opacity: 0.6;
+    transform: scaleY(0.8);
+}
+
+/* 技能条背景动画 */
+.skill-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.4), 
+        transparent);
+    animation: skillBarShimmer 2.5s infinite;
+    border-radius: 4px;
+    z-index: 0;
+}
+
+@keyframes skillBarShimmer {
+    0% {
+        left: -100%;
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.6;
+    }
+    100% {
+        left: 100%;
+        opacity: 0.3;
+    }
 }
 
 .skill-level {
     height: 100%;
     background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
     border-radius: 4px;
-    transition: width 1s ease-in-out;
+    position: relative;
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease;
+    z-index: 1;
+}
+
+/* 彩色进度条加载完成时的状态 */
+.skill-level.animated {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+/* 彩色进度条内部的发光效果 */
+.skill-level::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.5) 50%, 
+        transparent 100%);
+    animation: shimmer 3s infinite;
+    border-radius: 4px;
+    filter: blur(1px);
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0.5;
+    }
+}
+
+/* 技能条悬停效果 */
+.skill-bar:hover {
+    transform: scaleY(1.2);
+    box-shadow: 0 0 15px rgba(74, 110, 224, 0.3);
+    background-color: rgba(0, 0, 0, 0.12);
+}
+
+/* 技能项整体悬停效果 */
+.skill-item:hover .skill-bar {
+    transform: scaleY(1.2);
+    box-shadow: 0 0 15px rgba(74, 110, 224, 0.3);
+}
+
+.skill-item:hover .skill-level {
+    transform: scaleX(1.02);
+    filter: brightness(1.1);
 }
 
 .skill-level-label {
@@ -280,6 +423,16 @@
     color: var(--text-secondary);
     margin-bottom: 10px;
     opacity: 0.8;
+    animation: textPulse 2s infinite;
+}
+
+@keyframes textPulse {
+    0%, 100% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 1;
+    }
 }
 
 .scroll-arrow {
@@ -291,7 +444,16 @@
     align-items: center;
     justify-content: center;
     color: var(--primary-color);
-    animation: bounce 2s infinite;
+    animation: bounce 2s infinite, arrowGlow 3s infinite;
+}
+
+@keyframes arrowGlow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(74, 110, 224, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(74, 110, 224, 0.6);
+    }
 }
 
 @keyframes bounce {
@@ -320,40 +482,291 @@
 .decoration-circle {
     position: absolute;
     border-radius: 50%;
-    background: linear-gradient(135deg, 
-        rgba(74, 110, 224, 0.1), 
-        rgba(108, 92, 231, 0.05));
+    filter: blur(20px);
 }
 
 .circle-1 {
-    width: 300px;
-    height: 300px;
-    top: -150px;
-    right: -150px;
-    opacity: 0.5;
+    width: 400px;
+    height: 400px;
+    top: -200px;
+    right: -200px;
+    background: radial-gradient(circle, rgba(74, 110, 224, 0.3), transparent 70%);
+    animation: rotateCircle 25s linear infinite, pulseCircle1 8s ease-in-out infinite;
 }
 
 .circle-2 {
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
     bottom: 100px;
-    left: -100px;
-    opacity: 0.3;
+    left: -150px;
+    background: radial-gradient(circle, rgba(108, 92, 231, 0.25), transparent 70%);
+    animation: rotateCircleReverse 20s linear infinite, pulseCircle2 6s ease-in-out infinite;
 }
 
 .circle-3 {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     top: 200px;
     right: 30%;
-    opacity: 0.4;
+    background: radial-gradient(circle, rgba(0, 206, 201, 0.2), transparent 70%);
+    animation: rotateCircle 18s linear infinite, pulseCircle3 10s ease-in-out infinite;
+}
+
+@keyframes rotateCircle {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotateCircleReverse {
+    0% {
+        transform: rotate(360deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes pulseCircle1 {
+    0%, 100% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.1);
+    }
+}
+
+@keyframes pulseCircle2 {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1) rotate(0deg);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.15) rotate(180deg);
+    }
+}
+
+@keyframes pulseCircle3 {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1) translateY(0);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.05) translateY(-20px);
+    }
+}
+
+/* ========== 作品集区域动态背景效果 ========== */
+.portfolio-section {
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 视频剪辑作品区域动态背景 */
+#video-editing {
+    background-color: var(--card-bg);
+    position: relative;
+}
+
+#video-editing::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(255, 0, 80, 0.08) 0%, transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(0, 0, 255, 0.08) 0%, transparent 30%),
+        radial-gradient(circle at 40% 80%, rgba(255, 90, 0, 0.08) 0%, transparent 30%);
+    z-index: 0;
+    animation: videoBgPulse 15s ease-in-out infinite alternate;
+}
+
+@keyframes videoBgPulse {
+    0% {
+        opacity: 0.4;
+        transform: scale(1) rotate(0deg);
+        filter: hue-rotate(0deg);
+    }
+    33% {
+        opacity: 0.6;
+        transform: scale(1.03) rotate(1deg);
+        filter: hue-rotate(90deg);
+    }
+    66% {
+        opacity: 0.5;
+        transform: scale(0.98) rotate(-1deg);
+        filter: hue-rotate(180deg);
+    }
+    100% {
+        opacity: 0.4;
+        transform: scale(1) rotate(0deg);
+        filter: hue-rotate(360deg);
+    }
+}
+
+#video-editing::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 0, 80, 0.6), 
+        rgba(0, 0, 255, 0.6),
+        rgba(255, 90, 0, 0.6),
+        transparent);
+    z-index: 0;
+    animation: videoScanline 6s linear infinite;
+    filter: drop-shadow(0 0 10px rgba(255, 0, 80, 0.5));
+}
+
+@keyframes videoScanline {
+    0% {
+        left: -100%;
+        top: 10%;
+        opacity: 0.8;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        left: 100%;
+        top: 10%;
+        opacity: 0.8;
+    }
+}
+
+/* 网页作品区域动态背景 */
+#web-projects {
+    background-color: var(--body-bg);
+}
+
+#web-projects::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(45deg, 
+            rgba(74, 110, 224, 0.05) 0%, 
+            transparent 50%, 
+            rgba(108, 92, 231, 0.05) 100%),
+        repeating-linear-gradient(0deg, 
+            transparent, 
+            transparent 2px, 
+            rgba(74, 110, 224, 0.02) 2px, 
+            rgba(74, 110, 224, 0.02) 4px);
+    z-index: 0;
+    animation: webBgPattern 30s linear infinite;
+    background-size: 200% 200%, 100% 100%;
+}
+
+@keyframes webBgPattern {
+    0% {
+        background-position: 0% 0%, 0 0;
+    }
+    100% {
+        background-position: 200% 200%, 0 0;
+    }
+}
+
+#web-projects::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 10% 90%, rgba(74, 110, 224, 0.1) 0%, transparent 15%),
+        radial-gradient(circle at 90% 10%, rgba(108, 92, 231, 0.1) 0%, transparent 15%),
+        radial-gradient(circle at 50% 50%, rgba(0, 206, 201, 0.05) 0%, transparent 20%);
+    z-index: 0;
+    animation: webGridPulse 15s ease-in-out infinite;
+}
+
+@keyframes webGridPulse {
+    0%, 100% {
+        opacity: 0.3;
+        transform: translate(0, 0);
+    }
+    25% {
+        opacity: 0.4;
+        transform: translate(10px, -10px);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translate(-10px, 10px);
+    }
+    75% {
+        opacity: 0.4;
+        transform: translate(-5px, -5px);
+    }
+}
+
+/* 确保内容在背景之上 */
+.portfolio-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* ========== 为每个分类组添加动态效果 ========== */
+.category-group {
+    position: relative;
+    padding: 30px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 40px;
+    overflow: hidden;
+}
+
+.category-group::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, 
+        var(--primary-color), 
+        var(--secondary-color), 
+        var(--accent-color));
+    transform: translateX(-100%);
+    animation: categorySlide 3s ease-in-out infinite;
+}
+
+@keyframes categorySlide {
+    0% {
+        transform: translateX(-100%);
+    }
+    50% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
 }
 
 /* ========== 作品集区域 ========== */
-.portfolio-section {
-    padding: 80px 0;
-}
-
 .portfolio-section:nth-child(even) {
     background-color: var(--body-bg);
 }
@@ -370,7 +783,7 @@
 .category-title {
     font-size: 1.5rem;
     color: var(--text-color);
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     padding-bottom: 10px;
     border-bottom: 2px solid var(--primary-color);
     display: flex;
@@ -383,17 +796,88 @@
     color: var(--primary-color);
 }
 
+.category-description {
+    color: var(--text-secondary);
+    margin-bottom: 25px;
+    font-size: 1rem;
+    padding-left: 5px;
+}
+
 /* 移除分类计数 */
 .category-count {
     display: none;
 }
 
 .subcategory-title {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: var(--text-color);
     margin: 30px 0 20px;
-    padding-left: 10px;
+    padding-left: 15px;
     border-left: 4px solid var(--accent-color);
+    display: flex;
+    align-items: center;
+}
+
+.subcategory-title i {
+    margin-right: 10px;
+    font-size: 1.1rem;
+    color: var(--accent-color);
+}
+
+.subsubcategory-title {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin: 25px 0 15px;
+    padding-left: 20px;
+    border-left: 3px solid var(--gray-color);
+    opacity: 0.9;
+}
+
+/* ========== 回到顶部按钮 ========== */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: var(--shadow);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    animation: buttonPulse 3s infinite;
+}
+
+@keyframes buttonPulse {
+    0%, 100% {
+        box-shadow: 0 5px 15px rgba(74, 110, 224, 0.3);
+    }
+    50% {
+        box-shadow: 0 5px 25px rgba(74, 110, 224, 0.6);
+    }
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 10px 25px rgba(74, 110, 224, 0.4);
+    animation: none;
 }
 
 /* ========== 新版视频卡片设计 ========== */
@@ -412,6 +896,16 @@
 .video-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.video-card:hover .video-preview {
+    transform: scale(1.05);
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.video-card:hover .video-card-header {
+    background-size: 400% 400%;
+    animation: gradientShift 1.5s ease infinite;
 }
 
 .video-card-header {
@@ -585,6 +1079,7 @@
 .web-project-header {
     background-size: 200% 200%;
     animation: gradientShift 3s ease infinite;
+    position: relative; /* 添加相对定位 */
 }
 
 /* 渐变动画 */
@@ -715,6 +1210,25 @@
     font-weight: 500;
     border: 1px solid rgba(74, 110, 224, 0.2);
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.tech-tag::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.tech-tag:hover::after {
+    transform: scaleX(1);
 }
 
 .tech-tag:hover {
@@ -894,9 +1408,47 @@
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
+.web-project-card:hover .web-project-header {
+    background-size: 400% 400%;
+    animation: gradientShift 1.5s ease infinite;
+}
+
 .web-project-header {
     padding: 15px 20px;
     color: white;
+    position: relative; /* 添加相对定位 */
+}
+
+.web-project-header .video-platform {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.web-project-header .video-platform i {
+    margin-right: 8px;
+    font-size: 1.1rem;
+}
+
+/* 修复网页作品卡片的视频统计信息位置 */
+.web-project-header .video-stats {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: white; /* 确保文字颜色为白色 */
+}
+
+.web-project-header .video-stats i {
+    font-size: 0.9rem;
 }
 
 .web-project-content {
@@ -932,6 +1484,37 @@
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 500;
+    position: relative;
+    animation: tagFloat 6s ease-in-out infinite;
+}
+
+.project-tag:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.project-tag:nth-child(3) {
+    animation-delay: 1s;
+}
+
+.project-tag:nth-child(4) {
+    animation-delay: 1.5s;
+}
+
+.project-tag:nth-child(5) {
+    animation-delay: 2s;
+}
+
+.project-tag:nth-child(6) {
+    animation-delay: 2.5s;
+}
+
+@keyframes tagFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
 }
 
 .web-project-footer {
@@ -1126,6 +1709,184 @@
     margin-top: 20px;
 }
 
+/* ========== 平台通知样式 ========== */
+.platform-notice {
+    padding: 40px 20px;
+    text-align: center;
+    background: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.notice-icon {
+    font-size: 48px;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.platform-notice h3 {
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+.platform-notice p {
+    color: var(--text-secondary);
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.notice-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.notice-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.notice-btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.notice-btn.secondary {
+    background: rgba(0, 0, 0, 0.1);
+    color: var(--text-color);
+}
+
+.notice-btn.secondary:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.notice-btn i {
+    margin-right: 8px;
+}
+
+.notice-tip {
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    margin-top: 20px;
+}
+
+.notice-tip i {
+    margin-right: 5px;
+}
+
+.notice-info {
+    background: rgba(0, 0, 0, 0.05);
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.notice-info p {
+    margin-bottom: 5px;
+}
+
+/* ========== 页脚动态效果 ========== */
+footer {
+    position: relative;
+    overflow: hidden;
+    padding: 40px 0;
+    background-color: var(--card-bg);
+    text-align: center;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        var(--primary-color), 
+        var(--secondary-color), 
+        var(--accent-color),
+        var(--primary-color));
+    background-size: 200% 100%;
+    animation: footerFlow 10s linear infinite;
+}
+
+@keyframes footerFlow {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 200% 0%;
+    }
+}
+
+/* ========== 新增技能条动画样式 ========== */
+.skill-bar-animate-in {
+    animation: skillBarEntrance 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes skillBarEntrance {
+    0% {
+        transform: scaleY(0.8) translateX(-20px);
+        opacity: 0.5;
+        filter: blur(2px);
+    }
+    50% {
+        transform: scaleY(1.1) translateX(0);
+        opacity: 0.8;
+        filter: blur(0px);
+    }
+    100% {
+        transform: scaleY(1) translateX(0);
+        opacity: 1;
+        filter: blur(0px);
+    }
+}
+
+@keyframes skillBarPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 rgba(74, 110, 224, 0);
+        transform: scaleY(1);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(74, 110, 224, 0.5);
+        transform: scaleY(1.15);
+    }
+}
+
+/* 技能条动画完成后的状态 */
+.skill-bar-animated {
+    background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 
+        inset 0 1px 3px rgba(0, 0, 0, 0.1),
+        0 2px 8px rgba(74, 110, 224, 0.1);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* 深色模式下的技能条调整 */
+[data-theme="dark"] .skill-bar {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .skill-bar-animated {
+    background-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 
+        inset 0 1px 3px rgba(255, 255, 255, 0.05),
+        0 2px 8px rgba(74, 110, 224, 0.2);
+}
+
 /* ========== 响应式设计 ========== */
 @media (max-width: 1100px) {
     .portfolio-hero-content {
@@ -1225,6 +1986,24 @@
     
     .web-project-footer {
         flex-direction: column;
+    }
+    
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+    
+    /* 移动端修复网页作品卡片标签 */
+    .web-project-header .video-stats {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin-top: 10px;
+        display: inline-flex;
+        align-self: flex-start;
     }
 }
 

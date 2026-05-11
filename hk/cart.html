@@ -42,13 +42,13 @@
     <meta property="og:type" content="website">
     
     <!-- 引入样式 -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=20260511-nav1">
     <!-- 引入购物车专用样式 -->
-    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="cart.css?v=20260511-claim-modal3">
     <!-- 引入SheetJS库用于Excel导出 -->
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <!-- 引入Gist工具库 -->
-    <script src="gist-utils.js"></script>
+    <script src="gist-utils.js?v=20260511-link-local1"></script>
 </head>
 <body>
     <!-- 顶部控制栏 -->
@@ -59,6 +59,10 @@
                 <span class="theme-icon">🌙</span> 深色模式
             </button>
         </div>
+
+        <nav class="page-nav" aria-label="页面导航">
+            <a class="page-nav-link primary" href="index.html">返回谷子主页</a>
+        </nav>
         
         <!-- 右上角：登录按钮 -->
         <div id="authButtons" class="auth-buttons">
@@ -235,7 +239,7 @@
                 <button class="btn quick-checkout-btn" onclick="quickClaimCart()">快速认领</button>
             </div>
             <div class="claim-tips">
-                💡 提示：点击"确认认领购物车"会显示详细预览，点击"快速认领"会直接确认认领
+                💡 提示：点击"确认认领购物车"会显示详细预览，点击"快速认领"会直接进入认领流程
             </div>
         </div>
         
@@ -402,6 +406,7 @@
             <div class="auto-fill-confirm-actions">
                 <button class="btn btn-secondary" onclick="closeAutoFillConfirm()">取消</button>
                 <button class="btn random-refill-btn" id="randomRefillBtn" onclick="reRandomAutoFill()" style="display: none;">重新随机</button>
+                <button class="btn regenerate-solution-btn" id="regenerateSolutionBtn" onclick="regenerateSolution()" style="display: none;">换一个方案</button>
                 <button class="btn btn-success" onclick="applyAutoFill()">确认补齐</button>
             </div>
         </div>
@@ -414,6 +419,26 @@
             <h3>购物车详情</h3>
             <div class="cart-detail-modal-body" id="cartDetailModalBody">
                 <!-- 购物车详情将在这里动态生成 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 认领确认弹窗 -->
+    <div id="cartClaimModal" class="cart-claim-modal">
+        <div class="cart-claim-content">
+            <button class="cart-claim-close" onclick="closeCartClaimModal()">×</button>
+            <div class="cart-claim-title" id="cartClaimTitle">确认认领</div>
+            <div class="cart-claim-summary" id="cartClaimSummary">共 0 种，0 点，合计 ¥0.00</div>
+            <div class="cart-claim-message" id="cartClaimMessage">请确认认领人 CN 后继续。</div>
+
+            <div class="cart-claim-input-group" id="cartClaimInputGroup">
+                <label for="cartClaimCnInput">认领人 CN</label>
+                <input type="text" id="cartClaimCnInput" class="form-control" placeholder="请输入 CN">
+            </div>
+
+            <div class="cart-claim-actions">
+                <button class="btn btn-secondary" onclick="closeCartClaimModal()">取消</button>
+                <button class="btn btn-success" id="cartClaimConfirmBtn" onclick="submitCartClaimFromModal()">确认认领</button>
             </div>
         </div>
     </div>
@@ -474,6 +499,6 @@
         </svg>
     </button>
     
-    <script src="cart.js"></script>
+    <script src="cart.js?v=20260511-claim-modal3"></script>
 </body>
 </html>
