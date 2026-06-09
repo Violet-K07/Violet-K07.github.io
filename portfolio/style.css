@@ -1,8 +1,8 @@
 /* 基础变量定义 */
 :root {
-    --primary-color: #4a6ee0;
-    --secondary-color: #6c5ce7;
-    --accent-color: #00cec9;
+    --primary-color: #7c3aed;
+    --secondary-color: #a855f7;
+    --accent-color: #f2c14e;
     --success-color: #28a745;
     --dark-color: #2d3436;
     --light-color: #f9f9f9;
@@ -13,7 +13,7 @@
     --container-padding: 0 20px;
     --section-padding: 100px 0;
     --card-bg: white;
-    --body-bg: #f8fafc;
+    --body-bg: #fbf8ff;
     --header-bg: rgba(255, 255, 255, 0.95);
     --text-color: var(--dark-color);
     --text-secondary: var(--gray-color);
@@ -21,9 +21,9 @@
 
 /* 深色模式变量 */
 [data-theme="dark"] {
-    --primary-color: #6c8eff;
-    --secondary-color: #8875ff;
-    --accent-color: #00e5d4;
+    --primary-color: #c4a1ff;
+    --secondary-color: #a78bfa;
+    --accent-color: #f2c14e;
     --success-color: #20c997;
     --dark-color: #f8f9fa;
     --light-color: #121212;

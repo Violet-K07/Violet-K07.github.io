@@ -170,11 +170,11 @@ function initScrollIndicator() {
     const scrollIndicator = document.querySelector('.scroll-indicator');
     if (scrollIndicator) {
         scrollIndicator.addEventListener('click', function() {
-            // 滚动到视频剪辑部分
-            const videoSection = document.getElementById('video-editing');
-            if (videoSection) {
+            const targetId = this.getAttribute('data-scroll-target') || 'video-editing';
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
                 window.scrollTo({
-                    top: videoSection.offsetTop - 80,
+                    top: targetSection.offsetTop - 80,
                     behavior: 'smooth'
                 });
             }
