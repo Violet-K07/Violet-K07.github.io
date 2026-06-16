@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initSkillBars();
     
     // 初始化视频播放功能
+    initInlineVideoEmbeds();
     initVideoPlayers();
     
     // 初始化回到顶部按钮
@@ -340,6 +341,128 @@ function initBackToTop() {
     });
 }
 
+function getDouyinExternalUrl(videoId) {
+    return `https://v.douyin.com/${videoId}/`;
+}
+
+function getDouyinPlayableSource(sourceElement) {
+    if (!sourceElement) return null;
+
+    const localVideo = sourceElement.getAttribute('data-local-video');
+    if (localVideo) {
+        return {
+            type: 'video',
+            src: localVideo
+        };
+    }
+
+    const embedSrc = sourceElement.getAttribute('data-embed-src');
+    if (embedSrc) {
+        return {
+            type: 'iframe',
+            src: embedSrc
+        };
+    }
+
+    const officialVideoId = sourceElement.getAttribute('data-official-video-id');
+    if (officialVideoId) {
+        return {
+            type: 'iframe',
+            src: `https://open.douyin.com/player/video?vid=${officialVideoId}&autoplay=0`
+        };
+    }
+
+    return null;
+}
+
+function createVideoIframe(src, title, platform) {
+    const iframe = document.createElement('iframe');
+    iframe.src = src;
+    iframe.title = title || '内嵌视频播放器';
+    iframe.loading = 'lazy';
+    iframe.allowFullscreen = true;
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+    iframe.setAttribute('referrerpolicy', platform === 'douyin' ? 'unsafe-url' : 'no-referrer-when-downgrade');
+
+    if (platform === 'bilibili') {
+        iframe.setAttribute('scrolling', 'no');
+        iframe.setAttribute('border', '0');
+        iframe.setAttribute('frameborder', 'no');
+        iframe.setAttribute('framespacing', '0');
+    }
+
+    return iframe;
+}
+
+function createInlineVideoElement(src, title) {
+    const video = document.createElement('video');
+    video.src = src;
+    video.title = title || '本地视频';
+    video.controls = true;
+    video.preload = 'metadata';
+    video.playsInline = true;
+    return video;
+}
+
+function createDouyinFallback(preview, videoId) {
+    const externalUrl = getDouyinExternalUrl(videoId);
+    preview.innerHTML = `
+        <div class="inline-video-fallback">
+            <div class="inline-video-fallback-icon">
+                <i class="fab fa-tiktok"></i>
+            </div>
+            <strong>抖音视频暂不能直接内嵌播放</strong>
+            <span>抖音短链页会拦截 iframe，官方可播放 iframe 需要开放平台返回的代码，或使用原视频文件。</span>
+            <a href="${externalUrl}" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i> 打开原视频
+            </a>
+        </div>
+    `;
+    preview.classList.add('inline-video-embed', 'inline-video-embed-douyin', 'inline-video-embed-fallback');
+    preview.setAttribute('data-inline-embedded', 'notice');
+}
+
+function initInlineVideoEmbeds() {
+    const inlineTargets = document.querySelectorAll('.video-preview[data-platform="bilibili"], .video-preview[data-platform="douyin"]');
+
+    inlineTargets.forEach(preview => {
+        const videoId = preview.getAttribute('data-video-id');
+        const platform = preview.getAttribute('data-platform');
+        const videoCard = preview.closest('.video-card');
+        const title = videoCard?.querySelector('.video-title')?.textContent.trim() || '作品视频';
+        let src = '';
+
+        if (platform === 'bilibili' && videoId) {
+            src = `https://player.bilibili.com/player.html?bvid=${videoId}&page=1&high_quality=1`;
+        }
+
+        if (platform === 'douyin' && videoId) {
+            const douyinSource = getDouyinPlayableSource(preview);
+            if (douyinSource) {
+                preview.innerHTML = '';
+                preview.classList.add('inline-video-embed', 'inline-video-embed-douyin');
+                preview.setAttribute('data-inline-embedded', 'true');
+                if (douyinSource.type === 'video') {
+                    preview.appendChild(createInlineVideoElement(douyinSource.src, title));
+                } else {
+                    preview.appendChild(createVideoIframe(douyinSource.src, title, platform));
+                }
+            } else {
+                createDouyinFallback(preview, videoId);
+            }
+
+            return;
+        }
+
+        if (!src) return;
+
+        preview.innerHTML = '';
+        preview.classList.add('inline-video-embed', `inline-video-embed-${platform}`);
+        preview.setAttribute('data-inline-embedded', 'true');
+        preview.appendChild(createVideoIframe(src, title, platform));
+    });
+}
+
 // 初始化视频播放功能
 function initVideoPlayers() {
     const videoPreviews = document.querySelectorAll('.video-preview');
@@ -414,25 +537,33 @@ function initVideoPlayers() {
         // 根据不同平台生成不同的嵌入代码
         switch(platform) {
             case 'douyin':
-                externalUrl = `https://v.douyin.com/${videoId}/`;
-                embedCode = `
-                    <div class="platform-notice">
-                        <div class="notice-icon">
-                            <i class="fab fa-tiktok"></i>
+                externalUrl = getDouyinExternalUrl(videoId);
+                const douyinPreview = videoCard?.querySelector('.video-preview[data-platform="douyin"]');
+                const douyinSource = getDouyinPlayableSource(douyinPreview);
+
+                if (douyinSource?.type === 'video') {
+                    embedCode = `<video src="${douyinSource.src}" controls preload="metadata" playsinline></video>`;
+                } else if (douyinSource?.type === 'iframe') {
+                    embedCode = `<iframe src="${douyinSource.src}" title="抖音内嵌视频" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="unsafe-url" allowfullscreen></iframe>`;
+                } else {
+                    embedCode = `
+                        <div class="platform-notice">
+                            <div class="notice-icon">
+                                <i class="fab fa-tiktok"></i>
+                            </div>
+                            <h3>抖音视频暂不能直接内嵌播放</h3>
+                            <p>当前只有抖音短链。短链页会拦截 iframe，官方可播放 iframe 需要开放平台返回的代码，或使用原视频文件。</p>
+                            <div class="notice-actions">
+                                <a href="${externalUrl}" target="_blank" class="notice-btn">
+                                    <i class="fas fa-external-link-alt"></i> 前往抖音观看
+                                </a>
+                                <button class="notice-btn secondary" onclick="copyToClipboard('${externalUrl}'); showNotification('链接已复制到剪贴板！')">
+                                    <i class="fas fa-copy"></i> 复制链接
+                                </button>
+                            </div>
                         </div>
-                        <h3>抖音视频播放提示</h3>
-                        <p>抖音视频需在抖音APP内观看以获得最佳体验</p>
-                        <div class="notice-actions">
-                            <a href="${externalUrl}" target="_blank" class="notice-btn">
-                                <i class="fas fa-external-link-alt"></i> 前往抖音观看
-                            </a>
-                            <button class="notice-btn secondary" onclick="copyToClipboard('${externalUrl}'); showNotification('链接已复制到剪贴板！')">
-                                <i class="fas fa-copy"></i> 复制链接
-                            </button>
-                        </div>
-                        <p class="notice-tip"><i class="fas fa-lightbulb"></i> 提示：复制链接后打开抖音APP即可观看</p>
-                    </div>
-                `;
+                    `;
+                }
                 break;
                 
             case 'kuaishou':
@@ -525,6 +656,7 @@ function initVideoPlayers() {
             ${videoTech ? `<p><strong>技术特点:</strong> ${videoTech}</p>` : ''}
         `;
         
+        container.className = `video-embed-container ${platform === 'douyin' ? 'video-embed-container-vertical' : ''}`;
         container.innerHTML = embedCode;
         descriptionContainer.innerHTML = description;
         externalLink.href = externalUrl;
@@ -536,6 +668,8 @@ function initVideoPlayers() {
     // 为所有预览和按钮添加点击事件
     videoPreviews.forEach(preview => {
         preview.addEventListener('click', () => {
+            if (preview.hasAttribute('data-inline-embedded')) return;
+
             const videoId = preview.getAttribute('data-video-id');
             const platform = preview.getAttribute('data-platform');
             const videoType = preview.getAttribute('data-video-type');
