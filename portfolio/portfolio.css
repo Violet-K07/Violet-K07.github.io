@@ -11,6 +11,11 @@
     --portfolio-border: rgba(88, 28, 135, 0.14);
     --portfolio-border-strong: rgba(88, 28, 135, 0.22);
     --portfolio-shadow: 0 12px 30px rgba(46, 15, 79, 0.08);
+    --portfolio-accent: #7c3aed;
+    --portfolio-accent-strong: #5b21b6;
+    --portfolio-accent-soft: rgba(124, 58, 237, 0.1);
+    --portfolio-accent-border: rgba(124, 58, 237, 0.16);
+    --portfolio-on-accent: #ffffff;
 }
 
 [data-theme="dark"] {
@@ -24,6 +29,11 @@
     --portfolio-border: rgba(196, 161, 255, 0.18);
     --portfolio-border-strong: rgba(196, 161, 255, 0.3);
     --portfolio-shadow: 0 16px 34px rgba(0, 0, 0, 0.28);
+    --portfolio-accent: #c084fc;
+    --portfolio-accent-strong: #e9d5ff;
+    --portfolio-accent-soft: rgba(192, 132, 252, 0.18);
+    --portfolio-accent-border: rgba(216, 180, 254, 0.32);
+    --portfolio-on-accent: #1b1028;
 }
 
 /* ========== 新媒体与 AI 求职首页 ========== */
@@ -53,7 +63,7 @@
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: minmax(0, 1.12fr) minmax(340px, 0.88fr);
+    grid-template-columns: minmax(0, 1.24fr) minmax(320px, 0.76fr);
     gap: 54px;
     align-items: stretch;
 }
@@ -87,8 +97,10 @@
 
 .hero-title-line {
     display: block;
-    max-width: 820px;
-    font-size: clamp(2.7rem, 5.1vw, 5rem);
+    width: fit-content;
+    max-width: 100%;
+    white-space: nowrap;
+    font-size: clamp(2.7rem, 4.8vw, 4.7rem);
     font-weight: 900;
     line-height: 1.04;
     color: var(--portfolio-ink);
@@ -261,9 +273,9 @@
     width: fit-content;
     margin: 0 auto 12px;
     padding: 5px 9px;
-    color: #7c3aed;
-    background: rgba(124, 58, 237, 0.1);
-    border: 1px solid rgba(124, 58, 237, 0.16);
+    color: var(--portfolio-accent-strong);
+    background: var(--portfolio-accent-soft);
+    border: 1px solid var(--portfolio-accent-border);
     border-radius: 5px;
     font-size: 0.78rem;
     font-weight: 900;
@@ -274,11 +286,11 @@
 }
 
 .compact-title h2 {
-    color: #2e0f4f;
+    color: var(--portfolio-ink);
 }
 
 .compact-title h2::after {
-    background: #7c3aed;
+    background: var(--portfolio-accent);
 }
 
 /* ========== 技能条动画增强 ========== */
@@ -647,6 +659,10 @@
 /* 网页作品区域动态背景 */
 #web-projects {
     background-color: var(--body-bg);
+}
+
+.account-operation-section {
+    background-color: var(--portfolio-surface-soft);
 }
 
 #web-projects::before {
@@ -1119,11 +1135,6 @@
     transform: none;
 }
 
-.video-preview.inline-video-embed-douyin {
-    aspect-ratio: 9 / 16;
-    max-height: 560px;
-}
-
 .video-preview.inline-video-embed iframe,
 .video-preview.inline-video-embed video {
     display: block;
@@ -1136,58 +1147,6 @@
 
 .video-card:hover .video-preview.inline-video-embed {
     transform: none;
-}
-
-.inline-video-fallback {
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 18px;
-    text-align: center;
-    color: #ffffff;
-    background:
-        radial-gradient(circle at 50% 15%, rgba(255, 255, 255, 0.18), transparent 32%),
-        linear-gradient(160deg, #0a0612 0%, #2e0f4f 52%, #7c3aed 100%);
-}
-
-.inline-video-fallback-icon {
-    display: flex;
-    width: 46px;
-    height: 46px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.14);
-    font-size: 1.35rem;
-}
-
-.inline-video-fallback strong {
-    font-size: 1rem;
-    line-height: 1.35;
-}
-
-.inline-video-fallback span {
-    max-width: 260px;
-    color: rgba(255, 255, 255, 0.76);
-    font-size: 0.82rem;
-    line-height: 1.55;
-}
-
-.inline-video-fallback a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-    margin-top: 4px;
-    padding: 8px 12px;
-    border-radius: 7px;
-    color: #2e0f4f;
-    background: #ffffff;
-    text-decoration: none;
-    font-weight: 900;
 }
 
 /* ========== 抖音配色方案 - 黑红蓝渐变 ========== */
@@ -1326,20 +1285,36 @@
     transform: translate(-50%, -50%);
     width: 60px;
     height: 60px;
-    background: rgba(255, 255, 255, 0.9);
+    background: linear-gradient(135deg, #ffffff, #f6edff);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--primary-color);
+    color: #5b21b6;
     font-size: 1.5rem;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.82);
+    box-shadow: 0 14px 34px rgba(46, 15, 79, 0.28);
     transition: all 0.3s ease;
     z-index: 2;
 }
 
+.play-button i {
+    display: none;
+}
+
+.play-button::before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    margin-left: 4px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 16px solid currentColor;
+}
+
 .video-preview:hover .play-button {
-    background: white;
+    background: #ffffff;
     transform: translate(-50%, -50%) scale(1.1);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
 }
@@ -1564,24 +1539,6 @@
     border: none;
 }
 
-.video-embed-container.video-embed-container-vertical {
-    width: min(100%, 390px);
-    height: auto;
-    aspect-ratio: 9 / 16;
-    margin: 0 auto 20px;
-    padding-bottom: 0;
-    background: #120621;
-}
-
-.video-embed-container.video-embed-container-vertical iframe,
-.video-embed-container.video-embed-container-vertical video {
-    position: static;
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
 .video-description-modal {
     background: rgba(0, 0, 0, 0.03);
     padding: 20px;
@@ -1790,8 +1747,27 @@
     flex: 1;
 }
 
+[data-theme="dark"] .btn-primary {
+    background-color: #d8b4fe;
+    color: #1b1028;
+}
+
 .btn-primary:hover {
     background-color: var(--secondary-color);
+}
+
+[data-theme="dark"] .btn-primary:hover {
+    background-color: #e9d5ff;
+}
+
+[data-theme="dark"] .watch-video-btn.btn-primary {
+    background-color: #d8b4fe;
+    color: #1b1028;
+}
+
+[data-theme="dark"] .watch-video-btn.btn-primary:hover {
+    background-color: #e9d5ff;
+    color: #1b1028;
 }
 
 .btn-secondary {
@@ -2158,6 +2134,11 @@ footer::before {
         min-height: auto;
     }
 
+    .role-focus-grid,
+    .evidence-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
 }
 
 @media (max-width: 992px) {
@@ -2408,6 +2389,50 @@ footer::before {
     line-height: 1.55;
 }
 
+.project-before-after {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.project-before-after figure {
+    position: relative;
+}
+
+.project-before-after figure::before {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+    padding: 5px 9px;
+    border-radius: 999px;
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    box-shadow: 0 8px 18px rgba(46, 15, 79, 0.16);
+}
+
+.project-before-after figure:first-child::before {
+    content: "P1 · 原工具";
+    background: rgba(71, 65, 82, 0.78);
+}
+
+.project-before-after figure:last-child::before {
+    content: "P2 · VocalStudio Lab";
+    background: linear-gradient(135deg, #6d28d9, #a855f7);
+}
+
+.project-before-after img {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: top left;
+}
+
+.project-before-after figcaption strong {
+    color: var(--primary-color);
+}
+
 .project-screenshot-main img {
     max-height: 520px;
     object-fit: cover;
@@ -2439,17 +2464,21 @@ footer::before {
     background: var(--portfolio-card);
 }
 
+.role-focus-section .section-title p {
+    color: var(--portfolio-text);
+}
+
 .role-focus-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
 }
 
 .role-focus-card {
     position: relative;
     overflow: hidden;
-    min-height: 260px;
-    padding: 24px;
+    min-height: 250px;
+    padding: 22px;
     border-radius: 8px;
     background: var(--portfolio-surface);
     box-shadow: none;
@@ -2463,7 +2492,7 @@ footer::before {
     left: 0;
     width: 100%;
     height: 5px;
-    background: #7c3aed;
+    background: linear-gradient(90deg, var(--portfolio-accent), var(--portfolio-accent-strong));
 }
 
 .role-focus-icon {
@@ -2474,14 +2503,38 @@ footer::before {
     justify-content: center;
     margin-bottom: 14px;
     border-radius: 6px;
-    color: #ffffff;
-    background: #7c3aed;
+    color: var(--portfolio-on-accent);
+    background: linear-gradient(135deg, var(--portfolio-accent), var(--portfolio-accent-strong));
+    box-shadow: 0 12px 26px color-mix(in srgb, var(--portfolio-accent) 28%, transparent);
+    font-size: 0.9rem;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+}
+
+.role-focus-icon i {
+    display: none;
+}
+
+.role-focus-card:nth-child(1) .role-focus-icon::after {
+    content: "01";
+}
+
+.role-focus-card:nth-child(2) .role-focus-icon::after {
+    content: "02";
+}
+
+.role-focus-card:nth-child(3) .role-focus-icon::after {
+    content: "03";
+}
+
+.role-focus-card:nth-child(4) .role-focus-icon::after {
+    content: "04";
 }
 
 .role-focus-card > span {
     display: inline-flex;
     margin-bottom: 12px;
-    color: #7c3aed;
+    color: var(--portfolio-accent-strong);
     font-size: 0.82rem;
     font-weight: 900;
 }
@@ -2499,7 +2552,7 @@ footer::before {
 
 .evidence-strip {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 14px;
     margin-top: 18px;
 }
@@ -2528,7 +2581,7 @@ footer::before {
 
 .evidence-strip strong {
     margin-bottom: 8px;
-    color: #7c3aed;
+    color: var(--portfolio-accent-strong);
     font-size: 1.02rem;
 }
 
@@ -2753,52 +2806,6 @@ footer::before {
     object-fit: contain;
 }
 
-.aigc-output-board {
-    display: grid;
-    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-    gap: 14px;
-    align-items: center;
-    margin-top: 18px;
-    padding: 18px;
-    border-radius: 8px;
-    background: var(--portfolio-card);
-    border: 1px solid var(--portfolio-border);
-    box-shadow: var(--portfolio-shadow);
-}
-
-.aigc-output-copy h3 {
-    margin-bottom: 8px;
-    color: var(--portfolio-ink);
-}
-
-.aigc-output-copy p {
-    margin: 0;
-    color: var(--portfolio-muted);
-    line-height: 1.7;
-}
-
-.aigc-output-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 10px;
-}
-
-.aigc-output-list div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 68px;
-    padding: 12px;
-    text-align: center;
-    color: var(--portfolio-ink);
-    background: var(--portfolio-surface-strong);
-    border: 1px solid var(--portfolio-border);
-    border-radius: 6px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    line-height: 1.5;
-}
-
 @media (max-width: 992px) {
     .project-card-featured {
         grid-column: auto;
@@ -2816,6 +2823,10 @@ footer::before {
         grid-template-columns: 1fr;
     }
 
+    .project-before-after {
+        grid-template-columns: 1fr;
+    }
+
     .role-focus-grid {
         grid-template-columns: 1fr;
     }
@@ -2829,9 +2840,7 @@ footer::before {
     }
 
     .account-operation-card,
-    .aigc-video-case,
-    .aigc-output-board,
-    .aigc-output-list {
+    .aigc-video-case {
         grid-template-columns: 1fr;
     }
 }
@@ -2865,6 +2874,19 @@ footer::before {
     .aigc-video-pair {
         grid-template-columns: 1fr;
     }
+}
+
+/* 深色模式可读性兜底：视频按钮必须稳定可见 */
+[data-theme="dark"] .watch-video-btn.btn-primary,
+[data-theme="dark"] button.watch-video-btn.btn-primary {
+    background-color: #d8b4fe !important;
+    color: #1b1028 !important;
+}
+
+[data-theme="dark"] .watch-video-btn.btn-primary:hover,
+[data-theme="dark"] button.watch-video-btn.btn-primary:hover {
+    background-color: #e9d5ff !important;
+    color: #1b1028 !important;
 }
 
 @media (max-width: 480px) {
