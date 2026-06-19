@@ -55,6 +55,7 @@
     pointer-events: none;
     background: linear-gradient(115deg, rgba(124, 58, 237, 0.14), transparent 38%, rgba(242, 193, 78, 0.12));
     z-index: 0;
+    animation: heroAuraDrift 12s ease-in-out infinite alternate;
 }
 
 .portfolio-hero-content {
@@ -88,6 +89,7 @@
     margin-bottom: 22px;
     border: 1px solid var(--portfolio-border-strong);
     box-shadow: var(--portfolio-shadow);
+    animation: heroLiftIn 0.7s cubic-bezier(0.19, 1, 0.22, 1) both;
 }
 
 .hero-badge i {
@@ -105,6 +107,7 @@
     line-height: 1.04;
     color: var(--portfolio-ink);
     margin-bottom: 8px;
+    animation: heroTitleIn 0.82s cubic-bezier(0.19, 1, 0.22, 1) both;
 }
 
 .hero-title-line:first-child {
@@ -113,12 +116,17 @@
     -webkit-text-fill-color: currentColor;
 }
 
+.hero-title-line:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
 .hero-subtitle {
     font-size: 1.06rem;
     color: var(--portfolio-muted);
     margin: 22px 0 0;
     line-height: 1.75;
     max-width: 720px;
+    animation: heroLiftIn 0.72s 0.18s cubic-bezier(0.19, 1, 0.22, 1) both;
 }
 
 .hero-cta {
@@ -126,6 +134,7 @@
     gap: 14px;
     margin: 28px 0 0;
     flex-wrap: wrap;
+    animation: heroLiftIn 0.72s 0.28s cubic-bezier(0.19, 1, 0.22, 1) both;
 }
 
 .cta-button {
@@ -208,6 +217,57 @@
     border: 1px solid var(--portfolio-border);
     border-radius: 8px;
     box-shadow: var(--portfolio-shadow);
+    animation: proofPanelIn 0.86s 0.2s cubic-bezier(0.19, 1, 0.22, 1) both;
+}
+
+@keyframes heroAuraDrift {
+    0% {
+        opacity: 0.72;
+        transform: translate3d(-1.5%, -1%, 0) scale(1);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(1.5%, 1%, 0) scale(1.04);
+    }
+}
+
+@keyframes heroTitleIn {
+    0% {
+        opacity: 0;
+        transform: translate3d(-24px, 18px, 0) skewX(-4deg);
+        filter: blur(8px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) skewX(0deg);
+        filter: blur(0);
+    }
+}
+
+@keyframes heroLiftIn {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 20px, 0);
+        filter: blur(6px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        filter: blur(0);
+    }
+}
+
+@keyframes proofPanelIn {
+    0% {
+        opacity: 0;
+        transform: translate3d(26px, 22px, 0) rotate(1.2deg);
+        filter: blur(8px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) rotate(0deg);
+        filter: blur(0);
+    }
 }
 
 .proof-panel-header {
@@ -1047,16 +1107,19 @@
     border-radius: var(--border-radius);
     overflow: hidden;
     box-shadow: var(--shadow);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.35s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.35s ease, border-color 0.35s ease;
     height: 100%;
     display: flex;
     flex-direction: column;
     border: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    isolation: isolate;
 }
 
 .video-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transform: translateY(-10px) rotate(-0.35deg);
+    border-color: color-mix(in srgb, var(--primary-color) 28%, transparent);
+    box-shadow: 0 24px 48px rgba(46, 15, 79, 0.18);
 }
 
 .video-card:hover .video-preview {
@@ -1595,16 +1658,19 @@
     border-radius: var(--border-radius);
     overflow: hidden;
     box-shadow: var(--shadow);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.35s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.35s ease, border-color 0.35s ease;
     height: 100%;
     display: flex;
     flex-direction: column;
     border: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    isolation: isolate;
 }
 
 .web-project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    transform: translateY(-8px) rotate(0.25deg);
+    border-color: color-mix(in srgb, var(--primary-color) 28%, transparent);
+    box-shadow: 0 24px 46px rgba(46, 15, 79, 0.16);
 }
 
 .web-project-card:hover .web-project-header {
@@ -2675,6 +2741,9 @@ footer::before {
     grid-template-columns: minmax(0, 0.98fr) minmax(300px, 1.02fr);
     gap: 18px;
     align-items: center;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
     margin-top: 18px;
     padding: 18px;
     border-radius: 8px;
@@ -2804,6 +2873,128 @@ footer::before {
     border-radius: 6px;
     max-height: 280px;
     object-fit: contain;
+}
+
+/* ========== 作品集动效增强 ========== */
+.motion-ready .motion-reveal {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0) scale(0.985);
+    filter: blur(7px);
+    transition:
+        opacity 0.72s ease,
+        transform 0.78s cubic-bezier(0.19, 1, 0.22, 1),
+        filter 0.72s ease;
+    transition-delay: var(--motion-delay, 0ms);
+    will-change: opacity, transform, filter;
+}
+
+.motion-ready .motion-reveal.motion-drift-left {
+    transform: translate3d(-22px, 24px, 0) rotate(-0.6deg) scale(0.985);
+}
+
+.motion-ready .motion-reveal.motion-drift-right {
+    transform: translate3d(22px, 24px, 0) rotate(0.6deg) scale(0.985);
+}
+
+.motion-ready .motion-reveal.motion-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+    filter: blur(0);
+}
+
+.video-card::after,
+.web-project-card::after,
+.aigc-video-case::after,
+.role-focus-card::after,
+.aigc-step-card::after {
+    content: '';
+    position: absolute;
+    inset: -35%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateX(-28%) rotate(12deg);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.32), transparent);
+    transition: opacity 0.35s ease, transform 0.72s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.video-card:hover::after,
+.web-project-card:hover::after,
+.aigc-video-case:hover::after,
+.role-focus-card:hover::after,
+.aigc-step-card:hover::after {
+    opacity: 1;
+    transform: translateX(28%) rotate(12deg);
+}
+
+.video-card > *,
+.web-project-card > *,
+.aigc-video-case > *,
+.role-focus-card > *,
+.aigc-step-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.aigc-video-case,
+.role-focus-card,
+.aigc-step-card,
+.evidence-strip a {
+    transition:
+        transform 0.32s cubic-bezier(0.19, 1, 0.22, 1),
+        box-shadow 0.32s ease,
+        border-color 0.32s ease,
+        background-color 0.32s ease;
+}
+
+.aigc-video-case:hover,
+.role-focus-card:hover,
+.aigc-step-card:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--portfolio-accent) 28%, transparent);
+    box-shadow: 0 20px 44px rgba(46, 15, 79, 0.14);
+}
+
+.section-title h2,
+.compact-title h2 {
+    transform-origin: center;
+}
+
+.motion-ready .section-title.motion-visible h2,
+.motion-ready .compact-title.motion-visible h2 {
+    animation: titleMicroPop 0.72s cubic-bezier(0.19, 1, 0.22, 1) both;
+}
+
+@keyframes titleMicroPop {
+    0% {
+        letter-spacing: -0.03em;
+        transform: scale(0.985);
+    }
+    65% {
+        letter-spacing: 0.012em;
+        transform: scale(1.012);
+    }
+    100% {
+        letter-spacing: 0;
+        transform: scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+    }
+
+    .motion-ready .motion-reveal {
+        opacity: 1;
+        transform: none;
+        filter: none;
+    }
 }
 
 @media (max-width: 992px) {

@@ -22,7 +22,68 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 初始化回到顶部按钮
     initBackToTop();
+
+    // 初始化作品集滚动动效
+    initMotionReveals();
 });
+
+// 初始化滚动进入动效
+function initMotionReveals() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const revealSelectors = [
+        '.section-title',
+        '.compact-title',
+        '.category-title',
+        '.role-focus-card',
+        '.evidence-strip a',
+        '.aigc-step-card',
+        '.aigc-video-case',
+        '.video-card',
+        '.web-project-card',
+        '.project-case-points > div',
+        '.project-before-after figure',
+        '.project-screenshot-wall figure'
+    ];
+
+    const elements = Array.from(document.querySelectorAll(revealSelectors.join(',')));
+    if (!elements.length) return;
+
+    document.documentElement.classList.add('motion-ready');
+
+    elements.forEach((element, index) => {
+        element.classList.add('motion-reveal');
+
+        const groupParent = element.closest('.portfolio-grid, .role-focus-grid, .evidence-strip, .aigc-workflow-grid, .project-case-points, .project-before-after') || element.parentElement;
+        const siblings = groupParent ? Array.from(groupParent.children).filter(child => child.matches?.(revealSelectors.join(','))) : [];
+        const siblingIndex = Math.max(0, siblings.indexOf(element));
+        const delay = Math.min(siblingIndex * 70, 280);
+
+        element.style.setProperty('--motion-delay', `${delay}ms`);
+
+        if (index % 5 === 1) element.classList.add('motion-drift-left');
+        if (index % 5 === 3) element.classList.add('motion-drift-right');
+    });
+
+    if (!('IntersectionObserver' in window)) {
+        elements.forEach(element => element.classList.add('motion-visible'));
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('motion-visible');
+            observer.unobserve(entry.target);
+        });
+    }, {
+        rootMargin: '0px 0px -12% 0px',
+        threshold: 0.12
+    });
+
+    elements.forEach(element => observer.observe(element));
+}
 
 // 初始化复制链接功能
 function initCopyLinks() {
