@@ -4,8 +4,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const themeToggleBtn = document.getElementById('theme-toggle');
     const themeIcon = themeToggleBtn.querySelector('i');
     
+    // 默认深色；首次升级到深色默认时，覆盖旧版遗留的浅色本地值。
+    const darkDefaultVersion = '2026-06-dark-default';
+    if (localStorage.getItem('themeDefaultVersion') !== darkDefaultVersion) {
+        localStorage.setItem('theme', 'dark');
+        localStorage.setItem('themeDefaultVersion', darkDefaultVersion);
+    }
+
     // 检查本地存储的主题偏好
-    const currentTheme = localStorage.getItem('theme') || 'light';
+    const currentTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', currentTheme);
     updateThemeIcon(currentTheme);
     
@@ -170,27 +177,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     `;
     document.head.appendChild(style);
-    
-    // 监听系统主题变化
-    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    
-    // 如果没有手动设置过主题，跟随系统主题
-    if (!localStorage.getItem('theme')) {
-        if (prefersDarkScheme.matches) {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            updateThemeIcon('dark');
-        }
-    }
-    
-    // 监听系统主题变化
-    prefersDarkScheme.addEventListener('change', function(e) {
-        // 只有用户没有手动设置过主题时才跟随系统变化
-        if (!localStorage.getItem('theme')) {
-            const newTheme = e.matches ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', newTheme);
-            updateThemeIcon(newTheme);
-        }
-    });
     
     // 初始更新图标样式
     updateThemeIcon(currentTheme);

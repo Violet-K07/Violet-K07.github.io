@@ -210,6 +210,12 @@ nav {
     color: var(--primary-color);
 }
 
+.nav-links a.is-active,
+.nav-links a[aria-current="true"] {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
 .nav-links a::after {
     content: '';
     position: absolute;
@@ -222,6 +228,11 @@ nav {
 }
 
 .nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a.is-active::after,
+.nav-links a[aria-current="true"]::after {
     width: 100%;
 }
 

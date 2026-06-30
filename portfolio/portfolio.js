@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 添加平滑滚动
     initSmoothScroll();
+    initMainSectionNav();
+    initAccountCaseNav();
     
     // 添加向下滚动功能
     initScrollIndicator();
@@ -19,6 +21,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // 初始化视频播放功能
     initInlineVideoEmbeds();
     initVideoPlayers();
+
+    // 初始化截图大图预览
+    initImageLightbox();
+
+    // 初始化 AIGC 图片轮播
+    initMarketingCarousels();
     
     // 初始化回到顶部按钮
     initBackToTop();
@@ -37,14 +45,28 @@ function initMotionReveals() {
         '.compact-title',
         '.category-title',
         '.role-focus-card',
-        '.evidence-strip a',
+        '.aigc-scene-title',
         '.aigc-step-card',
         '.aigc-video-case',
         '.video-card',
         '.web-project-card',
         '.project-case-points > div',
         '.project-before-after figure',
-        '.project-screenshot-wall figure'
+        '.project-screenshot-wall figure',
+        '.account-cover-rail',
+        '.account-result-slip',
+        '.account-section-mark',
+        '.account-position-statement',
+        '.account-position-notes article',
+        '.account-breakthrough-brief',
+        '.account-keyword-notes article',
+        '.account-single-editor',
+        '.account-workflow-list article',
+        '.account-ai-note',
+        '.account-distribution-board article',
+        '.account-platform-ledger > div',
+        '.account-career-translation',
+        '.account-boundary-card'
     ];
 
     const elements = Array.from(document.querySelectorAll(revealSelectors.join(',')));
@@ -55,7 +77,7 @@ function initMotionReveals() {
     elements.forEach((element, index) => {
         element.classList.add('motion-reveal');
 
-        const groupParent = element.closest('.portfolio-grid, .role-focus-grid, .evidence-strip, .aigc-workflow-grid, .project-case-points, .project-before-after') || element.parentElement;
+        const groupParent = element.closest('.portfolio-grid, .role-focus-grid, .aigc-workflow-grid, .project-case-points, .project-before-after') || element.parentElement;
         const siblings = groupParent ? Array.from(groupParent.children).filter(child => child.matches?.(revealSelectors.join(','))) : [];
         const siblingIndex = Math.max(0, siblings.indexOf(element));
         const delay = Math.min(siblingIndex * 70, 280);
@@ -83,6 +105,507 @@ function initMotionReveals() {
     });
 
     elements.forEach(element => observer.observe(element));
+}
+
+// 初始化 AIGC 营销图例轮播
+function initMarketingCarousels() {
+    const carousels = Array.from(document.querySelectorAll('[data-carousel]'));
+    if (!carousels.length) return;
+
+    carousels.forEach((carousel) => {
+        const slides = Array.from(carousel.querySelectorAll('[data-carousel-slide]'));
+        const dots = Array.from(carousel.querySelectorAll('[data-carousel-dot]'));
+        const prevButton = carousel.querySelector('[data-carousel-prev]');
+        const nextButton = carousel.querySelector('[data-carousel-next]');
+        const status = carousel.querySelector('[data-carousel-status]');
+        const caption = carousel.querySelector('[data-carousel-caption]');
+        let activeIndex = 0;
+        let dragStartX = null;
+        let autoplayTimer = null;
+        let isPaused = false;
+
+        if (!slides.length) return;
+
+        const formatIndex = (index) => String(index + 1).padStart(2, '0');
+        const formatTotal = () => String(slides.length).padStart(2, '0');
+
+        const setActiveSlide = (nextIndex) => {
+            activeIndex = (nextIndex + slides.length) % slides.length;
+
+            slides.forEach((slide, index) => {
+                const isActive = index === activeIndex;
+                slide.classList.toggle('is-active', isActive);
+                slide.setAttribute('aria-hidden', String(!isActive));
+
+                const image = slide.querySelector('img');
+                if (image) {
+                    image.tabIndex = isActive ? 0 : -1;
+                }
+            });
+
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('is-active', index === activeIndex);
+                dot.setAttribute('aria-current', index === activeIndex ? 'true' : 'false');
+            });
+
+            if (status) {
+                status.textContent = `${formatIndex(activeIndex)} / ${formatTotal()}`;
+            }
+
+            if (caption) {
+                caption.textContent = slides[activeIndex].querySelector('figcaption')?.textContent?.trim() || '';
+            }
+        };
+
+        const stopAutoplay = () => {
+            if (!autoplayTimer) return;
+            window.clearInterval(autoplayTimer);
+            autoplayTimer = null;
+        };
+
+        const startAutoplay = () => {
+            if (slides.length <= 1 || isPaused || document.hidden || autoplayTimer) return;
+
+            autoplayTimer = window.setInterval(() => {
+                setActiveSlide(activeIndex + 1);
+            }, 4600);
+        };
+
+        const restartAutoplay = () => {
+            stopAutoplay();
+            startAutoplay();
+        };
+
+        const goToSlide = (nextIndex) => {
+            setActiveSlide(nextIndex);
+            restartAutoplay();
+        };
+
+        prevButton?.addEventListener('click', () => goToSlide(activeIndex - 1));
+        nextButton?.addEventListener('click', () => goToSlide(activeIndex + 1));
+
+        dots.forEach((dot) => {
+            dot.addEventListener('click', () => {
+                const nextIndex = Number(dot.dataset.carouselDot);
+                if (Number.isFinite(nextIndex)) goToSlide(nextIndex);
+            });
+        });
+
+        carousel.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowLeft') {
+                event.preventDefault();
+                goToSlide(activeIndex - 1);
+            }
+            if (event.key === 'ArrowRight') {
+                event.preventDefault();
+                goToSlide(activeIndex + 1);
+            }
+        });
+
+        carousel.addEventListener('mouseenter', () => {
+            isPaused = true;
+            stopAutoplay();
+        });
+
+        carousel.addEventListener('mouseleave', () => {
+            isPaused = false;
+            startAutoplay();
+        });
+
+        carousel.addEventListener('focusin', () => {
+            isPaused = true;
+            stopAutoplay();
+        });
+
+        carousel.addEventListener('focusout', (event) => {
+            if (carousel.contains(event.relatedTarget)) return;
+            isPaused = false;
+            startAutoplay();
+        });
+
+        carousel.addEventListener('pointerdown', (event) => {
+            dragStartX = event.clientX;
+        });
+
+        carousel.addEventListener('pointerup', (event) => {
+            if (dragStartX === null) return;
+
+            const dragDistance = event.clientX - dragStartX;
+            dragStartX = null;
+
+            if (Math.abs(dragDistance) < 48) return;
+            carousel.dataset.dragging = 'true';
+            goToSlide(activeIndex + (dragDistance < 0 ? 1 : -1));
+            window.setTimeout(() => {
+                delete carousel.dataset.dragging;
+            }, 0);
+        });
+
+        carousel.addEventListener('pointercancel', () => {
+            dragStartX = null;
+        });
+
+        carousel.addEventListener('click', (event) => {
+            if (carousel.dataset.dragging !== 'true') return;
+            event.preventDefault();
+            event.stopPropagation();
+        }, true);
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                stopAutoplay();
+                return;
+            }
+            startAutoplay();
+        });
+
+        setActiveSlide(0);
+        startAutoplay();
+    });
+}
+
+// 初始化作品截图大图预览
+function initImageLightbox() {
+    const imageSelectors = [
+        '.project-screenshot-wall img',
+        '.project-before-after img',
+        '.aigc-marketing-gallery img'
+    ];
+    const images = Array.from(document.querySelectorAll(imageSelectors.join(',')));
+    if (!images.length) return;
+
+    const lightbox = document.createElement('div');
+    lightbox.className = 'image-lightbox';
+    lightbox.setAttribute('role', 'dialog');
+    lightbox.setAttribute('aria-modal', 'true');
+    lightbox.setAttribute('aria-label', '截图大图预览');
+    lightbox.innerHTML = `
+        <button class="image-lightbox-close" type="button" aria-label="关闭大图预览">&times;</button>
+        <button class="image-lightbox-nav image-lightbox-prev" type="button" aria-label="上一张大图">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="image-lightbox-nav image-lightbox-next" type="button" aria-label="下一张大图">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="image-lightbox-content">
+            <div class="image-lightbox-stage" aria-label="滚轮或双指缩放图片">
+                <img class="image-lightbox-img" alt="" draggable="false">
+            </div>
+            <div class="image-lightbox-controls" aria-label="大图缩放控制">
+                <span class="image-lightbox-zoom-label">缩放</span>
+                <button class="image-lightbox-zoom-step" type="button" data-zoom-step="-1" aria-label="缩小图片">
+                    <i class="fas fa-search-minus"></i>
+                </button>
+                <input class="image-lightbox-zoom" type="range" min="100" max="320" step="5" value="100" aria-label="图片缩放比例">
+                <button class="image-lightbox-zoom-step" type="button" data-zoom-step="1" aria-label="放大图片">
+                    <i class="fas fa-search-plus"></i>
+                </button>
+                <span class="image-lightbox-zoom-value">100%</span>
+                <span class="image-lightbox-count">01 / 01</span>
+                <button class="image-lightbox-reset" type="button">复位</button>
+            </div>
+            <p class="image-lightbox-caption"></p>
+        </div>
+    `;
+    document.body.appendChild(lightbox);
+
+    const lightboxStage = lightbox.querySelector('.image-lightbox-stage');
+    const lightboxImg = lightbox.querySelector('.image-lightbox-img');
+    const lightboxCaption = lightbox.querySelector('.image-lightbox-caption');
+    const closeButton = lightbox.querySelector('.image-lightbox-close');
+    const zoomRange = lightbox.querySelector('.image-lightbox-zoom');
+    const zoomValue = lightbox.querySelector('.image-lightbox-zoom-value');
+    const zoomStepButtons = Array.from(lightbox.querySelectorAll('[data-zoom-step]'));
+    const resetButton = lightbox.querySelector('.image-lightbox-reset');
+    const prevLightboxButton = lightbox.querySelector('.image-lightbox-prev');
+    const nextLightboxButton = lightbox.querySelector('.image-lightbox-next');
+    const lightboxCount = lightbox.querySelector('.image-lightbox-count');
+
+    const minScale = 1;
+    const maxScale = 3.2;
+    const pointers = new Map();
+    let lightboxGroup = images;
+    let lightboxIndex = 0;
+    let scale = 1;
+    let panX = 0;
+    let panY = 0;
+    let dragStart = null;
+    let pinchStart = null;
+
+    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+    const getPointerDistance = (pointA, pointB) => Math.hypot(pointA.x - pointB.x, pointA.y - pointB.y);
+    const getPointerMidpoint = (pointA, pointB) => ({
+        x: (pointA.x + pointB.x) / 2,
+        y: (pointA.y + pointB.y) / 2
+    });
+
+    const clampPan = (nextX = panX, nextY = panY, nextScale = scale) => {
+        if (nextScale <= minScale + 0.01) {
+            return { x: 0, y: 0 };
+        }
+
+        const stageRect = lightboxStage.getBoundingClientRect();
+        const baseWidth = lightboxImg.offsetWidth || 0;
+        const baseHeight = lightboxImg.offsetHeight || 0;
+        const maxX = Math.max(0, ((baseWidth * nextScale) - stageRect.width) / 2 + 28);
+        const maxY = Math.max(0, ((baseHeight * nextScale) - stageRect.height) / 2 + 28);
+
+        return {
+            x: clamp(nextX, -maxX, maxX),
+            y: clamp(nextY, -maxY, maxY)
+        };
+    };
+
+    const renderTransform = () => {
+        const clampedPan = clampPan();
+        panX = clampedPan.x;
+        panY = clampedPan.y;
+
+        lightboxImg.style.transform = `translate3d(${panX}px, ${panY}px, 0) scale(${scale})`;
+        lightbox.classList.toggle('is-zoomed', scale > 1.02);
+        zoomRange.value = String(Math.round(scale * 100));
+        zoomValue.textContent = `${Math.round(scale * 100)}%`;
+    };
+
+    const setScale = (nextScale, originX, originY) => {
+        const clampedScale = clamp(nextScale, minScale, maxScale);
+        if (!Number.isFinite(clampedScale)) return;
+
+        if (originX !== undefined && originY !== undefined) {
+            const stageRect = lightboxStage.getBoundingClientRect();
+            const centerX = stageRect.left + stageRect.width / 2;
+            const centerY = stageRect.top + stageRect.height / 2;
+            const ratio = clampedScale / scale;
+            panX = originX - centerX - ((originX - centerX - panX) * ratio);
+            panY = originY - centerY - ((originY - centerY - panY) * ratio);
+        } else if (clampedScale <= minScale + 0.01) {
+            panX = 0;
+            panY = 0;
+        } else {
+            const ratio = clampedScale / scale;
+            panX *= ratio;
+            panY *= ratio;
+        }
+
+        scale = clampedScale;
+        renderTransform();
+    };
+
+    const resetTransform = () => {
+        scale = 1;
+        panX = 0;
+        panY = 0;
+        renderTransform();
+    };
+
+    const getLightboxGroup = (image) => {
+        const groupRoot = image.closest('[data-carousel], .project-screenshot-wall, .project-before-after');
+        if (!groupRoot) return [image];
+
+        return images.filter((candidate) => groupRoot.contains(candidate));
+    };
+
+    const updateLightboxNav = () => {
+        const hasMultipleImages = lightboxGroup.length > 1;
+        prevLightboxButton.hidden = !hasMultipleImages;
+        nextLightboxButton.hidden = !hasMultipleImages;
+        lightboxCount.hidden = !hasMultipleImages;
+        lightboxCount.textContent = `${String(lightboxIndex + 1).padStart(2, '0')} / ${String(lightboxGroup.length).padStart(2, '0')}`;
+    };
+
+    const setLightboxImage = (image) => {
+        const figure = image.closest('figure');
+        const caption = figure?.querySelector('figcaption')?.textContent?.trim() || image.alt || '作品截图';
+
+        lightboxIndex = Math.max(0, lightboxGroup.indexOf(image));
+        resetTransform();
+        lightboxImg.src = image.currentSrc || image.src;
+        lightboxImg.alt = image.alt || caption;
+        lightboxCaption.textContent = caption;
+        updateLightboxNav();
+        requestAnimationFrame(renderTransform);
+    };
+
+    const showLightboxImageAt = (nextIndex) => {
+        if (lightboxGroup.length <= 1) return;
+        lightboxIndex = (nextIndex + lightboxGroup.length) % lightboxGroup.length;
+        setLightboxImage(lightboxGroup[lightboxIndex]);
+    };
+
+    const closeLightbox = () => {
+        lightbox.classList.remove('show');
+        document.body.style.overflow = '';
+        pointers.clear();
+        dragStart = null;
+        pinchStart = null;
+        resetTransform();
+        lightboxImg.removeAttribute('src');
+    };
+
+    const openLightbox = (image) => {
+        lightboxGroup = getLightboxGroup(image);
+        setLightboxImage(image);
+        lightbox.classList.add('show');
+        document.body.style.overflow = 'hidden';
+        closeButton.focus();
+    };
+
+    lightboxImg.addEventListener('load', renderTransform);
+
+    images.forEach((image) => {
+        image.classList.add('is-lightbox-enabled');
+        image.setAttribute('tabindex', '0');
+        image.setAttribute('role', 'button');
+        image.setAttribute('aria-label', `${image.alt || '作品截图'}，点击查看大图`);
+
+        image.addEventListener('click', () => openLightbox(image));
+        image.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                openLightbox(image);
+            }
+        });
+    });
+
+    closeButton.addEventListener('click', closeLightbox);
+    prevLightboxButton.addEventListener('click', () => showLightboxImageAt(lightboxIndex - 1));
+    nextLightboxButton.addEventListener('click', () => showLightboxImageAt(lightboxIndex + 1));
+    resetButton.addEventListener('click', resetTransform);
+    zoomStepButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            setScale(scale + Number(button.dataset.zoomStep) * 0.2);
+        });
+    });
+    zoomRange.addEventListener('input', (event) => {
+        setScale(Number(event.target.value) / 100);
+    });
+    lightboxStage.addEventListener('wheel', (event) => {
+        if (!lightbox.classList.contains('show')) return;
+        event.preventDefault();
+        const zoomFactor = event.deltaY > 0 ? 0.9 : 1.1;
+        setScale(scale * zoomFactor, event.clientX, event.clientY);
+    }, { passive: false });
+    lightboxStage.addEventListener('dblclick', (event) => {
+        if (scale > 1.05) {
+            resetTransform();
+        } else {
+            setScale(2, event.clientX, event.clientY);
+        }
+    });
+    lightboxStage.addEventListener('pointerdown', (event) => {
+        if (!lightbox.classList.contains('show')) return;
+
+        lightboxStage.setPointerCapture?.(event.pointerId);
+        pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+
+        if (pointers.size === 1) {
+            dragStart = { x: event.clientX, y: event.clientY, panX, panY };
+            pinchStart = null;
+        }
+
+        if (pointers.size === 2) {
+            const [pointA, pointB] = Array.from(pointers.values());
+            pinchStart = {
+                distance: getPointerDistance(pointA, pointB),
+                midpoint: getPointerMidpoint(pointA, pointB),
+                scale,
+                panX,
+                panY
+            };
+            dragStart = null;
+        }
+    });
+    lightboxStage.addEventListener('pointermove', (event) => {
+        if (!pointers.has(event.pointerId)) return;
+
+        event.preventDefault();
+        pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+
+        if (pointers.size >= 2 && pinchStart) {
+            const [pointA, pointB] = Array.from(pointers.values());
+            const distance = getPointerDistance(pointA, pointB);
+            if (!distance || !pinchStart.distance) return;
+
+            const midpoint = getPointerMidpoint(pointA, pointB);
+            const nextScale = clamp(pinchStart.scale * (distance / pinchStart.distance), minScale, maxScale);
+            const stageRect = lightboxStage.getBoundingClientRect();
+            const centerX = stageRect.left + stageRect.width / 2;
+            const centerY = stageRect.top + stageRect.height / 2;
+            const ratio = nextScale / pinchStart.scale;
+
+            scale = nextScale;
+            panX = midpoint.x - centerX - ((pinchStart.midpoint.x - centerX - pinchStart.panX) * ratio);
+            panY = midpoint.y - centerY - ((pinchStart.midpoint.y - centerY - pinchStart.panY) * ratio);
+            renderTransform();
+            return;
+        }
+
+        if (pointers.size === 1 && dragStart && scale > 1.02) {
+            panX = dragStart.panX + event.clientX - dragStart.x;
+            panY = dragStart.panY + event.clientY - dragStart.y;
+            renderTransform();
+        }
+    });
+
+    const endPointerGesture = (event) => {
+        if (!pointers.has(event.pointerId)) return;
+
+        pointers.delete(event.pointerId);
+        if (lightboxStage.hasPointerCapture?.(event.pointerId)) {
+            lightboxStage.releasePointerCapture(event.pointerId);
+        }
+
+        if (pointers.size === 1) {
+            const [remainingPoint] = Array.from(pointers.values());
+            dragStart = { x: remainingPoint.x, y: remainingPoint.y, panX, panY };
+            pinchStart = null;
+            return;
+        }
+
+        dragStart = null;
+        pinchStart = null;
+    };
+
+    lightboxStage.addEventListener('pointerup', endPointerGesture);
+    lightboxStage.addEventListener('pointercancel', endPointerGesture);
+    lightboxStage.addEventListener('pointerleave', (event) => {
+        if (event.pointerType !== 'touch') endPointerGesture(event);
+    });
+    lightbox.addEventListener('click', (event) => {
+        if (event.target === lightbox || event.target.classList.contains('image-lightbox-content')) {
+            closeLightbox();
+        }
+    });
+    document.addEventListener('keydown', (event) => {
+        if (!lightbox.classList.contains('show')) return;
+
+        if (event.key === 'Escape') {
+            closeLightbox();
+        }
+        if (event.key === 'ArrowLeft' && event.target !== zoomRange) {
+            event.preventDefault();
+            showLightboxImageAt(lightboxIndex - 1);
+        }
+        if (event.key === 'ArrowRight' && event.target !== zoomRange) {
+            event.preventDefault();
+            showLightboxImageAt(lightboxIndex + 1);
+        }
+        if (event.key === '+' || event.key === '=') {
+            setScale(scale + 0.2);
+        }
+        if (event.key === '-' || event.key === '_') {
+            setScale(scale - 0.2);
+        }
+        if (event.key === '0') {
+            resetTransform();
+        }
+    });
+    window.addEventListener('resize', () => {
+        if (lightbox.classList.contains('show')) {
+            renderTransform();
+        }
+    });
 }
 
 // 初始化复制链接功能
@@ -264,6 +787,86 @@ function initSmoothScroll() {
     });
 }
 
+function initMainSectionNav() {
+    initScrollSpyNav('header .nav-links:not(.account-case-nav) a[href^="#"]', {
+        headerOffset: 120
+    });
+}
+
+function initAccountCaseNav() {
+    initScrollSpyNav('.account-case-nav a[href^="#"]', {
+        headerOffset: 110
+    });
+}
+
+function initScrollSpyNav(selector, options = {}) {
+    const navLinks = Array.from(document.querySelectorAll(selector));
+    if (!navLinks.length) return;
+
+    const navItems = navLinks
+        .map(link => {
+            const id = link.getAttribute('href').slice(1);
+            return {
+                link,
+                section: document.getElementById(id)
+            };
+        })
+        .filter(item => item.section);
+
+    if (!navItems.length) return;
+
+    const setActive = (activeLink) => {
+        navLinks.forEach(link => {
+            const isActive = link === activeLink;
+            link.classList.toggle('is-active', isActive);
+            if (isActive) {
+                link.setAttribute('aria-current', 'true');
+            } else {
+                link.removeAttribute('aria-current');
+            }
+        });
+    };
+
+    const updateActiveNav = () => {
+        const headerOffset = options.headerOffset ?? 110;
+        const currentY = window.scrollY + headerOffset;
+        const positionedItems = navItems
+            .map(item => ({
+                ...item,
+                top: item.section.getBoundingClientRect().top + window.scrollY
+            }))
+            .sort((a, b) => a.top - b.top);
+
+        let activeItem = positionedItems[0];
+        positionedItems.forEach(item => {
+            if (item.top <= currentY) {
+                activeItem = item;
+            }
+        });
+
+        const nearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 8;
+        setActive(nearBottom ? positionedItems[positionedItems.length - 1].link : activeItem.link);
+    };
+
+    let ticking = false;
+    const requestUpdate = () => {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(() => {
+            updateActiveNav();
+            ticking = false;
+        });
+    };
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => setActive(link));
+    });
+
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate);
+    updateActiveNav();
+}
+
 // 初始化技能条动画增强版
 function initSkillBars() {
     // 获取所有技能条
@@ -377,21 +980,28 @@ function initBackToTop() {
     const backToTopBtn = document.getElementById('backToTop');
     const videoEditingSection = document.getElementById('video-editing');
     
-    if (!backToTopBtn || !videoEditingSection) return;
-    
-    // 监听滚动事件
-    window.addEventListener('scroll', function() {
-        const scrollPosition = window.scrollY;
-        const videoSectionTop = videoEditingSection.offsetTop;
-        const videoSectionHeight = videoEditingSection.offsetHeight;
-        
-        // 如果滚动到视频剪辑部分或更下方，显示按钮
-        if (scrollPosition >= videoSectionTop - 100) {
+    if (!backToTopBtn) return;
+
+    const getShowThreshold = () => {
+        if (videoEditingSection) {
+            return Math.max(0, videoEditingSection.offsetTop - 100);
+        }
+
+        return 420;
+    };
+
+    const updateBackToTopVisibility = () => {
+        if (window.scrollY >= getShowThreshold()) {
             backToTopBtn.classList.add('show');
         } else {
             backToTopBtn.classList.remove('show');
         }
-    });
+    };
+    
+    // 监听滚动事件
+    window.addEventListener('scroll', updateBackToTopVisibility, { passive: true });
+    window.addEventListener('resize', updateBackToTopVisibility);
+    updateBackToTopVisibility();
     
     // 点击回到顶部
     backToTopBtn.addEventListener('click', function() {
@@ -404,6 +1014,10 @@ function initBackToTop() {
 
 function getDouyinExternalUrl(videoId) {
     return `https://v.douyin.com/${videoId}/`;
+}
+
+function getBilibiliPlayerSrc(videoId) {
+    return `https://player.bilibili.com/player.html?bvid=${encodeURIComponent(videoId)}&page=1&high_quality=1&autoplay=0&t=0`;
 }
 
 function createVideoIframe(src, title, platform) {
@@ -429,22 +1043,33 @@ function initInlineVideoEmbeds() {
     const inlineTargets = document.querySelectorAll('.video-preview[data-platform="bilibili"]');
 
     inlineTargets.forEach(preview => {
-        const videoId = preview.getAttribute('data-video-id');
-        const platform = preview.getAttribute('data-platform');
-        const videoCard = preview.closest('.video-card');
-        const title = videoCard?.querySelector('.video-title')?.textContent.trim() || '作品视频';
-        let src = '';
+        // B站视频不在页面加载时自动创建 iframe，避免自动播放或恢复上次播放状态。
+        preview.removeAttribute('data-inline-embedded');
+        preview.classList.remove('inline-video-embed', 'inline-video-embed-bilibili');
+        preview.setAttribute('aria-label', '点击打开 Bilibili 播放器，播放器加载后需手动播放');
+    });
 
-        if (platform === 'bilibili' && videoId) {
-            src = `https://player.bilibili.com/player.html?bvid=${videoId}&page=1&high_quality=1&autoplay=0`;
-        }
+    const clickPlayers = document.querySelectorAll('.bilibili-click-player[data-video-id]');
+    clickPlayers.forEach(player => {
+        const loadPlayer = () => {
+            if (player.classList.contains('is-loaded')) return;
 
-        if (!src) return;
+            const videoId = player.getAttribute('data-video-id');
+            const title = player.getAttribute('data-title') || 'Bilibili 视频';
+            if (!videoId) return;
 
-        preview.innerHTML = '';
-        preview.classList.add('inline-video-embed', `inline-video-embed-${platform}`);
-        preview.setAttribute('data-inline-embedded', 'true');
-        preview.appendChild(createVideoIframe(src, title, platform));
+            player.classList.add('is-loaded');
+            player.innerHTML = '';
+            player.appendChild(createVideoIframe(getBilibiliPlayerSrc(videoId), title, 'bilibili'));
+        };
+
+        player.addEventListener('click', loadPlayer);
+        player.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                loadPlayer();
+            }
+        });
     });
 }
 
@@ -566,9 +1191,8 @@ function initVideoPlayers() {
                 break;
                 
             case 'bilibili':
-                // B站支持iframe嵌入 - 实际使用时需要替换为正确的BVID
-                // 例如：BV1KF411a7s3 需要转换为 player.bilibili.com/player.html?bvid=BV1KF411a7s3
-                embedCode = `<iframe src="https://player.bilibili.com/player.html?bvid=${videoId}&page=1&high_quality=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>`;
+                // 每次点击都重新创建 B站 iframe，autoplay=0 保持未播放状态。
+                embedCode = `<iframe src="${getBilibiliPlayerSrc(videoId)}" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>`;
                 externalUrl = `https://www.bilibili.com/video/${videoId}`;
                 break;
                 
