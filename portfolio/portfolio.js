@@ -66,7 +66,13 @@ function initMotionReveals() {
         '.account-distribution-board article',
         '.account-platform-ledger > div',
         '.account-career-translation',
-        '.account-boundary-card'
+        '.account-boundary-card',
+        '.case-hero',
+        '.case-section',
+        '.case-summary-card > div',
+        '.shot-card',
+        '.process-step',
+        '.status-grid article'
     ];
 
     const elements = Array.from(document.querySelectorAll(revealSelectors.join(',')));
@@ -1077,6 +1083,8 @@ function initInlineVideoEmbeds() {
 function initVideoPlayers() {
     const videoPreviews = document.querySelectorAll('.video-preview');
     const watchButtons = document.querySelectorAll('.watch-video-btn');
+
+    if (!videoPreviews.length && !watchButtons.length) return;
     
     // 创建视频模态框
     const videoModal = document.createElement('div');
@@ -1140,9 +1148,9 @@ function initVideoPlayers() {
         let description = '';
         
         // 获取视频信息
-        const videoTitle = videoCard ? videoCard.querySelector('.video-title').textContent : '';
-        const videoHighlights = videoCard ? videoCard.querySelector('.highlight-content')?.textContent : '';
-        const videoTech = videoCard ? Array.from(videoCard.querySelectorAll('.tech-tag')).map(tag => tag.textContent).join(', ') : '';
+        const videoTitle = videoCard ? (videoCard.querySelector('.video-title')?.textContent || videoCard.querySelector('h4')?.textContent || '视频播放') : '视频播放';
+        const videoHighlights = videoCard ? (videoCard.querySelector('.highlight-content')?.textContent || videoCard.querySelector('.project-description')?.textContent || '') : '';
+        const videoTech = videoCard ? Array.from(videoCard.querySelectorAll('.tech-tag, .project-tag')).map(tag => tag.textContent).join(', ') : '';
         
         // 根据不同平台生成不同的嵌入代码
         switch(platform) {
@@ -1291,7 +1299,7 @@ function initVideoPlayers() {
                 preview.setAttribute('data-extract-code', extractCode);
             }
             
-            playVideo(finalVideoId, finalPlatform, preview.closest('.video-card'));
+            playVideo(finalVideoId, finalPlatform, preview.closest('.video-card, .web-project-card'));
         });
     });
     
@@ -1310,7 +1318,7 @@ function initVideoPlayers() {
                 finalPlatform = 'drive';
             }
             
-            playVideo(finalVideoId, finalPlatform, button.closest('.video-card'));
+            playVideo(finalVideoId, finalPlatform, button.closest('.video-card, .web-project-card'));
         });
     });
     

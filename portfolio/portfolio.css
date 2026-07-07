@@ -3662,6 +3662,17 @@
     object-fit: contain;
 }
 
+.web-project-video-preview {
+    min-height: 0;
+    padding: 18px 20px 0;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.08), rgba(242, 193, 78, 0.04));
+}
+
+.web-project-video-preview .video-preview {
+    height: auto;
+    aspect-ratio: 16 / 9;
+}
+
 .video-card:hover .video-preview.inline-video-embed {
     transform: none;
 }
@@ -5441,6 +5452,10 @@ footer::before {
     aspect-ratio: 16 / 9;
     object-fit: cover;
     object-position: top left;
+}
+
+.product-video-generator-screenshots .project-screenshot-grid img {
+    aspect-ratio: 16 / 11;
 }
 
 .project-in-progress .web-project-footer {

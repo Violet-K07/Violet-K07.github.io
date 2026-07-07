@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>智能排谷管理系统｜AIGC 应用实践</title>
+    <title>智能排谷管理系统｜流程工具化实践</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="portfolio.css">
     <link rel="stylesheet" href="case-study.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Serif+SC:wght@600;700;900&family=Pacifico&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="system-case-body">
     <button id="theme-toggle" class="theme-toggle-btn" aria-label="切换主题">
         <i class="fas fa-sun"></i>
     </button>
@@ -17,11 +19,11 @@
     <header>
         <div class="container">
             <nav>
-                <a href="index.html#web-projects" class="logo art-font">Violet's Portfolio</a>
-                <ul class="nav-links">
+                <a href="index.html#web-projects" class="logo art-font">Violet | Media & AI</a>
+                <ul class="nav-links account-case-nav">
                     <li><a href="index.html#web-projects">返回作品集</a></li>
                     <li><a href="#research">竞品分析</a></li>
-                    <li><a href="#screenshots">截图规划</a></li>
+                    <li><a href="#screenshots">页面截图</a></li>
                     <li><a href="#process">流程拆解</a></li>
                     <li><a href="#status">开发状态</a></li>
                 </ul>
@@ -32,98 +34,126 @@
     <main class="case-page">
         <section class="case-hero">
             <div class="case-hero-copy">
-                <div class="case-kicker">In Progress · AIGC Practice</div>
+                <div class="case-kicker">Web Tool · In Progress</div>
                 <h1>智能排谷管理系统</h1>
                 <p>
-                    这是一个面向谷子拼团场景的管理系统，当前用户端已经可以在线预览。
-                    系统把排谷认领、库存筛选、CN 结算、到货查询、排发申请和收货确认放到同一个页面流程里，减少原本靠群消息和表格来回确认的成本。
-                    项目前期已整理 3 个同类工具 / 竞品分析，用来对照功能取舍和页面流程。
+                    这是我从真实谷子拼团场景出发，独立搭建的一套 Web 管理系统。
+                    系统把“开盘后怎么排、谁认了什么、还剩多少、怎么结算、到货后怎么排发”拆成可以操作的页面，而不是继续靠群消息和表格来回确认。
+                    当前用户端已经可以在线预览，管理端也覆盖了团 / 盘 / 商品维护、调价、到货点数、费用分摊和排发管理等重流程。
                 </p>
+                <div class="case-hero-tags" aria-label="项目关键词">
+                    <span>真实场景</span>
+                    <span>流程工具化</span>
+                    <span>多端页面</span>
+                    <span>AI 辅助开发</span>
+                </div>
                 <div class="case-actions">
                     <a class="case-button primary" href="https://violet-k07.github.io/hk/" target="_blank">
                         <i class="fas fa-arrow-up-right-from-square"></i> 在线预览
                     </a>
                     <a class="case-button" href="#screenshots">
-                        <i class="fas fa-image"></i> 查看截图规划
+                        <i class="fas fa-image"></i> 查看页面截图
                     </a>
                 </div>
             </div>
             <aside class="case-summary-card">
                 <div>
                     <span>项目类型</span>
-                    <strong>个人开发 / 谷子拼团管理</strong>
+                    <strong>个人独立项目 / Web 工具</strong>
                 </div>
                 <div>
-                    <span>核心角色</span>
-                    <strong>用户端 + 结算 + 到货排发</strong>
+                    <span>核心链路</span>
+                    <strong>排谷认领 → 结算 → 到货排发</strong>
                 </div>
                 <div>
-                    <span>前期调研</span>
-                    <strong>3 个竞品分析 / 流程对照</strong>
+                    <span>调研基础</span>
+                    <strong>竞品 / 群内手工流程 / 端形态分析</strong>
                 </div>
                 <div>
-                    <span>公开策略</span>
-                    <strong>脱敏截图，不公开真实数据</strong>
+                    <span>展示范围</span>
+                    <strong>公开流程与页面结构</strong>
                 </div>
             </aside>
         </section>
 
-        <section class="case-section two-column">
+        <section class="case-section two-column case-context-section">
             <article>
                 <span class="case-label">Background</span>
                 <h2>项目背景</h2>
                 <p>
-                    谷子拼团里最麻烦的不是单个页面，而是信息分散：商品图、捆序、库存、认领 CN、结算金额、到货数量、排发申请和收货确认都在不同地方反复出现。
-                    如果只靠群消息和表格处理，管理者要反复查表，用户也会一直问“还剩什么”“我认了哪些”“到货了吗”“能不能排发”。
+                    谷子拼团的难点不是单个商品页，而是流程长、信息散。
+                    商品图、捆序、调价、库存、认领 CN、结算金额、到货数量、排发申请和收货确认会在群聊、表格、截图之间反复出现。
+                    如果只靠群消息和表格处理，管理者要反复查表，团员也会一直问“还剩什么”“我认了哪些”“到货了吗”“能不能排发”。
                 </p>
             </article>
             <article>
                 <span class="case-label">Goal</span>
                 <h2>我想解决的问题</h2>
                 <p>
-                    我把这个场景拆成三个主要入口：排谷 / 余量、个人结算统计、到货查询。
-                    用户可以按谷子名或捆序筛选商品，填写 CN 完成认领，之后再用 CN 查询结算、到货和排发状态；管理端则围绕团、盘、商品、认领记录和排发申请维护数据。
+                    我先把场景拆成团、盘、谷子、CN、到货和排发几个对象，再给不同角色分页面。
+                    团员在手机端完成查看余量、认领、查结算、看到货、申请排发；管理端处理商品录入、调价、到货点数、费用分摊和排发状态流转。
                 </p>
             </article>
         </section>
 
-        <section class="case-section">
+        <section class="case-section case-value-section">
             <div class="case-section-head">
                 <span class="case-label">Value</span>
                 <h2>项目价值</h2>
                 <p>
-                    这个项目的价值在于把真实拼团里高频出现的“查库存、查 CN、算金额、看到货、申请排发”变成页面操作。
-                    我负责梳理字段和页面链路，前期参考 3 个同类工具 / 竞品分析，再借助 AI 辅助拆需求、补充交互思路和检查边界场景，最后自己判断哪些功能适合上线，哪些还需要保持开发中状态。
+                    这个项目想证明的不是“做了一个网页”，而是我能把一条混乱的群内流程拆成数据结构和产品页面。
+                    同一份认领数据会继续影响库存、CN 结算、余量图、到货状态和排发申请，所以页面不能只看起来能用，还要让数据前后能接上。
+                    开发过程中我会用 AI 辅助拆需求、重构代码和检查边界场景，但功能取舍、字段关系和最终落地都需要自己判断。
                 </p>
             </div>
         </section>
 
-        <section id="research" class="case-section two-column">
+        <section class="case-section two-column case-identity-section">
+            <article>
+                <span class="case-label">Why Me</span>
+                <h2>为什么这个项目能体现我</h2>
+                <p>
+                    这个系统不是照着通用后台套出来的。它需要先真的理解谷子拼团里 CN、捆序、调价、余量图、肾表、到货点数和排发这些细节，知道团长和团员分别会卡在哪里。
+                    我熟悉这个场景，也会把流程拆成数据结构和页面，所以可以直接从真实问题推到可用工具。
+                </p>
+            </article>
+            <article>
+                <span class="case-label">Difference</span>
+                <h2>不只是“会写页面”</h2>
+                <p>
+                    这个项目体现的是一组组合能力：场景理解、信息整理、流程判断、前端实现和 AI 辅助开发。
+                    单纯会做页面，可能不知道哪些功能真的有用；只懂拼团流程，又很难把它落成系统。
+                    这个跨度正是我想通过这个项目展示出来的部分。
+                </p>
+            </article>
+        </section>
+
+        <section id="research" class="case-section two-column case-research-section">
             <article>
                 <span class="case-label">Research</span>
                 <h2>竞品分析怎么进入项目</h2>
                 <p>
-                    在正式拆页面前，我先整理了 3 个同类工具 / 竞品分析，重点看它们怎么处理库存展示、认领入口、结算查询、到货状态和排发流程。
-                    这一步不是为了照搬页面，而是先确认哪些动作是拼团场景里反复出现的，再决定系统优先承接哪些功能。
+                    在正式拆页面前，我先整理了拼团呀、拼谷助手、群拼谷助手和群内人工余量图等资料，重点看它们怎么处理库存展示、认领入口、结算查询、到货状态和排发流程。
+                    这一步不是为了照搬竞品，而是判断哪些动作必须结构化，哪些动作应该保留群内拼团“快”的优势。
                 </p>
             </article>
             <article>
                 <span class="case-label">Output</span>
                 <h2>调研后的落地方向</h2>
                 <ul class="case-list">
-                    <li>把“查余量、认领、查结算、看到货、申请排发”定为用户端优先链路。</li>
-                    <li>把团、盘、商品、CN 认领记录和排发申请拆成可维护的数据结构。</li>
-                    <li>保留适合移动端快速查看的卡片和搜索方式，减少用户在群消息里翻记录。</li>
-                    <li>把竞品里不适合当前规模的复杂功能先放到后续迭代，避免一开始做得过重。</li>
+                    <li>用户端优先承接“查余量、认领、查结算、看到货、申请排发”这些高频动作。</li>
+                    <li>管理端优先服务电脑上的重表单和表格效率，包括批量录入、调价、点数、费用分摊和排发处理。</li>
+                    <li>把团、盘、商品、CN 认领记录、到货数量和排发申请拆成可维护的数据结构。</li>
+                    <li>先用 Web 解决数据和流程规整，不急着把项目押在 App 或复杂平台形态上。</li>
                 </ul>
             </article>
         </section>
 
-        <section id="screenshots" class="case-section">
+        <section id="screenshots" class="case-section case-module-section">
             <div class="case-section-head">
                 <span class="case-label">Screenshots</span>
-                <h2>核心页面与能力展示</h2>
-                <p>以下页面展示了项目从管理端录入到用户端认领，再到结算和排发的主要链路。</p>
+                <h2>页面截图与功能模块</h2>
+                <p>下方按关键页面说明项目从管理端录入到用户端认领，再到结算、到货和排发的主要链路。</p>
             </div>
 
             <div class="shot-grid">
@@ -131,12 +161,13 @@
                     <!-- Replace this placeholder with:
                     <img class="case-shot-image" src="case-screenshots/admin-overview.png" alt="管理端总览截图">
                     -->
-                    <div class="shot-placeholder">管理端总览截图</div>
+                    <div class="shot-placeholder">管理端工作台截图</div>
                     <h3>管理端：团、盘和商品录入</h3>
-                    <p>管理端把原本散落在表格里的信息拆成“团、盘、商品”三个层级。团用于区分不同社群或批次，盘用于承接具体开团内容，商品则记录名称、价格、数量、捆序和图片等认领所需信息。这样后续的认领、结算和到货都能回到同一个数据结构里，不需要反复从聊天记录里找来源。</p>
+                    <p>管理端把原本散落在表格里的信息拆成“团、盘、商品”三个层级。团用于区分不同社群或批次，盘承接具体开团内容，商品记录名称、单价、数量、捆序、图片和认领记录。后续的库存、结算、到货和排发都回到同一份数据里，不需要反复从聊天记录里找来源。</p>
                     <div class="shot-tags">
                         <span>信息架构</span>
                         <span>管理端</span>
+                        <span>批量录入</span>
                     </div>
                 </article>
                 <article class="shot-card">
@@ -145,22 +176,24 @@
                     -->
                     <div class="shot-placeholder">用户端排谷截图</div>
                     <h3>用户端：排谷 / 余量</h3>
-                    <p>用户端主要解决“现在还剩什么、我能认领什么”的问题。页面通过卡片展示商品图片、价格、捆序和剩余数量，并提供搜索和库存筛选，让用户不用在群消息里来回翻记录。认领动作发生后，库存和个人记录会继续联动到结算页。</p>
+                    <p>用户端主要解决“现在还剩什么、我能认领什么”的问题。页面用卡片展示商品图片、价格、捆序和剩余数量，支持搜索、库存筛选和翻卡认领。认领后库存会扣减，个人记录也会进入后面的结算和到货查询。</p>
                     <div class="shot-tags">
                         <span>用户端</span>
                         <span>库存筛选</span>
+                        <span>翻卡认领</span>
                     </div>
                 </article>
                 <article class="shot-card">
                     <!-- Replace this placeholder with:
                     <img class="case-shot-image" src="case-screenshots/settlement.png" alt="结算统计截图">
                     -->
-                    <div class="shot-placeholder">结算统计截图</div>
+                    <div class="shot-placeholder">CN 结算截图</div>
                     <h3>结算：按 CN 汇总</h3>
-                    <p>结算页把认领记录按 CN 聚合，自动整理每个人认领了哪些商品、数量是多少、金额是多少。这个部分体现的是数据处理能力：页面不只是把商品列出来，而是把认领记录转成可核对、可导出的结算明细，减少人工查表和重复确认。</p>
+                    <p>结算页把认领记录按 CN 聚合，整理每个人认领了哪些商品、数量是多少、金额是多少，并支持导出个人结算单。这个模块不是简单列表，而是把认领记录转成可核对、可导出的结算明细。</p>
                     <div class="shot-tags">
                         <span>数据聚合</span>
                         <span>结算统计</span>
+                        <span>Excel 导出</span>
                     </div>
                 </article>
                 <article class="shot-card">
@@ -169,19 +202,20 @@
                     -->
                     <div class="shot-placeholder">到货排发截图</div>
                     <h3>到货与排发</h3>
-                    <p>到货与排发模块把流程继续往后推进：哪些商品已经到货、哪些 CN 可以合并排发、是否补邮、是否填写单号、用户是否确认收货，都可以在同一处追踪。这个模块说明项目不只停在“认领商品”，还覆盖了社群拼团后续履约阶段，减少管理者在多个表格和聊天窗口之间切换。</p>
+                    <p>到货与排发模块把流程继续往后推进：哪些商品已经到货、哪些 CN 可以合并排发、是否需要补邮、平铺图是否确认、单号是否填写、用户是否确认收货，都可以继续追踪。这个模块说明项目不只停在“认领商品”，还覆盖后续履约阶段。</p>
                     <div class="shot-tags">
                         <span>履约流程</span>
                         <span>排发管理</span>
+                        <span>状态追踪</span>
                     </div>
                 </article>
             </div>
         </section>
 
-        <section id="process" class="case-section">
+        <section id="process" class="case-section case-process-section">
             <div class="case-section-head">
                 <span class="case-label">Process</span>
-                <h2>系统目前承接的 5 个关键动作</h2>
+                <h2>系统目前承接的关键动作</h2>
             </div>
             <div class="process-line">
                 <div class="process-step">
@@ -191,45 +225,51 @@
                 </div>
                 <div class="process-step">
                     <span>02</span>
+                    <strong>购物车批量认领</strong>
+                    <p>用户可以先把多个谷子加入购物车，再统一确认 CN、数量和总金额；目标金额不足时，还能生成补齐方案。</p>
+                </div>
+                <div class="process-step">
+                    <span>03</span>
                     <strong>余量展示</strong>
                     <p>根据当前库存生成余量信息，支持导出余量图，方便继续发群或对外更新。</p>
                 </div>
                 <div class="process-step">
-                    <span>03</span>
+                    <span>04</span>
                     <strong>CN 结算</strong>
                     <p>用户输入 CN 后查看认领谷子、数量、小计金额和总金额，并可导出结算单。</p>
                 </div>
                 <div class="process-step">
-                    <span>04</span>
+                    <span>05</span>
                     <strong>到货查询</strong>
                     <p>按普通谷子和赠品查看到货进度，支持按谷子名、CN 或捆序搜索。</p>
                 </div>
                 <div class="process-step">
-                    <span>05</span>
+                    <span>06</span>
                     <strong>排发申请</strong>
                     <p>用户按 CN 勾选已到货谷子，提交快递或面交申请，后续继续确认平铺图、单号和收货状态。</p>
                 </div>
             </div>
         </section>
 
-        <section class="case-section two-column">
+        <section class="case-section two-column case-work-section">
             <article>
                 <span class="case-label">My Work</span>
-                <h2>我负责的部分</h2>
+                <h2>我独立完成的部分</h2>
                 <ul class="case-list">
-                    <li>整理 3 个同类工具 / 竞品分析，对照库存展示、认领路径、结算方式和履约状态。</li>
-                    <li>梳理谷子拼团流程，把排谷、认领、结算、到货和排发拆成用户能直接操作的页面。</li>
-                    <li>设计团、盘、商品、CN 认领记录、到货数量和排发申请之间的数据关系。</li>
-                    <li>实现库存筛选、卡片翻转认领、余量图导出、CN 结算、到货查询和排发申请等前端功能。</li>
-                    <li>借助 AI 辅助整理需求和检查边界场景，再根据真实使用反馈调整字段命名、状态提示和操作路径。</li>
+                    <li>整理竞品、群内手工拼团、人工余量图和端形态分析，先判断这个工具应该解决哪段流程。</li>
+                    <li>拆出团、盘、商品、CN 认领、到货数量、费用分摊和排发申请之间的数据关系。</li>
+                    <li>搭建用户端排谷、购物车批量认领、CN 结算、到货查询和排发申请等页面。</li>
+                    <li>搭建管理端商品录入、调价、到货点数、费用分摊、排发管理和团 / 盘切换等页面。</li>
+                    <li>借助 AI 辅助整理需求、重构代码和检查异常场景，再根据真实使用反馈调整字段命名、状态提示和操作路径。</li>
                 </ul>
             </article>
             <article>
-                <span class="case-label">Privacy</span>
-                <h2>为什么不公开完整源码</h2>
+                <span class="case-label">Boundary</span>
+                <h2>展示边界</h2>
                 <p>
-                    这个项目包含真实业务流程和同步配置。作品集展示的是脱敏后的思路、页面和结构，
-                    不展示真实订单、真实用户、真实 token、真实数据源和未经处理的商品图片。
+                    这个项目可以公开讲清楚功能链路、页面结构、字段拆分和工具化判断。
+                    涉及真实 CN、订单 / 收款信息、同步 token、完整数据源和可直接复用的配置，会在作品集中做处理。
+                    这样既能展示我怎么分析和落地，也不会把真实运营数据暴露出来。
                 </p>
             </article>
         </section>
@@ -239,15 +279,17 @@
                 <h3>已完成</h3>
                 <ul>
                     <li>用户端排谷 / 余量页面</li>
+                    <li>购物车批量认领、目标金额补齐和认领收据复制</li>
                     <li>库存筛选、卡片翻转和 CN 认领</li>
                     <li>按 CN 聚合结算与结算单导出</li>
-                    <li>到货总览、普通 / 赠品筛选和排发申请入口</li>
+                    <li>管理端调价、到货点数、到货费用分摊</li>
+                    <li>到货总览、普通 / 赠品筛选、排发申请和排发管理入口</li>
                 </ul>
             </article>
             <article>
                 <h3>开发中</h3>
                 <ul>
-                    <li>多团 / 多盘切换体验</li>
+                    <li>多团 / 多盘切换体验继续打磨</li>
                     <li>平铺图确认、邮费确认和收货确认链路</li>
                     <li>异常认领、重复申请和缺货场景处理</li>
                     <li>更稳定的数据同步和本地备份方案</li>
@@ -256,9 +298,9 @@
             <article>
                 <h3>后续迭代</h3>
                 <ul>
-                    <li>继续补齐多团 / 多盘的切换体验</li>
-                    <li>优化排发申请、平铺图反馈和收货确认的展示方式</li>
-                    <li>完善异常数据、重复认领和缺货场景处理</li>
+                    <li>模板化开盘，减少每次从零录入商品和角色的成本</li>
+                    <li>QQ 群相册快开 + 后置结构化记录，把“先发图抢意向”和后续结算接起来</li>
+                    <li>余量图 / 传播图模板，让系统数据自动进入更适合群内传播的图片</li>
                     <li>补充移动端截图和关键流程短录屏</li>
                 </ul>
             </article>
@@ -272,5 +314,6 @@
     </footer>
 
     <script src="theme.js"></script>
+    <script src="portfolio.js"></script>
 </body>
 </html>
