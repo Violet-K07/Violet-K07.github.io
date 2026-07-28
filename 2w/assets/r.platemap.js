@@ -1,1 +1,2327 @@
-(function(_0x4904ea,_0x5ba203){const _0x2644e2=a00_0x95f1,_0x1ce2a1=_0x4904ea();while(!![]){try{const _0x78a050=parseInt(_0x2644e2(0x164))/0x1*(-parseInt(_0x2644e2(0xff))/0x2)+parseInt(_0x2644e2(0x89))/0x3+parseInt(_0x2644e2(0x1f3))/0x4+parseInt(_0x2644e2(0x1ed))/0x5*(-parseInt(_0x2644e2(0xcc))/0x6)+parseInt(_0x2644e2(0x239))/0x7+parseInt(_0x2644e2(0x1ca))/0x8+parseInt(_0x2644e2(0x222))/0x9;if(_0x78a050===_0x5ba203)break;else _0x1ce2a1['push'](_0x1ce2a1['shift']());}catch(_0x5bad16){_0x1ce2a1['push'](_0x1ce2a1['shift']());}}}(a00_0x222d,0x3eb85),function(_0x17dc28){'use strict';const _0x12b7e5=a00_0x95f1;const _0x1a3d87=_0x17dc28[_0x12b7e5(0x25d)],_0x1dc49b=_0x17dc28[_0x12b7e5(0xf7)],_0x16a02c=_0x17dc28[_0x12b7e5(0x281)],_0x3857fe=_0x17dc28[_0x12b7e5(0x103)],_0x159e81=_0x17dc28['downloadStockGridPng'],_0x5d21c0='🈚',_0x4276e2=0x60,_0x466c26=0xf0,_0x3e3fb8=0x13,_0xd9e59b=0xa,_0x45bfc9=0x2,_0x5395fa=0x2,_0x452ecc=_0x12b7e5(0x249),_0xcdb77='guziPlateMapSettings:v1:',_0x1a15bb=_0x12b7e5(0x1d5),_0x4c8c5d=0.4,_0x179262=0x3,_0x1b9bfd=_0x12b7e5(0x2a4),_0x240f02=_0x12b7e5(0x120),_0x2ef347=_0x12b7e5(0x8f),_0x51928b=0x10e0,_0x753cdf=0x1c20,_0x592d2a=0x16e3600,_0x4a3e0e=0.97,_0x4aa18c={'layout':'plate','exportMode':_0x12b7e5(0x12d),'exportQuality':'hd','multiSaveMode':_0x12b7e5(0xe4),'previewScale':0x1,'currentSticker':_0x5d21c0,'defaultSize':_0x4276e2,'textColor':_0x12b7e5(0x87),'backgroundColor':'#fff0c7','backgroundEnabled':![],'globalEmojiSize':_0x4276e2,'priceLabelSize':_0x3e3fb8,'nameLabelSize':_0xd9e59b,'showProductNames':!![],'soldOutStickerMode':_0x12b7e5(0x185),'soldOutStickerModeStored':![],'soldOutStickerEmoji':_0x5d21c0,'soldOutStickerDataUrl':'','soldOutStickerName':'','soldOutStickerAssetKey':'','stickers':[],'labelAdjustments':{},'selectedStickerId':'','selectedAutoLabelId':'','storageKey':'','labelStorageKey':'','dragging':null,'initialized':![]};function _0x287ac1(){const _0x349a5d=_0x12b7e5;if(_0x4aa18c['initialized']||typeof _0x1a3d87!==_0x349a5d(0x1ef))return;_0x4aa18c[_0x349a5d(0x21f)]=!![],_0x1d64a6(),_0x12c082(),_0x3347cc();}function _0x1d64a6(){const _0x49c613=_0x12b7e5,_0x51609c=document[_0x49c613(0xa8)](_0x49c613(0x278)),_0x270c1f=document[_0x49c613(0xa8)](_0x49c613(0x173));if(!_0x51609c||!_0x270c1f||document[_0x49c613(0x296)]('plateMapLayoutGroup'))return;const _0xfb5ca7=_0x51609c['querySelector']('.export-option-group');if(_0xfb5ca7)_0xfb5ca7['id']=_0x49c613(0x1d7);const _0x31739d=_0x51609c[_0x49c613(0x210)](_0x49c613(0x23f))[0x1];if(_0x31739d)_0x31739d['id']=_0x49c613(0x15a);const _0x1c1dc4=document[_0x49c613(0xa8)](_0x49c613(0x1bd));if(_0x1c1dc4)_0x1c1dc4['id']=_0x49c613(0x139);const _0x22695d=document[_0x49c613(0x110)](_0x49c613(0x127));_0x22695d['className']='export-option-group',_0x22695d['id']=_0x49c613(0x27b),_0x22695d[_0x49c613(0x1a9)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>余量图版式</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22export-segmented\x22\x20role=\x22group\x22\x20aria-label=\x22余量图版式\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22active\x22\x20type=\x22button\x22\x20data-export-layout=\x22plate\x22\x20aria-pressed=\x22true\x22>整盘标价图</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20type=\x22button\x22\x20data-export-layout=\x22cards\x22\x20aria-pressed=\x22false\x22>卡片图</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>',_0x51609c[_0x49c613(0xfb)](_0x22695d);const _0x23bb61=document[_0x49c613(0x110)]('div');_0x23bb61['className']=_0x49c613(0x132),_0x23bb61['id']=_0x49c613(0x2b0),_0x23bb61[_0x49c613(0x11c)]=!![],_0x23bb61[_0x49c613(0x1a9)]=_0x49c613(0x168),_0x51609c[_0x49c613(0xfb)](_0x23bb61);const _0xce7fbf=document[_0x49c613(0x110)](_0x49c613(0x127));_0xce7fbf[_0x49c613(0x223)]=_0x49c613(0x14e),_0xce7fbf['id']=_0x49c613(0x10f),_0xce7fbf['hidden']=!![],_0xce7fbf[_0x49c613(0x1a9)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22plate-map-quality-label\x22>导出清晰度\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22plate-map-quality-help\x22\x20id=\x22plateMapQualityHelp\x22\x20type=\x22button\x22\x20aria-label=\x22查看\x20JPG\x20和\x20PNG\x20格式说明\x22\x20aria-expanded=\x22false\x22\x20aria-controls=\x22plateMapQualityDialog\x22\x20title=\x22查看格式说明\x22>?</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22export-segmented\x20plate-map-quality-segmented\x22\x20role=\x22group\x22\x20aria-label=\x22余量图导出清晰度\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22active\x22\x20type=\x22button\x22\x20data-plate-map-quality=\x22hd\x22\x20aria-pressed=\x22true\x22>高清\x20JPG</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20type=\x22button\x22\x20data-plate-map-quality=\x22lossless\x22\x20aria-pressed=\x22false\x22>无损\x20PNG</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>',_0x51609c[_0x49c613(0xfb)](_0xce7fbf);const _0x19ab7e=_0xce7fbf[_0x49c613(0xa8)](_0x49c613(0x133)),_0x11d7a1=document[_0x49c613(0x110)](_0x49c613(0x127));_0x11d7a1['className']=_0x49c613(0x167),_0x11d7a1['id']=_0x49c613(0x1e6),_0x11d7a1['hidden']=!![],_0x11d7a1[_0x49c613(0x1a9)]=_0x49c613(0x1b4),document[_0x49c613(0x7a)][_0x49c613(0xfb)](_0x11d7a1);const _0x370dc6=(_0x3e8ca1=!![])=>{const _0x308e1b=_0x49c613;if(_0x11d7a1[_0x308e1b(0x11c)])return;_0x11d7a1[_0x308e1b(0x11c)]=!![],_0x19ab7e?.['setAttribute'](_0x308e1b(0x216),'false');if(_0x3e8ca1)_0x19ab7e?.['focus']();},_0x3ede44=()=>{const _0x5b9bfc=_0x49c613;_0x11d7a1[_0x5b9bfc(0x11c)]=![],_0x19ab7e?.[_0x5b9bfc(0x130)](_0x5b9bfc(0x216),_0x5b9bfc(0x243)),_0x11d7a1[_0x5b9bfc(0xa8)]('[data-quality-dialog-close]')?.[_0x5b9bfc(0x152)]();};_0x11d7a1[_0x49c613(0x81)](_0x49c613(0x108),_0x5ffc9e=>{const _0x2d1e2a=_0x49c613;(_0x5ffc9e[_0x2d1e2a(0x1cf)]===_0x11d7a1||_0x5ffc9e[_0x2d1e2a(0x1cf)][_0x2d1e2a(0x16e)]('[data-quality-dialog-close]'))&&_0x370dc6();}),document['addEventListener'](_0x49c613(0x1d8),_0x1a0471=>{const _0x18e442=_0x49c613;if(_0x1a0471['key']===_0x18e442(0x27f)&&!_0x11d7a1[_0x18e442(0x11c)])_0x370dc6();});const _0x33a4d9=document[_0x49c613(0x110)]('div');_0x33a4d9[_0x49c613(0x223)]=_0x49c613(0xe2),_0x33a4d9['id']=_0x49c613(0xb4),_0x33a4d9['innerHTML']='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>多图保存</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22export-segmented\x20plate-map-save-segmented\x22\x20role=\x22group\x22\x20aria-label=\x22多张图片保存方式\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22active\x22\x20type=\x22button\x22\x20data-plate-map-save=\x22zip\x22\x20aria-pressed=\x22true\x22>打包\x20ZIP</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20type=\x22button\x22\x20data-plate-map-save=\x22individual\x22\x20aria-pressed=\x22false\x22>逐张下载</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>',_0x51609c[_0x49c613(0xfb)](_0x33a4d9),_0x51609c[_0x49c613(0x247)][_0x49c613(0xef)](_0x49c613(0x16a));const _0x5a2fdb=document[_0x49c613(0x110)]('div');_0x5a2fdb[_0x49c613(0x223)]=_0x49c613(0x11a),_0x5a2fdb['id']='cardExportDetailToolbar',_0x5a2fdb[_0x49c613(0x1a9)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22card-export-detail-copy\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<strong>卡片内容</strong>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>设置要显示的商品和价格算法</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22card-export-detail-options\x22></div>';const _0x48dd6b=_0x5a2fdb[_0x49c613(0xa8)](_0x49c613(0xd9));if(_0xfb5ca7)_0x48dd6b[_0x49c613(0xfb)](_0xfb5ca7);if(_0x31739d)_0x48dd6b[_0x49c613(0xfb)](_0x31739d);if(_0x1c1dc4)_0x48dd6b[_0x49c613(0xfb)](_0x1c1dc4);_0x270c1f[_0x49c613(0xfb)](_0x5a2fdb);const _0x1a0073=document[_0x49c613(0x110)]('div');_0x1a0073[_0x49c613(0x223)]=_0x49c613(0xac),_0x1a0073['id']='plateMapStickerToolbar',_0x1a0073[_0x49c613(0x11c)]=!![],_0x1a0073[_0x49c613(0x1a9)]=_0x49c613(0x1ec)+_0x5d21c0+_0x49c613(0xd0)+_0x5d21c0+_0x49c613(0xc8)+_0x5d21c0+_0x49c613(0xb7)+_0x5d21c0+'\x22\x20autocomplete=\x22off\x22\x20aria-label=\x22自定义售罄\x20emoji\x22></label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22plate-map-tool-button\x22\x20id=\x22plateMapUseSoldOutEmoji\x22\x20type=\x22button\x22\x20data-sticker-action=\x22use-emoji\x22>使用\x20emoji</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20id=\x22plateMapSoldOutStickerInput\x22\x20type=\x22file\x22\x20accept=\x22image/png,image/jpeg,image/webp,image/gif\x22\x20hidden>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22plate-map-tool-button\x20primary\x22\x20id=\x22plateMapUploadSoldOutSticker\x22\x20type=\x22button\x22\x20data-sticker-action=\x22upload-image\x22>上传图片</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22plate-map-tool-button\x22\x20id=\x22plateMapResetSoldOutSticker\x22\x20type=\x22button\x22\x20data-sticker-action=\x22reset-image\x22\x20disabled>恢复默认\x20'+_0x5d21c0+_0x49c613(0x202)+_0x466c26+_0x49c613(0x294)+_0x4276e2+_0x49c613(0x2b9)+_0x466c26+_0x49c613(0x294)+_0x4276e2+_0x49c613(0x190)+_0x3e3fb8+_0x49c613(0xe9)+_0x3e3fb8+_0x49c613(0x199)+_0xd9e59b+_0x49c613(0x21c)+_0xd9e59b+'\x22\x20inputmode=\x22numeric\x22\x20aria-label=\x22谷名标签大小数值\x22><span>px</span></span></label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20class=\x22plate-map-name-toggle\x22><input\x20id=\x22plateMapShowProductNames\x22\x20type=\x22checkbox\x22\x20checked><span>显示谷名</span></label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22plate-map-label-editor\x22\x20id=\x22plateMapLabelEditor\x22\x20hidden>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22plate-map-label-editor-copy\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<strong\x20id=\x22plateMapSelectedLabelName\x22>已选标签</strong>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20id=\x22plateMapSelectedLabelHint\x22>直接拖动改位置，拖右下角圆点改大小</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22plate-map-label-editor-actions\x22\x20role=\x22group\x22\x20aria-label=\x22所选标签调整\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20type=\x22button\x22\x20data-label-action=\x22smaller\x22\x20title=\x22缩小标签\x22>缩小</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20type=\x22button\x22\x20data-label-action=\x22larger\x22\x20title=\x22放大标签\x22>放大</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22plate-map-label-editor-divider\x22\x20aria-hidden=\x22true\x22></span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20type=\x22button\x22\x20data-label-action=\x22bottom\x22\x20title=\x22移到最下面一层\x22>置底</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20type=\x22button\x22\x20data-label-action=\x22down\x22\x20title=\x22向下一层\x22>下一层</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20type=\x22button\x22\x20data-label-action=\x22up\x22\x20title=\x22向上一层\x22>上一层</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20type=\x22button\x22\x20data-label-action=\x22top\x22\x20title=\x22移到最上面一层\x22>置顶</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22plate-map-label-editor-divider\x22\x20aria-hidden=\x22true\x22></span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20type=\x22button\x22\x20data-label-action=\x22reset\x22\x20title=\x22恢复这个标签的位置、大小和层级\x22>恢复默认</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22danger\x22\x20id=\x22plateMapDeleteSelectedLabel\x22\x20type=\x22button\x22\x20data-label-action=\x22delete\x22\x20title=\x22删除手动贴纸\x22>删除</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>',_0x270c1f[_0x49c613(0xfb)](_0x1a0073),_0x22695d[_0x49c613(0x81)](_0x49c613(0x108),_0x299d45=>{const _0x180f1f=_0x49c613,_0x5d9906=_0x299d45['target']['closest'](_0x180f1f(0x1b1));if(_0x5d9906)_0x2f1c8b(_0x5d9906[_0x180f1f(0x22f)][_0x180f1f(0x1a3)]);}),_0x23bb61[_0x49c613(0x81)]('click',_0x1210b5=>{const _0x3f4d52=_0x49c613,_0x5038fa=_0x1210b5[_0x3f4d52(0x1cf)][_0x3f4d52(0x16e)](_0x3f4d52(0x1c7));if(_0x5038fa)_0x29c7a5(_0x5038fa[_0x3f4d52(0x22f)][_0x3f4d52(0x208)]);}),_0xce7fbf['addEventListener'](_0x49c613(0x108),_0x5ae83b=>{const _0x5ee885=_0x49c613,_0x4eafef=_0x5ae83b['target'][_0x5ee885(0x16e)](_0x5ee885(0x133));if(_0x4eafef){_0x3ede44();return;}const _0x2fbd41=_0x5ae83b['target'][_0x5ee885(0x16e)](_0x5ee885(0x29e));if(_0x2fbd41)_0xa0712f(_0x2fbd41['dataset'][_0x5ee885(0x157)]);}),_0x33a4d9['addEventListener'](_0x49c613(0x108),_0x269242=>{const _0x5b639e=_0x49c613,_0xbe5083=_0x269242[_0x5b639e(0x1cf)]['closest'](_0x5b639e(0x9a));if(_0xbe5083)_0x2c4df7(_0xbe5083[_0x5b639e(0x22f)][_0x5b639e(0x277)]);}),_0x1a0073['addEventListener'](_0x49c613(0x108),_0x5e31ab),_0x1a0073[_0x49c613(0xa8)](_0x49c613(0x113))?.[_0x49c613(0x81)](_0x49c613(0x290),_0x10bc3f),_0x1a0073[_0x49c613(0xa8)](_0x49c613(0x184))?.[_0x49c613(0x81)]('input',_0x3c4754),_0x1a0073[_0x49c613(0xa8)](_0x49c613(0x184))?.[_0x49c613(0x81)](_0x49c613(0x1d8),_0x29904d=>{const _0x33b1ef=_0x49c613;if(_0x29904d[_0x33b1ef(0x1ee)]!==_0x33b1ef(0x20c))return;_0x29904d[_0x33b1ef(0xab)](),_0xf6423e();}),_0x1a0073[_0x49c613(0xa8)](_0x49c613(0x1c0))?.[_0x49c613(0x81)](_0x49c613(0xc2),_0x5ee270),_0x1a0073[_0x49c613(0xa8)](_0x49c613(0x12f))?.[_0x49c613(0x81)](_0x49c613(0x290),_0x5ee270),_0x1a0073['querySelector'](_0x49c613(0x12f))?.[_0x49c613(0x81)](_0x49c613(0x1d8),_0x2cb539=>{const _0x2f78d6=_0x49c613;if(_0x2cb539[_0x2f78d6(0x1ee)]!==_0x2f78d6(0x20c))return;_0x2cb539['preventDefault'](),_0x2cb539[_0x2f78d6(0x74)][_0x2f78d6(0x15e)]();}),_0x1a0073[_0x49c613(0xa8)](_0x49c613(0x1b9))?.[_0x49c613(0x81)]('input',_0x2e656c=>_0x15bb7a('price',_0x2e656c)),_0x1a0073[_0x49c613(0xa8)]('#plateMapPriceLabelSizeNumber')?.['addEventListener'](_0x49c613(0x290),_0xbc4c3=>_0x15bb7a(_0x49c613(0xc5),_0xbc4c3)),_0x1a0073['querySelector']('#plateMapNameLabelSize')?.[_0x49c613(0x81)](_0x49c613(0xc2),_0x14f18b=>_0x15bb7a(_0x49c613(0x153),_0x14f18b)),_0x1a0073[_0x49c613(0xa8)](_0x49c613(0x72))?.[_0x49c613(0x81)](_0x49c613(0x290),_0x2b5591=>_0x15bb7a(_0x49c613(0x153),_0x2b5591)),['plateMapPriceLabelSizeNumber','plateMapNameLabelSizeNumber']['forEach'](_0x4c17eb=>{const _0x47eb5b=_0x49c613;_0x1a0073[_0x47eb5b(0xa8)]('#'+_0x4c17eb)?.[_0x47eb5b(0x81)](_0x47eb5b(0x1d8),_0x21ed72=>{const _0x148d20=_0x47eb5b;if(_0x21ed72[_0x148d20(0x1ee)]!==_0x148d20(0x20c))return;_0x21ed72[_0x148d20(0xab)](),_0x21ed72[_0x148d20(0x74)][_0x148d20(0x15e)]();});}),_0x1a0073['querySelector']('#plateMapShowProductNames')?.[_0x49c613(0x81)](_0x49c613(0x290),_0x54b295);}function _0x12c082(){const _0x4961a1=_0x12b7e5,_0x18ddb3=document[_0x4961a1(0x296)](_0x4961a1(0x203));if(!_0x18ddb3)return;_0x18ddb3[_0x4961a1(0x81)](_0x4961a1(0x108),_0xc5012f),_0x18ddb3['addEventListener'](_0x4961a1(0x1f1),_0x84df55),_0x18ddb3[_0x4961a1(0x81)]('pointermove',_0x366991),_0x18ddb3[_0x4961a1(0x81)](_0x4961a1(0x1ff),_0x5a17a6),_0x18ddb3[_0x4961a1(0x81)](_0x4961a1(0xed),_0x5a17a6),document[_0x4961a1(0x81)](_0x4961a1(0x1d8),_0x2fd9ed=>{const _0x475564=_0x4961a1;if(_0x4aa18c[_0x475564(0xf0)]!==_0x475564(0x19e)||!_0x4aa18c[_0x475564(0xd7)]&&!_0x4aa18c[_0x475564(0x123)])return;if(_0x2fd9ed[_0x475564(0x1cf)]instanceof HTMLInputElement||_0x2fd9ed[_0x475564(0x1cf)]instanceof HTMLTextAreaElement)return;if((_0x2fd9ed[_0x475564(0x1ee)]===_0x475564(0x22c)||_0x2fd9ed[_0x475564(0x1ee)]===_0x475564(0x11f))&&_0x4aa18c[_0x475564(0xd7)]){_0x2fd9ed[_0x475564(0xab)](),_0x5a8bab();return;}if(!['ArrowLeft',_0x475564(0x1c4),_0x475564(0x201),_0x475564(0x90)][_0x475564(0x25c)](_0x2fd9ed[_0x475564(0x1ee)]))return;_0x2fd9ed[_0x475564(0xab)](),_0x2ea621(_0x2fd9ed[_0x475564(0x1ee)],_0x2fd9ed[_0x475564(0x272)]?0x1:0.25);});}function _0x2f1c8b(_0x4fc908){const _0xa087de=_0x12b7e5;_0x4aa18c['layout']=_0x4fc908===_0xa087de(0x19e)?_0xa087de(0x19e):_0xa087de(0x1b6),_0x4aa18c[_0xa087de(0xd7)]='',_0x4aa18c[_0xa087de(0x123)]='',_0x3347cc(),document[_0xa087de(0x296)](_0xa087de(0x194))?.[_0xa087de(0x247)][_0xa087de(0x7b)](_0xa087de(0xf8))&&_0x17dc28[_0xa087de(0x25d)]();}function _0x3347cc(){const _0x309460=_0x12b7e5;document[_0x309460(0x210)](_0x309460(0x1b1))['forEach'](_0x49872c=>{const _0x23d53b=_0x309460,_0x1e7a2c=_0x49872c[_0x23d53b(0x22f)][_0x23d53b(0x1a3)]===_0x4aa18c['layout'];_0x49872c['classList'][_0x23d53b(0x26e)](_0x23d53b(0x1f8),_0x1e7a2c),_0x49872c[_0x23d53b(0x130)](_0x23d53b(0x266),String(_0x1e7a2c));});const _0x1c85a8=_0x4aa18c[_0x309460(0xf0)]===_0x309460(0x19e),_0x4891b7=document[_0x309460(0x296)]('exportStockOptionGroup'),_0x2321bf=document['getElementById'](_0x309460(0x15a)),_0x55296f=document['getElementById'](_0x309460(0x139)),_0x3cc6bf=document['getElementById']('plateMapStickerToolbar'),_0x1f19ce=document['getElementById'](_0x309460(0x169)),_0x47f278=document[_0x309460(0x296)](_0x309460(0x2b0)),_0x2b83fe=document[_0x309460(0x296)](_0x309460(0x10f)),_0xd88ac0=document[_0x309460(0x296)](_0x309460(0xb4)),_0x219f51=document[_0x309460(0xa8)](_0x309460(0x278)),_0x3343d8=document['querySelector'](_0x309460(0xd9)),_0x2c4c61=document['querySelector'](_0x309460(0x173));if(_0x4891b7)_0x4891b7[_0x309460(0x11c)]=_0x1c85a8;if(_0x2321bf)_0x2321bf['hidden']=_0x1c85a8;if(_0x55296f)_0x55296f['hidden']=_0x1c85a8;if(_0x3cc6bf)_0x3cc6bf[_0x309460(0x11c)]=!_0x1c85a8;if(_0x1f19ce)_0x1f19ce['hidden']=_0x1c85a8;if(_0x47f278)_0x47f278[_0x309460(0x11c)]=!_0x1c85a8;if(_0x2b83fe){if(_0x1c85a8)_0x219f51?.['insertBefore'](_0x2b83fe,_0xd88ac0||null);else _0x3343d8?.[_0x309460(0xfb)](_0x2b83fe);_0x2b83fe[_0x309460(0x11c)]=![];}_0x2c4c61?.['classList'][_0x309460(0x26e)](_0x309460(0x1d3),_0x1c85a8),document[_0x309460(0x296)](_0x309460(0x203))?.['classList'][_0x309460(0x26e)](_0x309460(0x11b),_0x1c85a8),_0x595b02(),_0x1159d2();}function _0x29c7a5(_0x379b37){const _0x196781=_0x12b7e5;_0x4aa18c['exportMode']=_0x379b37===_0x196781(0x13a)||_0x379b37===_0x196781(0x226)?_0x379b37:_0x196781(0x12d),document[_0x196781(0x210)](_0x196781(0x1c7))['forEach'](_0x1e93cb=>{const _0x164f05=_0x196781,_0x551e22=_0x1e93cb[_0x164f05(0x22f)][_0x164f05(0x208)]===_0x4aa18c['exportMode'];_0x1e93cb[_0x164f05(0x247)]['toggle'](_0x164f05(0x1f8),_0x551e22),_0x1e93cb[_0x164f05(0x130)]('aria-pressed',String(_0x551e22));}),_0x595b02(),_0x4aa18c[_0x196781(0xf0)]==='plate'&&document[_0x196781(0x296)]('previewContainer')?.[_0x196781(0x247)][_0x196781(0x7b)](_0x196781(0xf8))&&_0x17dc28[_0x196781(0x25d)]();}function _0xa0712f(_0x57eef0){const _0x56505a=_0x12b7e5;_0x4aa18c[_0x56505a(0x232)]=_0x57eef0===_0x56505a(0x14f)?_0x56505a(0x14f):'hd',document['querySelectorAll'](_0x56505a(0x29e))['forEach'](_0x5b4ac6=>{const _0x514f63=_0x56505a,_0x248dea=_0x5b4ac6['dataset'][_0x514f63(0x157)]===_0x4aa18c[_0x514f63(0x232)];_0x5b4ac6['classList'][_0x514f63(0x26e)]('active',_0x248dea),_0x5b4ac6[_0x514f63(0x130)](_0x514f63(0x266),String(_0x248dea));}),document[_0x56505a(0x210)](_0x56505a(0xf6))[_0x56505a(0x23b)](_0x2ba720=>{const _0x59513d=_0x56505a;if(!_0x2ba720[_0x59513d(0x1bf)])_0x2ba720['textContent']=_0x59513d(0x231)+(_0x4aa18c['exportQuality']===_0x59513d(0x14f)?_0x59513d(0x27c):_0x59513d(0x1f4));}),_0x595b02();}function _0x2c4df7(_0x2daac4){const _0x114a6a=_0x12b7e5;_0x4aa18c[_0x114a6a(0x17f)]=_0x2daac4===_0x114a6a(0xc7)?'individual':'zip',document[_0x114a6a(0x210)](_0x114a6a(0x9a))['forEach'](_0x4f3eb9=>{const _0x3a46fc=_0x114a6a,_0x60d2ed=_0x4f3eb9[_0x3a46fc(0x22f)][_0x3a46fc(0x277)]===_0x4aa18c[_0x3a46fc(0x17f)];_0x4f3eb9[_0x3a46fc(0x247)]['toggle'](_0x3a46fc(0x1f8),_0x60d2ed),_0x4f3eb9[_0x3a46fc(0x130)](_0x3a46fc(0x266),String(_0x60d2ed));});}function _0x19cddd(_0x54b0ee){return new Promise(_0x2a2633=>{const _0x45089c=a00_0x95f1;document[_0x45089c(0xa8)](_0x45089c(0x28a))?.[_0x45089c(0x25f)]();const _0x175035=document['createElement'](_0x45089c(0x127));_0x175035[_0x45089c(0x223)]='export-save-dialog-backdrop',_0x175035['innerHTML']=_0x45089c(0x21b)+_0x54b0ee+'\x20张拼图</strong>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22export-save-dialog-actions\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20type=\x22button\x22\x20data-export-save-choice=\x22individual\x22>逐张下载</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20type=\x22button\x22\x20data-export-save-choice=\x22zip\x22>打包\x20ZIP</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22export-save-dialog-cancel\x22\x20type=\x22button\x22\x20data-export-save-choice=\x22cancel\x22>取消</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</section>',document[_0x45089c(0x7a)][_0x45089c(0xfb)](_0x175035);const _0x161ae7=_0x17e721=>{const _0xe92aec=_0x45089c;document[_0xe92aec(0x1e5)](_0xe92aec(0x1d8),_0x2f087d),_0x175035['remove']();if(_0x17e721===_0xe92aec(0xc7)||_0x17e721===_0xe92aec(0xe4)){_0x2c4df7(_0x17e721),_0x2a2633(_0x17e721);return;}_0x2a2633('');},_0x2f087d=_0x35812d=>{const _0x3182b5=_0x45089c;if(_0x35812d[_0x3182b5(0x1ee)]===_0x3182b5(0x27f))_0x161ae7('');};_0x175035[_0x45089c(0x81)](_0x45089c(0x108),_0x16fe52=>{const _0x44c95e=_0x45089c,_0x5c771a=_0x16fe52[_0x44c95e(0x1cf)][_0x44c95e(0x16e)](_0x44c95e(0x17e))?.[_0x44c95e(0x22f)][_0x44c95e(0xaa)];if(_0x5c771a)_0x161ae7(_0x5c771a);else{if(_0x16fe52[_0x44c95e(0x1cf)]===_0x175035)_0x161ae7('');}}),document[_0x45089c(0x81)](_0x45089c(0x1d8),_0x2f087d),_0x175035[_0x45089c(0xa8)]('[data-export-save-choice=\x22'+_0x4aa18c[_0x45089c(0x17f)]+'\x22]')?.[_0x45089c(0x152)]();});}function _0x595b02(){const _0x5561ee=_0x12b7e5,_0x1fcb59=document[_0x5561ee(0xa8)](_0x5561ee(0x245));if(!_0x1fcb59||_0x1fcb59[_0x5561ee(0x247)]['contains']('is-loading'))return;if(_0x4aa18c[_0x5561ee(0xf0)]!==_0x5561ee(0x19e)){_0x1fcb59[_0x5561ee(0xe1)]=_0x5561ee(0x17c)+(_0x4aa18c[_0x5561ee(0x232)]===_0x5561ee(0x14f)?'PNG':_0x5561ee(0x1f4));return;}const _0x4804e6=_0x4aa18c[_0x5561ee(0x232)]===_0x5561ee(0x14f)?_0x5561ee(0x27c):_0x5561ee(0x1f4);_0x1fcb59[_0x5561ee(0xe1)]=_0x4aa18c['exportMode']===_0x5561ee(0x13a)?'下载四宫格\x20'+_0x4804e6:_0x4aa18c[_0x5561ee(0x129)]===_0x5561ee(0x226)?_0x5561ee(0xf4)+_0x4804e6:_0x5561ee(0x299)+_0x4804e6;}function _0x5e31ab(_0x53f886){const _0x2fa5ed=_0x12b7e5,_0x5bb1e0=_0x53f886['target']['closest'](_0x2fa5ed(0xbf))?.['dataset']['labelAction'];if(_0x5bb1e0){_0x3c648b(_0x5bb1e0);return;}const _0xb165e7=_0x53f886[_0x2fa5ed(0x1cf)][_0x2fa5ed(0x16e)]('[data-sticker-action]')?.[_0x2fa5ed(0x22f)][_0x2fa5ed(0x22e)];if(!_0xb165e7)return;if(_0xb165e7==='upload-image')document[_0x2fa5ed(0x296)](_0x2fa5ed(0x275))?.['click']();if(_0xb165e7==='use-emoji')_0xf6423e();if(_0xb165e7===_0x2fa5ed(0x16c))_0x3036ff();}function _0x3de77c(_0x36a1c2){const _0x2d2892=_0x12b7e5,_0x1d852c=String(_0x36a1c2||'');if(typeof Intl!==_0x2d2892(0x102)&&typeof Intl[_0x2d2892(0x18a)]===_0x2d2892(0x1ef))return[...new Intl['Segmenter'](_0x2d2892(0x254),{'granularity':_0x2d2892(0x267)})[_0x2d2892(0xee)](_0x1d852c)][_0x2d2892(0x236)](_0x33e597=>_0x33e597[_0x2d2892(0xee)]);return Array[_0x2d2892(0x1c5)](_0x1d852c);}function _0x491720(_0x41891b){const _0x492b81=_0x12b7e5,_0x4f0c3e=String(_0x41891b||'');if(!_0x4f0c3e)return![];if(/^\p{Regional_Indicator}{2}$/u[_0x492b81(0x24c)](_0x4f0c3e))return!![];if(/^[#*0-9]\uFE0F?\u20E3$/u[_0x492b81(0x24c)](_0x4f0c3e))return!![];return/\p{Extended_Pictographic}/u['test'](_0x4f0c3e);}function _0x13086b(_0xfb144){const _0x1fb03d=_0x12b7e5;return _0x3de77c(String(_0xfb144||'')['trim']())[_0x1fb03d(0x228)](_0x491720)||'';}function _0x3c4754(_0x23c11a){const _0x4bd96a=_0x12b7e5,_0x46d47f=_0x23c11a['currentTarget'],_0x3b3c37=_0x13086b(_0x46d47f[_0x4bd96a(0x28c)]);if(_0x46d47f[_0x4bd96a(0x28c)]!==_0x3b3c37)_0x46d47f[_0x4bd96a(0x28c)]=_0x3b3c37;}async function _0xf6423e(){const _0x591f2f=_0x12b7e5,_0x42dbdb=document['getElementById']('plateMapSoldOutStickerEmoji'),_0x1be658=String(_0x42dbdb?.['value']||'')['trim'](),_0x4f23bc=_0x3de77c(_0x1be658),_0x300ce8=_0x4f23bc['length']===0x1&&_0x491720(_0x4f23bc[0x0])?_0x4f23bc[0x0]:'';if(!_0x300ce8){alert(_0x591f2f(0x150));if(_0x42dbdb)_0x42dbdb[_0x591f2f(0x28c)]=_0x13086b(_0x1be658);_0x42dbdb?.[_0x591f2f(0x152)]();return;}_0x4aa18c[_0x591f2f(0x175)]=_0x300ce8,_0x4aa18c[_0x591f2f(0x27d)]=_0x591f2f(0x185),_0x4aa18c['soldOutStickerModeStored']=!![],_0x4aa18c[_0x591f2f(0x193)]=_0x300ce8,_0x22b827(),_0x1159d2();if(document[_0x591f2f(0x296)](_0x591f2f(0x194))?.[_0x591f2f(0x247)][_0x591f2f(0x7b)]('visible'))await _0x17dc28[_0x591f2f(0x25d)]();_0x17dc28[_0x591f2f(0xbd)]?.(_0x591f2f(0x1fc)+_0x300ce8+_0x591f2f(0x1f6));}async function _0x10bc3f(_0x4f23ce){const _0x51f140=_0x12b7e5,_0xefb607=_0x4f23ce[_0x51f140(0x74)],_0x37ad47=_0xefb607?.['files']?.[0x0];if(!_0x37ad47)return;_0xefb607[_0x51f140(0x28c)]='';if(!String(_0x37ad47[_0x51f140(0x18b)]||'')[_0x51f140(0x128)]('image/')){alert(_0x51f140(0x114));return;}if(_0x37ad47[_0x51f140(0x13d)]>0x14*0x400*0x400){alert('贴纸图片不能超过\x2020MB。');return;}try{const _0x3d185a=await _0x13f211(_0x37ad47);await _0x1fe5ec(_0x3d185a);const _0x2f6a02=_0x172b3b();await _0x2a111e(_0x2f6a02,{'blob':_0x37ad47,'name':_0x37ad47[_0x51f140(0x153)]||'自定义售罄贴纸','updatedAt':Date['now']()}),_0x4aa18c[_0x51f140(0x217)]=_0x2f6a02,_0x4aa18c['soldOutStickerDataUrl']=_0x3d185a,_0x4aa18c[_0x51f140(0x9e)]=_0x37ad47[_0x51f140(0x153)]||'自定义售罄贴纸',_0x4aa18c[_0x51f140(0x27d)]=_0x51f140(0x115),_0x4aa18c[_0x51f140(0x212)]=!![],_0x22b827(),_0x1159d2();if(document['getElementById'](_0x51f140(0x194))?.['classList'][_0x51f140(0x7b)](_0x51f140(0xf8)))await _0x17dc28[_0x51f140(0x25d)]();_0x17dc28['notifyExport']?.(_0x51f140(0x1de));}catch(_0x245aed){console[_0x51f140(0xa3)](_0x51f140(0xa9),_0x245aed),alert('贴纸图片保存失败：'+(_0x245aed?.[_0x51f140(0x118)]||'浏览器没有完成图片读取'));}}async function _0x3036ff(){const _0x251032=_0x12b7e5;try{const _0x8715b3=_0x172b3b();await _0x669aa8(_0x8715b3),_0x4aa18c[_0x251032(0x217)]=_0x8715b3,_0x4aa18c[_0x251032(0x144)]='',_0x4aa18c[_0x251032(0x9e)]='',_0x4aa18c[_0x251032(0x27d)]='emoji',_0x4aa18c['soldOutStickerModeStored']=!![],_0x4aa18c[_0x251032(0x175)]=_0x5d21c0,_0x4aa18c[_0x251032(0x193)]=_0x5d21c0,_0x22b827(),_0x1159d2();if(document[_0x251032(0x296)](_0x251032(0x194))?.[_0x251032(0x247)][_0x251032(0x7b)](_0x251032(0xf8)))await _0x17dc28[_0x251032(0x25d)]();_0x17dc28[_0x251032(0xbd)]?.(_0x251032(0x2b7)+_0x5d21c0+'\x20售罄标记');}catch(_0x297e2b){console['error'](_0x251032(0xf9),_0x297e2b),alert(_0x251032(0x148));}}function _0x13f211(_0x1731be){return new Promise((_0x412e94,_0x2a67a4)=>{const _0x551c37=a00_0x95f1,_0x10a637=new FileReader();_0x10a637[_0x551c37(0x81)](_0x551c37(0x95),()=>_0x412e94(String(_0x10a637[_0x551c37(0x109)]||'')),{'once':!![]}),_0x10a637[_0x551c37(0x81)]('error',()=>_0x2a67a4(_0x10a637['error']||new Error(_0x551c37(0x12e))),{'once':!![]}),_0x10a637['readAsDataURL'](_0x1731be);});}function _0x1fe5ec(_0x2b93da){return new Promise((_0x5db37d,_0x511034)=>{const _0x53ed96=a00_0x95f1,_0x210235=new Image();_0x210235['addEventListener'](_0x53ed96(0x95),_0x5db37d,{'once':!![]}),_0x210235[_0x53ed96(0x81)](_0x53ed96(0xa3),()=>_0x511034(new Error('图片格式无法识别')),{'once':!![]}),_0x210235['src']=_0x2b93da;});}function _0x1159d2(){const _0x51a824=_0x12b7e5,_0x108091=document[_0x51a824(0x296)]('plateMapGlobalEmojiSize'),_0x3c3b98=document[_0x51a824(0x296)](_0x51a824(0x14d)),_0x4fd292=document['getElementById'](_0x51a824(0x227)),_0xc4f1b=document['getElementById'](_0x51a824(0x263)),_0x46f0f7=document[_0x51a824(0x296)]('plateMapNameLabelSize'),_0x13acb3=document['getElementById'](_0x51a824(0x17a)),_0x593b68=document['getElementById'](_0x51a824(0xfd)),_0x2ced53=document[_0x51a824(0x296)](_0x51a824(0x9c)),_0x4ec6c4=document[_0x51a824(0x296)](_0x51a824(0x13c)),_0x3441c5=document['getElementById']('plateMapSoldOutStickerName'),_0x5af729=document[_0x51a824(0x296)](_0x51a824(0x2a3)),_0x4a560e=document[_0x51a824(0x296)](_0x51a824(0x73)),_0x19c04f=document[_0x51a824(0x296)](_0x51a824(0x1ce)),_0x2351cb=document[_0x51a824(0x296)](_0x51a824(0x230)),_0x95bab4=document[_0x51a824(0x296)](_0x51a824(0x137)),_0x30fc60=document[_0x51a824(0x296)]('plateMapSelectedLabelName'),_0x3dfb9b=document[_0x51a824(0x296)](_0x51a824(0x1dc)),_0x38b1e0=document[_0x51a824(0x296)](_0x51a824(0xcd)),_0x447bf1=_0x5a7d0e();if(_0x108091)_0x108091[_0x51a824(0x28c)]=String(_0x4aa18c[_0x51a824(0x238)]);if(_0x3c3b98&&document['activeElement']!==_0x3c3b98)_0x3c3b98['value']=String(_0x4aa18c['globalEmojiSize']);if(_0x4fd292)_0x4fd292[_0x51a824(0x28c)]=String(_0x4aa18c['priceLabelSize']);if(_0xc4f1b&&document[_0x51a824(0x79)]!==_0xc4f1b)_0xc4f1b[_0x51a824(0x28c)]=String(_0x4aa18c[_0x51a824(0xc0)]);if(_0x46f0f7)_0x46f0f7[_0x51a824(0x28c)]=String(_0x4aa18c['nameLabelSize']);if(_0x13acb3&&document[_0x51a824(0x79)]!==_0x13acb3)_0x13acb3['value']=String(_0x4aa18c[_0x51a824(0xd6)]);if(_0x593b68)_0x593b68[_0x51a824(0x22b)]=_0x4aa18c[_0x51a824(0x13e)];if(_0x2ced53&&document[_0x51a824(0x79)]!==_0x2ced53)_0x2ced53[_0x51a824(0x28c)]=_0x4aa18c['soldOutStickerEmoji'];if(_0x4ec6c4)_0x4ec6c4[_0x51a824(0x1a9)]=_0x447bf1?_0x51a824(0x26a)+_0x2a0247(_0x4aa18c[_0x51a824(0x144)])+_0x51a824(0x25a):_0x51a824(0x24e)+_0x2a0247(_0x4aa18c[_0x51a824(0x175)])+_0x51a824(0x17d);if(_0x3441c5)_0x3441c5[_0x51a824(0xe1)]=_0x447bf1?_0x4aa18c['soldOutStickerName']||'自定义图片贴纸':_0x4aa18c[_0x51a824(0x175)]===_0x5d21c0?_0x51a824(0xbe)+_0x5d21c0:_0x51a824(0x270)+_0x4aa18c['soldOutStickerEmoji'];if(_0x5af729)_0x5af729[_0x51a824(0xe1)]=_0x447bf1?_0x51a824(0x21d):_0x51a824(0x1e8);_0x4a560e&&(_0x4a560e[_0x51a824(0x247)]['toggle']('is-active',!_0x447bf1),_0x4a560e[_0x51a824(0x130)]('aria-pressed',String(!_0x447bf1)));_0x19c04f&&(_0x19c04f[_0x51a824(0x247)]['toggle']('is-active',_0x447bf1),_0x19c04f['setAttribute'](_0x51a824(0x266),String(_0x447bf1)));if(_0x2351cb)_0x2351cb[_0x51a824(0x1bf)]=!_0x4aa18c[_0x51a824(0x144)]&&_0x4aa18c[_0x51a824(0x175)]===_0x5d21c0&&_0x4aa18c[_0x51a824(0x27d)]===_0x51a824(0x185);const _0x5b0dea=_0x4aa18c[_0x51a824(0x218)][_0x51a824(0x228)](_0x128a91=>_0x128a91['id']===_0x4aa18c['selectedStickerId']),_0x2aa624=_0x4aa18c[_0x51a824(0x123)]?document['querySelector'](_0x51a824(0x23c)+_0x279bc0(_0x4aa18c[_0x51a824(0x123)])+'\x22]'):null,_0x3b422e=!!_0x5b0dea||!!_0x2aa624;if(_0x95bab4)_0x95bab4[_0x51a824(0x11c)]=!_0x3b422e||_0xa9032e();if(_0x30fc60)_0x30fc60[_0x51a824(0xe1)]=_0x5b0dea?'已选手动贴纸':'已选：'+(_0x2aa624?.['dataset']['labelName']||_0x51a824(0x82));if(_0x3dfb9b)_0x3dfb9b['textContent']=_0x5b0dea?_0x51a824(0xae)+Math[_0x51a824(0x256)](Number(_0x5b0dea[_0x51a824(0x13d)]||_0x4aa18c[_0x51a824(0x238)]))+_0x51a824(0x14b):_0x51a824(0xae)+Math[_0x51a824(0x256)](_0x340468(_0x4aa18c[_0x51a824(0x123)])['scale']*0x64)+'%\x20·\x20可拖动或用右下角缩放';if(_0x38b1e0)_0x38b1e0[_0x51a824(0x11c)]=!_0x5b0dea;}function _0xad362d(){const _0x139ee8=_0x12b7e5,_0x23fbaa=document[_0x139ee8(0x296)](_0x139ee8(0x1cc)),_0x19c4e5=document[_0x139ee8(0x296)](_0x139ee8(0x1bc)),_0x330d88=document[_0x139ee8(0x296)](_0x139ee8(0x182));_0x4aa18c[_0x139ee8(0x15c)]=_0x383d86(_0x23fbaa?.['value'],_0x4aa18c[_0x139ee8(0x15c)]),_0x4aa18c[_0x139ee8(0x178)]=!!_0x19c4e5?.['checked'],_0x4aa18c['backgroundColor']=_0x383d86(_0x330d88?.[_0x139ee8(0x28c)],_0x4aa18c[_0x139ee8(0x145)]);const _0x54b86a=_0x4aa18c[_0x139ee8(0x218)][_0x139ee8(0x228)](_0x26857a=>_0x26857a['id']===_0x4aa18c[_0x139ee8(0xd7)]);_0x54b86a&&(_0x54b86a[_0x139ee8(0x15c)]=_0x4aa18c[_0x139ee8(0x15c)],_0x54b86a[_0x139ee8(0x145)]=_0x4aa18c[_0x139ee8(0x145)],_0x54b86a[_0x139ee8(0x178)]=_0x4aa18c[_0x139ee8(0x178)],_0x23b7e1(),_0x3c8d46()),_0x1159d2();}function _0x5ee270(_0x4f37f4){const _0x3a223c=_0x12b7e5,_0x356ca3=_0x4f37f4?.[_0x3a223c(0x74)]||document[_0x3a223c(0x296)](_0x3a223c(0x106)),_0xf39a0=Number(_0x356ca3?.[_0x3a223c(0x28c)]);if(!Number[_0x3a223c(0x135)](_0xf39a0)){_0x1159d2();return;}_0x4aa18c[_0x3a223c(0x238)]=_0x584331(Math['round'](_0xf39a0),0x18,_0x466c26),_0x4aa18c['defaultSize']=_0x4aa18c[_0x3a223c(0x238)],_0x4aa18c[_0x3a223c(0x218)]['forEach'](_0x28a4a9=>{_0x28a4a9['size']=_0x4aa18c['globalEmojiSize'];}),_0x22b827(),_0x23b7e1(),_0x6072f0(),_0x25e8fd(),_0x3c8d46(),_0x197657(),_0x1159d2();}function _0x54b295(){const _0x4713d7=_0x12b7e5;_0x4aa18c['showProductNames']=!!document['getElementById']('plateMapShowProductNames')?.[_0x4713d7(0x22b)],_0x22b827(),_0x6072f0(),_0x1159d2();}function _0x15bb7a(_0x31c352,_0x198417){const _0x58f753=_0x12b7e5,_0x12d8f3=_0x31c352===_0x58f753(0xc5),_0xffd1d5=Number(_0x198417?.[_0x58f753(0x74)]?.['value']);if(!Number[_0x58f753(0x135)](_0xffd1d5)){_0x1159d2();return;}_0x12d8f3?_0x4aa18c[_0x58f753(0xc0)]=_0x584331(Math[_0x58f753(0x256)](_0xffd1d5),0xa,0x24):_0x4aa18c[_0x58f753(0xd6)]=_0x584331(Math[_0x58f753(0x256)](_0xffd1d5),0x7,0x18),_0x22b827(),_0x6072f0(),_0x1159d2();}function _0x6072f0(){const _0x21d0cb=_0x12b7e5,_0x1c738f=document['getElementById'](_0x21d0cb(0x203));if(!_0x1c738f)return;[_0x1c738f,..._0x1c738f[_0x21d0cb(0x210)](_0x21d0cb(0x180))][_0x21d0cb(0x23b)](_0x29e10d=>{const _0x216e92=_0x21d0cb;_0x29e10d[_0x216e92(0x255)]['setProperty']('--plate-map-emoji-size',_0x4aa18c[_0x216e92(0x238)]+'px'),_0x29e10d[_0x216e92(0x255)]['setProperty']('--plate-map-price-size',_0x4aa18c[_0x216e92(0xc0)]+'px'),_0x29e10d[_0x216e92(0x255)][_0x216e92(0x2b3)](_0x216e92(0x12a),_0x4aa18c[_0x216e92(0xd6)]+'px'),_0x29e10d[_0x216e92(0x247)]['toggle'](_0x216e92(0x78),_0x4aa18c[_0x216e92(0x13e)]);});}function _0xc5012f(_0x3d7f7b){const _0x4d6d6a=_0x12b7e5;if(_0x4aa18c[_0x4d6d6a(0xf0)]!=='plate')return;const _0x465b60=_0x3d7f7b['target'][_0x4d6d6a(0x16e)](_0x4d6d6a(0x1cd));if(_0x465b60){_0x3d7f7b['preventDefault'](),_0x18da3c(Number(_0x465b60[_0x4d6d6a(0x22f)][_0x4d6d6a(0x85)]),_0x465b60);return;}const _0x596652=_0x3d7f7b[_0x4d6d6a(0x1cf)][_0x4d6d6a(0x16e)](_0x4d6d6a(0x22a));if(_0x596652){_0x3d7f7b[_0x4d6d6a(0xab)](),_0x580978(Number(_0x596652[_0x4d6d6a(0x22f)][_0x4d6d6a(0x186)]),_0x596652);return;}const _0x3fcd5d=_0x3d7f7b['target']['closest']('[data-delete-sticker]');if(_0x3fcd5d){_0x3d7f7b[_0x4d6d6a(0xab)](),_0x3d7f7b[_0x4d6d6a(0x171)](),_0x218660(_0x3fcd5d[_0x4d6d6a(0x22f)][_0x4d6d6a(0x25b)]);return;}if(_0x3d7f7b['target'][_0x4d6d6a(0x16e)](_0x4d6d6a(0x16f)))return;if(_0x3d7f7b[_0x4d6d6a(0x1cf)][_0x4d6d6a(0x16e)](_0x4d6d6a(0x20e)))return;const _0x57937c=_0x3d7f7b['target'][_0x4d6d6a(0x16e)](_0x4d6d6a(0x21e));if(!_0x57937c)return;const _0x26a6d2=_0x57937c[_0x4d6d6a(0x29b)]();if(!_0x26a6d2[_0x4d6d6a(0x126)]||!_0x26a6d2[_0x4d6d6a(0x1db)])return;const _0x166014={'id':_0x4d6d6a(0x151)+Date[_0x4d6d6a(0xdc)]()[_0x4d6d6a(0x26b)](0x24)+'-'+Math[_0x4d6d6a(0x1b0)]()[_0x4d6d6a(0x26b)](0x24)[_0x4d6d6a(0x271)](0x2,0x8),'sourceIdentity':_0x57937c[_0x4d6d6a(0x22f)][_0x4d6d6a(0x11d)]||'','x':_0x584331((_0x3d7f7b[_0x4d6d6a(0x172)]-_0x26a6d2[_0x4d6d6a(0x76)])/_0x26a6d2[_0x4d6d6a(0x126)]*0x64,0x0,0x64),'y':_0x584331((_0x3d7f7b[_0x4d6d6a(0x17b)]-_0x26a6d2[_0x4d6d6a(0x1e9)])/_0x26a6d2['height']*0x64,0x0,0x64),'text':_0x5d21c0,'size':_0x4aa18c[_0x4d6d6a(0x238)],'z':_0x335033(_0x57937c[_0x4d6d6a(0x22f)][_0x4d6d6a(0x11d)]||'')};_0x4aa18c[_0x4d6d6a(0x218)][_0x4d6d6a(0x166)](_0x166014),_0x4aa18c[_0x4d6d6a(0xd7)]=_0x166014['id'],_0x4aa18c[_0x4d6d6a(0x123)]='',_0x23b7e1(),_0x3c8d46(),_0x1159d2();}function _0x84df55(_0x3f4c75){const _0x48281a=_0x12b7e5;if(_0x4aa18c[_0x48281a(0xf0)]!=='plate')return;if(_0x3f4c75[_0x48281a(0x1cf)][_0x48281a(0x16e)](_0x48281a(0x237)))return;const _0x489a20=_0x3f4c75[_0x48281a(0x1cf)][_0x48281a(0x16e)](_0x48281a(0x20e)),_0x383e1c=_0x3f4c75['target']['closest'](_0x48281a(0x16f)),_0x21a3c6=_0x489a20||_0x383e1c;if(!_0x21a3c6)return;const _0x1226ff=_0x21a3c6['closest']('.plate-map-board');if(!_0x1226ff)return;_0x3f4c75[_0x48281a(0xab)](),_0x3f4c75[_0x48281a(0x171)]();const _0x391638=_0x489a20?_0x48281a(0x99):'auto';_0x391638===_0x48281a(0x99)?(_0x4aa18c[_0x48281a(0xd7)]=_0x489a20[_0x48281a(0x22f)][_0x48281a(0x176)]||'',_0x4aa18c[_0x48281a(0x123)]=''):(_0x4aa18c[_0x48281a(0xd7)]='',_0x4aa18c[_0x48281a(0x123)]=_0x383e1c[_0x48281a(0x22f)][_0x48281a(0x1a2)]||'');const _0x20d42c=_0x391638==='manual'?_0x4aa18c[_0x48281a(0x218)][_0x48281a(0x228)](_0xc71b23=>_0xc71b23['id']===_0x4aa18c[_0x48281a(0xd7)]):null,_0x5a5484=_0x391638===_0x48281a(0x240)?_0x340468(_0x4aa18c[_0x48281a(0x123)]):null;_0x4aa18c['dragging']={'pointerId':_0x3f4c75[_0x48281a(0x94)],'board':_0x1226ff,'element':_0x21a3c6,'kind':_0x391638,'mode':_0x3f4c75[_0x48281a(0x1cf)]['closest']('[data-label-resize]')?'resize':'move','startClientX':_0x3f4c75[_0x48281a(0x172)],'startClientY':_0x3f4c75['clientY'],'startX':Number(_0x20d42c?.['x']||0x0),'startY':Number(_0x20d42c?.['y']||0x0),'startSize':Number(_0x20d42c?.[_0x48281a(0x13d)]||_0x4aa18c[_0x48281a(0x238)]),'startOffsetX':Number(_0x5a5484?.[_0x48281a(0x188)]||0x0),'startOffsetY':Number(_0x5a5484?.[_0x48281a(0x86)]||0x0),'startScale':Number(_0x5a5484?.['scale']||0x1),'startRect':_0x21a3c6[_0x48281a(0x29b)]()},_0x21a3c6[_0x48281a(0x1a6)]?.(_0x3f4c75[_0x48281a(0x94)]),_0x197657(),_0x1159d2();}function _0x366991(_0x8043da){const _0x3809b8=_0x12b7e5;if(!_0x4aa18c[_0x3809b8(0x1c3)]||_0x4aa18c['dragging'][_0x3809b8(0x94)]!==_0x8043da[_0x3809b8(0x94)])return;_0x8043da[_0x3809b8(0xab)]();const _0x28a3e=_0x4aa18c[_0x3809b8(0x1c3)],_0x6c4e67=_0x28a3e[_0x3809b8(0x156)][_0x3809b8(0x29b)]();if(!_0x6c4e67[_0x3809b8(0x126)]||!_0x6c4e67[_0x3809b8(0x1db)])return;const _0x3b02e1=_0x8043da[_0x3809b8(0x172)]-_0x28a3e[_0x3809b8(0x100)],_0x373f9f=_0x8043da[_0x3809b8(0x17b)]-_0x28a3e['startClientY'];if(_0x28a3e[_0x3809b8(0x1fb)]===_0x3809b8(0x99)){const _0xf4a19a=_0x4aa18c[_0x3809b8(0x218)][_0x3809b8(0x228)](_0x5a80ef=>_0x5a80ef['id']===_0x4aa18c['selectedStickerId']);if(!_0xf4a19a)return;if(_0x28a3e[_0x3809b8(0xeb)]===_0x3809b8(0x119)){const _0x451717=Math[_0x3809b8(0x105)](_0x28a3e['board'][_0x3809b8(0x15f)]/_0x6c4e67[_0x3809b8(0x126)],0.01);_0xf4a19a['size']=_0x584331(_0x28a3e[_0x3809b8(0x298)]+(_0x3b02e1+_0x373f9f)/0x2*_0x451717,0x14,_0x466c26),_0x28a3e['element'][_0x3809b8(0x255)][_0x3809b8(0x2b3)](_0x3809b8(0x196),_0xf4a19a['size']+'px');}else _0xf4a19a['x']=_0x584331(_0x28a3e[_0x3809b8(0x1fe)]+_0x3b02e1/_0x6c4e67[_0x3809b8(0x126)]*0x64,0x0,0x64),_0xf4a19a['y']=_0x584331(_0x28a3e['startY']+_0x373f9f/_0x6c4e67[_0x3809b8(0x1db)]*0x64,0x0,0x64),_0x28a3e[_0x3809b8(0x12b)][_0x3809b8(0x255)][_0x3809b8(0x76)]=_0xf4a19a['x']+'%',_0x28a3e[_0x3809b8(0x12b)][_0x3809b8(0x255)][_0x3809b8(0x1e9)]=_0xf4a19a['y']+'%';}else{const _0x255e3c=_0x340468(_0x4aa18c['selectedAutoLabelId']);if(_0x28a3e['mode']==='resize'){const _0x18d8d5=Math['max'](Math[_0x3809b8(0x233)](_0x28a3e[_0x3809b8(0xde)]['width'],_0x28a3e['startRect']['height']),0x24);_0x255e3c[_0x3809b8(0xe8)]=_0x584331(_0x28a3e[_0x3809b8(0x15b)]+(_0x3b02e1+_0x373f9f)/0x2/_0x18d8d5,_0x4c8c5d,_0x179262);}else _0x255e3c[_0x3809b8(0x188)]=_0x28a3e[_0x3809b8(0x264)]+_0x3b02e1/_0x6c4e67['width']*0x64,_0x255e3c['offsetY']=_0x28a3e[_0x3809b8(0xf5)]+_0x373f9f/_0x6c4e67['height']*0x64;_0x5aa62a(_0x28a3e[_0x3809b8(0x12b)],_0x255e3c);}_0x1159d2();}function _0x5a17a6(_0x3f746e){const _0x40b1a7=_0x12b7e5;if(!_0x4aa18c[_0x40b1a7(0x1c3)]||_0x4aa18c['dragging'][_0x40b1a7(0x94)]!==_0x3f746e[_0x40b1a7(0x94)])return;const _0x216f8d=_0x4aa18c[_0x40b1a7(0x1c3)][_0x40b1a7(0x1fb)];_0x4aa18c[_0x40b1a7(0x1c3)]=null;if(_0x216f8d==='manual')_0x23b7e1();else _0x32885e();}function _0x340468(_0x5929c1){const _0x3dd4c9=_0x12b7e5;if(!_0x5929c1)return{'offsetX':0x0,'offsetY':0x0,'scale':0x1,'z':null};return!_0x4aa18c[_0x3dd4c9(0x1ba)][_0x5929c1]&&(_0x4aa18c[_0x3dd4c9(0x1ba)][_0x5929c1]={'offsetX':0x0,'offsetY':0x0,'scale':0x1,'z':null}),_0x4aa18c[_0x3dd4c9(0x1ba)][_0x5929c1];}function _0x5aa62a(_0x30d79b,_0x2d0280=null){const _0x24722e=_0x12b7e5;if(!_0x30d79b)return;const _0x21bda4=_0x2d0280||_0x340468(_0x30d79b[_0x24722e(0x22f)][_0x24722e(0x1a2)]||''),_0x54aa69=Number(_0x30d79b[_0x24722e(0x22f)][_0x24722e(0x20b)]||0x0),_0x747a63=Number(_0x30d79b['dataset'][_0x24722e(0x20d)]||0x0),_0x51512d=Number(_0x30d79b[_0x24722e(0x22f)][_0x24722e(0x205)]||0x0),_0x44d502=Number(_0x30d79b[_0x24722e(0x22f)][_0x24722e(0x10d)]||0x0),_0x30a047=_0x584331(_0x54aa69+Number(_0x21bda4[_0x24722e(0x188)]||0x0),0x0,Math['max'](0x64-_0x51512d,0x0)),_0x568f6c=_0x584331(_0x747a63+Number(_0x21bda4[_0x24722e(0x86)]||0x0),0x0,Math[_0x24722e(0x105)](0x64-_0x44d502,0x0));_0x21bda4['offsetX']=_0x30a047-_0x54aa69,_0x21bda4[_0x24722e(0x86)]=_0x568f6c-_0x747a63,_0x21bda4['scale']=_0x584331(Number(_0x21bda4[_0x24722e(0xe8)]||0x1),_0x4c8c5d,_0x179262),_0x30d79b[_0x24722e(0x255)]['left']=_0x30a047+'%',_0x30d79b['style']['top']=_0x568f6c+'%',_0x30d79b[_0x24722e(0x255)]['setProperty'](_0x24722e(0x276),String(_0x21bda4[_0x24722e(0xe8)])),_0x30d79b[_0x24722e(0x255)]['zIndex']=String(_0x5415aa(_0x21bda4['z'],Number(_0x30d79b[_0x24722e(0x22f)]['defaultZ']||0xa)));}function _0x25e8fd(){const _0x457414=_0x12b7e5;document[_0x457414(0x210)](_0x457414(0x207))[_0x457414(0x23b)](_0x519382=>{_0x5aa62a(_0x519382);});}function _0x197657(){const _0x118e48=_0x12b7e5;document['querySelectorAll'](_0x118e48(0x207))[_0x118e48(0x23b)](_0x2c8287=>{const _0x12c810=_0x118e48;_0x2c8287[_0x12c810(0x247)][_0x12c810(0x26e)](_0x12c810(0x14c),_0x2c8287['dataset'][_0x12c810(0x1a2)]===_0x4aa18c[_0x12c810(0x123)]);}),document[_0x118e48(0x210)](_0x118e48(0x1c8))[_0x118e48(0x23b)](_0x44ae6b=>{const _0x1ff3eb=_0x118e48;_0x44ae6b[_0x1ff3eb(0x247)]['toggle']('selected',_0x44ae6b[_0x1ff3eb(0x22f)]['stickerId']===_0x4aa18c[_0x1ff3eb(0xd7)]);});}function _0x4a8311(){const _0x41b764=_0x12b7e5;if(_0x4aa18c['selectedStickerId'])return document['querySelector'](_0x41b764(0x2aa)+_0x279bc0(_0x4aa18c[_0x41b764(0xd7)])+'\x22]');if(_0x4aa18c[_0x41b764(0x123)])return document[_0x41b764(0xa8)](_0x41b764(0x23c)+_0x279bc0(_0x4aa18c[_0x41b764(0x123)])+'\x22]');return null;}function _0x2ea621(_0x33dc16,_0x27140b){const _0x2487ea=_0x12b7e5,_0x1a98df=_0x33dc16===_0x2487ea(0x1d2)?-_0x27140b:_0x33dc16===_0x2487ea(0x1c4)?_0x27140b:0x0,_0x3afe2a=_0x33dc16===_0x2487ea(0x201)?-_0x27140b:_0x33dc16===_0x2487ea(0x90)?_0x27140b:0x0;if(_0x4aa18c[_0x2487ea(0xd7)]){const _0x4462a9=_0x4aa18c[_0x2487ea(0x218)][_0x2487ea(0x228)](_0x5f4255=>_0x5f4255['id']===_0x4aa18c[_0x2487ea(0xd7)]);if(!_0x4462a9)return;_0x4462a9['x']=_0x584331(Number(_0x4462a9['x']||0x0)+_0x1a98df,0x0,0x64),_0x4462a9['y']=_0x584331(Number(_0x4462a9['y']||0x0)+_0x3afe2a,0x0,0x64),_0x23b7e1(),_0x3c8d46();}else{if(_0x4aa18c[_0x2487ea(0x123)]){const _0x4bdf30=_0x340468(_0x4aa18c[_0x2487ea(0x123)]);_0x4bdf30['offsetX']=Number(_0x4bdf30[_0x2487ea(0x188)]||0x0)+_0x1a98df,_0x4bdf30[_0x2487ea(0x86)]=Number(_0x4bdf30[_0x2487ea(0x86)]||0x0)+_0x3afe2a,_0x5aa62a(_0x4a8311(),_0x4bdf30),_0x32885e();}}_0x197657(),_0x1159d2();}function _0x3c648b(_0x4e8e57){const _0x134ad8=_0x12b7e5;if(!_0x4aa18c[_0x134ad8(0xd7)]&&!_0x4aa18c[_0x134ad8(0x123)])return;if(_0x4e8e57===_0x134ad8(0x187)){if(_0x4aa18c[_0x134ad8(0xd7)])_0x5a8bab();return;}if(_0x4e8e57===_0x134ad8(0x244)||_0x4e8e57===_0x134ad8(0x257)){const _0x3214e1=_0x4e8e57===_0x134ad8(0x257)?0x1:-0x1;if(_0x4aa18c[_0x134ad8(0xd7)]){const _0x211599=_0x4aa18c[_0x134ad8(0x218)][_0x134ad8(0x228)](_0x44394c=>_0x44394c['id']===_0x4aa18c[_0x134ad8(0xd7)]);if(!_0x211599)return;_0x211599[_0x134ad8(0x13d)]=_0x584331(Number(_0x211599[_0x134ad8(0x13d)]||_0x4aa18c[_0x134ad8(0x238)])+_0x3214e1*0x8,0x14,_0x466c26),_0x23b7e1(),_0x3c8d46();}else{const _0x5247cd=_0x340468(_0x4aa18c[_0x134ad8(0x123)]);_0x5247cd[_0x134ad8(0xe8)]=_0x584331(Number(_0x5247cd[_0x134ad8(0xe8)]||0x1)+_0x3214e1*0.1,_0x4c8c5d,_0x179262),_0x5aa62a(_0x4a8311(),_0x5247cd),_0x32885e();}_0x197657(),_0x1159d2();return;}if(_0x4e8e57===_0x134ad8(0x23d)){if(_0x4aa18c[_0x134ad8(0xd7)]){const _0x108be=_0x4aa18c[_0x134ad8(0x218)][_0x134ad8(0x228)](_0x482614=>_0x482614['id']===_0x4aa18c[_0x134ad8(0xd7)]);if(_0x108be)_0x108be[_0x134ad8(0x13d)]=_0x4aa18c[_0x134ad8(0x238)];_0x23b7e1(),_0x3c8d46();}else delete _0x4aa18c['labelAdjustments'][_0x4aa18c['selectedAutoLabelId']],_0x5aa62a(_0x4a8311(),_0x340468(_0x4aa18c[_0x134ad8(0x123)])),_0x32885e();_0x197657(),_0x1159d2();return;}if([_0x134ad8(0x211),_0x134ad8(0x1e0),'up','top'][_0x134ad8(0x25c)](_0x4e8e57))_0x1efbfa(_0x4e8e57);}function _0x1efbfa(_0x14a8b6){const _0xc6f86=_0x12b7e5,_0x1707e7=_0x4a8311(),_0x575ccf=_0x1707e7?.['closest'](_0xc6f86(0x21e));if(!_0x575ccf)return;const _0x4b455f=Array[_0xc6f86(0x1c5)](_0x575ccf[_0xc6f86(0x210)]('.plate-map-auto-marker[data-label-id],\x20.plate-map-manual-sticker[data-sticker-id]'))[_0xc6f86(0x236)]((_0x27b9e6,_0x19e8e6)=>{const _0x1d2057=_0xc6f86,_0x396d1f=_0x27b9e6[_0x1d2057(0x247)][_0x1d2057(0x7b)](_0x1d2057(0xa5)),_0x391329=_0x396d1f?_0x27b9e6[_0x1d2057(0x22f)][_0x1d2057(0x176)]:_0x27b9e6[_0x1d2057(0x22f)]['labelId'],_0x45b127=_0x396d1f?_0x4aa18c[_0x1d2057(0x218)]['find'](_0x2ac21a=>_0x2ac21a['id']===_0x391329):null,_0x22db11=_0x396d1f?null:_0x340468(_0x391329);return{'element':_0x27b9e6,'id':_0x391329,'kind':_0x396d1f?_0x1d2057(0x99):_0x1d2057(0x240),'z':_0x5415aa(_0x396d1f?_0x45b127?.['z']:_0x22db11?.['z'],Number(_0x27b9e6['dataset'][_0x1d2057(0x29d)]||0xa)+_0x19e8e6)};})[_0xc6f86(0x159)](_0x223d5d=>_0x223d5d['id'])[_0xc6f86(0xe3)]((_0x17c128,_0x591ea1)=>_0x17c128['z']-_0x591ea1['z']||_0x17c128['id'][_0xc6f86(0xb2)](_0x591ea1['id'])),_0x45e631=_0x4aa18c[_0xc6f86(0xd7)]||_0x4aa18c['selectedAutoLabelId'];let _0x594f39=_0x4b455f['findIndex'](_0x46dddd=>_0x46dddd['id']===_0x45e631);if(_0x594f39<0x0||_0x4b455f[_0xc6f86(0x1fd)]<0x2)return;if(_0x14a8b6===_0xc6f86(0x211))_0x4b455f[_0xc6f86(0x98)](_0x4b455f[_0xc6f86(0x88)](_0x594f39,0x1)[0x0]);else{if(_0x14a8b6===_0xc6f86(0x1e9))_0x4b455f[_0xc6f86(0x166)](_0x4b455f['splice'](_0x594f39,0x1)[0x0]);else{if(_0x14a8b6===_0xc6f86(0x1e0)&&_0x594f39>0x0)[_0x4b455f[_0x594f39-0x1],_0x4b455f[_0x594f39]]=[_0x4b455f[_0x594f39],_0x4b455f[_0x594f39-0x1]];else _0x14a8b6==='up'&&_0x594f39<_0x4b455f[_0xc6f86(0x1fd)]-0x1&&([_0x4b455f[_0x594f39+0x1],_0x4b455f[_0x594f39]]=[_0x4b455f[_0x594f39],_0x4b455f[_0x594f39+0x1]]);}}_0x4b455f[_0xc6f86(0x23b)]((_0x3b85af,_0x30b689)=>_0x2e2fd6(_0x3b85af,0xa+_0x30b689)),_0x23b7e1(),_0x32885e(),_0x3c8d46(),_0x25e8fd(),_0x197657(),_0x1159d2();}function _0x2e2fd6(_0x29f7f6,_0x21be48){const _0xa039ba=_0x12b7e5;if(_0x29f7f6[_0xa039ba(0x1fb)]===_0xa039ba(0x99)){const _0x1027a0=_0x4aa18c[_0xa039ba(0x218)]['find'](_0x3bb12d=>_0x3bb12d['id']===_0x29f7f6['id']);if(_0x1027a0)_0x1027a0['z']=_0x21be48;}else _0x340468(_0x29f7f6['id'])['z']=_0x21be48;_0x29f7f6[_0xa039ba(0x12b)][_0xa039ba(0x255)][_0xa039ba(0x287)]=String(_0x21be48);}function _0x5415aa(_0x3e3c1a,_0xa3d17c){const _0x3cb5b2=_0x12b7e5,_0x41b286=Number(_0x3e3c1a);return Number[_0x3cb5b2(0x135)](_0x41b286)?_0x584331(Math['round'](_0x41b286),0x1,0x270f):_0x584331(Math[_0x3cb5b2(0x256)](_0xa3d17c),0x1,0x270f);}function _0x335033(_0xdc626e){const _0x177d9f=_0x12b7e5,_0x174308=Array[_0x177d9f(0x1c5)](document['querySelectorAll'](_0x177d9f(0x21e)))[_0x177d9f(0x228)](_0x3007bd=>_0x3007bd[_0x177d9f(0x22f)]['sourceIdentity']===_0xdc626e),_0x123a39=_0x174308?Array['from'](_0x174308['querySelectorAll'](_0x177d9f(0x160)))[_0x177d9f(0x236)](_0x2c6621=>Number(getComputedStyle(_0x2c6621)['zIndex'])||0x0):_0x4aa18c[_0x177d9f(0x218)][_0x177d9f(0x159)](_0x341cef=>_0x341cef[_0x177d9f(0x11d)]===_0xdc626e)['map'](_0x1fbd47=>Number(_0x1fbd47['z'])||0x0);return Math[_0x177d9f(0x105)](0xa,..._0x123a39)+0x1;}function _0x317b73(_0x255ea3){const _0x2222ac=_0x12b7e5,_0x18cd48=_0x4aa18c[_0x2222ac(0x218)][_0x2222ac(0x228)](_0xfed8d2=>_0xfed8d2['id']===_0x4aa18c[_0x2222ac(0xd7)]);_0x18cd48?(_0x18cd48[_0x2222ac(0x13d)]=_0x584331(Number(_0x18cd48[_0x2222ac(0x13d)]||_0x4276e2)+_0x255ea3,0x14,_0x466c26),_0x4aa18c[_0x2222ac(0x121)]=_0x18cd48[_0x2222ac(0x13d)],_0x23b7e1(),_0x3c8d46()):_0x4aa18c['defaultSize']=_0x584331(_0x4aa18c[_0x2222ac(0x121)]+_0x255ea3,0x14,_0x466c26),_0x1159d2();}function _0x5a8bab(){const _0x2c4300=_0x12b7e5;if(!_0x4aa18c[_0x2c4300(0xd7)])return;_0x218660(_0x4aa18c[_0x2c4300(0xd7)]);}function _0x218660(_0x88c401){const _0x17a966=_0x12b7e5;if(!_0x88c401)return;_0x4aa18c[_0x17a966(0x218)]=_0x4aa18c[_0x17a966(0x218)][_0x17a966(0x159)](_0x5e4e24=>_0x5e4e24['id']!==_0x88c401),_0x4aa18c['selectedStickerId']='',_0x23b7e1(),_0x3c8d46(),_0x1159d2();}function _0x53609a(){const _0x4d6e4e=_0x12b7e5;if(!_0x4aa18c[_0x4d6e4e(0x218)][_0x4d6e4e(0x1fd)])return;const _0x40e253=_0x4aa18c[_0x4d6e4e(0x218)][_0x4d6e4e(0x9d)]();if(_0x40e253?.['id']===_0x4aa18c[_0x4d6e4e(0xd7)])_0x4aa18c[_0x4d6e4e(0xd7)]='';_0x23b7e1(),_0x3c8d46(),_0x1159d2();}function _0x198351(){const _0x4aa7fc=_0x12b7e5;_0x4aa18c[_0x4aa7fc(0x218)]=[],_0x4aa18c[_0x4aa7fc(0xd7)]='',_0x23b7e1(),_0x3c8d46(),_0x1159d2();}function _0x3c8d46(){const _0x1ff79e=_0x12b7e5;document['querySelectorAll'](_0x1ff79e(0xbc))[_0x1ff79e(0x23b)](_0x3d81ee=>{const _0x5a6849=_0x1ff79e,_0x1a1e8d=_0x3d81ee['closest'](_0x5a6849(0x21e))?.[_0x5a6849(0x22f)][_0x5a6849(0x11d)]||'';_0x3d81ee[_0x5a6849(0x1a9)]=_0x4aa18c['stickers']['filter'](_0x52d7ef=>_0x52d7ef[_0x5a6849(0x11d)]===_0x1a1e8d)['map']((_0x2060c3,_0x1154bf)=>_0x5a6849(0x1dd)+(_0x2060c3['id']===_0x4aa18c[_0x5a6849(0xd7)]?_0x5a6849(0x142):'')+_0x5a6849(0x2af)+_0x2a0247(_0x2060c3['id'])+'\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20data-label-kind=\x22manual\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20style=\x22left:'+_0x584331(_0x2060c3['x'],0x0,0x64)+_0x5a6849(0x1ac)+_0x584331(_0x2060c3['y'],0x0,0x64)+_0x5a6849(0x10e)+_0x584331(Number(_0x2060c3[_0x5a6849(0x13d)]||_0x4aa18c[_0x5a6849(0x238)]),0x14,_0x466c26)+_0x5a6849(0xa7)+_0x5415aa(_0x2060c3['z'],0x3e8+_0x1154bf)+_0x5a6849(0x253)+_0xde15e(_0x5a6849(0x1d9))+_0x5a6849(0xd8)+_0x2a0247(_0x2060c3['id'])+_0x5a6849(0x154))[_0x5a6849(0x112)]('');});}function _0xde15e(_0x245868){const _0x59bb0f=_0x12b7e5;return _0x5a7d0e()?_0x59bb0f(0xb8)+_0x245868+_0x59bb0f(0x111)+_0x2a0247(_0x4aa18c[_0x59bb0f(0x144)])+_0x59bb0f(0x174):_0x59bb0f(0x262)+_0x245868+'\x22>'+_0x2a0247(_0x4aa18c[_0x59bb0f(0x175)])+_0x59bb0f(0x17d);}function _0x5a7d0e(){const _0xdf5d81=_0x12b7e5;return _0x4aa18c[_0xdf5d81(0x27d)]===_0xdf5d81(0x115)&&!!_0x4aa18c[_0xdf5d81(0x144)];}function _0x27b804(){const _0x43f4fc=_0x12b7e5,_0x5323b2=_0x272c04();if(_0x4aa18c[_0x43f4fc(0x1f2)]===_0x5323b2)return;_0x4aa18c[_0x43f4fc(0x1f2)]=_0x5323b2,_0x4aa18c[_0x43f4fc(0x289)]=_0x191bfc(),_0x4aa18c[_0x43f4fc(0xd7)]='',_0x4aa18c[_0x43f4fc(0x123)]='',_0x229972(),_0x46d0a3();try{const _0x17736c=JSON[_0x43f4fc(0x1df)](localStorage[_0x43f4fc(0x179)](_0x5323b2)||'[]');_0x4aa18c[_0x43f4fc(0x218)]=(Array[_0x43f4fc(0x225)](_0x17736c)?_0x17736c:[])[_0x43f4fc(0x236)]((_0x5de086,_0x30ba39)=>({'id':String(_0x5de086['id']||_0x43f4fc(0x151)+Date[_0x43f4fc(0xdc)]()['toString'](0x24)),'sourceIdentity':String(_0x5de086['sourceIdentity']||''),'x':_0x584331(Number(_0x5de086['x']||0x0),0x0,0x64),'y':_0x584331(Number(_0x5de086['y']||0x0),0x0,0x64),'text':String(_0x5de086['text']||_0x5d21c0),'size':_0x584331(Number(_0x5de086['size']||_0x4276e2),0x14,_0x466c26),'textColor':_0x383d86(_0x5de086[_0x43f4fc(0x15c)],_0x4aa18c[_0x43f4fc(0x15c)]),'backgroundColor':_0x383d86(_0x5de086[_0x43f4fc(0x145)],_0x4aa18c['backgroundColor']),'backgroundEnabled':!!_0x5de086[_0x43f4fc(0x178)],'z':_0x5415aa(_0x5de086['z'],0x3e8+_0x30ba39)}));}catch(_0x474ccb){_0x4aa18c['stickers']=[];}}function _0x229972(){const _0x36215d=_0x12b7e5;try{const _0x1f3257=JSON[_0x36215d(0x1df)](localStorage['getItem'](_0x436c9d())||'{}'),_0x2bd4d5=Number(_0x1f3257[_0x36215d(0x2ac)])===_0x45bfc9,_0x5a0d17=Number(_0x1f3257[_0x36215d(0x238)]),_0x50a95b=!Number[_0x36215d(0x135)](_0x5a0d17)||!_0x2bd4d5&&_0x5a0d17===0x2c;_0x4aa18c[_0x36215d(0x238)]=_0x50a95b?_0x4276e2:_0x584331(Math[_0x36215d(0x256)](_0x5a0d17),0x18,_0x466c26),_0x4aa18c[_0x36215d(0x121)]=_0x4aa18c[_0x36215d(0x238)];const _0x679017=Number(_0x1f3257[_0x36215d(0xc0)]),_0x252d74=Number(_0x1f3257['nameLabelSize']);_0x4aa18c[_0x36215d(0xc0)]=Number[_0x36215d(0x135)](_0x679017)?_0x584331(Math[_0x36215d(0x256)](_0x679017),0xa,0x24):_0x3e3fb8,_0x4aa18c[_0x36215d(0xd6)]=Number[_0x36215d(0x135)](_0x252d74)?_0x584331(Math[_0x36215d(0x256)](_0x252d74),0x7,0x18):_0xd9e59b;const _0x57c7ee=Number(_0x1f3257['showNamesSettingsVersion'])===_0x5395fa;_0x4aa18c['showProductNames']=_0x57c7ee?!!_0x1f3257[_0x36215d(0x13e)]:!![],_0x4aa18c['soldOutStickerModeStored']=_0x1f3257[_0x36215d(0x27d)]==='image'||_0x1f3257[_0x36215d(0x27d)]===_0x36215d(0x185),_0x4aa18c[_0x36215d(0x27d)]=_0x1f3257[_0x36215d(0x27d)]===_0x36215d(0x115)?_0x36215d(0x115):'emoji';const _0x5a0362=String(_0x1f3257[_0x36215d(0x175)]||_0x5d21c0)[_0x36215d(0x18c)]();_0x4aa18c['soldOutStickerEmoji']=_0x13086b(_0x5a0362)||_0x5d21c0,_0x4aa18c[_0x36215d(0x193)]=_0x4aa18c[_0x36215d(0x175)],(!_0x2bd4d5||!_0x57c7ee||_0x4aa18c[_0x36215d(0x175)]!==_0x5a0362)&&_0x22b827();}catch(_0x363b93){_0x4aa18c[_0x36215d(0x238)]=_0x4276e2,_0x4aa18c[_0x36215d(0x121)]=_0x4276e2,_0x4aa18c[_0x36215d(0xc0)]=_0x3e3fb8,_0x4aa18c[_0x36215d(0xd6)]=_0xd9e59b,_0x4aa18c[_0x36215d(0x13e)]=!![],_0x4aa18c[_0x36215d(0x27d)]=_0x36215d(0x185),_0x4aa18c[_0x36215d(0x212)]=![],_0x4aa18c[_0x36215d(0x175)]=_0x5d21c0,_0x4aa18c[_0x36215d(0x193)]=_0x5d21c0;}}function _0x22b827(){const _0x33065d=_0x12b7e5;try{localStorage[_0x33065d(0x19c)](_0x436c9d(),JSON['stringify']({'globalEmojiSize':_0x4aa18c['globalEmojiSize'],'stickerSizeSettingsVersion':_0x45bfc9,'priceLabelSize':_0x4aa18c[_0x33065d(0xc0)],'nameLabelSize':_0x4aa18c[_0x33065d(0xd6)],'showProductNames':_0x4aa18c['showProductNames'],'showNamesSettingsVersion':_0x5395fa,'soldOutStickerMode':_0x4aa18c[_0x33065d(0x27d)],'soldOutStickerEmoji':_0x4aa18c[_0x33065d(0x175)]}));}catch(_0x2ddbe0){console[_0x33065d(0xe7)](_0x33065d(0x147),_0x2ddbe0);}}function _0x23b7e1(){const _0x4a42c1=_0x12b7e5;if(!_0x4aa18c[_0x4a42c1(0x1f2)])_0x4aa18c[_0x4a42c1(0x1f2)]=_0x272c04();try{localStorage['setItem'](_0x4aa18c[_0x4a42c1(0x1f2)],JSON[_0x4a42c1(0x206)](_0x4aa18c['stickers']));}catch(_0x15a590){console['warn'](_0x4a42c1(0x291),_0x15a590);}}function _0x46d0a3(){const _0x8e3bf2=_0x12b7e5;try{const _0x251d97=JSON[_0x8e3bf2(0x1df)](localStorage[_0x8e3bf2(0x179)](_0x4aa18c[_0x8e3bf2(0x289)]||_0x191bfc())||'{}');_0x4aa18c[_0x8e3bf2(0x1ba)]=Object[_0x8e3bf2(0x28d)](Object['entries'](_0x251d97&&typeof _0x251d97===_0x8e3bf2(0x251)?_0x251d97:{})[_0x8e3bf2(0x236)](([_0x1636eb,_0x3afb33])=>[String(_0x1636eb),{'offsetX':_0x584331(Number(_0x3afb33?.['offsetX']||0x0),-0x64,0x64),'offsetY':_0x584331(Number(_0x3afb33?.[_0x8e3bf2(0x86)]||0x0),-0x64,0x64),'scale':_0x584331(Number(_0x3afb33?.[_0x8e3bf2(0xe8)]||0x1),_0x4c8c5d,_0x179262),'z':Number[_0x8e3bf2(0x135)](Number(_0x3afb33?.['z']))?_0x5415aa(_0x3afb33['z'],0xa):null}]));}catch(_0x50c8b5){_0x4aa18c[_0x8e3bf2(0x1ba)]={};}}function _0x32885e(){const _0x52f900=_0x12b7e5;if(!_0x4aa18c[_0x52f900(0x289)])_0x4aa18c[_0x52f900(0x289)]=_0x191bfc();try{localStorage['setItem'](_0x4aa18c[_0x52f900(0x289)],JSON[_0x52f900(0x206)](_0x4aa18c[_0x52f900(0x1ba)]));}catch(_0x264819){console[_0x52f900(0xe7)](_0x52f900(0x19a),_0x264819);}}function _0x272c04(){const _0xe128bc=_0x12b7e5,_0x34720b=localStorage['getItem'](_0xe128bc(0x248))||localStorage[_0xe128bc(0x179)](_0xe128bc(0x224))||_0xe128bc(0x2a5);return''+_0x452ecc+_0x34720b;}function _0x436c9d(){const _0x260598=_0x12b7e5,_0xedb22d=localStorage[_0x260598(0x179)](_0x260598(0x248))||localStorage[_0x260598(0x179)](_0x260598(0x224))||_0x260598(0x2a5);return''+_0xcdb77+_0xedb22d;}function _0x191bfc(){const _0x44bb90=_0x12b7e5,_0x5b7099=localStorage['getItem'](_0x44bb90(0x248))||localStorage[_0x44bb90(0x179)]('plateName')||_0x44bb90(0x2a5);return''+_0x1a15bb+_0x5b7099;}function _0x172b3b(){const _0x1575fe=_0x12b7e5,_0x20b544=localStorage[_0x1575fe(0x179)](_0x1575fe(0x248))||localStorage['getItem']('plateName')||_0x1575fe(0x2a5);return''+_0x2ef347+_0x20b544;}function _0x1fdf9e(){return new Promise((_0x2604b0,_0x140254)=>{const _0x3c6944=a00_0x95f1,_0x4f48bf=indexedDB[_0x3c6944(0x29f)](_0x1b9bfd,0x1);_0x4f48bf[_0x3c6944(0x81)]('upgradeneeded',()=>{const _0x572ddc=_0x3c6944;!_0x4f48bf['result'][_0x572ddc(0xf2)][_0x572ddc(0x7b)](_0x240f02)&&_0x4f48bf[_0x572ddc(0x109)][_0x572ddc(0xaf)](_0x240f02);}),_0x4f48bf[_0x3c6944(0x81)]('success',()=>_0x2604b0(_0x4f48bf[_0x3c6944(0x109)]),{'once':!![]}),_0x4f48bf[_0x3c6944(0x81)](_0x3c6944(0xa3),()=>_0x140254(_0x4f48bf[_0x3c6944(0xa3)]||new Error('IndexedDB\x20打开失败')),{'once':!![]});});}async function _0x58259c(_0x51b64d){const _0xc00a07=_0x12b7e5,_0x45b4ba=await _0x1fdf9e();try{return await new Promise((_0x2930f4,_0x14aab9)=>{const _0x23770b=a00_0x95f1,_0x44585d=_0x45b4ba[_0x23770b(0x13b)](_0x240f02,_0x23770b(0x2a2))['objectStore'](_0x240f02)[_0x23770b(0xa1)](_0x51b64d);_0x44585d[_0x23770b(0x81)](_0x23770b(0x220),()=>_0x2930f4(_0x44585d[_0x23770b(0x109)]||null),{'once':!![]}),_0x44585d[_0x23770b(0x81)](_0x23770b(0xa3),()=>_0x14aab9(_0x44585d['error']||new Error(_0x23770b(0x1eb))),{'once':!![]});});}finally{_0x45b4ba[_0xc00a07(0x1f0)]();}}async function _0x2a111e(_0x4a7c87,_0x21e0ad){const _0x6d207b=_0x12b7e5,_0x36461a=await _0x1fdf9e();try{await new Promise((_0x3066e7,_0x4c7236)=>{const _0x1b128c=a00_0x95f1,_0x33c93a=_0x36461a['transaction'](_0x240f02,_0x1b128c(0x246));_0x33c93a[_0x1b128c(0x20a)](_0x240f02)['put'](_0x21e0ad,_0x4a7c87),_0x33c93a[_0x1b128c(0x81)](_0x1b128c(0x101),_0x3066e7,{'once':!![]}),_0x33c93a[_0x1b128c(0x81)](_0x1b128c(0xa3),()=>_0x4c7236(_0x33c93a[_0x1b128c(0xa3)]||new Error(_0x1b128c(0x283))),{'once':!![]}),_0x33c93a[_0x1b128c(0x81)]('abort',()=>_0x4c7236(_0x33c93a[_0x1b128c(0xa3)]||new Error('贴纸保存被中断')),{'once':!![]});});}finally{_0x36461a[_0x6d207b(0x1f0)]();}}async function _0x669aa8(_0x44b70f){const _0x83f722=_0x12b7e5,_0x269007=await _0x1fdf9e();try{await new Promise((_0x57028f,_0x5a572d)=>{const _0x22f511=a00_0x95f1,_0x561ff4=_0x269007['transaction'](_0x240f02,_0x22f511(0x246));_0x561ff4[_0x22f511(0x20a)](_0x240f02)[_0x22f511(0x187)](_0x44b70f),_0x561ff4[_0x22f511(0x81)](_0x22f511(0x101),_0x57028f,{'once':!![]}),_0x561ff4[_0x22f511(0x81)](_0x22f511(0xa3),()=>_0x5a572d(_0x561ff4['error']||new Error(_0x22f511(0x265))),{'once':!![]}),_0x561ff4['addEventListener']('abort',()=>_0x5a572d(_0x561ff4[_0x22f511(0xa3)]||new Error('贴纸删除被中断')),{'once':!![]});});}finally{_0x269007[_0x83f722(0x1f0)]();}}async function _0x3239f5(){const _0x3f4d34=_0x12b7e5,_0x4aba0b=_0x172b3b();if(_0x4aa18c[_0x3f4d34(0x217)]===_0x4aba0b)return;_0x4aa18c['soldOutStickerAssetKey']=_0x4aba0b,_0x4aa18c[_0x3f4d34(0x144)]='',_0x4aa18c['soldOutStickerName']='';try{const _0x39369d=await _0x58259c(_0x4aba0b);if(!_0x39369d?.[_0x3f4d34(0x16d)]){_0x4aa18c[_0x3f4d34(0x27d)]===_0x3f4d34(0x115)&&(_0x4aa18c[_0x3f4d34(0x27d)]=_0x3f4d34(0x185),_0x4aa18c[_0x3f4d34(0x212)]=!![],_0x22b827());return;}_0x4aa18c[_0x3f4d34(0x144)]=await _0x13f211(_0x39369d[_0x3f4d34(0x16d)]),_0x4aa18c[_0x3f4d34(0x9e)]=String(_0x39369d[_0x3f4d34(0x153)]||_0x3f4d34(0x84)),!_0x4aa18c[_0x3f4d34(0x212)]&&(_0x4aa18c['soldOutStickerMode']=_0x3f4d34(0x115),_0x4aa18c[_0x3f4d34(0x212)]=!![],_0x22b827());}catch(_0x1b2a15){console[_0x3f4d34(0xe7)](_0x3f4d34(0x16b),_0x1b2a15);}}function _0x46a30f(){const _0x2972dd=_0x12b7e5,_0x12f2ef=typeof _0x17dc28['getClientPlateEntries']===_0x2972dd(0x1ef)?_0x17dc28[_0x2972dd(0x26c)]():[],_0xeb04c3=new Map(),_0x2cbd9c=new Set();let _0x3d7a43=0x0;return _0x12f2ef[_0x2972dd(0x23b)](({item:_0xcf17c6,index:_0x1d533a})=>{const _0x3cdb49=_0x2972dd,_0x2addf2=_0xcf17c6?.[_0x3cdb49(0xa0)],_0x1aacb5=typeof _0x17dc28[_0x3cdb49(0xd2)]?.[_0x3cdb49(0x209)]===_0x3cdb49(0x1ef)?_0x17dc28[_0x3cdb49(0xd2)][_0x3cdb49(0x209)](_0xcf17c6?.[_0x3cdb49(0x229)]):null,_0x44075f=_0x2addf2&&typeof _0x2addf2===_0x3cdb49(0x251)?_0x2addf2:_0x1aacb5;if(!_0x44075f||typeof _0x44075f!==_0x3cdb49(0x251))return;_0x3d7a43+=0x1;const _0x3a42b8=Array[_0x3cdb49(0x225)](_0x44075f['placements'])&&_0x44075f[_0x3cdb49(0x1c9)][_0x3cdb49(0x1fd)]?_0x44075f[_0x3cdb49(0x1c9)][_0x3cdb49(0x236)](_0x2f2ff2=>({..._0x44075f,..._0x2f2ff2})):[_0x44075f],_0x37af5b=_0x3a42b8[_0x3cdb49(0x236)](_0x49dbb3=>_0x37227e(_0xcf17c6,_0x49dbb3))[_0x3cdb49(0x159)](Boolean),_0x2edf2a=typeof _0x17dc28[_0x3cdb49(0x1bb)]===_0x3cdb49(0x1ef)?_0x17dc28[_0x3cdb49(0x1bb)](_0xcf17c6):0x0,_0x2170a9=Math['min'](Math[_0x3cdb49(0x105)](Math[_0x3cdb49(0x293)](Number(_0x2edf2a)||0x0),0x0),_0x37af5b[_0x3cdb49(0x1fd)]),_0x28ca47=_0x37af5b['length']-_0x2170a9;_0x37af5b[_0x3cdb49(0x23b)]((_0x28605c,_0x194df8)=>{const _0x1024fc=_0x3cdb49;_0x2cbd9c[_0x1024fc(0xef)](_0x1d533a),!_0xeb04c3[_0x1024fc(0x2a9)](_0x28605c[_0x1024fc(0x11d)])&&_0xeb04c3[_0x1024fc(0x19f)](_0x28605c[_0x1024fc(0x11d)],{'sourceIdentity':_0x28605c[_0x1024fc(0x11d)],'sourceUrl':_0x28605c[_0x1024fc(0x8c)],'sourceName':_0x28605c[_0x1024fc(0x282)],'sourceWidth':_0x28605c[_0x1024fc(0x75)],'sourceHeight':_0x28605c[_0x1024fc(0x258)],'markers':[]}),_0xeb04c3[_0x1024fc(0xa1)](_0x28605c[_0x1024fc(0x11d)])[_0x1024fc(0x2b8)]['push']({'item':_0xcf17c6,'crop':_0x28605c,'placementAvailable':_0x194df8>=_0x28ca47,'labelId':_0x23b546(_0xcf17c6,_0x1d533a,_0x194df8,_0x28605c)});});}),{'groups':[..._0xeb04c3['values']()],'totalItems':_0x12f2ef['length'],'bindingItems':_0x3d7a43,'boundItems':_0x2cbd9c[_0x2972dd(0x13d)],'unboundItems':Math[_0x2972dd(0x105)](_0x12f2ef[_0x2972dd(0x1fd)]-_0x2cbd9c[_0x2972dd(0x13d)],0x0)};}async function _0x7e7408(_0x3a0f25,_0x46d077){const _0xe657b5=_0x12b7e5;if(_0x3a0f25[_0xe657b5(0x80)][_0xe657b5(0x1fd)]||typeof _0x17dc28['loadData']!==_0xe657b5(0x1ef))return _0x3a0f25;const _0x4212df=typeof _0x17dc28[_0xe657b5(0xfa)]===_0xe657b5(0x1ef)?_0x17dc28[_0xe657b5(0xfa)]():null,_0x57ba78=_0x4212df?.[_0xe657b5(0x1a5)]?.['id']||'',_0xd1774=_0x4212df?.['activePlate']?.['id']||'',_0x18c1ad=_0x4212df?.[_0xe657b5(0x134)]?.[_0xe657b5(0x153)]||_0x17dc28[_0xe657b5(0x215)]?.()['plateName']||'当前盘';if(_0x46d077)_0x46d077['textContent']='正在重新核对【'+_0x18c1ad+'】的最新云端绑定...';try{return await _0x17dc28['loadData'](),_0x57ba78&&_0xd1774&&typeof _0x17dc28[_0xe657b5(0x107)]===_0xe657b5(0x1ef)&&_0x17dc28['setWorkspaceSelection'](_0x57ba78,_0xd1774),_0x46a30f();}catch(_0x5af11f){return console[_0xe657b5(0xe7)](_0xe657b5(0xc6),_0x5af11f),_0x3a0f25;}}function _0x3c3dde(_0xa2dbd4){const _0x36b931=_0x12b7e5,_0xe2b725=_0x17dc28[_0x36b931(0x215)]?.()[_0x36b931(0x224)]||_0x36b931(0x2a6);if(!_0xa2dbd4['totalItems'])return{'info':'【'+_0xe2b725+_0x36b931(0x1b3),'title':_0x36b931(0xc4),'detail':_0x36b931(0x2a8)};if(_0xa2dbd4[_0x36b931(0xd3)])return{'info':'【'+_0xe2b725+'】读取到\x20'+_0xa2dbd4[_0x36b931(0xd3)]+'\x20条绑定，但原图链接或裁切尺寸不完整','title':'绑定信息无法解析','detail':_0x36b931(0x1f5)};return{'info':'【'+_0xe2b725+'】读取到\x20'+_0xa2dbd4[_0x36b931(0xbb)]+_0x36b931(0x141),'title':_0x36b931(0x18f),'detail':_0x36b931(0xd4)};}function _0x37227e(_0x3fe72e,_0x40870b){const _0x1004f5=_0x12b7e5,_0x13e7c6=String(_0x40870b[_0x1004f5(0x8c)]||_0x18f6e8(_0x3fe72e?.['imgSrc'])||'')['trim'](),_0x117507=Number(_0x40870b[_0x1004f5(0x75)]||0x0),_0x581cf4=Number(_0x40870b[_0x1004f5(0x258)]||0x0),_0x11b27d=Number(_0x40870b['x']),_0x351e98=Number(_0x40870b['y']),_0x5a10a6=Number(_0x40870b[_0x1004f5(0x126)]),_0xaaa3e7=Number(_0x40870b[_0x1004f5(0x1db)]);if(!_0x13e7c6||_0x117507<=0x0||_0x581cf4<=0x0)return null;if(![_0x11b27d,_0x351e98,_0x5a10a6,_0xaaa3e7][_0x1004f5(0x8d)](Number[_0x1004f5(0x135)])||_0x5a10a6<=0x0||_0xaaa3e7<=0x0)return null;const _0x5f1ef3=_0x17dc28[_0x1004f5(0xd2)],_0x16be45=typeof _0x5f1ef3?.[_0x1004f5(0x274)]==='function'?_0x5f1ef3[_0x1004f5(0x274)](_0x13e7c6):_0x13e7c6[_0x1004f5(0x128)](_0x1004f5(0x23a))&&!_0x13e7c6['includes'](_0x1004f5(0x149));if(_0x16be45)return{'sourceUrl':_0x13e7c6,'sourceIdentity':_0x13e7c6,'sourceName':String(_0x40870b[_0x1004f5(0x282)]||_0x1004f5(0xb6)),'sourceWidth':_0x117507,'sourceHeight':_0x581cf4,'x':_0x11b27d,'y':_0x351e98,'width':_0x5a10a6,'height':_0xaaa3e7};try{const _0x5c25a8=new URL(_0x13e7c6,document[_0x1004f5(0x116)]);_0x5c25a8[_0x1004f5(0x280)]='',_0x5c25a8['searchParams'][_0x1004f5(0x187)](_0x1004f5(0x163));if(_0x40870b[_0x1004f5(0xd1)])_0x5c25a8['searchParams'][_0x1004f5(0x19f)](_0x1004f5(0x1da),String(new Date(_0x40870b[_0x1004f5(0xd1)])[_0x1004f5(0xf1)]()||_0x40870b[_0x1004f5(0xd1)]));const _0x15f85f=new URL(_0x5c25a8[_0x1004f5(0x1e2)]);return[_0x1004f5(0x1c2),_0x1004f5(0x1da),_0x1004f5(0x163)][_0x1004f5(0x23b)](_0x22ed2a=>_0x15f85f['searchParams'][_0x1004f5(0x187)](_0x22ed2a)),{'sourceUrl':_0x5c25a8[_0x1004f5(0x1e2)],'sourceIdentity':_0x15f85f[_0x1004f5(0x1e2)],'sourceName':String(_0x40870b['sourceName']||_0x5c25a8['pathname'][_0x1004f5(0x269)]('/')[_0x1004f5(0x9d)]()||_0x1004f5(0x29c)),'sourceWidth':_0x117507,'sourceHeight':_0x581cf4,'x':_0x11b27d,'y':_0x351e98,'width':_0x5a10a6,'height':_0xaaa3e7};}catch(_0xbbffe1){return null;}}function _0x18f6e8(_0x4d0111){const _0x31bce0=String(_0x4d0111||''),_0x20b43d=_0x31bce0['lastIndexOf']('#gd-crop=');return _0x20b43d>=0x0?_0x31bce0['slice'](0x0,_0x20b43d):'';}function _0x23b546(_0x3b964e,_0x17d089,_0xc003b5,_0x34b7e8){const _0x40a9de=_0x12b7e5,_0x439c4e=String(_0x3b964e?.['syncId']||_0x3b964e?.['id']||_0x40a9de(0x131)+_0x17d089),_0xbc0770=[_0x34b7e8[_0x40a9de(0x11d)],_0x34b7e8['x'],_0x34b7e8['y'],_0x34b7e8[_0x40a9de(0x126)],_0x34b7e8[_0x40a9de(0x1db)]][_0x40a9de(0x112)]('|');return _0x40a9de(0xa4)+_0x31d5a4(_0x439c4e)+'-'+_0xc003b5+'-'+_0x31d5a4(_0xbc0770);}function _0x31d5a4(_0x4c232d){const _0x1602b9=_0x12b7e5;let _0x23a8df=0x811c9dc5;const _0xdb8d5=String(_0x4c232d||'');for(let _0x4f1fbe=0x0;_0x4f1fbe<_0xdb8d5[_0x1602b9(0x1fd)];_0x4f1fbe+=0x1){_0x23a8df^=_0xdb8d5[_0x1602b9(0x1b8)](_0x4f1fbe),_0x23a8df=Math['imul'](_0x23a8df,0x1000193);}return(_0x23a8df>>>0x0)[_0x1602b9(0x26b)](0x24);}async function _0x4059ef(){const _0x41f230=_0x12b7e5,_0x3717d8=document[_0x41f230(0x296)](_0x41f230(0x194)),_0x47e28a=document['getElementById'](_0x41f230(0x203)),_0x5cfdb0=document[_0x41f230(0x296)](_0x41f230(0x122)),_0x232ac4=document[_0x41f230(0xa8)](_0x41f230(0x245)),_0x31b55a=document[_0x41f230(0xa8)](_0x41f230(0x191));if(!_0x3717d8||!_0x47e28a||!_0x5cfdb0||!_0x232ac4||!_0x31b55a)return;_0x27b804(),await _0x3239f5(),_0x1159d2();let _0x2f60ed=_0x46a30f();_0x2f60ed=await _0x7e7408(_0x2f60ed,_0x5cfdb0),_0x47e28a[_0x41f230(0x1a9)]='',_0x47e28a['classList'][_0x41f230(0x26e)](_0x41f230(0x7c),_0xa9032e()),_0x3717d8[_0x41f230(0x247)]['add'](_0x41f230(0xf8)),_0x47e28a[_0x41f230(0x247)][_0x41f230(0x26e)]('sticker-edit-mode',!_0xa9032e()),_0x6072f0();if(!_0x2f60ed[_0x41f230(0x80)][_0x41f230(0x1fd)]){const _0x1a8324=_0x3c3dde(_0x2f60ed);_0x5cfdb0[_0x41f230(0xe1)]=_0x1a8324[_0x41f230(0x162)],_0x47e28a[_0x41f230(0x1a9)]='<div\x20class=\x22plate-map-empty\x22><strong>'+_0x2a0247(_0x1a8324[_0x41f230(0x29a)])+_0x41f230(0x8a)+_0x2a0247(_0x1a8324['detail'])+_0x41f230(0x155),_0x232ac4[_0x41f230(0x1bf)]=!![],_0x31b55a[_0x41f230(0x1bf)]=!![],document[_0x41f230(0xa8)](_0x41f230(0x24b))?.[_0x41f230(0x25f)]();return;}_0x5cfdb0[_0x41f230(0xe1)]='共\x20'+_0x2f60ed[_0x41f230(0x80)][_0x41f230(0x1fd)]+_0x41f230(0x18e)+_0x2f60ed[_0x41f230(0x24d)]+_0x41f230(0x1ab)+(_0x2f60ed[_0x41f230(0x7e)]?_0x41f230(0x1ae)+_0x2f60ed['unboundItems']+_0x41f230(0x2b1):'');const _0x418c08=_0x2f60ed[_0x41f230(0x80)]['map']((_0x1287ee,_0x3e1e1a)=>{const _0x836a7a=_0x41f230,_0x3b9626=document[_0x836a7a(0x110)]('section');_0x3b9626[_0x836a7a(0x223)]='plate-map-preview-page';const _0x167d9a=document['createElement'](_0x836a7a(0x127));_0x167d9a['className']=_0x836a7a(0x140),_0x167d9a[_0x836a7a(0x22f)][_0x836a7a(0x282)]=_0x1287ee['sourceName'],_0x167d9a[_0x836a7a(0x1a9)]=_0x836a7a(0x1f7)+_0x2a0247(_0x1287ee[_0x836a7a(0x11d)])+'\x22\x20style=\x22aspect-ratio:'+_0x1287ee[_0x836a7a(0x75)]+_0x836a7a(0x213)+_0x1287ee[_0x836a7a(0x258)]+_0x836a7a(0x104)+_0x2a0247(_0x1287ee[_0x836a7a(0x8c)])+_0x836a7a(0x170)+_0x2a0247(_0x1287ee[_0x836a7a(0x282)])+_0x836a7a(0x28f)+_0x2a0247(_0x17dc28[_0x836a7a(0xcf)]||_0x836a7a(0x1fa))+_0x836a7a(0x1d4)+_0x1287ee[_0x836a7a(0x2b8)]['map'](_0x410876)[_0x836a7a(0x112)]('')+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22plate-map-manual-layer\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>',_0x3b9626[_0x836a7a(0x1a9)]=_0x836a7a(0x189)+(_0x3e1e1a+0x1)+'\x20张</strong><small>'+_0x2a0247(_0x1287ee['sourceName'])+_0x836a7a(0x1b7)+_0x3e1e1a+'\x22>下载这张\x20'+(_0x4aa18c['exportQuality']===_0x836a7a(0x14f)?'PNG':'JPG')+'</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>';const _0x4c0a7d=document['createElement']('div');_0x4c0a7d[_0x836a7a(0x223)]=_0x836a7a(0x2a1);const _0x4d5793=document['createElement'](_0x836a7a(0x127));return _0x4d5793[_0x836a7a(0x223)]='plate-map-preview-stage',_0x4d5793[_0x836a7a(0xfb)](_0x167d9a),_0x4c0a7d[_0x836a7a(0xfb)](_0x4d5793),_0x3b9626[_0x836a7a(0xfb)](_0x4c0a7d),_0x3b9626;});_0x386e23(_0x47e28a,_0x418c08),_0x6072f0(),_0x25e8fd(),_0x3c8d46(),_0x197657(),_0x232ac4[_0x41f230(0x1bf)]=![],_0x31b55a['disabled']=![],_0x17dc28[_0x41f230(0x1e1)]?.(),_0x17dc28[_0x41f230(0xf7)]?.(),_0xa55b1e(),_0x1159d2();}function _0x31f970(_0x1f8d87){const _0x5c1a61=_0x12b7e5;console['error'](_0x5c1a61(0x268),_0x1f8d87);const _0x474afb=document[_0x5c1a61(0x296)](_0x5c1a61(0x194)),_0x5ee89c=document[_0x5c1a61(0x296)]('stockPreviewGrid'),_0x32cac0=document[_0x5c1a61(0x296)](_0x5c1a61(0x122)),_0x178ad2=String(_0x1f8d87?.[_0x5c1a61(0x118)]||_0x5c1a61(0x77));_0x474afb?.[_0x5c1a61(0x247)][_0x5c1a61(0xef)](_0x5c1a61(0xf8));if(_0x32cac0)_0x32cac0[_0x5c1a61(0xe1)]='预览生成失败：'+_0x178ad2;_0x5ee89c&&(_0x5ee89c[_0x5c1a61(0x247)][_0x5c1a61(0x25f)](_0x5c1a61(0x11b),'plate-map-collage-mode'),_0x5ee89c['innerHTML']=_0x5c1a61(0x1a4)+_0x2a0247(_0x178ad2)+_0x5c1a61(0x200)),document['querySelector'](_0x5c1a61(0x245))?.['setAttribute'](_0x5c1a61(0x1bf),_0x5c1a61(0x1bf)),document[_0x5c1a61(0xa8)]('.print-btn')?.[_0x5c1a61(0x130)]('disabled',_0x5c1a61(0x1bf)),document['querySelector']('.preview-zoom-controls')?.[_0x5c1a61(0x25f)](),_0x17dc28[_0x5c1a61(0xbd)]?.(_0x5c1a61(0xb1)+_0x178ad2);}function _0xa9032e(){const _0x12e584=_0x12b7e5;return _0x4aa18c[_0x12e584(0x129)]===_0x12e584(0x13a)||_0x4aa18c[_0x12e584(0x129)]===_0x12e584(0x226);}function _0x5c5d73(){const _0x1f168c=_0x12b7e5;return _0x4aa18c[_0x1f168c(0x129)]===_0x1f168c(0x226)?0x3:0x2;}function _0x386e23(_0x409039,_0x5850ea){const _0x3f9d5f=_0x12b7e5;if(!_0xa9032e()){_0x5850ea[_0x3f9d5f(0x23b)](_0x52eaca=>_0x409039[_0x3f9d5f(0xfb)](_0x52eaca));return;}const _0x17a782=_0x5c5d73(),_0x11d371=_0x17a782*_0x17a782,_0x4643b5=Math[_0x3f9d5f(0x138)](_0x5850ea[_0x3f9d5f(0x1fd)]/_0x11d371);for(let _0x143e8c=0x0;_0x143e8c<_0x5850ea[_0x3f9d5f(0x1fd)];_0x143e8c+=_0x11d371){const _0x152322=_0x5850ea['slice'](_0x143e8c,_0x143e8c+_0x11d371),_0x521e4d=Math[_0x3f9d5f(0x293)](_0x143e8c/_0x11d371),_0x35fb6f=document[_0x3f9d5f(0x110)](_0x3f9d5f(0x27a));_0x35fb6f[_0x3f9d5f(0x223)]='plate-map-collage-preview',_0x35fb6f[_0x3f9d5f(0x1a9)]=_0x3f9d5f(0x1a0)+(_0x4aa18c['exportMode']==='grid9'?'九宫格':'四宫格')+'预览'+(_0x4643b5>0x1?'\x20'+(_0x521e4d+0x1)+'/'+_0x4643b5:'')+_0x3f9d5f(0x279)+_0x152322[_0x3f9d5f(0x1fd)]+'\x20张</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20type=\x22button\x22\x20data-download-plate-collage=\x22'+_0x521e4d+'\x22>下载这张\x20'+(_0x4aa18c[_0x3f9d5f(0x232)]===_0x3f9d5f(0x14f)?_0x3f9d5f(0x27c):_0x3f9d5f(0x1f4))+_0x3f9d5f(0xe5);const _0x4a7d94=_0x35fb6f['querySelector']('.plate-map-collage-preview-canvas');for(let _0x5e2547=0x0;_0x5e2547<_0x152322[_0x3f9d5f(0x1fd)];_0x5e2547+=_0x17a782){const _0x4a8703=document[_0x3f9d5f(0x110)](_0x3f9d5f(0x127));_0x4a8703[_0x3f9d5f(0x223)]=_0x3f9d5f(0x125),_0x152322[_0x3f9d5f(0x271)](_0x5e2547,_0x5e2547+_0x17a782)['forEach'](_0x156a60=>_0x4a8703[_0x3f9d5f(0xfb)](_0x156a60)),_0x4a7d94[_0x3f9d5f(0xfb)](_0x4a8703);}_0x409039[_0x3f9d5f(0xfb)](_0x35fb6f);}}function _0x410876({item:_0x21e382,crop:_0x2c69cd,placementAvailable:_0x37eaf8,labelId:_0x349ef4},_0xfa7a8d){const _0x5e5c6d=_0x12b7e5,_0x20e023=_0x584331(_0x2c69cd['x']/_0x2c69cd['sourceWidth']*0x64,0x0,0x64),_0x13e5ad=_0x584331(_0x2c69cd['y']/_0x2c69cd['sourceHeight']*0x64,0x0,0x64),_0x4505c3=_0x584331(_0x2c69cd['width']/_0x2c69cd['sourceWidth']*0x64,0.5,0x64-_0x20e023),_0x94dba1=_0x584331(_0x2c69cd[_0x5e5c6d(0x1db)]/_0x2c69cd[_0x5e5c6d(0x258)]*0x64,0.5,0x64-_0x13e5ad),_0x39d858=typeof _0x17dc28[_0x5e5c6d(0x1bb)]===_0x5e5c6d(0x1ef)?_0x17dc28[_0x5e5c6d(0x1bb)](_0x21e382):0x0,_0xd03bc3=typeof _0x17dc28[_0x5e5c6d(0x1e4)]===_0x5e5c6d(0x1ef)&&_0x17dc28[_0x5e5c6d(0x1e4)](_0x21e382);let _0x141a22,_0x4baa00;if(_0x37eaf8===![]||_0x39d858<=0x0)_0x4baa00='sold-out',_0x141a22=_0xde15e(_0x5a7d0e()?_0x5e5c6d(0x285):_0x5e5c6d(0x25e));else{if(_0xd03bc3)_0x4baa00='available\x20gift',_0x141a22=_0x5e5c6d(0x1be)+_0x39d858+'</span>';else{const _0x4e53b6=typeof _0x17dc28[_0x5e5c6d(0x83)]===_0x5e5c6d(0x1ef)?_0x17dc28[_0x5e5c6d(0x83)](_0x21e382):{'finalPrice':Number(_0x21e382?.[_0x5e5c6d(0xc5)]||0x0)},_0x51486f=typeof _0x17dc28[_0x5e5c6d(0x18d)]===_0x5e5c6d(0x1ef)?_0x17dc28['formatExportMoney'](_0x4e53b6[_0x5e5c6d(0x92)]):String(_0x4e53b6[_0x5e5c6d(0x92)]||0x0),_0x443ca8=typeof _0x17dc28[_0x5e5c6d(0x215)]===_0x5e5c6d(0x1ef)?_0x17dc28[_0x5e5c6d(0x215)]():{'priceMode':_0x5e5c6d(0x93)},_0x254a7a=typeof _0x17dc28[_0x5e5c6d(0x7d)]===_0x5e5c6d(0x1ef)?_0x17dc28[_0x5e5c6d(0x7d)]():'total';_0x4baa00=_0x5e5c6d(0x15d);if(_0x443ca8['priceMode']===_0x5e5c6d(0x177)&&_0x254a7a===_0x5e5c6d(0x2a7)){const _0x4abc13=typeof _0x17dc28[_0x5e5c6d(0x18d)]===_0x5e5c6d(0x1ef)?_0x17dc28[_0x5e5c6d(0x18d)](_0x4e53b6[_0x5e5c6d(0xb9)]):String(_0x4e53b6['basePrice']||0x0),_0x52349b=typeof _0x17dc28[_0x5e5c6d(0x9f)]===_0x5e5c6d(0x1ef)?_0x17dc28['formatExportSignedMoney'](_0x4e53b6[_0x5e5c6d(0x2a7)]):String(_0x4e53b6[_0x5e5c6d(0x2a7)]||0x0);_0x141a22=_0x5e5c6d(0x27e)+_0x2a0247(_0x51486f)+_0x5e5c6d(0x234)+_0x2a0247(_0x4abc13)+_0x5e5c6d(0x26f)+_0x2a0247(_0x52349b)+_0x5e5c6d(0x158)+_0x39d858+_0x5e5c6d(0x17d);}else _0x141a22='<span\x20class=\x22plate-map-auto-price\x22>¥'+_0x2a0247(_0x51486f)+'</span><span\x20class=\x22plate-map-auto-stock\x22>余\x20'+_0x39d858+_0x5e5c6d(0x17d);}}const _0x26fa7f=_0x2a0247(_0x21e382?.[_0x5e5c6d(0xb0)]||'商品'),_0x200d5e=String(_0x21e382?.[_0x5e5c6d(0x12c)]||'')[_0x5e5c6d(0x18c)](),_0x555490=_0x200d5e&&_0x200d5e!=='不捆'?_0x5e5c6d(0x117)+_0x2a0247(_0x200d5e)+_0x5e5c6d(0x17d):'',_0x4bf29a=_0x340468(_0x349ef4),_0x308139=_0x584331(_0x20e023+Number(_0x4bf29a[_0x5e5c6d(0x188)]||0x0),0x0,Math['max'](0x64-_0x4505c3,0x0)),_0x26258a=_0x584331(_0x13e5ad+Number(_0x4bf29a[_0x5e5c6d(0x86)]||0x0),0x0,Math[_0x5e5c6d(0x105)](0x64-_0x94dba1,0x0)),_0x3fea15=_0x584331(Number(_0x4bf29a['scale']||0x1),_0x4c8c5d,_0x179262),_0x4793d0=0xa+_0xfa7a8d,_0x106a90=_0x5415aa(_0x4bf29a['z'],_0x4793d0);return'<div\x20class=\x22plate-map-auto-marker\x20'+_0x4baa00+(_0x349ef4===_0x4aa18c[_0x5e5c6d(0x123)]?'\x20selected':'')+'\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20data-label-kind=\x22auto\x22\x20data-label-id=\x22'+_0x2a0247(_0x349ef4)+_0x5e5c6d(0x24a)+_0x26fa7f+_0x5e5c6d(0xec)+_0x20e023+_0x5e5c6d(0xfc)+_0x13e5ad+_0x5e5c6d(0x197)+_0x4505c3+'\x22\x20data-base-height=\x22'+_0x94dba1+_0x5e5c6d(0x161)+_0x4793d0+_0x5e5c6d(0x288)+_0x308139+_0x5e5c6d(0x1ac)+_0x26258a+_0x5e5c6d(0x242)+_0x4505c3+_0x5e5c6d(0x292)+_0x94dba1+'%;--plate-map-label-scale:'+_0x3fea15+_0x5e5c6d(0x1a1)+_0x106a90+'\x22\x20title=\x22'+_0x26fa7f+'\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+_0x141a22+'<span\x20class=\x22plate-map-auto-name\x22>'+_0x26fa7f+_0x5e5c6d(0x17d)+_0x555490+_0x5e5c6d(0x2ae);}function _0x2ee09c(){const _0x2fa667=_0x12b7e5,_0x1080cd=document['getElementById']('previewContainer'),_0x191532=Math[_0x2fa667(0x105)](0x140,(_0x1080cd?.[_0x2fa667(0x11e)]?.[_0x2fa667(0x26d)]||window[_0x2fa667(0x1e7)])-0x24);if(_0xa9032e()){_0x4aa18c[_0x2fa667(0x2b4)]=0x1,_0x354cce(_0x191532);const _0x50a5d4=document[_0x2fa667(0xa8)](_0x2fa667(0x2ab));if(_0x50a5d4)_0x50a5d4['textContent']=_0x2fa667(0x198);return;}const _0x96739f=Math[_0x2fa667(0x105)](0.3,Math[_0x2fa667(0x233)](0x1,_0x191532/0x438));_0x4aa18c['previewScale']=_0x96739f,document[_0x2fa667(0x210)]('.stock-grid-preview')['forEach'](_0x4d393a=>{_0x2a431a(_0x4d393a,_0x96739f);}),_0xa55b1e();const _0x39ecda=document['querySelector'](_0x2fa667(0x2ab));if(_0x39ecda)_0x39ecda[_0x2fa667(0xe1)]=Math[_0x2fa667(0x256)](_0x96739f*0x64)+'%';}function _0xa55b1e(){const _0x15d0e8=_0x12b7e5;if(_0xa9032e())return;document[_0x15d0e8(0x210)](_0x15d0e8(0xc1))['forEach'](_0x40c84e=>{const _0x495f78=_0x15d0e8,_0x302982=_0x40c84e[_0x495f78(0xa8)](_0x495f78(0x180));if(!_0x302982)return;const _0xfaf209=_0x15ae85(_0x302982),_0x56b994=_0x2a431a(_0x302982,_0xfaf209);_0x40c84e[_0x495f78(0x255)][_0x495f78(0x126)]=_0x56b994[_0x495f78(0x126)]+'px',_0x40c84e[_0x495f78(0x255)]['height']='auto';});}function _0x15ae85(_0x8ae9f7){const _0x278e5e=_0x12b7e5,_0x48fc3a=_0x8ae9f7?.[_0x278e5e(0x16e)](_0x278e5e(0xdb));return Math['max'](0.01,Number['parseFloat'](_0x48fc3a?.[_0x278e5e(0x22f)][_0x278e5e(0x2b4)])||0x1);}function _0x2a431a(_0x4388f1,_0x1516ff){const _0xbbef01=_0x12b7e5,_0x1d67be=Math[_0xbbef01(0x105)](0.01,Number(_0x1516ff)||0x1),_0x215425=_0x4388f1?.[_0xbbef01(0x16e)](_0xbbef01(0x165)),_0x4ae5ee=_0x4388f1?.[_0xbbef01(0x16e)]('.plate-map-preview-stage'),_0x3858e8=Math['max'](0x1,Math[_0xbbef01(0x256)]((_0x4388f1?.[_0xbbef01(0x15f)]||0x1)*_0x1d67be)),_0x2f135d=Math[_0xbbef01(0x105)](0x1,Math[_0xbbef01(0x256)]((_0x4388f1?.[_0xbbef01(0x1b2)]||0x1)*_0x1d67be));if(!_0x215425||!_0x4ae5ee)return{'width':_0x3858e8,'height':_0x2f135d};return _0x4388f1[_0xbbef01(0x255)]['zoom']='1',_0x4ae5ee[_0xbbef01(0x22f)][_0xbbef01(0x2b4)]=String(_0x1d67be),_0x4ae5ee[_0xbbef01(0x255)][_0xbbef01(0x1a8)]=_0x1d67be===0x1?_0xbbef01(0x20f):_0xbbef01(0x9b)+_0x1d67be+')',_0x215425[_0xbbef01(0x255)][_0xbbef01(0x126)]=_0x3858e8+'px',_0x215425[_0xbbef01(0x255)][_0xbbef01(0x1db)]=_0x2f135d+'px',{'width':_0x3858e8,'height':_0x2f135d};}function _0x354cce(_0x399807){const _0x4ff138=_0x12b7e5,_0x2a9d82=document[_0x4ff138(0x296)](_0x4ff138(0x194)),_0x2365c8=Math[_0x4ff138(0x105)](0x118,Number(_0x399807||(_0x2a9d82?.['parentElement']?.[_0x4ff138(0x26d)]||window[_0x4ff138(0x1e7)])-0x24)),_0x50b72f=Math[_0x4ff138(0x105)](0x118,Math['round'](_0x2365c8*_0x4aa18c[_0x4ff138(0x2b4)]));document['querySelectorAll'](_0x4ff138(0x1b5))[_0x4ff138(0x23b)](_0x51d940=>{const _0x585b85=_0x4ff138;_0x51d940[_0x585b85(0x255)][_0x585b85(0x126)]=_0x50b72f+'px',_0x51d940[_0x585b85(0x210)](_0x585b85(0x1aa))[_0x585b85(0x23b)](_0x4dde49=>{const _0x1cc836=_0x585b85,_0x12507d=Array[_0x1cc836(0x1c5)](_0x4dde49[_0x1cc836(0x210)](':scope\x20>\x20.plate-map-preview-page')),_0x4db40f=_0x12507d[_0x1cc836(0x236)](_0x3472ff=>{const _0x1c3619=_0x1cc836,_0xe56c0d=_0x3472ff['querySelector']('.plate-map-preview');if(!_0xe56c0d)return null;_0x3472ff[_0x1c3619(0x255)]['width']=_0x1c3619(0x240),_0x3472ff['style'][_0x1c3619(0x1db)]=_0x1c3619(0x240);const _0x13302c=Math[_0x1c3619(0x105)](_0xe56c0d['offsetWidth'],0x1),_0x3ec593=Math[_0x1c3619(0x105)](_0xe56c0d[_0x1c3619(0x1b2)],0x1);return{'page':_0x3472ff,'sheet':_0xe56c0d,'width':_0x13302c,'height':_0x3ec593,'aspect':_0x13302c/_0x3ec593};})[_0x1cc836(0x159)](Boolean),_0x257e2b=_0x4db40f[_0x1cc836(0x204)]((_0x270f2f,_0x336311)=>_0x270f2f+_0x336311[_0x1cc836(0x28e)],0x0)||0x1,_0x17af35=_0x50b72f/_0x257e2b;let _0x42043e=0x0;_0x4db40f[_0x1cc836(0x23b)]((_0x500792,_0x250a93)=>{const _0x2049ec=_0x1cc836,_0x5b4e77=_0x17af35/_0x500792[_0x2049ec(0x1db)],_0x1b4735=_0x2a431a(_0x500792[_0x2049ec(0x1d0)],_0x5b4e77),_0x30aa85=_0x250a93===_0x4db40f[_0x2049ec(0x1fd)]-0x1?Math[_0x2049ec(0x105)](0x1,_0x50b72f-_0x42043e):_0x1b4735['width'];_0x500792[_0x2049ec(0x284)][_0x2049ec(0x255)][_0x2049ec(0x126)]=_0x30aa85+'px',_0x500792[_0x2049ec(0x284)]['style'][_0x2049ec(0x1db)]=_0x1b4735['height']+'px',_0x42043e+=_0x30aa85;}),_0x4dde49[_0x1cc836(0x255)]['width']=_0x50b72f+'px',_0x4dde49[_0x1cc836(0x255)][_0x1cc836(0x1db)]=Math[_0x1cc836(0x105)](0x1,Math['round'](_0x17af35))+'px';});});}function _0x4e45c1(){const _0xf4ee18=_0x12b7e5;return Array[_0xf4ee18(0x1c5)](document['querySelectorAll']('#stockPreviewGrid\x20.plate-map-preview'));}function _0x551e48(_0x355f19,_0x41d565=''){const _0x4865b7=_0x12b7e5;let _0x213e2e=String(_0x355f19||'');try{_0x213e2e=decodeURIComponent(_0x213e2e);}catch(_0x733d6){}return _0x213e2e[_0x4865b7(0xd5)](/\.[a-z0-9]{2,5}$/i,'')['replace'](/[\\/:*?"<>|]/g,'-')[_0x4865b7(0xd5)](/\s+/g,'\x20')[_0x4865b7(0x18c)]()||_0x41d565;}function _0x4e1d4f(_0x3a2504,_0x108288,_0x663c2a=_0x4aa18c[_0x12b7e5(0x232)]){const _0x304618=_0x12b7e5,_0x5b5d11=String(_0x108288+0x1)['padStart'](0x2,'0'),_0x510cf4=_0x551e48(_0x3a2504?.[_0x304618(0x22f)]['sourceName'],'第'+_0x5b5d11+'张'),_0x310934=_0x663c2a==='lossless';return _0x35f770()+'-'+_0x5b5d11+'-'+_0x510cf4+'-'+(_0x310934?'无损':'高清')+'.'+(_0x310934?_0x304618(0xce):_0x304618(0x2b6));}async function _0x222ade(_0x50246a,_0x6af230=0x2,_0x3a6f1c={}){const _0x1c86ac=_0x12b7e5;if(typeof _0x17dc28[_0x1c86ac(0x23e)]!==_0x1c86ac(0x1ef))throw new Error(_0x1c86ac(0xda));if(typeof _0x17dc28['createExportRenderClone']!==_0x1c86ac(0x1ef))throw new Error(_0x1c86ac(0x273));const {host:_0x4dc30d,clone:_0x4b4dc0}=_0x17dc28[_0x1c86ac(0x219)](_0x50246a);try{_0x4b4dc0[_0x1c86ac(0x255)]['zoom']='1';const _0x3b4261=typeof _0x17dc28[_0x1c86ac(0x195)]==='function'?await _0x17dc28[_0x1c86ac(0x195)](_0x4b4dc0,_0x3a6f1c):0x0;await new Promise(_0x2ea7d2=>requestAnimationFrame(()=>requestAnimationFrame(_0x2ea7d2)));const _0x4f0ee5=_0x4b4dc0[_0x1c86ac(0x29b)](),_0x3e4e8c=Math[_0x1c86ac(0x138)](_0x4f0ee5[_0x1c86ac(0x126)]),_0x555e2b=Math[_0x1c86ac(0x138)](_0x4f0ee5[_0x1c86ac(0x1db)]),_0x588b4c=await _0x17dc28['html2canvas'](_0x4b4dc0,{'scale':_0x6af230,'backgroundColor':null,'useCORS':!![],'allowTaint':![],'logging':![],'width':_0x3e4e8c,'height':_0x555e2b,'windowWidth':_0x3e4e8c,'windowHeight':_0x555e2b,'scrollX':0x0,'scrollY':0x0});return{'canvas':_0x588b4c,'fallbackCount':_0x3b4261};}finally{_0x4dc30d['remove']();}}async function _0x580978(_0x5e0e3e,_0x1b8ae2){const _0x380530=_0x12b7e5,_0x4e98af=_0x4e45c1()[_0x5e0e3e];if(!_0x4e98af||_0x1b8ae2?.[_0x380530(0x1bf)])return;const _0x3556ba=_0x4aa18c[_0x380530(0x232)]==='lossless',_0x33ce61=_0x3556ba?_0x380530(0x27c):_0x380530(0x1f4),_0x5349ec=_0x1b8ae2?.['textContent']||'下载这张\x20'+_0x33ce61;_0x1b8ae2&&(_0x1b8ae2[_0x380530(0x1bf)]=!![],_0x1b8ae2[_0x380530(0xe1)]=_0x380530(0x2b5));try{const {canvas:_0x2d17dc,fallbackCount:_0xf42239}=await _0x222ade(_0x4e98af,0x2,_0x3556ba?{'preserveOriginal':!![]}:{'maxDimension':0xe10,'maxPixels':0x989680,'maxBytes':0x5b8d80,'quality':0.97}),_0x1d9cf6=_0x3556ba?_0x2d17dc:_0xa358e3(_0x2d17dc),_0x8e2179=_0x3556ba?await _0x17dc28[_0x380530(0xb5)](_0x1d9cf6):await _0xa0eb0d(_0x1d9cf6);_0x17dc28['triggerExportDownload'](_0x8e2179,_0x4e1d4f(_0x4e98af,_0x5e0e3e)),_0x17dc28[_0x380530(0xbd)]?.(_0x380530(0xcb)+(_0x5e0e3e+0x1)+'\x20张整盘标价图'+(_0xf42239?_0x380530(0x214):''));}catch(_0x49c284){console[_0x380530(0xa3)](_0x380530(0xa2),_0x49c284),alert(_0x380530(0x1e3)+(_0x49c284?.[_0x380530(0x118)]||_0x380530(0x192)));}finally{_0x1b8ae2&&(_0x1b8ae2[_0x380530(0x1bf)]=![],_0x1b8ae2['textContent']=_0x5349ec),document[_0x380530(0x210)](_0x380530(0x1a7))['forEach'](_0x420559=>_0x420559[_0x380530(0x25f)]());}}async function _0x18da3c(_0x3852e9,_0xc165a2){const _0xbb884b=_0x12b7e5,_0x3a2894=_0x4e45c1(),_0x247ae4=_0x5c5d73(),_0x34573a=_0x247ae4*_0x247ae4,_0x211a13=_0x247ae4===0x3?_0xbb884b(0x1cb):_0xbb884b(0x1f9),_0xe52f6f=Math[_0xbb884b(0x105)](0x0,Math[_0xbb884b(0x293)](Number(_0x3852e9)||0x0)),_0x1cb9b1=_0x3a2894[_0xbb884b(0x271)](_0xe52f6f*_0x34573a,(_0xe52f6f+0x1)*_0x34573a);if(!_0x1cb9b1['length']||_0xc165a2?.['disabled'])return;const _0x52f3ef=_0x4aa18c[_0xbb884b(0x232)]==='lossless',_0x37a6e4=_0x52f3ef?'PNG':'JPG',_0x12859c=_0xc165a2?.['textContent']||_0xbb884b(0x231)+_0x37a6e4;_0xc165a2&&(_0xc165a2[_0xbb884b(0x1bf)]=!![],_0xc165a2['textContent']=_0xbb884b(0x2b5));try{const _0x2632de=_0x52f3ef?0x1:0x4/0x3,_0x494ce4=_0x52f3ef?{'preserveOriginal':!![]}:{'maxDimension':0xc80,'maxPixels':0x895440,'maxBytes':0x4c4b40,'quality':0.97},_0x58a672=[];let _0x2be6b3=0x0;for(const _0x272271 of _0x1cb9b1){const _0x25092f=await _0x222ade(_0x272271,_0x2632de,_0x494ce4);_0x58a672['push'](_0x25092f[_0xbb884b(0x19d)]),_0x2be6b3+=_0x25092f[_0xbb884b(0x235)];}const _0x457ce8=_0x49c42f(_0x58a672,_0x247ae4),_0x2a8fa5=_0x52f3ef?_0x457ce8:_0xa358e3(_0x457ce8),_0x2d9897=Math[_0xbb884b(0x138)](_0x3a2894['length']/_0x34573a),_0x397950=_0x2d9897>0x1?'-'+String(_0xe52f6f+0x1)[_0xbb884b(0x295)](0x2,'0'):'',_0x335c96=_0x35f770()+'-'+_0x211a13+'-'+(_0x52f3ef?'无损':'高清')+_0x397950+'.'+(_0x52f3ef?_0xbb884b(0xce):_0xbb884b(0x2b6)),_0x280c1f=_0x52f3ef?await _0x17dc28[_0xbb884b(0xb5)](_0x2a8fa5):await _0xa0eb0d(_0x2a8fa5);_0x17dc28[_0xbb884b(0x241)](_0x280c1f,_0x335c96),_0x17dc28[_0xbb884b(0xbd)]?.(_0xbb884b(0xcb)+(_0xe52f6f+0x1)+'\x20张'+_0x211a13+(_0x2be6b3?'，'+_0x2be6b3+_0xbb884b(0x19b):''));}catch(_0x480d24){console[_0xbb884b(0xa3)]('单张整盘拼图下载失败:',_0x480d24),alert(_0xbb884b(0x1c6)+(_0x480d24?.['message']||_0xbb884b(0x192)));}finally{_0xc165a2&&(_0xc165a2[_0xbb884b(0x1bf)]=![],_0xc165a2[_0xbb884b(0xe1)]=_0x12859c),document[_0xbb884b(0x210)](_0xbb884b(0x1a7))[_0xbb884b(0x23b)](_0x42e545=>_0x42e545[_0xbb884b(0x25f)]());}}function _0x49c42f(_0x2f1219,_0x33a5cc){const _0xf67bf=_0x12b7e5,_0x2f33b2=Math[_0xf67bf(0x233)](_0x33a5cc,_0x2f1219[_0xf67bf(0x1fd)]),_0x287415=Math[_0xf67bf(0x105)](..._0x2f1219[_0xf67bf(0x236)](_0x38ed38=>_0x38ed38[_0xf67bf(0x126)]))*_0x2f33b2,_0x3cf3f5=[];for(let _0x399893=0x0;_0x399893<_0x2f1219[_0xf67bf(0x1fd)];_0x399893+=_0x2f33b2){const _0x184b93=_0x2f1219[_0xf67bf(0x271)](_0x399893,_0x399893+_0x2f33b2),_0xb3542=_0x184b93[_0xf67bf(0x204)]((_0x1be7ff,_0x176eb9)=>_0x1be7ff+_0x176eb9[_0xf67bf(0x126)]/_0x176eb9['height'],0x0);_0x3cf3f5[_0xf67bf(0x166)]({'canvases':_0x184b93,'height':Math[_0xf67bf(0x105)](0x1,Math[_0xf67bf(0x256)](_0x287415/_0xb3542))});}const _0x335de3=document[_0xf67bf(0x110)](_0xf67bf(0x19d));_0x335de3[_0xf67bf(0x126)]=_0x287415,_0x335de3[_0xf67bf(0x1db)]=_0x3cf3f5[_0xf67bf(0x204)]((_0x302e34,_0x3a4715)=>_0x302e34+_0x3a4715[_0xf67bf(0x1db)],0x0);const _0x28fdb1=_0x335de3[_0xf67bf(0x8e)]('2d');_0x28fdb1[_0xf67bf(0x297)](0x0,0x0,_0x335de3['width'],_0x335de3[_0xf67bf(0x1db)]);let _0x25b760=0x0;return _0x3cf3f5[_0xf67bf(0x23b)](_0x4db1c6=>{const _0x4b9bfa=_0xf67bf;let _0x44fca=0x0;_0x4db1c6[_0x4b9bfa(0xca)][_0x4b9bfa(0x23b)]((_0x3951ab,_0x161973)=>{const _0x36c6d5=_0x4b9bfa,_0x28c91c=_0x161973===_0x4db1c6[_0x36c6d5(0xca)][_0x36c6d5(0x1fd)]-0x1?_0x335de3['width']-_0x44fca:Math[_0x36c6d5(0x105)](0x1,Math[_0x36c6d5(0x256)](_0x3951ab[_0x36c6d5(0x126)]/_0x3951ab[_0x36c6d5(0x1db)]*_0x4db1c6[_0x36c6d5(0x1db)]));_0x28fdb1[_0x36c6d5(0x97)](_0x3951ab,_0x44fca,_0x25b760,_0x28c91c,_0x4db1c6[_0x36c6d5(0x1db)]),_0x44fca+=_0x28c91c;}),_0x25b760+=_0x4db1c6[_0x4b9bfa(0x1db)];}),_0x335de3;}function _0xa358e3(_0x22aaa2){const _0x290849=_0x12b7e5,_0x35c65c=Math[_0x290849(0x105)](Number(_0x22aaa2?.[_0x290849(0x126)]||0x0),0x1),_0x17aaaa=Math['max'](Number(_0x22aaa2?.[_0x290849(0x1db)]||0x0),0x1),_0x127ed4=Math['min'](0x1,_0x51928b/_0x35c65c,_0x753cdf/_0x17aaaa,Math[_0x290849(0x221)](_0x592d2a/(_0x35c65c*_0x17aaaa))),_0x382793=document['createElement'](_0x290849(0x19d));_0x382793[_0x290849(0x126)]=Math['max'](0x1,Math[_0x290849(0x256)](_0x35c65c*_0x127ed4)),_0x382793['height']=Math['max'](0x1,Math[_0x290849(0x256)](_0x17aaaa*_0x127ed4));const _0xcb6fb5=_0x382793[_0x290849(0x8e)]('2d',{'alpha':![]});if(!_0xcb6fb5)throw new Error('浏览器无法创建压缩画布');return _0xcb6fb5['fillStyle']=_0x290849(0x1ea),_0xcb6fb5['fillRect'](0x0,0x0,_0x382793[_0x290849(0x126)],_0x382793['height']),_0xcb6fb5[_0x290849(0x10b)]=!![],_0xcb6fb5[_0x290849(0xdd)]='high',_0xcb6fb5[_0x290849(0x97)](_0x22aaa2,0x0,0x0,_0x382793[_0x290849(0x126)],_0x382793[_0x290849(0x1db)]),_0x382793;}function _0xa0eb0d(_0x4ef5fa){return new Promise((_0x9c355a,_0x41f24b)=>{const _0x1839a2=a00_0x95f1;_0x4ef5fa[_0x1839a2(0x2ad)](_0x5f1fa9=>{const _0x656949=_0x1839a2;if(!_0x5f1fa9){_0x41f24b(new Error(_0x656949(0xc3)));return;}_0x9c355a(_0x5f1fa9);},_0x1839a2(0xfe),_0x4a3e0e);});}async function _0x2f3bd8(){const _0x3cfe51=_0x12b7e5,_0x2790aa=document[_0x3cfe51(0x296)](_0x3cfe51(0x194)),_0x2ca561=document[_0x3cfe51(0x296)](_0x3cfe51(0x203)),_0x1f4910=document[_0x3cfe51(0xa8)](_0x3cfe51(0x245)),_0x2760c9=Array[_0x3cfe51(0x1c5)](_0x2ca561?.[_0x3cfe51(0x210)](_0x3cfe51(0x14a))||[]);if(!_0x2790aa?.[_0x3cfe51(0x247)][_0x3cfe51(0x7b)]('visible')||!_0x2760c9[_0x3cfe51(0x1fd)]){alert(_0x3cfe51(0x183));return;}if(_0x1f4910?.['disabled']||typeof _0x17dc28[_0x3cfe51(0x23e)]!==_0x3cfe51(0x1ef))return;const _0x38426d=_0x4aa18c['exportQuality']===_0x3cfe51(0x14f),_0x358edd=_0x38426d?'PNG':_0x3cfe51(0x1f4),_0x33ae18=_0x38426d?'png':_0x3cfe51(0x2b6),_0x32a8c4=_0x3857fe?.[_0x3cfe51(0x8b)](_0x17dc28)||_0x3cfe51(0xba);_0x1f4910&&(_0x1f4910['disabled']=!![],_0x1f4910[_0x3cfe51(0x247)][_0x3cfe51(0xef)](_0x3cfe51(0x124)),_0x1f4910['textContent']='正在生成...');try{let _0x69e0c3=0x0;const _0x3deb1b=[];for(let _0x4418a9=0x0;_0x4418a9<_0x2760c9[_0x3cfe51(0x1fd)];_0x4418a9++){const {host:_0x532f1e,clone:_0x5acf9d}=_0x17dc28['createExportRenderClone'](_0x2760c9[_0x4418a9]);try{_0x69e0c3+=await _0x17dc28[_0x3cfe51(0x195)](_0x5acf9d,_0x38426d?{'preserveOriginal':!![]}:{'maxDimension':0x960,'maxPixels':0x5b8d80,'maxBytes':0x3567e0,'quality':0.94}),await new Promise(_0xba9fb4=>requestAnimationFrame(()=>requestAnimationFrame(_0xba9fb4)));const _0x3f0015=Math[_0x3cfe51(0x138)](_0x5acf9d[_0x3cfe51(0x29b)]()[_0x3cfe51(0x126)]),_0x2008be=Math[_0x3cfe51(0x138)](_0x5acf9d['getBoundingClientRect']()['height']),_0x4c6f49=await _0x17dc28[_0x3cfe51(0x23e)](_0x5acf9d,{'scale':0x2,'backgroundColor':'#f4f7fb','useCORS':!![],'allowTaint':![],'logging':![],'width':_0x3f0015,'height':_0x2008be,'windowWidth':_0x3f0015,'windowHeight':_0x2008be,'scrollX':0x0,'scrollY':0x0}),_0xfe7344=_0x2760c9[_0x3cfe51(0x1fd)]>0x1?'-'+(_0x4418a9+0x1):'';_0x3deb1b[_0x3cfe51(0x166)]({'name':''+_0x32a8c4+_0xfe7344+'.'+_0x33ae18,'blob':_0x38426d?await _0x17dc28[_0x3cfe51(0xb5)](_0x4c6f49):await _0xa0eb0d(_0x4c6f49)});}finally{_0x532f1e[_0x3cfe51(0x25f)]();}}const _0xde0a46=await _0x17dc28[_0x3cfe51(0x252)](_0x3deb1b,_0x32a8c4+'-'+_0x3deb1b[_0x3cfe51(0x1fd)]+_0x3cfe51(0x181)),_0x30f1b6=_0xde0a46[_0x3cfe51(0xeb)]===_0x3cfe51(0xe4)?_0x3cfe51(0x13f):_0xde0a46['mode']===_0x3cfe51(0xc7)?'，已逐张开始下载':'',_0x4426d6=_0x69e0c3?'，'+_0x69e0c3+_0x3cfe51(0xdf):'';_0x17dc28[_0x3cfe51(0xbd)]?.(_0x3cfe51(0xad)+_0x3deb1b[_0x3cfe51(0x1fd)]+'\x20张'+(_0x38426d?'无损':'高清')+'\x20'+_0x358edd+_0x3cfe51(0x7f)+_0x30f1b6+_0x4426d6);}catch(_0x3e31ce){console['error'](_0x3cfe51(0xa6),_0x3e31ce),alert(_0x3cfe51(0x259)+(_0x3e31ce?.['message']||_0x3cfe51(0x192))+'。');}finally{document[_0x3cfe51(0x210)](_0x3cfe51(0x1a7))[_0x3cfe51(0x23b)](_0x25067f=>_0x25067f['remove']()),_0x1f4910&&(_0x1f4910[_0x3cfe51(0x1bf)]=![],_0x1f4910['classList'][_0x3cfe51(0x25f)](_0x3cfe51(0x124))),_0x595b02();}}async function _0x1b8816(){const _0x15de19=_0x12b7e5,_0xead501=_0x4e45c1(),_0x28130d=document[_0x15de19(0xa8)]('.download-btn');if(!_0xead501['length']){alert(_0x15de19(0x260));return;}if(_0x28130d?.[_0x15de19(0x1bf)]||typeof _0x17dc28[_0x15de19(0x23e)]!==_0x15de19(0x1ef))return;const _0x4958e4=_0x4aa18c['exportMode']===_0x15de19(0x13a)||_0x4aa18c[_0x15de19(0x129)]==='grid9',_0x412a04=_0x4aa18c[_0x15de19(0x129)]===_0x15de19(0x226)?0x3:0x2,_0xbc620f=_0x4958e4?Math[_0x15de19(0x138)](_0xead501[_0x15de19(0x1fd)]/(_0x412a04*_0x412a04)):_0xead501[_0x15de19(0x1fd)];if(_0x4958e4&&_0xbc620f>0x1){const _0x2861b5=await _0x19cddd(_0xbc620f);if(!_0x2861b5)return;}const _0x416706=_0x28130d?.['textContent']||_0x15de19(0x91);_0x28130d&&(_0x28130d[_0x15de19(0x1bf)]=!![],_0x28130d[_0x15de19(0x247)][_0x15de19(0xef)](_0x15de19(0x124)),_0x28130d['textContent']='正在生成...');try{const _0x32a971=_0x4aa18c[_0x15de19(0x129)]===_0x15de19(0x13a)||_0x4aa18c[_0x15de19(0x129)]===_0x15de19(0x226),_0x29eb1b=_0x4aa18c['exportQuality']===_0x15de19(0x14f),_0x588c2e=_0x4aa18c[_0x15de19(0x129)]===_0x15de19(0x226)?0x3:0x2,_0x3f2230=_0x588c2e*_0x588c2e,_0x26c77b=_0x32a971?_0x29eb1b?0x1:0x4/0x3:0x2,_0x4b122e=_0x29eb1b?{'preserveOriginal':!![]}:{'maxDimension':0xc80,'maxPixels':0x895440,'maxBytes':0x4c4b40,'quality':0.97},_0x3bce0d=[];let _0x2b7891=0x0;for(const _0x45977d of _0xead501){const _0x3ef96e=await _0x222ade(_0x45977d,_0x26c77b,_0x4b122e);_0x3bce0d[_0x15de19(0x166)](_0x3ef96e[_0x15de19(0x19d)]),_0x2b7891+=_0x3ef96e[_0x15de19(0x235)];}const _0x347590=[];if(_0x32a971){const _0x44e91d=_0x4aa18c['exportMode']===_0x15de19(0x226)?_0x15de19(0x1cb):_0x15de19(0x1f9),_0x1bbac9=Math[_0x15de19(0x138)](_0x3bce0d['length']/_0x3f2230);for(let _0x1edd04=0x0;_0x1edd04<_0x3bce0d[_0x15de19(0x1fd)];_0x1edd04+=_0x3f2230){const _0x2d92cd=Math[_0x15de19(0x293)](_0x1edd04/_0x3f2230),_0x425899=_0x1bbac9>0x1?'-'+String(_0x2d92cd+0x1)[_0x15de19(0x295)](0x2,'0'):'',_0x52f432=_0x49c42f(_0x3bce0d['slice'](_0x1edd04,_0x1edd04+_0x3f2230),_0x588c2e),_0x15c799=_0x29eb1b?_0x52f432:_0xa358e3(_0x52f432);_0x347590[_0x15de19(0x166)]({'name':_0x35f770()+'-'+_0x44e91d+'-'+(_0x29eb1b?'无损':'高清')+_0x425899+'.'+(_0x29eb1b?'png':'jpg'),'blob':_0x29eb1b?await _0x17dc28['canvasToPngBlob'](_0x15c799):await _0xa0eb0d(_0x15c799)});}}else for(let _0x4627c8=0x0;_0x4627c8<_0x3bce0d[_0x15de19(0x1fd)];_0x4627c8++){const _0x4abe78=_0x29eb1b?_0x3bce0d[_0x4627c8]:_0xa358e3(_0x3bce0d[_0x4627c8]);_0x347590[_0x15de19(0x166)]({'name':_0x4e1d4f(_0xead501[_0x4627c8],_0x4627c8),'blob':_0x29eb1b?await _0x17dc28['canvasToPngBlob'](_0x4abe78):await _0xa0eb0d(_0x4abe78)});}const _0x46de15=_0x32a971?(_0x4aa18c[_0x15de19(0x129)]===_0x15de19(0x226)?_0x15de19(0x1cb):_0x15de19(0x1f9))+'-'+_0x347590[_0x15de19(0x1fd)]+'张':_0x347590['length']+'张',_0x1b7c7e=await _0x17dc28[_0x15de19(0x252)](_0x347590,_0x35f770()+'-'+_0x46de15+_0x15de19(0xe0)),_0x48ffce=_0x32a971?_0x4aa18c[_0x15de19(0x129)]===_0x15de19(0x226)?_0x15de19(0x1cb):_0x15de19(0x1f9):'分张图片',_0x343ee6=_0x29eb1b?_0x15de19(0x261):'，已生成高清\x20JPG',_0x4d287a=_0x1b7c7e[_0x15de19(0xeb)]===_0x15de19(0xe4)?_0x15de19(0x13f):_0x1b7c7e[_0x15de19(0xeb)]===_0x15de19(0xc7)?_0x15de19(0x1ad):'';_0x17dc28[_0x15de19(0xbd)]?.(_0x15de19(0xad)+_0x48ffce+_0x343ee6+_0x4d287a+(_0x2b7891?'，'+_0x2b7891+_0x15de19(0x19b):''));}catch(_0x1b2f29){console[_0x15de19(0xa3)]('整盘标价图下载失败:',_0x1b2f29),alert(_0x15de19(0x286)+(_0x1b2f29?.[_0x15de19(0x118)]||_0x15de19(0x192)));}finally{document['querySelectorAll'](_0x15de19(0x1a7))['forEach'](_0x4de81a=>_0x4de81a[_0x15de19(0x25f)]()),_0x28130d&&(_0x28130d['disabled']=![],_0x28130d[_0x15de19(0x247)][_0x15de19(0x25f)]('is-loading'),_0x28130d[_0x15de19(0xe1)]=_0x416706),_0x595b02();}}function _0x35f770(){const _0x100d16=_0x12b7e5,_0x1d604d=typeof _0x17dc28[_0x100d16(0x215)]==='function'?_0x17dc28[_0x100d16(0x215)]():{'groupName':'当前团','plateName':'当前盘'};return(_0x1d604d[_0x100d16(0x2b2)]+'-'+_0x1d604d[_0x100d16(0x224)]+_0x100d16(0x22d))[_0x100d16(0xd5)](/[\\/:*?"<>|]/g,'-')['replace'](/\s+/g,'\x20')[_0x100d16(0x18c)]()||_0x100d16(0xb3);}function _0x2a0247(_0x10391d){const _0x4f3cda=_0x12b7e5;if(typeof _0x17dc28[_0x4f3cda(0x136)]===_0x4f3cda(0x1ef))return _0x17dc28[_0x4f3cda(0x136)](_0x10391d);return String(_0x10391d??'')[_0x4f3cda(0xd5)](/[&<>"']/g,_0x9848b2=>({'&':_0x4f3cda(0x250),'<':_0x4f3cda(0xe6),'>':_0x4f3cda(0x2a0),'\x22':_0x4f3cda(0x28b),'\x27':_0x4f3cda(0x10c)}[_0x9848b2]));}function _0x279bc0(_0x2cbb2b){const _0x55e095=_0x12b7e5,_0x536c3a=String(_0x2cbb2b||'');if(_0x17dc28[_0x55e095(0xf3)]?.[_0x55e095(0x1d1)])return _0x17dc28[_0x55e095(0xf3)]['escape'](_0x536c3a);return _0x536c3a[_0x55e095(0xd5)](/[\\"]/g,_0x55e095(0x24f));}function _0x584331(_0x36734a,_0x1b3d18,_0x5c8675){const _0x26d1b5=_0x12b7e5;return Math[_0x26d1b5(0x233)](Math[_0x26d1b5(0x105)](Number(_0x36734a)||0x0,_0x1b3d18),_0x5c8675);}function _0x383d86(_0x3c493a,_0x299cad){const _0xb77b11=_0x12b7e5;return/^#[0-9a-f]{6}$/i[_0xb77b11(0x24c)](String(_0x3c493a||''))?String(_0x3c493a):_0x299cad;}_0x17dc28[_0x12b7e5(0x146)]=_0x2f1c8b,_0x17dc28[_0x12b7e5(0x10a)]=_0x29c7a5,_0x17dc28['setPlateMapExportQuality']=_0xa0712f,_0x17dc28['setExportMultiSaveMode']=_0x2c4df7,_0x17dc28[_0x12b7e5(0x1c1)]=()=>_0x4aa18c[_0x12b7e5(0x17f)],_0x17dc28[_0x12b7e5(0x96)]=_0x19cddd,_0x17dc28[_0x12b7e5(0x25d)]=function(){const _0x28978e=_0x12b7e5;if(typeof _0x17dc28[_0x28978e(0xc9)]===_0x28978e(0x1ef))_0x17dc28[_0x28978e(0xc9)]();if(_0x4aa18c[_0x28978e(0xf0)]===_0x28978e(0x19e))return _0x4059ef()[_0x28978e(0x21a)](_0x44cb58=>{return _0x31f970(_0x44cb58),null;});return document[_0x28978e(0x296)]('stockPreviewGrid')?.[_0x28978e(0x247)][_0x28978e(0x25f)](_0x28978e(0x11b)),_0x1a3d87[_0x28978e(0x8b)](this,arguments);},_0x17dc28[_0x12b7e5(0xf7)]=function(){const _0x43b49c=_0x12b7e5;if(_0x4aa18c['layout']===_0x43b49c(0x19e))return _0x2ee09c();return _0x1dc49b?.[_0x43b49c(0x8b)](this,arguments);},_0x17dc28[_0x12b7e5(0x281)]=function(){const _0x3d768b=_0x12b7e5;if(_0x4aa18c[_0x3d768b(0xf0)]!==_0x3d768b(0x19e))return _0x16a02c?.[_0x3d768b(0x8b)](this,arguments);if(_0xa9032e()){_0x4aa18c[_0x3d768b(0x2b4)]=_0x584331(_0x4aa18c['previewScale']+Number(arguments[0x0]||0x0),0.5,0x2),_0x354cce();const _0x380a55=document[_0x3d768b(0xa8)](_0x3d768b(0x2ab));if(_0x380a55)_0x380a55[_0x3d768b(0xe1)]=Math[_0x3d768b(0x256)](_0x4aa18c[_0x3d768b(0x2b4)]*0x64)+'%';return;}_0x4aa18c[_0x3d768b(0x2b4)]=_0x584331(_0x4aa18c['previewScale']+Number(arguments[0x0]||0x0),0.3,0x2),document[_0x3d768b(0x210)]('.plate-map-preview')['forEach'](_0x2892c2=>{const _0x345e0e=_0x3d768b;_0x2a431a(_0x2892c2,_0x4aa18c[_0x345e0e(0x2b4)]);}),_0xa55b1e();const _0xfeccae=document[_0x3d768b(0xa8)](_0x3d768b(0x2ab));if(_0xfeccae)_0xfeccae[_0x3d768b(0xe1)]=Math[_0x3d768b(0x256)](_0x4aa18c['previewScale']*0x64)+'%';},_0x17dc28['getExportFileBaseName']=function(){const _0x53038d=_0x12b7e5;if(_0x4aa18c[_0x53038d(0xf0)]==='plate')return _0x35f770();return _0x3857fe?.[_0x53038d(0x8b)](this,arguments)||_0x53038d(0xba);},_0x17dc28[_0x12b7e5(0x1af)]=function(){const _0x19a113=_0x12b7e5;if(_0x4aa18c[_0x19a113(0xf0)]==='plate')return _0x1b8816();return _0x2f3bd8();};if(document[_0x12b7e5(0x1d6)]===_0x12b7e5(0x143))document[_0x12b7e5(0x81)](_0x12b7e5(0xea),_0x287ac1,{'once':!![]});else _0x287ac1();}(window));function a00_0x95f1(_0xca32f0,_0x568b35){_0xca32f0=_0xca32f0-0x72;const _0x222dd1=a00_0x222d();let _0x95f12a=_0x222dd1[_0xca32f0];if(a00_0x95f1['BciVzB']===undefined){var _0xc74ea7=function(_0x4154fa){const _0x2d2400='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x17dc28='',_0x1a3d87='';for(let _0x1dc49b=0x0,_0x16a02c,_0x3857fe,_0x159e81=0x0;_0x3857fe=_0x4154fa['charAt'](_0x159e81++);~_0x3857fe&&(_0x16a02c=_0x1dc49b%0x4?_0x16a02c*0x40+_0x3857fe:_0x3857fe,_0x1dc49b++%0x4)?_0x17dc28+=String['fromCharCode'](0xff&_0x16a02c>>(-0x2*_0x1dc49b&0x6)):0x0){_0x3857fe=_0x2d2400['indexOf'](_0x3857fe);}for(let _0x5d21c0=0x0,_0x4276e2=_0x17dc28['length'];_0x5d21c0<_0x4276e2;_0x5d21c0++){_0x1a3d87+='%'+('00'+_0x17dc28['charCodeAt'](_0x5d21c0)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x1a3d87);};a00_0x95f1['sCeUst']=_0xc74ea7,a00_0x95f1['ufjyIW']={},a00_0x95f1['BciVzB']=!![];}const _0x14076a=_0x222dd1[0x0],_0x38c847=_0xca32f0+_0x14076a,_0x517c92=a00_0x95f1['ufjyIW'][_0x38c847];return!_0x517c92?(_0x95f12a=a00_0x95f1['sCeUst'](_0x95f12a),a00_0x95f1['ufjyIW'][_0x38c847]=_0x95f12a):_0x95f12a=_0x517c92,_0x95f12a;}function a00_0x222d(){const _0x5e29cd=['B2zMC2v0wa','cIaGicaGicaGicaGicaGica8zgL2ignSyxnZpsjWBgf0zs1TyxaTCgfNzs10B29SyMfYiJ4kicaGicaGicaGicaGicaGicaGica8C3bHBJ48C3rYB25NpUESRca','u2vNBwvUDgvY','DhLWzq','DhjPBq','zM9YBwf0rxHWB3j0tw9UzxK','iow8OoAvToEBMowBVIdcTYdOH6RLIQJMOiFMS6GG','5B2t5yMn5PwW5O2U5RkH5PYj5Pw05zU+57Ur5A6A','iIbPBNb1Dg1Vzgu9iM51BwvYAwmIigfYAweTBgfIzwW9iUwuRUE9HoI0ToE6UowKP+wWJ+AvSowaVci+phnWyw4+ChG8l3nWyw4+pc9ZCgfUpJWVBgfIzwW+cIaGicaGicaGicaGicaGica8BgfIzwWGy2XHC3m9iNbSyxrLlw1HCc1NBg9IywWTC2L6zsbWBgf0zs1TyxaTBgfIzwWTC2L6zsi+phnWyw4+5lU35Qc85Qch562+5AsN5Bcppc9ZCgfUpJXPBNb1DcbPzd0ICgXHDgvnyxbqCMLJzuXHyMvSu2L6zsiGDhLWzt0ICMfUz2uIig1PBJ0ImtaIig1HEd0ImZyIihn0zxa9iJeIihzHBhvLpsi','lNbYAw50lwj0BG','5Rwp6kEi5zMO5RkH5PYj5A6m5OIq5zU+54Mh5RIY5P+t','y3vYCMvUDfn0AwnRzxi','ChjLDMLLD0nVBNrHAw5LCG','BwfRzuv4Cg9YDeLTywDLC1bVCNrHyMXL','ls1Tyw51ywWTC3rPy2TLCI1ZAxPL','iIbKyxrHlwjHC2uTD2LKDgG9iG','mtaWjq','iIbPBNb1Dg1Vzgu9iM51BwvYAwmIigfYAweTBgfIzwW9iUs7T+AGVoAGH+ETVUwKP+wWJ+AvSowaVci+phnWyw4+ChG8l3nWyw4+pc9ZCgfUpJWVBgfIzwW+cIaGicaGicaGicaGicaGica8BgfIzwWGy2XHC3m9iNbSyxrLlw1HCc1NBg9IywWTC2L6zsbWBgf0zs1TyxaTBgfIzwWTC2L6zsi+phnWyw4+6lc35zcn5Qch562+5AsN5Bcppc9ZCgfUpJXPBNb1DcbPzd0ICgXHDgvnyxboyw1LtgfIzwXtAxPLiIb0ExbLpsjYyw5NzsiGBwLUpsi3iIbTyxG9iJi0iIbZDgvWpsiXiIb2ywX1zt0I','CgXHDguGBwfWigXHyMvSigXHEw91DcbJB3vSzcbUB3qGyMuGC2f2zwq','iow8OowKLUMtVUwoN+wBVUIVU+wpLUwKSEI0PEAxTUw3SUs9V+EuQownOos9JEwBVG','C2v0sxrLBq','y2fUDMfZ','CgXHDgu','C2v0','cIaGicaGicaGicaGicaGica8AgvHzgvYignSyxnZpsjWBgf0zs1TyxaTy29SBgfNzs1WCMv2Awv3lwHLywqIpGOGicaGicaGicaGicaGicaGicaGidXZDhjVBMC+','o3OTAw5KzxG6','BgfIzwXjza','zxHWB3j0tgf5B3v0','pgrPDIbJBgfZCZ0ICgXHDguTBwfWlwvTChr5iJ48C3rYB25NpUAvToEBMoAGH+s7T+wBVUEuN+AiKowKSEI0PtWVC3rYB25NpJXZCgfUpG','ywn0AxzLr3jVDxa','C2v0ug9PBNrLCKnHChr1CMu','lMv4Cg9YDc1Yzw5KzxiTAg9ZDa','DhjHBNnMB3jT','Aw5Uzxjive1m','lNbSyxrLlw1HCc1JB2XSywDLlxbYzxzPzxCTCM93','ios4QUwvHUwtGq','jtT0B3a6','77Ym5BEY6ycq5BYG5BYa5AEl5lIl6l29','imk3ia','zg93BMXVywrtDg9JA0DYAwrqBMC','CMfUzg9T','w2rHDgeTzxHWB3j0lwXHEw91Df0','B2zMC2v0sgvPz2H0','44cr5RkH5PYj6k+75y+w5yIW5zwg5zob5PwW5O2U77Ym6k+356gU6k6K5B2t5yMn55Uy5zkm5lQr56UV5PwW5O2U5RQq','cIaGicaGicaGicaGidXZzwn0Aw9UignSyxnZpsjWBgf0zs1TyxaTCxvHBgL0Es1KAwfSB2CIihjVBgu9iMrPywXVzYiGyxjPys1TB2rHBd0IDhj1zsiGyxjPys1SywjLBgXLzgj5psjWBgf0zu1HCff1ywXPDhLeAwfSB2DuAxrSzsi+cIaGicaGicaGicaGicaGica8AgvHzgvYignSyxnZpsjWBgf0zs1TyxaTCxvHBgL0Es1KAwfSB2CTAgvHzgvYiJ4kicaGicaGicaGicaGicaGicaGica8zgL2pGOGicaGicaGicaGicaGicaGicaGicaGica8C3bHBJ7LM77NIyFMOlZLVi88l3nWyw4+cIaGicaGicaGicaGicaGicaGicaGicaGidXZDhjVBMCGAwq9iNbSyxrLtwfWuxvHBgL0EurPywXVz1rPDgXLiJ7LR7ZLH7RMOlZLVi/OR7tMMi48l3n0CM9UzZ4kicaGicaGicaGicaGicaGicaGica8l2rPDJ4kicaGicaGicaGicaGicaGicaGica8yNv0Dg9UignSyxnZpsjWBgf0zs1TyxaTCxvHBgL0Es1KAwfSB2CTy2XVC2uIihr5Cgu9iMj1DhrVBIiGzgf0ys1XDwfSAxr5lwrPywXVzY1JBg9ZzsbHCMLHlwXHyMvSpslLHBpPL63MOlZLVi/OR7tMMi4IpSoxpc9IDxr0B24+cIaGicaGicaGicaGicaGica8l2HLywrLCJ4kicaGicaGicaGicaGicaGidXKAxyGy2XHC3m9iNbSyxrLlw1HCc1XDwfSAxr5lwrPywXVzY1VChrPB25ZiJ4kicaGicaGicaGicaGicaGicaGica8zgL2pGOGicaGicaGicaGicaGicaGicaGicaGica8yJ5kueC8l2i+cIaGicaGicaGicaGicaGicaGicaGicaGidXZCgfUpUMaGUwqIowpKEE+Po+8JoAwH+s7TUABTowWJ++8JoAxPEw4UowiHUs6Q+wkOoI9VEABTow/Q+oaGJWVC3bHBJ4kicaGicaGicaGicaGicaGicaGica8l2rPDJ4kicaGicaGicaGicaGicaGicaGica8zgL2pGOGicaGicaGicaGicaGicaGicaGicaGica8yJ5qtKC8l2i+cIaGicaGicaGicaGicaGicaGicaGicaGidXZCgfUpUMaGUwqIoEvMEAHO+AiLUs6JoASOEE8LUI+KE+8JoEuU+I0QoAxOoAnN+s9HUAwH+s7TUABTowKP+oaGJWVC3bHBJ4kicaGicaGicaGicaGicaGicaGica8l2rPDJ4kicaGicaGicaGicaGicaGidWVzgL2pGOGicaGicaGicaGica8l3nLy3rPB24+','lNbSyxrLlw1HCc1JB2XSywDLlxbYzxzPzxC','y2fYzhm','pc9ZBwfSBd48l3nWyw4+cIaGicaGicaGicaGicaGicaGicaGpgj1DhrVBIb0ExbLpsjIDxr0B24IigrHDgeTzg93BMXVywqTCgXHDguTCgfNzt0I','y2HHCKnVzgvbDa','i3bSyxrLtwfWuhjPy2vmywjLBfnPEMu','BgfIzwXbzgP1C3rTzw50CW','z2v0rxHWB3j0u3vYCgX1CW','CgXHDgvnyxbtDgLJA2vYqMfJA2DYB3vUzevUywjSzwq','lMv4Cg9YDc1NCMLKlwzPzwXK','phnWyw4Gy2XHC3m9iNbSyxrLlw1HCc1HDxrVlxbYAwnLiJ7OTAa8l3nWyw4+phnWyw4Gy2XHC3m9iNbSyxrLlw1HCc1HDxrVlxn0B2nRiJ7KVzKG','zgLZywjSzwq','i3bSyxrLtwfWr2XVyMfSrw1VAMLtAxPL','z2v0rxHWB3j0txvSDgLtyxzLtw9Kzq','z2rFDG','zhjHz2DPBMC','qxjYB3DsAwDODa','zNjVBq','6l+z5BYG5OU85zU+55sF5OIq5AsX6lsL77YA','w2rHDgeTCgXHDguTBwfWlwv4Cg9YDf0','lNbSyxrLlw1HCc1Tyw51ywWTC3rPy2TLCLTKyxrHlxn0AwnRzxiTAwrD','CgXHy2vTzw50CW','mZi1nduYogjLBhLxsq','5lMD5A6R5Qc8','CgXHDgvnyxbtDgLJA2vYvgv4DenVBg9Y','w2rHDgeTzg93BMXVywqTCgXHDguTy29SBgfNzv0','CgXHDgvnyxbvCgXVywrtB2XKt3v0u3rPy2TLCG','DgfYz2v0','C2HLzxq','zxnJyxbL','qxjYB3Dmzwz0','CgXHDguTBgf5B3v0lwfJDgL2zq','jZT0AgLZlM9UzxjYB3i9BNvSBdSIpGOGicaGicaGicaGicaGicaGicaGidXKAxyGy2XHC3m9iNbSyxrLlw1HCc1HDxrVlwXHEwvYiJ4','z3v6AvbSyxrLtwfWtgfIzwXmyxLVDxq6DJe6','CMvHzhLtDgf0zq','zxHWB3j0u3rVy2TpChrPB25hCM91Ca','A2v5zg93BG','CgXHDguTBwfWlw1HBNvHBc1ZDgLJA2vYlwnVBNrLBNq','z2rFBwfW','AgvPz2H0','CgXHDgvnyxbtzwXLy3rLzeXHyMvSsgLUDa','cIaGicaGicaGicaGicaGicaGicaGpgrPDIbJBgfZCZ0ICgXHDguTBwfWlw1HBNvHBc1ZDgLJA2vY','5zsU572e6ls057Q45BEY5l+D5A2y5BM25BQu55sO5yIW5B2t5yMn55Uy','CgfYC2u','zg93BG','y3jLyxrLuhjLDMLLD1PVB21dB250CM9SCW','AhjLzG','6l+z5BYG5Pw055Uy5Qch5lU35zU+55sF5OIq5AsX6lsL77YA','AxnfEhbVCNrhAwz0sxrLBq','CMvTB3zLrxzLBNrmAxn0zw5LCG','CgXHDgvnyxbrDwfSAxr5rgLHBg9N','Aw5UzxjxAwr0Aa','5B2t5yMn5l2/55sOigvTB2PP77Ym5y+V6zQp5PE25Ps55lI65zU+54Mh','Dg9W','i2zMzMzMzG','6ls057Q46k+75y+w5AsX6lsL','cIaGicaGicaGicaGidXKAxyGy2XHC3m9iNbSyxrLlw1HCc1ZDgLJA2vYlwnVChKIpGOGicaGicaGicaGicaGicaGphn0CM9UzZ7LLk7NVytOTltNURG8l3n0CM9UzZ4kicaGicaGicaGicaGicaGidXZCgfUpUIhQUwkQoABV+AnOUAjGoACIsa','nvbQuMHWuG','A2v5','zNvUy3rPB24','y2XVC2u','Cg9PBNrLCMrVD24','C3rVCMfNzuTLEq','mZu5odu2wNHXq09I','sLbh','6k+35zYO566H55cg56UV6yEn5PAW5BQu55sO5lIa5QYH5Pw05zU+6kob5yIh77Ym56gU6k6K5y6F5zU+6zo+5O6L5y+V5lUL5ywS5BYa6k6/6zEU44cc','ios9Nos4UUw9K+wjJEEBMoEAHowuRUE9HoI0ToE6Ua','cIaGicaGicaGicaGicaGica8zgL2ignSyxnZpsjWBgf0zs1TyxaTyM9HCMqIigrHDgeTC291CMnLlwLKzw50Axr5psi','ywn0AxzL','5zUB5A6R5Qc8','rvjst1iUue5h','A2LUza','5BEY5l2/55sOia','BgvUz3rO','C3rHCNry','Cg9PBNrLCNvW','77Ym6k+35yI35PAW6Ag16z2I5zco6yEn6k+v44ccpc9ZCgfUpJWVzgL2pG','qxjYB3DvCa','pc9IDxr0B24+cIaGicaGicaGicaGidWVzgL2pGOGicaGicaGicaGica8zgL2ignSyxnZpsjWBgf0zs1TyxaTC3rPy2TLCI1Hy3rPB25ZiJ4kicaGicaGicaGicaGicaGidXSywjLBcbJBgfZCZ0ICgXHDguTBwfWlwDSB2jHBc1ZAxPLiJ48C3bHBJ7LLk7NVytOTltNURJLPkFLSi88l3nWyw4+pgLUChv0igLKpsjWBgf0zu1HCeDSB2jHBevTB2PPu2L6zsiGDhLWzt0ICMfUz2uIig1PBJ0ImJqIig1HEd0I','C3rVy2TqCMv2Awv3r3jPza','CMvKDwnL','yMfZzvDPzhrO','C3rYAw5NAwz5','lNbSyxrLlw1HCc1HDxrVlw1HCMTLCLTKyxrHlwXHyMvSlwLKxq','CgXHDgvnyxbfEhbVCNq','CgfYC2vdCM9WuMvMzxjLBMnL','B2jQzwn0u3rVCMu','yMfZzuXLzNq','rw50zxi','yMfZzvrVCa','lNbSyxrLlw1HCc1Tyw51ywWTC3rPy2TLCG','BM9Uzq','CxvLCNLtzwXLy3rVCKfSBa','yM90Dg9T','C29Sze91Dfn0AwnRzxjnB2rLu3rVCMvK','ic8G','77Ym5Asw6zo+5y6F5zU+6k+75y+w5AsX6lsL5PE25BEY5l2/55sO5y2G5l2n5zU+','z2v0rxHWB3j0v29YA3nWywnLq29UDgv4Da','yxjPys1LEhbHBMrLza','C29Sze91Dfn0AwnRzxjbC3nLDeTLEq','C3rPy2TLCNm','y3jLyxrLrxHWB3j0uMvUzgvYq2XVBMu','y2f0y2G','cIaGicaGicaGicaGicaGica8C2vJDgLVBIbJBgfZCZ0IzxHWB3j0lxnHDMuTzgLHBg9NiIbYB2XLpsjKAwfSB2CIigfYAweTBw9KywW9iNrYDwuIigfYAweTBgfIzwXSzwrIEt0IzxHWB3j0u2f2zurPywXVz1rPDgXLiJ4kicaGicaGicaGicaGicaGicaGica8zgL2ignSyxnZpsjLEhbVCNqTC2f2zs1KAwfSB2CTy29WEsi+cIaGicaGicaGicaGicaGicaGicaGicaGidXZCgfUpUwKMUwBVUs/NEwTMdWVC3bHBJ4kicaGicaGicaGicaGicaGicaGicaGicaGphn0CM9UzYbPzd0IzxHWB3j0u2f2zurPywXVz1rPDgXLiJ7OV5NMRkhKVjRNLj/MIjaG','iJ48C3bHBIbJBgfZCZ0ICgXHDguTBwfWlxnPEMuTBNvTyMvYiJ48Aw5WDxqGAwq9iNbSyxrLtwfWtMfTzuXHyMvSu2L6zu51BwjLCIiGDhLWzt0IBNvTyMvYiIbTAw49iJCIig1HEd0ImJqIihn0zxa9iJeIihzHBhvLpsi','5B2t5yMn5l2/55sO5lIk5lYG5zU+54Mh','lNbSyxrLlw1HCc1IB2fYza','Aw5PDgLHBgL6zwq','C3vJy2vZCW','C3fYDa','mtaXnZK2m2jNBw5JtW','y2XHC3noyw1L','CgXHDgvoyw1L','AxnbCNjHEq','z3jPzdK','CgXHDgvnyxbqCMLJzuXHyMvSu2L6zq','zMLUza','Aw1Nu3jJ','w2rHDgeTzg93BMXVywqTCgXHDguTCgfNzv0','y2HLy2TLza','rgvSzxrL','lEAvToEBMoAGH+s7T+wBVG','C3rPy2TLCKfJDgLVBG','zgf0yxnLDa','CgXHDgvnyxbszxnLDfnVBgrpDxrtDgLJA2vY','5lIl6l296l+z5BYGia','zxHWB3j0uxvHBgL0Eq','BwLU','pc9ZDhjVBMC+phnTywXSpUwDHYdcPq','zMfSBgjHy2TdB3vUDa','BwfW','w2rHDgeTzgvSzxrLlxn0AwnRzxjD','z2XVyMfSrw1VAMLtAxPL','mti2odCWoePAs0Tzrq','Bg9JywWTAw1Hz2u6lY8','zM9YrwfJAa','lNbSyxrLlw1HCc1HDxrVlw1HCMTLCLTKyxrHlwXHyMvSlwLKpsi','CMvZzxq','AhrTBdjJyw52yxm','lMv4Cg9YDc1VChrPB24Tz3jVDxa','yxv0BW','DhjPz2DLCKv4Cg9YDerVD25SB2fK','jtT3Awr0AdO','Dhj1zq','C21HBgXLCG','lMrVD25SB2fKlwj0BG','CMvHzhDYAxrL','y2XHC3nmAxn0','y3vYCMvUDfbSyxrLswq','z3v6AvbSyxrLtwfWu3rPy2TLCNm6DJe6','iIbKyxrHlwXHyMvSlw5HBwu9iG','lNbYzxzPzxCTEM9VBs1JB250CM9SCW','DgvZDa','yM91BMrjDgvTCW','phnWyw4+','xcqM','jMfTCdS','B2jQzwn0','zg93BMXVywrfEhbVCNrgAwXLCW','iGOGicaGicaGicaGicaGicaGicaGicaGicbHCMLHlwXHyMvSpslLLk7NVytOTltNURGIpGOGicaGicaGicaGicaGicaGicaGicaGica','EMGTq04','C3r5Bgu','CM91BMq','BgfYz2vY','C291CMnLsgvPz2H0','5y2H54Mh5l2z6yEp5zU+55sF5OIq5AsX6lsL77YA','iIbHBhq9iUIhQUwUMUs5IEwuRUE9HoI0ToE6Uci+','zgvSzxrLu3rPy2TLCG','Aw5JBhvKzxm','ChjLDMLLD1n0B2nRr3jPza','CgXHDguTBwfWlwf1Dg8Tzw1WDhK','CMvTB3zL','6k+35ywi55sF5OIq5Pw055Uy5Qch5lU35zU+6Ake6kEi44cc','77Ym5BEY55sF5OIq5PEG5O2FifborW','phnWyw4Gy2XHC3m9iG','CgXHDgvnyxbqCMLJzuXHyMvSu2L6zu51BwjLCG','C3rHCNrpzMzZzxry','6ls057Q45yIG6zMK5AsX6lsL','yxjPys1WCMvZC2vK','z3jHCgHLBwu','5Pw055Uy5Qch5lU35zU+6Ake6kEi5AsX6lsLoG','C3bSAxq','pgLTzYbZCMm9iG','Dg9tDhjPBMC','z2v0q2XPzw50ugXHDgvfBNrYAwvZ','y2XPzw50v2LKDgG','Dg9Nz2XL','imk3ioIWGYa','5B2t5yMnigvTB2PPia','C2XPy2u','C2HPzNrlzxK','5A+85yE657Ue5lU25RkH5PYj5yQG6l295A6m5Pw0','AxnmB2nHBfjLzMvYzw5Jzq','CgXHDgvnyxbtB2XKt3v0u3rPy2TLCKLUChv0','ls1WBgf0zs1TyxaTBgfIzwWTC2nHBgu','CgXHDgvnyxbtyxzL','lMv4Cg9YDc1VChrPB24Tz3jVDxbZ','pc9ZDhjVBMC+cIaGicaGicaGicaGicaGicaGicaGpgrPDIbJBgfZCZ0ICgXHDguTBwfWlwnVBgXHz2uTChjLDMLLDY1Hy3rPB25ZiJ4kicaGicaGicaGicaGicaGicaGicaGicaGphnWyw4+','C2vJDgLVBG','CgXHDgvnyxbmyxLVDxrhCM91Ca','ue5h','C29Sze91Dfn0AwnRzxjnB2rL','phnWyw4Gy2XHC3m9iNbSyxrLlw1HCc1HDxrVlxbYAwnLigLZlwfKANvZDci+phn0CM9UzZ7cPq','rxnJyxbL','AgfZAa','EM9VBvbYzxzPzxC','C291CMnLtMfTzq','6ls057Q45l+D5A2y5AsX6lsL','CgfNzq','CgXHDguTBwfWlwf1Dg8TC3rPy2TLCI1PBwfNzq','5Pw055Uy5Qch5lU35zU+55sF5OIq5AsX6lsL77YA','EKLUzgv4','iGOGicaGicaGicaGicbZDhLSzt0IBgvMDdO','BgfIzwXtDg9YywDLs2v5','lMv4Cg9YDc1ZyxzLlwrPywXVzY1IywnRzhjVCa','jNf1B3q7','DMfSDwu','zNjVBuvUDhjPzxm','yxnWzwn0','iIbKCMfNz2fIBgu9iMzHBhnLiIbVBMvYCM9Ypsj0AgLZlNnYyZ0N','y2HHBMDL','CgXHDguGBwfWihn0AwnRzxjZignVDwXKig5VDcbIzsbZyxzLza','jtTOzwLNAhq6','zMXVB3i','iIbZDgvWpsiXiIb2ywX1zt0I','CgfKu3rHCNq','z2v0rwXLBwvUDej5swq','y2XLyxjszwn0','C3rHCNrtAxPL','5lIl6l295ywO6yoOia','DgL0Bgu','z2v0qM91BMrPBMDdBgLLBNrszwn0','5Pw055Uy5y6F5zU+','zgvMyxvSDfO','w2rHDgeTCgXHDguTBwfWlxf1ywXPDhLD','B3bLBG','jMD0oW','CgXHDguTBwfWlxbYzxzPzxCTDMLLD3bVCNq','CMvHzg9UBhK','CgXHDgvnyxbtB2XKt3v0u3rPy2TLCKHPBNq','z3v6AvbSyxrLtwfWqxnZzxrZ','zgvMyxvSDa','5B2t5yMn55Uy','ywrQDxn0','6k+356gU6k6K5A6I5OI356UV5lIo566H55cg56UV5l2/55sO5zcm5lIa5lIQieDPC3tVViZLUBBMO4dMN6xLVzpLIy3PGiNMI6NNMOtNM5JJGii','AgfZ','lNbSyxrLlw1HCc1Tyw51ywWTC3rPy2TLCLTKyxrHlxn0AwnRzxiTAwq9iG','lNPVB20TzgLZCgXHEq','C3rPy2TLCLnPEMvtzxr0Aw5NC1zLCNnPB24','Dg9cBg9I','cIaGicaGicaGicaGidXIDxr0B24Gy2XHC3m9iNbSyxrLlw1HCc1SywjLBc1YzxnPEMuTAgfUzgXLiIb0ExbLpsjIDxr0B24IigrHDgeTBgfIzwWTCMvZAxPLigfYAweTBgfIzwW9iUAlLUwkQoIWG+AvToAGH+ETVUwKP+wWJYiGDgL0Bgu9iUAlLUwkQoIWG+AvTowKP+wWJYi+pc9IDxr0B24+cIaGicaGicaGpc9KAxy+','iIbYB2XLpsjIDxr0B24IihrHyMLUzgv4psiWiGOGicaGicaGicaGicaGicaGicaGicaGicbKyxrHlxn0AwnRzxiTAwq9iG','CgXHDgvnyxbfEhbVCNrhCM91Ca','ios4QUACQUE7KEwUMG','z3jVDxboyw1L','C2v0uhjVCgvYDhK','ChjLDMLLD1nJywXL','5Q2J5zYO55sF5OIqlI4U','ANbN','5BEY5OgI5Asn6BUy6k6Kia','BwfYA2vYCW','iJ48C3bHBIbJBgfZCZ0ICgXHDguTBwfWlxnPEMuTBNvTyMvYiJ48Aw5WDxqGAwq9iNbSyxrLtwfWr2XVyMfSrw1VAMLtAxPLtNvTyMvYiIb0ExbLpsjUDw1IzxiIig1PBJ0ImJqIig1HEd0I','i3bSyxrLtwfWtMfTzuXHyMvSu2L6zu51BwjLCG','CgXHDgvnyxbvC2vtB2XKt3v0rw1VAMK','y3vYCMvUDfrHCMDLDa','C291CMnLv2LKDgG','BgvMDa','5Rwp6kEi5zMO5RkH5PYj5A6m5OIq5zU+54Mh6kEJ5P6q','C2HVDY1WCM9KDwn0lw5HBwvZ','ywn0AxzLrwXLBwvUDa','yM9KEq','y29UDgfPBNm','CgXHDguTBwfWlwnVBgXHz2uTBw9Kzq','z2v0q3vYCMvUDev4Cg9YDfbYAwnLtw9Kzq','Dw5IB3vUzeL0zw1Z','iownOEEjH+s9MEMhJ+wBVG','z3jVDxbZ','ywrKrxzLBNrmAxn0zw5LCG','5zwg5zob5Qch562+','z2v0rxHWB3j0uhjPy2vjBMzV','6iEQ5A6A5lMj5zsU572e6ls057Q4','zg93BMXVywrqBgf0zunVBgXHz2u','B2zMC2v0wq','i2rMm2yZmq','C3bSAwnL','mZm2ndu5yNLMDgnZ','pc9ZDhjVBMC+phnWyw4+','yxbWBhK','C291CMnLvxjS','zxzLCNK','z2v0q29UDgv4Da','z3v6AvbSyxrLtwfWu29Sze91Dfn0AwnRzxi6DJe6','qxjYB3DeB3DU','5lIl6l295ywO6yoO','zMLUywXqCMLJzq','zgLYzwn0','Cg9PBNrLCKLK','Bg9Hza','y2HVB3nLugXHDgvnyxbnDwX0AvnHDMvnB2rL','zhjHD0LTywDL','Dw5ZAgLMDa','BwfUDwfS','w2rHDgeTCgXHDguTBwfWlxnHDMvD','C2nHBguO','CgXHDgvnyxbtB2XKt3v0u3rPy2TLCKvTB2PP','Cg9W','C29Sze91Dfn0AwnRzxjoyw1L','zM9YBwf0rxHWB3j0u2LNBMvKtw9UzxK','Aw1Hz2vdCM9W','z2v0','5y2v5BYG5Pw055Uy5Qch5lU35zU+5lIl6l295AsX6lsLoG','zxjYB3i','yxv0BY0','CgXHDguTBwfWlw1HBNvHBc1ZDgLJA2vY','5y2H54Mh5l2z6yEp5zU+5lIl6l295AsX6lsLoG','ChG7EI1PBMrLEdO','CxvLCNLtzwXLy3rVCG','5zsU572e6ls057Q45l+D5A2y5AsX6lsLoG','zxHWB3j0u2f2zunOB2LJzq','ChjLDMvUDerLzMf1Bhq','CgXHDguTBwfWlxn0AwnRzxiTDg9VBgjHCG','5BEY55sF5OIqia','5AsN5Bcpia','y3jLyxrLt2jQzwn0u3rVCMu','y2f0zwDVCNK','5Pw055Uy5Qch5lU35zU+6Ake6kEi5AsX6lsL77YA','Bg9JywXLq29TCgfYzq','5Pw055Uy5Qch5lU35zU+','CgXHDgvnyxbtyxzLr3jVDxa','y2fUDMfZvg9qBMDcBg9I','5PYS5zYW5Pw055Uy5y6F5zU+','pc9ZDhjVBMC+cIaGicaGicaGicaGicaGicaGicaGphnWyw4GAwq9iNbSyxrLtwfWu29Sze91Dfn0AwnRzxjiAw50iJ7LJ6/OVPpLHAuGzw1VAMNVViZKUz/LJ6/KUiRKVkdLM77NIyC8l3nWyw4+cIaGicaGicaGicaGicaGica8l2rPDJ4kicaGicaGicaGicaGicaGidXSywjLBcbJBgfZCZ0ICgXHDguTBwfWlxn0AwnRzxiTzw1VAMKTzMLLBgqIpJXZCgfUpMvTB2PPpc9ZCgfUpJXPBNb1DcbPzd0ICgXHDgvnyxbtB2XKt3v0u3rPy2TLCKvTB2PPiIb0ExbLpsj0zxH0iIb2ywX1zt0I','pgLTzYbJBgfZCZ0I','yMfZzvbYAwnL','5l2z6yEp5zU+','Dg90ywXjDgvTCW','lNbSyxrLlw1HCc1Tyw51ywWTBgf5zxi','BM90Awz5rxHWB3j0','6BUy6k6Kia','w2rHDgeTBgfIzwWTywn0Aw9Uxq','ChjPy2vmywjLBfnPEMu','lNbSyxrLlw1HCc1WCMv2Awv3lxbHz2u','Aw5WDxq','5Rwp6kEi5zMO5RkH5PYj55sF5OIq5y6l57YP5zU+54Mh','5B2t5yMn55Uy5RkH5PYj5zwg5zob5PwW5O2U','ChjPy2u','5Pw055Uy5zU+57Ur5A6A6yEn5PAW6k+75y+w5AsX6lsLoG','Aw5KAxzPzhvHBa','pc9ZCgfUpJWVyNv0Dg9UpGOGicaGicaGicaGicaGicaGpgrPDIbJBgfZCZ0ICgXHDguTBwfWlxn0AwnRzxiTyxnZzxqTBwv0ysi+cIaGicaGicaGicaGicaGicaGicaGphn0CM9UzYbPzd0ICgXHDgvnyxbtB2XKt3v0u3rPy2TLCK5HBwuIpUM7MoIUPca','C3LUy0v4Cg9YDfbYAwnLtw9KzuzVCLbSyxrL','y2fUDMfZzxm','5BEY5lIl6l2956YSia','mtGZodyWnfLqvgH6ta','CgXHDgvnyxbezwXLDgvtzwXLy3rLzeXHyMvS','Cg5N','zgvMyxvSDeLTz1vYBa','77YB5yIg5BYG6Ake6kEi5lIT5y+V5OUw5yQO44cb57YP5Ps+5Qch562+5BM26lcd5Pw05Bgc57QNpc9ZCgfUpGOGicaGicaGicaGica8l2rPDJ4kicaGicaGicaGicaGpgrPDIbJBgfZCZ0ICgXHDguTBwfWlxn0AwnRzxiTCgLJA2vYiJ4kicaGicaGicaGicaGicaGidXIDxr0B24Gy2XHC3m9iNbSyxrLlw1HCc1ZDgLJA2vYlwfZC2v0lxbYzxzPzxCIigLKpsjWBgf0zu1HCfnVBgrpDxrtDgLJA2vYuhjLDMLLDYiGDhLWzt0IyNv0Dg9UiIbKyxrHlxn0AwnRzxiTywn0Aw9Upsj1CgXVywqTAw1Hz2uIihrPDgXLpslKUiRKVkdLLk7NVytOTltNURJLM77NIyCIpJXZCgfUpG','DxbKyxrLzef0','r3jVDxbezxnRtg9JywXjBwfNzxm','yMLUzgLUz0L0zw1Z','6Ag16z2I5BEY6yEn5PAW5Qc45A+55lQr56UV77YB6k+356gU6k6K5A6I5OI356UV5lIo566H55cg56UV5l2/55sO5zcm5lIa5lIQieDPC3tVViZLUBBNOA7ORQtNU5hLRPRLUPtNLkJLNkJOV5NKUkRNM5JJGii','CMvWBgfJzq','BMfTzuXHyMvSu2L6zq','C2vSzwn0zwrtDgLJA2vYswq','cIaGicaGicaGicaGicaGicaGicaGicaGidXIDxr0B24Gy2XHC3m9iNbSyxrLlw1HCc1SywjLBc1YzxnPEMuTAgfUzgXLiIb0ExbLpsjIDxr0B24IigrHDgeTBgfIzwWTCMvZAxPLigfYAweTBgfIzwW9iUAlLUwkQoIWG+AvToI0ToE6UowKP+wWJYiGDgL0Bgu9iUAlLUwkQoIWG+AvTowKP+wWJYi+pc9IDxr0B24+cIaGicaGicaGicaGicaGicaGicaGicaGidXIDxr0B24Gy2XHC3m9iNbSyxrLlw1HCc1ZDgLJA2vYlwrLBgv0zsiGDhLWzt0IyNv0Dg9UiIbKyxrHlwrLBgv0zs1ZDgLJA2vYpsi','lMnHCMqTzxHWB3j0lwrLDgfPBc1VChrPB25Z','6AUy5RIf5zU+54Mh57Ue5lU25RkH5PYj5yQG6l295OIq5yQF','lNbSyxrLlw1HCc1WCMv2Awv3lxn0ywDL','BM93','Aw1Hz2vtBw9VDgHPBMDrDwfSAxr5','C3rHCNrszwn0','iow8OowKLUMtVUwBVUEjH+IVU+wpLUwKSEI0PEAxTUw3SUs9V+EuQownOos9JEwBVG','lNPPCa','Dgv4DenVBNrLBNq','zxHWB3j0lw9WDgLVBI1NCM91CcbWBgf0zs1TyxaTC2f2zs1NCM91Ca','C29YDa','EMLW','pc9IDxr0B24+cIaGicaGicaGicaGicaGicaGicaGpc9KAxy+cIaGicaGicaGicaGicaGica8l2HLywrLCJ4kicaGicaGicaGicaGicaGidXKAxyGy2XHC3m9iNbSyxrLlw1HCc1JB2XSywDLlxbYzxzPzxCTy2fUDMfZiJ48l2rPDJ4','jMX0oW','D2fYBG','C2nHBgu','iJ48C3bHBIbJBgfZCZ0ICgXHDguTBwfWlxnPEMuTBNvTyMvYiJ48Aw5WDxqGAwq9iNbSyxrLtwfWuhjPy2vmywjLBfnPEMvoDw1IzxiIihr5Cgu9iM51BwjLCIiGBwLUpsiXmciGBwf4psiZnIiGC3rLCd0ImsiGDMfSDwu9iG','re9nq29UDgvUDeXVywrLza','Bw9Kzq','iGOGicaGicaGicaGicbKyxrHlwjHC2uTBgvMDd0I','Cg9PBNrLCMnHBMnLBa','C2vNBwvUDa','ywrK','Bgf5B3v0','z2v0vgLTzq','B2jQzwn0u3rVCMvoyw1LCW','q1nt','5lIl6l295lMD5A6R5Qc8ia','C3rHCNrpzMzZzxrz','w2rHDgeTzg93BMXVywqTCgXHDguTCgfNzv0SifTKyxrHlwrVD25SB2fKlxbSyxrLlwnVBgXHz2vD','CMvZzxrqCMv2Awv3wM9VBq','DMLZAwjSzq','5zsU572e6ls057Q46yEn572U5AsX6lsLoG','z2v0q3vYCMvUDfDVCMTZCgfJzvnLBgvJDgLVBG','yxbWzw5Kq2HPBgq','iIbKyxrHlwjHC2uTDg9Wpsi','CgXHDgvnyxbtAg93uhjVzhvJDe5HBwvZ','Aw1Hz2uVANbLzW','nJC5odK4CvLts29I','C3rHCNrdBgLLBNry','y29TCgXLDgu','Dw5KzwzPBMvK','z2v0rxHWB3j0rMLSzujHC2voyw1L','iJ4kicaGicaGicaGicaGicaGicaGica8Aw1NignSyxnZpsjWBgf0zs1TyxaTC291CMnLlwLTywDLiIbZCMm9iG','Bwf4','CgXHDgvnyxbhBg9IywXfBw9QAvnPEMu','C2v0v29YA3nWywnLu2vSzwn0Aw9U','y2XPy2S','CMvZDwX0','C2v0ugXHDgvnyxbfEhbVCNrnB2rL','Aw1Hz2vtBw9VDgHPBMDfBMfIBgvK','jImZotS','yMfZzuHLAwDODa','jtSTlw1HBNvHBc1ZDgLJA2vYlxnPEMu6','CgXHDgvnyxbrDwfSAxr5r3jVDxa','y3jLyxrLrwXLBwvUDa','iIbZCMm9iG','AM9PBG','i3bSyxrLtwfWu29Sze91Dfn0AwnRzxjjBNb1Da','6k+36ycj5OUPifbor+oaGuPqr+oaGvDLyLaG5OIwieDjrIdLM77NIyFJGii','Aw1Hz2u','yMfZzvvssq','phnWyw4Gy2XHC3m9iNbSyxrLlw1HCc1HDxrVlwT1BNH1iJ4','BwvZC2fNzq','CMvZAxPL','y2fYzc1LEhbVCNqTzgv0ywLSlxrVB2XIyxi','C3rPy2TLCI1LzgL0lw1Vzgu','AgLKzgvU','C291CMnLswrLBNrPDhK','CgfYzw50rwXLBwvUDa','qMfJA3nWywnL','C29Sze91Dfn0AwnRzxjZ','zgvMyxvSDfnPEMu','ChjLDMLLD0LUzM8','C2vSzwn0zwrbDxrVtgfIzwXjza','AxmTBg9HzgLUzW','CgXHDguTBwfWlwnVBgXHz2uTChjLDMLLDY1YB3C','D2LKDgG','zgL2','C3rHCNrZv2L0Aa','zxHWB3j0tw9Kzq','ls1WBgf0zs1TyxaTBMfTzs1ZAxPL','zwXLBwvUDa','A3vUEhu','C2vWyxjHDgu','5zU+54Mh6k+75y+w5AsX6lsL','i3bSyxrLtwfWr2XVyMfSrw1VAMLtAxPLtNvTyMvY','C2v0qxr0CMLIDxrL','AxrLBs0','zxHWB3j0lw9WDgLVBI1NCM91CcbWBgf0zs1TyxaTzxHWB3j0lwDYB3vW','i3bSyxrLtwfWuxvHBgL0EuHLBha','ywn0AxzLugXHDgu','AxngAw5PDgu','zxnJyxbLrxHWB3j0shrTBa','CgXHDgvnyxbmywjLBevKAxrVCG','y2vPBa','zxHWB3j0r3jPzezPzwXK','z3jPzdq','DhjHBNnHy3rPB24','CgXHDgvnyxbtB2XKt3v0u3rPy2TLCLbYzxzPzxC','C2L6zq','C2HVD1bYB2r1y3royw1LCW','77Ym5BEY5OMt5yYf5lI6ifPjua','C3rVy2STz3jPzc1WCMv2Awv3ihbSyxrLlw1HCc1WCMv2Awv3','ioADOEwvHUwtGE+8Jos9HUI/MEs7VEAvSoAnRUs4REAYOEACIEAvTowBVUE7KEwUMG','ihnLBgvJDgvK','Bg9HzgLUzW','C29Sze91Dfn0AwnRzxjeyxrHvxjS','yMfJA2DYB3vUzenVBg9Y','C2v0rxHWB3j0tgf5B3v0tw9Kzq','CgXHDguGBwfWihnLDhrPBMDZignVDwXKig5VDcbIzsbZyxzLza','5OgI5Asn6BUy6k6K6ls057Q45AsX6lsL77Ym6k+35yI35PAW6Ag16z2I5zco6yEn6k+v44cc','i2DKlwnYB3a9','lNn0B2nRlwDYAwqTChjLDMLLDW','ChGGWRCG5y+V5OUw5yQO5OIw55sO5y+Z5lIl6kEs57YP5Ps+','C2vSzwn0zwq','CgXHDgvnyxbhBg9IywXfBw9QAvnPEMvoDw1Izxi','zxHWB3j0lw9WDgLVBI1NCM91CcbWBgf0zs1TyxaTCxvHBgL0Es1NCM91Ca','Bg9ZC2XLC3m','6l+z6yEm5y+Q6io96l6t5ywL5lIa5lIQigvTB2PP44cc','C3rPy2TLCI0','zM9JDxm','BMfTzq','iIbHCMLHlwXHyMvSpslLIkdPMAtOV5NKUkROTltNURGIihrPDgXLpslLIkdPMAtOTltNURGIpSoxpc9IDxr0B24+cIaGicaGicaGicaGicaGicaGicaGpc9KAxy+','pc9ZCgfUpJWVzgL2pG','yM9HCMq','CgXHDgvnyxbrDwfSAxr5','pc9ZBwfSBd48l3nWyw4+phnWyw4Gy2XHC3m9iNbSyxrLlw1HCc1HDxrVlxn0B2nRiJ7KVzKG','zMLSDgvY','zxHWB3j0uhjPy2vpChrPB25hCM91Ca','C3rHCNrty2fSzq','Dgv4DenVBg9Y','yxzHAwXHyMXL','yMX1CG','B2zMC2v0v2LKDgG','lNbSyxrLlw1HCc1HDxrVlw1HCMTLCIWGlNbSyxrLlw1HCc1Tyw51ywWTC3rPy2TLCG','iIbKyxrHlwrLzMf1BhqTEJ0I','Aw5MBW','z2rFCMvMCMvZAa','mwHltxrjAW','lNbSyxrLlw1HCc1WCMv2Awv3lxzPzxDWB3j0','ChvZAa','CgXHDguTBwfWlxf1ywXPDhKTzgLHBg9NlwjHy2TKCM9W','cIaGicaGicaGicaGidXZCgfUpUAvToEBMowBVUwVVowhUJWVC3bHBJ4kicaGicaGicaGicaGpgrPDIbJBgfZCZ0IzxHWB3j0lxnLz21LBNrLzcbWBgf0zs1TyxaTzxHWB3j0lxnLz21LBNrLzciGCM9Szt0Iz3jVDxaIigfYAweTBgfIzwW9iUAvToEBMowBVUwVVowhUUAwUEw8JYi+cIaGicaGicaGicaGicaGica8yNv0Dg9UignSyxnZpsjHy3rPDMuIihr5Cgu9iMj1DhrVBIiGzgf0ys1WBgf0zs1TyxaTzxHWB3j0psjZzxbHCMf0zsiGyxjPys1WCMvZC2vKpsj0CNvLiJ7LIiBLVka8l2j1DhrVBJ4kicaGicaGicaGicaGicaGidXIDxr0B24GDhLWzt0IyNv0Dg9UiIbKyxrHlxbSyxrLlw1HCc1LEhbVCNq9iMDYAwq0iIbHCMLHlxbYzxnZzwq9iMzHBhnLiJ7LM5VLRQVMOlW8l2j1DhrVBJ4kicaGicaGicaGicaGicaGidXIDxr0B24GDhLWzt0IyNv0Dg9UiIbKyxrHlxbSyxrLlw1HCc1LEhbVCNq9iMDYAwq5iIbHCMLHlxbYzxnZzwq9iMzHBhnLiJ7KUz3LRQVMOlW8l2j1DhrVBJ4kicaGicaGicaGicaGpc9KAxy+','y2fYzev4Cg9YDerLDgfPBfrVB2XIyxi','D2L0Ac1SyxLVDxqTCgLJA2vY','5zsU572e6ls057Q46k+75y+w5AsX6lsLoG','CMvZzxqTAw1Hz2u','yMXVyG','y2XVC2vZDa','lNbSyxrLlw1HCc1HDxrVlw1HCMTLCG','iIbJCM9ZC29YAwDPBJ0Iyw5VBNLTB3vZiIbHBhq9iG','C3rVCfbYB3bHz2f0Aw9U','y2XPzw50wa','lMv4Cg9YDc1ZDg9JAY1JB250CM9SCW','iIbHBhq9iUwuRUE9Hci+','C29Sze91Dfn0AwnRzxjfBw9QAq','C3rPy2TLCKLK','yMfSyw5Jzq','yMfJA2DYB3vUzevUywjSzwq','z2v0sxrLBq','CgXHDgvnyxboyw1LtgfIzwXtAxPLtNvTyMvY','y2XPzw50wq','5lIl6l29ia','pc9ZCgfUpG','w2rHDgeTzxHWB3j0lxnHDMuTy2HVAwnLxq','BxvSDgLtyxzLtw9Kzq','lNbSyxrLlw1HCc1WCMv2Awv3','5BYGlNPPCa','CgXHDgvnyxbtDgLJA2vYqMfJA2DYB3vUzenVBg9Y','6k+35ywi55sF5OIq5y2H54Mh5l2z6yEp5zU+6Ake6kEi44cc','i3bSyxrLtwfWu29Sze91Dfn0AwnRzxjfBw9QAq','zw1VAMK','zg93BMXVywrqBgf0zvbHz2u','zgvSzxrL'];a00_0x222d=function(){return _0x5e29cd;};return a00_0x222d();}
+(function (global) {
+    'use strict';
+
+    const originalPreviewStockGrid = global.previewStockGrid;
+    const originalResetPreviewZoom = global.resetPreviewZoom;
+    const originalZoomPreview = global.zoomPreview;
+    const originalGetExportFileBaseName = global.getExportFileBaseName;
+    const originalDownloadStockGridPng = global.downloadStockGridPng;
+    const DEFAULT_STICKER = '🈚';
+    const DEFAULT_STICKER_SIZE = 96;
+    const MAX_STICKER_SIZE = 240;
+    const DEFAULT_PRICE_LABEL_SIZE = 19;
+    const DEFAULT_NAME_LABEL_SIZE = 10;
+    const STICKER_SIZE_SETTINGS_VERSION = 2;
+    const SHOW_NAMES_SETTINGS_VERSION = 2;
+    const STORAGE_PREFIX = 'guziPlateMapStickers:v1:';
+    const SETTINGS_PREFIX = 'guziPlateMapSettings:v1:';
+    const LABEL_LAYOUT_PREFIX = 'guziPlateMapLabelLayout:v1:';
+    const MIN_LABEL_SCALE = 0.4;
+    const MAX_LABEL_SCALE = 3;
+    const STICKER_ASSET_DB = 'guziPlateMapAssets';
+    const STICKER_ASSET_STORE = 'soldOutStickers';
+    const STICKER_ASSET_PREFIX = 'guziPlateMapSoldOutSticker:v1:';
+    const COLLAGE_MAX_WIDTH = 4320;
+    const COLLAGE_MAX_HEIGHT = 7200;
+    const COLLAGE_MAX_PIXELS = 24000000;
+    const COLLAGE_JPEG_QUALITY = 0.97;
+
+    const state = {
+        layout: 'plate',
+        exportMode: 'separate',
+        exportQuality: 'hd',
+        multiSaveMode: 'zip',
+        previewScale: 1,
+        currentSticker: DEFAULT_STICKER,
+        defaultSize: DEFAULT_STICKER_SIZE,
+        textColor: '#df3f31',
+        backgroundColor: '#fff0c7',
+        backgroundEnabled: false,
+        globalEmojiSize: DEFAULT_STICKER_SIZE,
+        priceLabelSize: DEFAULT_PRICE_LABEL_SIZE,
+        nameLabelSize: DEFAULT_NAME_LABEL_SIZE,
+        showProductNames: true,
+        soldOutStickerMode: 'emoji',
+        soldOutStickerModeStored: false,
+        soldOutStickerEmoji: DEFAULT_STICKER,
+        soldOutStickerDataUrl: '',
+        soldOutStickerName: '',
+        soldOutStickerAssetKey: '',
+        stickers: [],
+        labelAdjustments: {},
+        selectedStickerId: '',
+        selectedAutoLabelId: '',
+        storageKey: '',
+        labelStorageKey: '',
+        dragging: null,
+        initialized: false
+    };
+
+    function init() {
+        if (state.initialized || typeof originalPreviewStockGrid !== 'function') return;
+        state.initialized = true;
+        injectLayoutControl();
+        bindEditorEvents();
+        syncLayoutUi();
+    }
+
+    function injectLayoutControl() {
+        const optionGroups = document.querySelector('.export-option-groups');
+        const controls = document.querySelector('.export-stock-controls');
+        if (!optionGroups || !controls || document.getElementById('plateMapLayoutGroup')) return;
+
+        const stockGroup = optionGroups.querySelector('.export-option-group');
+        if (stockGroup) stockGroup.id = 'exportStockOptionGroup';
+        const priceGroup = optionGroups.querySelectorAll('.export-option-group')[1];
+        if (priceGroup) priceGroup.id = 'exportPriceOptionGroup';
+        const gridField = document.querySelector('.export-grid-field');
+        if (gridField) gridField.id = 'exportGridField';
+
+        const layoutGroup = document.createElement('div');
+        layoutGroup.className = 'export-option-group';
+        layoutGroup.id = 'plateMapLayoutGroup';
+        layoutGroup.innerHTML = `
+            <span>余量图版式</span>
+            <div class="export-segmented" role="group" aria-label="余量图版式">
+                <button class="active" type="button" data-export-layout="plate" aria-pressed="true">整盘标价图</button>
+                <button type="button" data-export-layout="cards" aria-pressed="false">卡片图</button>
+            </div>`;
+        optionGroups.appendChild(layoutGroup);
+
+        const exportGroup = document.createElement('div');
+        exportGroup.className = 'export-option-group plate-map-export-group';
+        exportGroup.id = 'plateMapExportGroup';
+        exportGroup.hidden = true;
+        exportGroup.innerHTML = `
+            <span>整盘图导出</span>
+            <div class="export-segmented plate-map-export-segmented" role="group" aria-label="整盘图导出方式">
+                <button class="active" type="button" data-plate-map-export="separate" aria-pressed="true">分张</button>
+                <button type="button" data-plate-map-export="grid4" aria-pressed="false">四宫格</button>
+                <button type="button" data-plate-map-export="grid9" aria-pressed="false">九宫格</button>
+            </div>`;
+        optionGroups.appendChild(exportGroup);
+
+        const qualityGroup = document.createElement('div');
+        qualityGroup.className = 'export-option-group plate-map-quality-group';
+        qualityGroup.id = 'plateMapQualityGroup';
+        qualityGroup.hidden = true;
+        qualityGroup.innerHTML = `
+            <span class="plate-map-quality-label">导出清晰度
+                <button class="plate-map-quality-help" id="plateMapQualityHelp" type="button" aria-label="查看 JPG 和 PNG 格式说明" aria-expanded="false" aria-controls="plateMapQualityDialog" title="查看格式说明">?</button>
+            </span>
+            <div class="export-segmented plate-map-quality-segmented" role="group" aria-label="余量图导出清晰度">
+                <button class="active" type="button" data-plate-map-quality="hd" aria-pressed="true">高清 JPG</button>
+                <button type="button" data-plate-map-quality="lossless" aria-pressed="false">无损 PNG</button>
+            </div>`;
+        optionGroups.appendChild(qualityGroup);
+
+        const qualityHelpButton = qualityGroup.querySelector('#plateMapQualityHelp');
+        const qualityDialog = document.createElement('div');
+        qualityDialog.className = 'plate-map-quality-dialog-backdrop';
+        qualityDialog.id = 'plateMapQualityDialog';
+        qualityDialog.hidden = true;
+        qualityDialog.innerHTML = `
+            <section class="plate-map-quality-dialog" role="dialog" aria-modal="true" aria-labelledby="plateMapQualityDialogTitle">
+                <header class="plate-map-quality-dialog-header">
+                    <div>
+                        <span>图片格式</span>
+                        <strong id="plateMapQualityDialogTitle">导出格式说明</strong>
+                    </div>
+                    <button class="plate-map-quality-dialog-close" type="button" data-quality-dialog-close aria-label="关闭格式说明">×</button>
+                </header>
+                <div class="plate-map-quality-dialog-options">
+                    <div>
+                        <b>JPG</b>
+                        <span>适合发群，文件更小，日常分享加载更快。</span>
+                    </div>
+                    <div>
+                        <b>PNG</b>
+                        <span>适合留档或二次编辑，画质无损但文件更大。</span>
+                    </div>
+                </div>
+            </section>`;
+        document.body.appendChild(qualityDialog);
+
+        const closeQualityDialog = (restoreFocus = true) => {
+            if (qualityDialog.hidden) return;
+            qualityDialog.hidden = true;
+            qualityHelpButton?.setAttribute('aria-expanded', 'false');
+            if (restoreFocus) qualityHelpButton?.focus();
+        };
+        const openQualityDialog = () => {
+            qualityDialog.hidden = false;
+            qualityHelpButton?.setAttribute('aria-expanded', 'true');
+            qualityDialog.querySelector('[data-quality-dialog-close]')?.focus();
+        };
+        qualityDialog.addEventListener('click', event => {
+            if (event.target === qualityDialog || event.target.closest('[data-quality-dialog-close]')) {
+                closeQualityDialog();
+            }
+        });
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && !qualityDialog.hidden) closeQualityDialog();
+        });
+
+        const saveGroup = document.createElement('div');
+        saveGroup.className = 'export-option-group plate-map-save-group';
+        saveGroup.id = 'plateMapSaveGroup';
+        saveGroup.innerHTML = `
+            <span>多图保存</span>
+            <div class="export-segmented plate-map-save-segmented" role="group" aria-label="多张图片保存方式">
+                <button class="active" type="button" data-plate-map-save="zip" aria-pressed="true">打包 ZIP</button>
+                <button type="button" data-plate-map-save="individual" aria-pressed="false">逐张下载</button>
+            </div>`;
+        optionGroups.appendChild(saveGroup);
+        optionGroups.classList.add('with-layout-picker');
+
+        const cardToolbar = document.createElement('div');
+        cardToolbar.className = 'card-export-detail-toolbar';
+        cardToolbar.id = 'cardExportDetailToolbar';
+        cardToolbar.innerHTML = `
+            <div class="card-export-detail-copy">
+                <strong>卡片内容</strong>
+                <span>设置要显示的商品和价格算法</span>
+            </div>
+            <div class="card-export-detail-options"></div>`;
+        const cardOptions = cardToolbar.querySelector('.card-export-detail-options');
+        if (stockGroup) cardOptions.appendChild(stockGroup);
+        if (priceGroup) cardOptions.appendChild(priceGroup);
+        if (gridField) cardOptions.appendChild(gridField);
+        controls.appendChild(cardToolbar);
+
+        const toolbar = document.createElement('div');
+        toolbar.className = 'plate-map-sticker-toolbar';
+        toolbar.id = 'plateMapStickerToolbar';
+        toolbar.hidden = true;
+        toolbar.innerHTML = `
+            <div class="plate-map-sticker-copy">
+                <strong>售罄贴纸</strong>
+                <span>自动替换所有 ${DEFAULT_STICKER}；分张预览中可拖动、缩放标签并调整层级</span>
+            </div>
+            <div class="plate-map-sticker-picker">
+                <button class="plate-map-sticker-asset-preview" id="plateMapSoldOutStickerPreview" type="button" data-sticker-action="upload-image" title="上传售罄贴纸图片"><span>${DEFAULT_STICKER}</span></button>
+                <div class="plate-map-sticker-asset-meta">
+                    <strong id="plateMapSoldOutStickerName">默认 ${DEFAULT_STICKER}</strong>
+                    <span id="plateMapSoldOutStickerHint">可输入 emoji，也可上传图片</span>
+                </div>
+                <label class="plate-map-sticker-emoji-field"><span>emoji</span><input id="plateMapSoldOutStickerEmoji" type="text" value="${DEFAULT_STICKER}" autocomplete="off" aria-label="自定义售罄 emoji"></label>
+                <button class="plate-map-tool-button" id="plateMapUseSoldOutEmoji" type="button" data-sticker-action="use-emoji">使用 emoji</button>
+                <input id="plateMapSoldOutStickerInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
+                <button class="plate-map-tool-button primary" id="plateMapUploadSoldOutSticker" type="button" data-sticker-action="upload-image">上传图片</button>
+                <button class="plate-map-tool-button" id="plateMapResetSoldOutSticker" type="button" data-sticker-action="reset-image" disabled>恢复默认 ${DEFAULT_STICKER}</button>
+            </div>
+            <div class="plate-map-sticker-actions">
+                <label class="plate-map-global-size"><span>售罄贴纸大小</span><input id="plateMapGlobalEmojiSize" type="range" min="24" max="${MAX_STICKER_SIZE}" step="1" value="${DEFAULT_STICKER_SIZE}"><span class="plate-map-size-number"><input id="plateMapGlobalEmojiSizeNumber" type="number" min="24" max="${MAX_STICKER_SIZE}" step="1" value="${DEFAULT_STICKER_SIZE}" inputmode="numeric" aria-label="售罄贴纸大小数值"><span>px</span></span></label>
+                <label class="plate-map-global-size plate-map-label-size"><span>价格标签大小</span><input id="plateMapPriceLabelSize" type="range" min="10" max="36" step="1" value="${DEFAULT_PRICE_LABEL_SIZE}"><span class="plate-map-size-number"><input id="plateMapPriceLabelSizeNumber" type="number" min="10" max="36" step="1" value="${DEFAULT_PRICE_LABEL_SIZE}" inputmode="numeric" aria-label="价格标签大小数值"><span>px</span></span></label>
+                <label class="plate-map-global-size plate-map-label-size"><span>谷名标签大小</span><input id="plateMapNameLabelSize" type="range" min="7" max="24" step="1" value="${DEFAULT_NAME_LABEL_SIZE}"><span class="plate-map-size-number"><input id="plateMapNameLabelSizeNumber" type="number" min="7" max="24" step="1" value="${DEFAULT_NAME_LABEL_SIZE}" inputmode="numeric" aria-label="谷名标签大小数值"><span>px</span></span></label>
+                <label class="plate-map-name-toggle"><input id="plateMapShowProductNames" type="checkbox" checked><span>显示谷名</span></label>
+            </div>
+            <div class="plate-map-label-editor" id="plateMapLabelEditor" hidden>
+                <div class="plate-map-label-editor-copy">
+                    <strong id="plateMapSelectedLabelName">已选标签</strong>
+                    <span id="plateMapSelectedLabelHint">直接拖动改位置，拖右下角圆点改大小</span>
+                </div>
+                <label class="plate-map-selected-label-size"><span>当前大小</span><input id="plateMapSelectedLabelSize" type="range" min="40" max="300" step="1" value="100"><span class="plate-map-selected-label-size-number"><input id="plateMapSelectedLabelSizeNumber" type="number" min="40" max="300" step="1" value="100" inputmode="numeric"><b id="plateMapSelectedLabelSizeUnit">%</b></span></label>
+                <div class="plate-map-label-editor-actions" role="group" aria-label="所选标签调整">
+                    <button type="button" data-label-action="smaller" title="缩小标签">缩小</button>
+                    <button type="button" data-label-action="larger" title="放大标签">放大</button>
+                    <span class="plate-map-label-editor-divider" aria-hidden="true"></span>
+                    <button type="button" data-label-action="bottom" title="移到最下面一层">置底</button>
+                    <button type="button" data-label-action="down" title="向下一层">下一层</button>
+                    <button type="button" data-label-action="up" title="向上一层">上一层</button>
+                    <button type="button" data-label-action="top" title="移到最上面一层">置顶</button>
+                    <span class="plate-map-label-editor-divider" aria-hidden="true"></span>
+                    <button type="button" data-label-action="reset" title="恢复这个标签的位置、大小和层级">恢复默认</button>
+                    <button class="danger" id="plateMapDeleteSelectedLabel" type="button" data-label-action="delete" title="删除手动贴纸">删除</button>
+                </div>
+            </div>`;
+        controls.appendChild(toolbar);
+
+        layoutGroup.addEventListener('click', event => {
+            const button = event.target.closest('[data-export-layout]');
+            if (button) setExportLayoutMode(button.dataset.exportLayout);
+        });
+        exportGroup.addEventListener('click', event => {
+            const button = event.target.closest('[data-plate-map-export]');
+            if (button) setPlateMapExportMode(button.dataset.plateMapExport);
+        });
+        qualityGroup.addEventListener('click', event => {
+            const helpButton = event.target.closest('#plateMapQualityHelp');
+            if (helpButton) {
+                openQualityDialog();
+                return;
+            }
+            const button = event.target.closest('[data-plate-map-quality]');
+            if (button) setPlateMapExportQuality(button.dataset.plateMapQuality);
+        });
+        saveGroup.addEventListener('click', event => {
+            const button = event.target.closest('[data-plate-map-save]');
+            if (button) setExportMultiSaveMode(button.dataset.plateMapSave);
+        });
+        toolbar.addEventListener('click', handleToolbarClick);
+        toolbar.querySelector('#plateMapSoldOutStickerInput')?.addEventListener('change', handleSoldOutStickerUpload);
+        toolbar.querySelector('#plateMapSoldOutStickerEmoji')?.addEventListener('input', restrictSoldOutEmojiInput);
+        toolbar.querySelector('#plateMapSoldOutStickerEmoji')?.addEventListener('keydown', event => {
+            if (event.key !== 'Enter') return;
+            event.preventDefault();
+            useCustomSoldOutEmoji();
+        });
+        toolbar.querySelector('#plateMapGlobalEmojiSize')?.addEventListener('input', updateGlobalEmojiSize);
+        toolbar.querySelector('#plateMapGlobalEmojiSizeNumber')?.addEventListener('change', updateGlobalEmojiSize);
+        toolbar.querySelector('#plateMapGlobalEmojiSizeNumber')?.addEventListener('keydown', event => {
+            if (event.key !== 'Enter') return;
+            event.preventDefault();
+            event.currentTarget.blur();
+        });
+        toolbar.querySelector('#plateMapPriceLabelSize')?.addEventListener('input', event => updateLabelSize('price', event));
+        toolbar.querySelector('#plateMapPriceLabelSizeNumber')?.addEventListener('change', event => updateLabelSize('price', event));
+        toolbar.querySelector('#plateMapNameLabelSize')?.addEventListener('input', event => updateLabelSize('name', event));
+        toolbar.querySelector('#plateMapNameLabelSizeNumber')?.addEventListener('change', event => updateLabelSize('name', event));
+        ['plateMapPriceLabelSizeNumber', 'plateMapNameLabelSizeNumber'].forEach(id => {
+            toolbar.querySelector(`#${id}`)?.addEventListener('keydown', event => {
+                if (event.key !== 'Enter') return;
+                event.preventDefault();
+                event.currentTarget.blur();
+            });
+        });
+        toolbar.querySelector('#plateMapShowProductNames')?.addEventListener('change', updateProductNameVisibility);
+        toolbar.querySelector('#plateMapSelectedLabelSize')?.addEventListener('input', updateSelectedLabelSize);
+        toolbar.querySelector('#plateMapSelectedLabelSizeNumber')?.addEventListener('change', updateSelectedLabelSize);
+        toolbar.querySelector('#plateMapSelectedLabelSizeNumber')?.addEventListener('keydown', event => {
+            if (event.key !== 'Enter') return;
+            event.preventDefault();
+            event.currentTarget.blur();
+        });
+    }
+
+    function bindEditorEvents() {
+        const preview = document.getElementById('stockPreviewGrid');
+        if (!preview) return;
+        preview.addEventListener('click', handleBoardClick);
+        preview.addEventListener('pointerdown', handleStickerPointerDown);
+        preview.addEventListener('pointermove', handleStickerPointerMove);
+        preview.addEventListener('pointerup', finishStickerDrag);
+        preview.addEventListener('pointercancel', finishStickerDrag);
+        document.addEventListener('keydown', event => {
+            if (state.layout !== 'plate' || (!state.selectedStickerId && !state.selectedAutoLabelId)) return;
+            if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) return;
+            if ((event.key === 'Delete' || event.key === 'Backspace') && state.selectedStickerId) {
+                event.preventDefault();
+                deleteSelectedSticker();
+                return;
+            }
+            if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) return;
+            event.preventDefault();
+            nudgeSelectedLabel(event.key, event.shiftKey ? 1 : 0.25);
+        });
+    }
+
+    function setExportLayoutMode(layout) {
+        state.layout = layout === 'plate' ? 'plate' : 'cards';
+        state.selectedStickerId = '';
+        state.selectedAutoLabelId = '';
+        syncLayoutUi();
+        if (document.getElementById('previewContainer')?.classList.contains('visible')) {
+            global.previewStockGrid();
+        }
+    }
+
+    function syncLayoutUi() {
+        document.querySelectorAll('[data-export-layout]').forEach(button => {
+            const active = button.dataset.exportLayout === state.layout;
+            button.classList.toggle('active', active);
+            button.setAttribute('aria-pressed', String(active));
+        });
+        const plateMode = state.layout === 'plate';
+        const stockGroup = document.getElementById('exportStockOptionGroup');
+        const priceGroup = document.getElementById('exportPriceOptionGroup');
+        const gridField = document.getElementById('exportGridField');
+        const toolbar = document.getElementById('plateMapStickerToolbar');
+        const cardToolbar = document.getElementById('cardExportDetailToolbar');
+        const exportGroup = document.getElementById('plateMapExportGroup');
+        const qualityGroup = document.getElementById('plateMapQualityGroup');
+        const saveGroup = document.getElementById('plateMapSaveGroup');
+        const optionGroups = document.querySelector('.export-option-groups');
+        const cardOptions = document.querySelector('.card-export-detail-options');
+        const controls = document.querySelector('.export-stock-controls');
+        if (stockGroup) stockGroup.hidden = plateMode;
+        if (priceGroup) priceGroup.hidden = plateMode;
+        if (gridField) gridField.hidden = plateMode;
+        if (toolbar) toolbar.hidden = !plateMode;
+        if (cardToolbar) cardToolbar.hidden = plateMode;
+        if (exportGroup) exportGroup.hidden = !plateMode;
+        if (qualityGroup) {
+            if (plateMode) optionGroups?.insertBefore(qualityGroup, saveGroup || null);
+            else cardOptions?.appendChild(qualityGroup);
+            qualityGroup.hidden = false;
+        }
+        controls?.classList.toggle('plate-layout-active', plateMode);
+        document.getElementById('stockPreviewGrid')?.classList.toggle('sticker-edit-mode', plateMode);
+        updatePlateMapDownloadLabel();
+        updateToolbarState();
+    }
+
+    function setPlateMapExportMode(mode) {
+        state.exportMode = mode === 'grid4' || mode === 'grid9' ? mode : 'separate';
+        document.querySelectorAll('[data-plate-map-export]').forEach(button => {
+            const active = button.dataset.plateMapExport === state.exportMode;
+            button.classList.toggle('active', active);
+            button.setAttribute('aria-pressed', String(active));
+        });
+        updatePlateMapDownloadLabel();
+        if (state.layout === 'plate' && document.getElementById('previewContainer')?.classList.contains('visible')) {
+            global.previewStockGrid();
+        }
+    }
+
+    function setPlateMapExportQuality(quality) {
+        state.exportQuality = quality === 'lossless' ? 'lossless' : 'hd';
+        document.querySelectorAll('[data-plate-map-quality]').forEach(button => {
+            const active = button.dataset.plateMapQuality === state.exportQuality;
+            button.classList.toggle('active', active);
+            button.setAttribute('aria-pressed', String(active));
+        });
+        document.querySelectorAll('[data-download-plate-page], [data-download-plate-collage]').forEach(button => {
+            if (!button.disabled) button.textContent = `下载这张 ${state.exportQuality === 'lossless' ? 'PNG' : 'JPG'}`;
+        });
+        updatePlateMapDownloadLabel();
+    }
+
+    function setExportMultiSaveMode(mode) {
+        state.multiSaveMode = mode === 'individual' ? 'individual' : 'zip';
+        document.querySelectorAll('[data-plate-map-save]').forEach(button => {
+            const active = button.dataset.plateMapSave === state.multiSaveMode;
+            button.classList.toggle('active', active);
+            button.setAttribute('aria-pressed', String(active));
+        });
+    }
+
+    function choosePlateMapMultiSaveMode(fileCount) {
+        return new Promise(resolve => {
+            document.querySelector('.export-save-dialog-backdrop')?.remove();
+            const backdrop = document.createElement('div');
+            backdrop.className = 'export-save-dialog-backdrop';
+            backdrop.innerHTML = `
+                <section class="export-save-dialog" role="dialog" aria-modal="true" aria-labelledby="exportSaveDialogTitle">
+                    <div class="export-save-dialog-copy">
+                        <span>多图保存</span>
+                        <strong id="exportSaveDialogTitle">这次会生成 ${fileCount} 张拼图</strong>
+                    </div>
+                    <div class="export-save-dialog-actions">
+                        <button type="button" data-export-save-choice="individual">逐张下载</button>
+                        <button type="button" data-export-save-choice="zip">打包 ZIP</button>
+                    </div>
+                    <button class="export-save-dialog-cancel" type="button" data-export-save-choice="cancel">取消</button>
+                </section>`;
+            document.body.appendChild(backdrop);
+
+            const finish = choice => {
+                document.removeEventListener('keydown', handleKeydown);
+                backdrop.remove();
+                if (choice === 'individual' || choice === 'zip') {
+                    setExportMultiSaveMode(choice);
+                    resolve(choice);
+                    return;
+                }
+                resolve('');
+            };
+            const handleKeydown = event => {
+                if (event.key === 'Escape') finish('');
+            };
+            backdrop.addEventListener('click', event => {
+                const choice = event.target.closest('[data-export-save-choice]')?.dataset.exportSaveChoice;
+                if (choice) finish(choice);
+                else if (event.target === backdrop) finish('');
+            });
+            document.addEventListener('keydown', handleKeydown);
+            backdrop.querySelector(`[data-export-save-choice="${state.multiSaveMode}"]`)?.focus();
+        });
+    }
+
+    function updatePlateMapDownloadLabel() {
+        const button = document.querySelector('.download-btn');
+        if (!button || button.classList.contains('is-loading')) return;
+        if (state.layout !== 'plate') {
+            button.textContent = `下载 ${state.exportQuality === 'lossless' ? 'PNG' : 'JPG'}`;
+            return;
+        }
+        const formatLabel = state.exportQuality === 'lossless' ? 'PNG' : 'JPG';
+        button.textContent = state.exportMode === 'grid4'
+            ? `下载四宫格 ${formatLabel}`
+            : state.exportMode === 'grid9'
+                ? `下载九宫格 ${formatLabel}`
+                : `下载全部 ${formatLabel}`;
+    }
+
+    function handleToolbarClick(event) {
+        const labelAction = event.target.closest('[data-label-action]')?.dataset.labelAction;
+        if (labelAction) {
+            handleSelectedLabelAction(labelAction);
+            return;
+        }
+        const action = event.target.closest('[data-sticker-action]')?.dataset.stickerAction;
+        if (!action) return;
+        if (action === 'upload-image') document.getElementById('plateMapSoldOutStickerInput')?.click();
+        if (action === 'use-emoji') useCustomSoldOutEmoji();
+        if (action === 'reset-image') resetSoldOutStickerImage();
+    }
+
+    function splitGraphemes(value) {
+        const text = String(value || '');
+        if (typeof Intl !== 'undefined' && typeof Intl.Segmenter === 'function') {
+            return [...new Intl.Segmenter('zh-CN', { granularity: 'grapheme' }).segment(text)].map(part => part.segment);
+        }
+        return Array.from(text);
+    }
+
+    function isEmojiGrapheme(value) {
+        const emoji = String(value || '');
+        if (!emoji) return false;
+        if (/^\p{Regional_Indicator}{2}$/u.test(emoji)) return true;
+        if (/^[#*0-9]\uFE0F?\u20E3$/u.test(emoji)) return true;
+        return /\p{Extended_Pictographic}/u.test(emoji);
+    }
+
+    function extractFirstEmoji(value) {
+        return splitGraphemes(String(value || '').trim()).find(isEmojiGrapheme) || '';
+    }
+
+    function restrictSoldOutEmojiInput(event) {
+        const input = event.currentTarget;
+        const emoji = extractFirstEmoji(input.value);
+        if (input.value !== emoji) input.value = emoji;
+    }
+
+    async function useCustomSoldOutEmoji() {
+        const input = document.getElementById('plateMapSoldOutStickerEmoji');
+        const rawValue = String(input?.value || '').trim();
+        const graphemes = splitGraphemes(rawValue);
+        const emoji = graphemes.length === 1 && isEmojiGrapheme(graphemes[0]) ? graphemes[0] : '';
+        if (!emoji) {
+            alert('这里只能输入一个 emoji。');
+            if (input) input.value = extractFirstEmoji(rawValue);
+            input?.focus();
+            return;
+        }
+        state.soldOutStickerEmoji = emoji;
+        state.soldOutStickerMode = 'emoji';
+        state.soldOutStickerModeStored = true;
+        state.currentSticker = emoji;
+        saveStickerSettings();
+        updateToolbarState();
+        if (document.getElementById('previewContainer')?.classList.contains('visible')) await global.previewStockGrid();
+        global.notifyExport?.(`已使用 ${emoji} 作为当前盘的售罄贴纸`);
+    }
+
+    async function handleSoldOutStickerUpload(event) {
+        const input = event.currentTarget;
+        const file = input?.files?.[0];
+        if (!file) return;
+        input.value = '';
+        if (!String(file.type || '').startsWith('image/')) {
+            alert('请选择 PNG、JPG、WebP 或 GIF 图片。');
+            return;
+        }
+        if (file.size > 20 * 1024 * 1024) {
+            alert('贴纸图片不能超过 20MB。');
+            return;
+        }
+        try {
+            const dataUrl = await readBlobAsDataUrl(file);
+            await verifyStickerImage(dataUrl);
+            const key = getSoldOutStickerAssetKey();
+            await writeSoldOutStickerRecord(key, {
+                blob: file,
+                name: file.name || '自定义售罄贴纸',
+                updatedAt: Date.now()
+            });
+            state.soldOutStickerAssetKey = key;
+            state.soldOutStickerDataUrl = dataUrl;
+            state.soldOutStickerName = file.name || '自定义售罄贴纸';
+            state.soldOutStickerMode = 'image';
+            state.soldOutStickerModeStored = true;
+            saveStickerSettings();
+            updateToolbarState();
+            if (document.getElementById('previewContainer')?.classList.contains('visible')) await global.previewStockGrid();
+            global.notifyExport?.('售罄贴纸已保存并应用到当前盘');
+        } catch (error) {
+            console.error('售罄贴纸保存失败:', error);
+            alert(`贴纸图片保存失败：${error?.message || '浏览器没有完成图片读取'}`);
+        }
+    }
+
+    async function resetSoldOutStickerImage() {
+        try {
+            const key = getSoldOutStickerAssetKey();
+            await deleteSoldOutStickerRecord(key);
+            state.soldOutStickerAssetKey = key;
+            state.soldOutStickerDataUrl = '';
+            state.soldOutStickerName = '';
+            state.soldOutStickerMode = 'emoji';
+            state.soldOutStickerModeStored = true;
+            state.soldOutStickerEmoji = DEFAULT_STICKER;
+            state.currentSticker = DEFAULT_STICKER;
+            saveStickerSettings();
+            updateToolbarState();
+            if (document.getElementById('previewContainer')?.classList.contains('visible')) await global.previewStockGrid();
+            global.notifyExport?.(`已恢复默认 ${DEFAULT_STICKER} 售罄标记`);
+        } catch (error) {
+            console.error('售罄贴纸重置失败:', error);
+            alert('恢复默认贴纸失败，请刷新页面后重试。');
+        }
+    }
+
+    function readBlobAsDataUrl(blob) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.addEventListener('load', () => resolve(String(reader.result || '')), { once: true });
+            reader.addEventListener('error', () => reject(reader.error || new Error('图片读取失败')), { once: true });
+            reader.readAsDataURL(blob);
+        });
+    }
+
+    function verifyStickerImage(dataUrl) {
+        return new Promise((resolve, reject) => {
+            const image = new Image();
+            image.addEventListener('load', resolve, { once: true });
+            image.addEventListener('error', () => reject(new Error('图片格式无法识别')), { once: true });
+            image.src = dataUrl;
+        });
+    }
+
+    function updateToolbarState() {
+        const globalSizeInput = document.getElementById('plateMapGlobalEmojiSize');
+        const globalSizeNumber = document.getElementById('plateMapGlobalEmojiSizeNumber');
+        const priceSizeInput = document.getElementById('plateMapPriceLabelSize');
+        const priceSizeNumber = document.getElementById('plateMapPriceLabelSizeNumber');
+        const nameSizeInput = document.getElementById('plateMapNameLabelSize');
+        const nameSizeNumber = document.getElementById('plateMapNameLabelSizeNumber');
+        const showNamesInput = document.getElementById('plateMapShowProductNames');
+        const emojiInput = document.getElementById('plateMapSoldOutStickerEmoji');
+        const preview = document.getElementById('plateMapSoldOutStickerPreview');
+        const name = document.getElementById('plateMapSoldOutStickerName');
+        const hint = document.getElementById('plateMapSoldOutStickerHint');
+        const useEmojiButton = document.getElementById('plateMapUseSoldOutEmoji');
+        const uploadButton = document.getElementById('plateMapUploadSoldOutSticker');
+        const resetButton = document.getElementById('plateMapResetSoldOutSticker');
+        const labelEditor = document.getElementById('plateMapLabelEditor');
+        const selectedLabelName = document.getElementById('plateMapSelectedLabelName');
+        const selectedLabelHint = document.getElementById('plateMapSelectedLabelHint');
+        const deleteSelectedLabelButton = document.getElementById('plateMapDeleteSelectedLabel');
+        const selectedSizeInput = document.getElementById('plateMapSelectedLabelSize');
+        const selectedSizeNumber = document.getElementById('plateMapSelectedLabelSizeNumber');
+        const selectedSizeUnit = document.getElementById('plateMapSelectedLabelSizeUnit');
+        const imageActive = isSoldOutImageActive();
+        if (globalSizeInput) globalSizeInput.value = String(state.globalEmojiSize);
+        if (globalSizeNumber && document.activeElement !== globalSizeNumber) globalSizeNumber.value = String(state.globalEmojiSize);
+        if (priceSizeInput) priceSizeInput.value = String(state.priceLabelSize);
+        if (priceSizeNumber && document.activeElement !== priceSizeNumber) priceSizeNumber.value = String(state.priceLabelSize);
+        if (nameSizeInput) nameSizeInput.value = String(state.nameLabelSize);
+        if (nameSizeNumber && document.activeElement !== nameSizeNumber) nameSizeNumber.value = String(state.nameLabelSize);
+        if (showNamesInput) showNamesInput.checked = state.showProductNames;
+        if (emojiInput && document.activeElement !== emojiInput) emojiInput.value = state.soldOutStickerEmoji;
+        if (preview) preview.innerHTML = imageActive
+            ? `<img src="${escapeHtml(state.soldOutStickerDataUrl)}" alt="自定义售罄贴纸">`
+            : `<span>${escapeHtml(state.soldOutStickerEmoji)}</span>`;
+        if (name) name.textContent = imageActive
+            ? state.soldOutStickerName || '自定义图片贴纸'
+            : state.soldOutStickerEmoji === DEFAULT_STICKER
+                ? `默认 ${DEFAULT_STICKER}`
+                : `当前 emoji ${state.soldOutStickerEmoji}`;
+        if (hint) hint.textContent = imageActive ? '当前使用上传图片' : '当前使用 emoji，可随时改为图片';
+        if (useEmojiButton) {
+            useEmojiButton.classList.toggle('is-active', !imageActive);
+            useEmojiButton.setAttribute('aria-pressed', String(!imageActive));
+        }
+        if (uploadButton) {
+            uploadButton.classList.toggle('is-active', imageActive);
+            uploadButton.setAttribute('aria-pressed', String(imageActive));
+        }
+        if (resetButton) resetButton.disabled = !state.soldOutStickerDataUrl
+            && state.soldOutStickerEmoji === DEFAULT_STICKER
+            && state.soldOutStickerMode === 'emoji';
+        const selectedManual = state.stickers.find(sticker => sticker.id === state.selectedStickerId);
+        const selectedAutoElement = state.selectedAutoLabelId
+            ? document.querySelector(`.plate-map-auto-label[data-label-id="${escapeSelector(state.selectedAutoLabelId)}"]`)
+            : null;
+        const hasSelection = !!selectedManual || !!selectedAutoElement;
+        if (labelEditor) labelEditor.hidden = !hasSelection;
+        if (selectedLabelName) selectedLabelName.textContent = selectedManual
+            ? '已选手动贴纸'
+            : `已选：${selectedAutoElement?.dataset.labelName || '商品标签'}`;
+        if (selectedLabelHint) selectedLabelHint.textContent = selectedManual
+            ? `大小 ${Math.round(Number(selectedManual.size || state.globalEmojiSize))}px · 可拖动或用右下角缩放`
+            : `大小 ${Math.round(getAutoLabelAdjustment(state.selectedAutoLabelId).scale * 100)}% · 可拖动或用右下角缩放`;
+        if (deleteSelectedLabelButton) deleteSelectedLabelButton.hidden = !selectedManual;
+        const selectedSize = selectedManual
+            ? Math.round(Number(selectedManual.size || state.globalEmojiSize))
+            : Math.round(getAutoLabelAdjustment(state.selectedAutoLabelId).scale * 100);
+        const sizeMinimum = selectedManual ? 20 : 40;
+        const sizeMaximum = selectedManual ? MAX_STICKER_SIZE : 300;
+        [selectedSizeInput, selectedSizeNumber].forEach(input => {
+            if (!input) return;
+            input.min = String(sizeMinimum);
+            input.max = String(sizeMaximum);
+            input.step = '1';
+            if (input !== document.activeElement) input.value = String(selectedSize);
+        });
+        if (selectedSizeUnit) selectedSizeUnit.textContent = selectedManual ? 'px' : '%';
+    }
+
+    function updateStickerStyleSetting() {
+        const textColorInput = document.getElementById('plateMapStickerTextColor');
+        const backgroundEnabledInput = document.getElementById('plateMapStickerBackgroundEnabled');
+        const backgroundColorInput = document.getElementById('plateMapStickerBackgroundColor');
+        state.textColor = normalizeColor(textColorInput?.value, state.textColor);
+        state.backgroundEnabled = !!backgroundEnabledInput?.checked;
+        state.backgroundColor = normalizeColor(backgroundColorInput?.value, state.backgroundColor);
+        const selected = state.stickers.find(sticker => sticker.id === state.selectedStickerId);
+        if (selected) {
+            selected.textColor = state.textColor;
+            selected.backgroundColor = state.backgroundColor;
+            selected.backgroundEnabled = state.backgroundEnabled;
+            saveStickers();
+            renderManualStickers();
+        }
+        updateToolbarState();
+    }
+
+    function updateGlobalEmojiSize(event) {
+        const input = event?.currentTarget || document.getElementById('plateMapGlobalEmojiSize');
+        const value = Number(input?.value);
+        if (!Number.isFinite(value)) {
+            updateToolbarState();
+            return;
+        }
+        state.globalEmojiSize = clamp(Math.round(value), 24, MAX_STICKER_SIZE);
+        state.defaultSize = state.globalEmojiSize;
+        state.stickers.forEach(sticker => { sticker.size = state.globalEmojiSize; });
+        saveStickerSettings();
+        saveStickers();
+        applyPlateMapDisplaySettings();
+        applyAllAutoLabelStyles();
+        renderManualStickers();
+        applyLabelSelectionState();
+        updateToolbarState();
+    }
+
+    function updateProductNameVisibility() {
+        state.showProductNames = !!document.getElementById('plateMapShowProductNames')?.checked;
+        saveStickerSettings();
+        applyPlateMapDisplaySettings();
+        updateToolbarState();
+    }
+
+    function updateLabelSize(type, event) {
+        const isPrice = type === 'price';
+        const value = Number(event?.currentTarget?.value);
+        if (!Number.isFinite(value)) {
+            updateToolbarState();
+            return;
+        }
+        if (isPrice) {
+            state.priceLabelSize = clamp(Math.round(value), 10, 36);
+        } else {
+            state.nameLabelSize = clamp(Math.round(value), 7, 24);
+        }
+        saveStickerSettings();
+        applyPlateMapDisplaySettings();
+        updateToolbarState();
+    }
+
+    function updateSelectedLabelSize(event) {
+        const value = Number(event?.currentTarget?.value);
+        if (!Number.isFinite(value)) {
+            updateToolbarState();
+            return;
+        }
+        if (state.selectedStickerId) {
+            const sticker = state.stickers.find(item => item.id === state.selectedStickerId);
+            if (!sticker) return;
+            sticker.size = clamp(Math.round(value), 20, MAX_STICKER_SIZE);
+            saveStickers();
+            renderManualStickers();
+        } else if (state.selectedAutoLabelId) {
+            const adjustment = getAutoLabelAdjustment(state.selectedAutoLabelId);
+            adjustment.scale = clamp(value / 100, MIN_LABEL_SCALE, MAX_LABEL_SCALE);
+            applyAutoLabelStyle(getSelectedLabelElement(), adjustment);
+            saveLabelAdjustments();
+        }
+        applyLabelSelectionState();
+        updateToolbarState();
+    }
+
+    function applyPlateMapDisplaySettings() {
+        const preview = document.getElementById('stockPreviewGrid');
+        if (!preview) return;
+        [preview, ...preview.querySelectorAll('.plate-map-preview')].forEach(target => {
+            target.style.setProperty('--plate-map-emoji-size', `${state.globalEmojiSize}px`);
+            target.style.setProperty('--plate-map-price-size', `${state.priceLabelSize}px`);
+            target.style.setProperty('--plate-map-name-size', `${state.nameLabelSize}px`);
+            target.classList.toggle('show-product-names', state.showProductNames);
+        });
+    }
+
+    function handleBoardClick(event) {
+        if (state.layout !== 'plate') return;
+        const collageDownloadButton = event.target.closest('[data-download-plate-collage]');
+        if (collageDownloadButton) {
+            event.preventDefault();
+            downloadPlateMapCollage(Number(collageDownloadButton.dataset.downloadPlateCollage), collageDownloadButton);
+            return;
+        }
+        const downloadButton = event.target.closest('[data-download-plate-page]');
+        if (downloadButton) {
+            event.preventDefault();
+            downloadPlateMapPage(Number(downloadButton.dataset.downloadPlatePage), downloadButton);
+            return;
+        }
+        const deleteButton = event.target.closest('[data-delete-sticker]');
+        if (deleteButton) {
+            event.preventDefault();
+            event.stopPropagation();
+            deleteStickerById(deleteButton.dataset.deleteSticker);
+            return;
+        }
+        if (event.target.closest('.plate-map-auto-label')) return;
+        if (event.target.closest('.plate-map-manual-sticker')) return;
+        const board = event.target.closest('.plate-map-board');
+        if (!board) return;
+        const rect = board.getBoundingClientRect();
+        if (!rect.width || !rect.height) return;
+        const sticker = {
+            id: `sticker-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
+            sourceIdentity: board.dataset.sourceIdentity || '',
+            x: clamp(((event.clientX - rect.left) / rect.width) * 100, 0, 100),
+            y: clamp(((event.clientY - rect.top) / rect.height) * 100, 0, 100),
+            text: DEFAULT_STICKER,
+            size: state.globalEmojiSize,
+            z: getNextLabelZ(board.dataset.sourceIdentity || '')
+        };
+        state.stickers.push(sticker);
+        state.selectedStickerId = sticker.id;
+        state.selectedAutoLabelId = '';
+        saveStickers();
+        renderManualStickers();
+        updateToolbarState();
+    }
+
+    function handleStickerPointerDown(event) {
+        if (state.layout !== 'plate') return;
+        if (event.target.closest('[data-delete-sticker]')) return;
+        const manualElement = event.target.closest('.plate-map-manual-sticker');
+        const autoElement = event.target.closest('.plate-map-auto-label');
+        const labelElement = manualElement || autoElement;
+        if (!labelElement) return;
+        const board = labelElement.closest('.plate-map-board');
+        if (!board) return;
+        event.preventDefault();
+        event.stopPropagation();
+        const kind = manualElement ? 'manual' : 'auto';
+        if (kind === 'manual') {
+            state.selectedStickerId = manualElement.dataset.stickerId || '';
+            state.selectedAutoLabelId = '';
+        } else {
+            state.selectedStickerId = '';
+            state.selectedAutoLabelId = autoElement.dataset.labelId || '';
+        }
+        const sticker = kind === 'manual'
+            ? state.stickers.find(item => item.id === state.selectedStickerId)
+            : null;
+        const adjustment = kind === 'auto' ? getAutoLabelAdjustment(state.selectedAutoLabelId) : null;
+        state.dragging = {
+            pointerId: event.pointerId,
+            board,
+            element: labelElement,
+            kind,
+            mode: event.target.closest('[data-label-resize]') ? 'resize' : 'move',
+            startClientX: event.clientX,
+            startClientY: event.clientY,
+            startX: Number(sticker?.x || 0),
+            startY: Number(sticker?.y || 0),
+            startSize: Number(sticker?.size || state.globalEmojiSize),
+            startOffsetX: Number(adjustment?.offsetX || 0),
+            startOffsetY: Number(adjustment?.offsetY || 0),
+            startScale: Number(adjustment?.scale || 1),
+            startRect: labelElement.getBoundingClientRect()
+        };
+        labelElement.setPointerCapture?.(event.pointerId);
+        applyLabelSelectionState();
+        updateToolbarState();
+    }
+
+    function handleStickerPointerMove(event) {
+        if (!state.dragging || state.dragging.pointerId !== event.pointerId) return;
+        event.preventDefault();
+        const drag = state.dragging;
+        const boardRect = drag.board.getBoundingClientRect();
+        if (!boardRect.width || !boardRect.height) return;
+        const deltaX = event.clientX - drag.startClientX;
+        const deltaY = event.clientY - drag.startClientY;
+        if (drag.kind === 'manual') {
+            const sticker = state.stickers.find(item => item.id === state.selectedStickerId);
+            if (!sticker) return;
+            if (drag.mode === 'resize') {
+                const logicalRatio = Math.max(drag.board.offsetWidth / boardRect.width, 0.01);
+                sticker.size = clamp(drag.startSize + ((deltaX + deltaY) / 2) * logicalRatio, 20, MAX_STICKER_SIZE);
+                drag.element.style.setProperty('--manual-sticker-size', `${sticker.size}px`);
+            } else {
+                sticker.x = clamp(drag.startX + (deltaX / boardRect.width) * 100, 0, 100);
+                sticker.y = clamp(drag.startY + (deltaY / boardRect.height) * 100, 0, 100);
+                drag.element.style.left = `${sticker.x}%`;
+                drag.element.style.top = `${sticker.y}%`;
+            }
+        } else {
+            const adjustment = getAutoLabelAdjustment(state.selectedAutoLabelId);
+            if (drag.mode === 'resize') {
+                const basis = Math.max(Math.min(drag.startRect.width, drag.startRect.height), 36);
+                adjustment.scale = clamp(drag.startScale + ((deltaX + deltaY) / 2) / basis, MIN_LABEL_SCALE, MAX_LABEL_SCALE);
+            } else {
+                adjustment.offsetX = drag.startOffsetX + (deltaX / boardRect.width) * 100;
+                adjustment.offsetY = drag.startOffsetY + (deltaY / boardRect.height) * 100;
+            }
+            applyAutoLabelStyle(drag.element, adjustment);
+        }
+        updateToolbarState();
+    }
+
+    function finishStickerDrag(event) {
+        if (!state.dragging || state.dragging.pointerId !== event.pointerId) return;
+        const kind = state.dragging.kind;
+        state.dragging = null;
+        if (kind === 'manual') saveStickers();
+        else saveLabelAdjustments();
+    }
+
+    function getAutoLabelAdjustment(labelId) {
+        if (!labelId) return { offsetX: 0, offsetY: 0, scale: 1, z: null };
+        if (!state.labelAdjustments[labelId]) {
+            const legacyId = labelId.replace(/:(name|kunxu|price|stock|sold)$/i, '');
+            const legacy = legacyId !== labelId ? state.labelAdjustments[legacyId] : null;
+            state.labelAdjustments[labelId] = legacy
+                ? { offsetX: Number(legacy.offsetX || 0), offsetY: Number(legacy.offsetY || 0), scale: Number(legacy.scale || 1), z: legacy.z }
+                : { offsetX: 0, offsetY: 0, scale: 1, z: null };
+        }
+        return state.labelAdjustments[labelId];
+    }
+
+    function applyAutoLabelStyle(element, adjustment = null) {
+        if (!element) return;
+        const current = adjustment || getAutoLabelAdjustment(element.dataset.labelId || '');
+        const baseLeft = Number(element.dataset.baseLeft || 0);
+        const baseTop = Number(element.dataset.baseTop || 0);
+        const left = clamp(baseLeft + Number(current.offsetX || 0), 0, 100);
+        const top = clamp(baseTop + Number(current.offsetY || 0), 0, 100);
+        current.offsetX = left - baseLeft;
+        current.offsetY = top - baseTop;
+        current.scale = clamp(Number(current.scale || 1), MIN_LABEL_SCALE, MAX_LABEL_SCALE);
+        element.style.left = `${left}%`;
+        element.style.top = `${top}%`;
+        element.style.setProperty('--plate-map-label-scale', String(current.scale));
+        element.style.zIndex = String(getStoredLabelZ(current.z, Number(element.dataset.defaultZ || 10)));
+    }
+
+    function applyAllAutoLabelStyles() {
+        document.querySelectorAll('.plate-map-auto-label[data-label-id]').forEach(element => {
+            applyAutoLabelStyle(element);
+        });
+    }
+
+    function applyLabelSelectionState() {
+        document.querySelectorAll('.plate-map-auto-label[data-label-id]').forEach(element => {
+            element.classList.toggle('selected', element.dataset.labelId === state.selectedAutoLabelId);
+        });
+        document.querySelectorAll('.plate-map-manual-sticker[data-sticker-id]').forEach(element => {
+            element.classList.toggle('selected', element.dataset.stickerId === state.selectedStickerId);
+        });
+    }
+
+    function getSelectedLabelElement() {
+        if (state.selectedStickerId) {
+            return document.querySelector(`.plate-map-manual-sticker[data-sticker-id="${escapeSelector(state.selectedStickerId)}"]`);
+        }
+        if (state.selectedAutoLabelId) {
+            return document.querySelector(`.plate-map-auto-label[data-label-id="${escapeSelector(state.selectedAutoLabelId)}"]`);
+        }
+        return null;
+    }
+
+    function nudgeSelectedLabel(key, amount) {
+        const horizontal = key === 'ArrowLeft' ? -amount : key === 'ArrowRight' ? amount : 0;
+        const vertical = key === 'ArrowUp' ? -amount : key === 'ArrowDown' ? amount : 0;
+        if (state.selectedStickerId) {
+            const sticker = state.stickers.find(item => item.id === state.selectedStickerId);
+            if (!sticker) return;
+            sticker.x = clamp(Number(sticker.x || 0) + horizontal, 0, 100);
+            sticker.y = clamp(Number(sticker.y || 0) + vertical, 0, 100);
+            saveStickers();
+            renderManualStickers();
+        } else if (state.selectedAutoLabelId) {
+            const adjustment = getAutoLabelAdjustment(state.selectedAutoLabelId);
+            adjustment.offsetX = Number(adjustment.offsetX || 0) + horizontal;
+            adjustment.offsetY = Number(adjustment.offsetY || 0) + vertical;
+            applyAutoLabelStyle(getSelectedLabelElement(), adjustment);
+            saveLabelAdjustments();
+        }
+        applyLabelSelectionState();
+        updateToolbarState();
+    }
+
+    function handleSelectedLabelAction(action) {
+        if (!state.selectedStickerId && !state.selectedAutoLabelId) return;
+        if (action === 'delete') {
+            if (state.selectedStickerId) deleteSelectedSticker();
+            return;
+        }
+        if (action === 'smaller' || action === 'larger') {
+            const direction = action === 'larger' ? 1 : -1;
+            if (state.selectedStickerId) {
+                const sticker = state.stickers.find(item => item.id === state.selectedStickerId);
+                if (!sticker) return;
+                sticker.size = clamp(Number(sticker.size || state.globalEmojiSize) + direction * 8, 20, MAX_STICKER_SIZE);
+                saveStickers();
+                renderManualStickers();
+            } else {
+                const adjustment = getAutoLabelAdjustment(state.selectedAutoLabelId);
+                adjustment.scale = clamp(Number(adjustment.scale || 1) + direction * 0.1, MIN_LABEL_SCALE, MAX_LABEL_SCALE);
+                applyAutoLabelStyle(getSelectedLabelElement(), adjustment);
+                saveLabelAdjustments();
+            }
+            applyLabelSelectionState();
+            updateToolbarState();
+            return;
+        }
+        if (action === 'reset') {
+            if (state.selectedStickerId) {
+                const sticker = state.stickers.find(item => item.id === state.selectedStickerId);
+                if (sticker) sticker.size = state.globalEmojiSize;
+                saveStickers();
+                renderManualStickers();
+            } else {
+                delete state.labelAdjustments[state.selectedAutoLabelId];
+                applyAutoLabelStyle(getSelectedLabelElement(), getAutoLabelAdjustment(state.selectedAutoLabelId));
+                saveLabelAdjustments();
+            }
+            applyLabelSelectionState();
+            updateToolbarState();
+            return;
+        }
+        if (['bottom', 'down', 'up', 'top'].includes(action)) moveSelectedLabelLayer(action);
+    }
+
+    function moveSelectedLabelLayer(action) {
+        const selectedElement = getSelectedLabelElement();
+        const board = selectedElement?.closest('.plate-map-board');
+        if (!board) return;
+        const entries = Array.from(board.querySelectorAll('.plate-map-auto-label[data-label-id], .plate-map-manual-sticker[data-sticker-id]'))
+            .map((element, index) => {
+                const manual = element.classList.contains('plate-map-manual-sticker');
+                const id = manual ? element.dataset.stickerId : element.dataset.labelId;
+                const sticker = manual ? state.stickers.find(item => item.id === id) : null;
+                const adjustment = manual ? null : getAutoLabelAdjustment(id);
+                return {
+                    element,
+                    id,
+                    kind: manual ? 'manual' : 'auto',
+                    z: getStoredLabelZ(manual ? sticker?.z : adjustment?.z, Number(element.dataset.defaultZ || 10) + index)
+                };
+            })
+            .filter(entry => entry.id)
+            .sort((a, b) => a.z - b.z || a.id.localeCompare(b.id));
+        const selectedId = state.selectedStickerId || state.selectedAutoLabelId;
+        let selectedIndex = entries.findIndex(entry => entry.id === selectedId);
+        if (selectedIndex < 0 || entries.length < 2) return;
+        if (action === 'bottom') {
+            entries.unshift(entries.splice(selectedIndex, 1)[0]);
+        } else if (action === 'top') {
+            entries.push(entries.splice(selectedIndex, 1)[0]);
+        } else if (action === 'down' && selectedIndex > 0) {
+            [entries[selectedIndex - 1], entries[selectedIndex]] = [entries[selectedIndex], entries[selectedIndex - 1]];
+        } else if (action === 'up' && selectedIndex < entries.length - 1) {
+            [entries[selectedIndex + 1], entries[selectedIndex]] = [entries[selectedIndex], entries[selectedIndex + 1]];
+        }
+        entries.forEach((entry, index) => setLabelZ(entry, 10 + index));
+        saveStickers();
+        saveLabelAdjustments();
+        renderManualStickers();
+        applyAllAutoLabelStyles();
+        applyLabelSelectionState();
+        updateToolbarState();
+    }
+
+    function setLabelZ(entry, z) {
+        if (entry.kind === 'manual') {
+            const sticker = state.stickers.find(item => item.id === entry.id);
+            if (sticker) sticker.z = z;
+        } else {
+            getAutoLabelAdjustment(entry.id).z = z;
+        }
+        entry.element.style.zIndex = String(z);
+    }
+
+    function getStoredLabelZ(value, fallback) {
+        if (value === null || value === undefined || value === '') {
+            return clamp(Math.round(Number(fallback) || 1), 1, 9999);
+        }
+        const number = Number(value);
+        return Number.isFinite(number) ? clamp(Math.round(number), 1, 9999) : clamp(Math.round(fallback), 1, 9999);
+    }
+
+    function getNextLabelZ(sourceIdentity) {
+        const board = Array.from(document.querySelectorAll('.plate-map-board'))
+            .find(item => item.dataset.sourceIdentity === sourceIdentity);
+        const values = board
+            ? Array.from(board.querySelectorAll('.plate-map-auto-label, .plate-map-manual-sticker')).map(element => Number(getComputedStyle(element).zIndex) || 0)
+            : state.stickers.filter(sticker => sticker.sourceIdentity === sourceIdentity).map(sticker => Number(sticker.z) || 0);
+        return Math.max(10, ...values) + 1;
+    }
+
+    function resizeSelectedSticker(delta) {
+        const selected = state.stickers.find(sticker => sticker.id === state.selectedStickerId);
+        if (selected) {
+            selected.size = clamp(Number(selected.size || DEFAULT_STICKER_SIZE) + delta, 20, MAX_STICKER_SIZE);
+            state.defaultSize = selected.size;
+            saveStickers();
+            renderManualStickers();
+        } else {
+            state.defaultSize = clamp(state.defaultSize + delta, 20, MAX_STICKER_SIZE);
+        }
+        updateToolbarState();
+    }
+
+    function deleteSelectedSticker() {
+        if (!state.selectedStickerId) return;
+        deleteStickerById(state.selectedStickerId);
+    }
+
+    function deleteStickerById(stickerId) {
+        if (!stickerId) return;
+        state.stickers = state.stickers.filter(sticker => sticker.id !== stickerId);
+        state.selectedStickerId = '';
+        saveStickers();
+        renderManualStickers();
+        updateToolbarState();
+    }
+
+    function undoSticker() {
+        if (!state.stickers.length) return;
+        const removed = state.stickers.pop();
+        if (removed?.id === state.selectedStickerId) state.selectedStickerId = '';
+        saveStickers();
+        renderManualStickers();
+        updateToolbarState();
+    }
+
+    function clearStickers() {
+        state.stickers = [];
+        state.selectedStickerId = '';
+        saveStickers();
+        renderManualStickers();
+        updateToolbarState();
+    }
+
+    function renderManualStickers() {
+        document.querySelectorAll('.plate-map-manual-layer').forEach(layer => {
+            const sourceIdentity = layer.closest('.plate-map-board')?.dataset.sourceIdentity || '';
+            layer.innerHTML = state.stickers
+                .filter(sticker => sticker.sourceIdentity === sourceIdentity)
+                .map((sticker, index) => `
+                    <div class="plate-map-manual-sticker${sticker.id === state.selectedStickerId ? ' selected' : ''}" role="button" tabindex="0"
+                        data-sticker-id="${escapeHtml(sticker.id)}"
+                        data-label-kind="manual"
+                        style="left:${clamp(sticker.x, 0, 100)}%;top:${clamp(sticker.y, 0, 100)}%;--manual-sticker-size:${clamp(Number(sticker.size || state.globalEmojiSize), 20, MAX_STICKER_SIZE)}px;z-index:${getStoredLabelZ(sticker.z, 1000 + index)}"
+                        aria-label="售罄贴纸">
+                        ${renderSoldOutStickerMarkup('plate-map-manual-sticker-content')}
+                        <button class="plate-map-label-resize-handle" type="button" data-label-resize aria-label="拖动调整贴纸大小" title="拖动调整大小"></button>
+                        <button class="plate-map-sticker-delete" type="button" data-delete-sticker="${escapeHtml(sticker.id)}" aria-label="删除这个贴纸" title="删除贴纸">×</button>
+                    </div>`)
+                .join('');
+        });
+    }
+
+    function renderSoldOutStickerMarkup(className) {
+        return isSoldOutImageActive()
+            ? `<img class="${className}" src="${escapeHtml(state.soldOutStickerDataUrl)}" alt="售罄">`
+            : `<span class="${className}">${escapeHtml(state.soldOutStickerEmoji)}</span>`;
+    }
+
+    function isSoldOutImageActive() {
+        return state.soldOutStickerMode === 'image' && !!state.soldOutStickerDataUrl;
+    }
+
+    function loadStickers() {
+        const key = getStickerStorageKey();
+        if (state.storageKey === key) return;
+        state.storageKey = key;
+        state.labelStorageKey = getLabelLayoutStorageKey();
+        state.selectedStickerId = '';
+        state.selectedAutoLabelId = '';
+        loadStickerSettings();
+        loadLabelAdjustments();
+        try {
+            const parsed = JSON.parse(localStorage.getItem(key) || '[]');
+            state.stickers = (Array.isArray(parsed) ? parsed : []).map((sticker, index) => ({
+                id: String(sticker.id || `sticker-${Date.now().toString(36)}`),
+                sourceIdentity: String(sticker.sourceIdentity || ''),
+                x: clamp(Number(sticker.x || 0), 0, 100),
+                y: clamp(Number(sticker.y || 0), 0, 100),
+                text: String(sticker.text || DEFAULT_STICKER),
+                size: clamp(Number(sticker.size || DEFAULT_STICKER_SIZE), 20, MAX_STICKER_SIZE),
+                textColor: normalizeColor(sticker.textColor, state.textColor),
+                backgroundColor: normalizeColor(sticker.backgroundColor, state.backgroundColor),
+                backgroundEnabled: !!sticker.backgroundEnabled,
+                z: getStoredLabelZ(sticker.z, 1000 + index)
+            }));
+        } catch (error) {
+            state.stickers = [];
+        }
+    }
+
+    function loadStickerSettings() {
+        try {
+            const settings = JSON.parse(localStorage.getItem(getStickerSettingsKey()) || '{}');
+            const sizeSettingsCurrent = Number(settings.stickerSizeSettingsVersion) === STICKER_SIZE_SETTINGS_VERSION;
+            const storedSize = Number(settings.globalEmojiSize);
+            const useNewSizeDefault = !Number.isFinite(storedSize) || (!sizeSettingsCurrent && storedSize === 44);
+            state.globalEmojiSize = useNewSizeDefault
+                ? DEFAULT_STICKER_SIZE
+                : clamp(Math.round(storedSize), 24, MAX_STICKER_SIZE);
+            state.defaultSize = state.globalEmojiSize;
+            const storedPriceLabelSize = Number(settings.priceLabelSize);
+            const storedNameLabelSize = Number(settings.nameLabelSize);
+            state.priceLabelSize = Number.isFinite(storedPriceLabelSize)
+                ? clamp(Math.round(storedPriceLabelSize), 10, 36)
+                : DEFAULT_PRICE_LABEL_SIZE;
+            state.nameLabelSize = Number.isFinite(storedNameLabelSize)
+                ? clamp(Math.round(storedNameLabelSize), 7, 24)
+                : DEFAULT_NAME_LABEL_SIZE;
+            const showNamesSettingsCurrent = Number(settings.showNamesSettingsVersion) === SHOW_NAMES_SETTINGS_VERSION;
+            state.showProductNames = showNamesSettingsCurrent ? !!settings.showProductNames : true;
+            state.soldOutStickerModeStored = settings.soldOutStickerMode === 'image' || settings.soldOutStickerMode === 'emoji';
+            state.soldOutStickerMode = settings.soldOutStickerMode === 'image' ? 'image' : 'emoji';
+            const storedEmoji = String(settings.soldOutStickerEmoji || DEFAULT_STICKER).trim();
+            state.soldOutStickerEmoji = extractFirstEmoji(storedEmoji) || DEFAULT_STICKER;
+            state.currentSticker = state.soldOutStickerEmoji;
+            if (!sizeSettingsCurrent || !showNamesSettingsCurrent || state.soldOutStickerEmoji !== storedEmoji) {
+                saveStickerSettings();
+            }
+        } catch (error) {
+            state.globalEmojiSize = DEFAULT_STICKER_SIZE;
+            state.defaultSize = DEFAULT_STICKER_SIZE;
+            state.priceLabelSize = DEFAULT_PRICE_LABEL_SIZE;
+            state.nameLabelSize = DEFAULT_NAME_LABEL_SIZE;
+            state.showProductNames = true;
+            state.soldOutStickerMode = 'emoji';
+            state.soldOutStickerModeStored = false;
+            state.soldOutStickerEmoji = DEFAULT_STICKER;
+            state.currentSticker = DEFAULT_STICKER;
+        }
+    }
+
+    function saveStickerSettings() {
+        try {
+            localStorage.setItem(getStickerSettingsKey(), JSON.stringify({
+                globalEmojiSize: state.globalEmojiSize,
+                stickerSizeSettingsVersion: STICKER_SIZE_SETTINGS_VERSION,
+                priceLabelSize: state.priceLabelSize,
+                nameLabelSize: state.nameLabelSize,
+                showProductNames: state.showProductNames,
+                showNamesSettingsVersion: SHOW_NAMES_SETTINGS_VERSION,
+                soldOutStickerMode: state.soldOutStickerMode,
+                soldOutStickerEmoji: state.soldOutStickerEmoji
+            }));
+        } catch (error) {
+            console.warn('plate map settings could not be saved', error);
+        }
+    }
+
+    function saveStickers() {
+        if (!state.storageKey) state.storageKey = getStickerStorageKey();
+        try {
+            localStorage.setItem(state.storageKey, JSON.stringify(state.stickers));
+        } catch (error) {
+            console.warn('plate map stickers could not be saved', error);
+        }
+    }
+
+    function loadLabelAdjustments() {
+        try {
+            const parsed = JSON.parse(localStorage.getItem(state.labelStorageKey || getLabelLayoutStorageKey()) || '{}');
+            state.labelAdjustments = Object.fromEntries(Object.entries(parsed && typeof parsed === 'object' ? parsed : {})
+                .map(([id, value]) => [String(id), {
+                    offsetX: clamp(Number(value?.offsetX || 0), -100, 100),
+                    offsetY: clamp(Number(value?.offsetY || 0), -100, 100),
+                    scale: clamp(Number(value?.scale || 1), MIN_LABEL_SCALE, MAX_LABEL_SCALE),
+                    z: value?.z === null || value?.z === undefined || value?.z === ''
+                        ? null
+                        : Number.isFinite(Number(value.z)) ? getStoredLabelZ(value.z, 10) : null
+                }]));
+        } catch (error) {
+            state.labelAdjustments = {};
+        }
+    }
+
+    function saveLabelAdjustments() {
+        if (!state.labelStorageKey) state.labelStorageKey = getLabelLayoutStorageKey();
+        try {
+            localStorage.setItem(state.labelStorageKey, JSON.stringify(state.labelAdjustments));
+        } catch (error) {
+            console.warn('plate map label layout could not be saved', error);
+        }
+    }
+
+    function getStickerStorageKey() {
+        const plateId = localStorage.getItem('currentPlateId') || localStorage.getItem('plateName') || 'default';
+        return `${STORAGE_PREFIX}${plateId}`;
+    }
+
+    function getStickerSettingsKey() {
+        const plateId = localStorage.getItem('currentPlateId') || localStorage.getItem('plateName') || 'default';
+        return `${SETTINGS_PREFIX}${plateId}`;
+    }
+
+    function getLabelLayoutStorageKey() {
+        const plateId = localStorage.getItem('currentPlateId') || localStorage.getItem('plateName') || 'default';
+        return `${LABEL_LAYOUT_PREFIX}${plateId}`;
+    }
+
+    function getSoldOutStickerAssetKey() {
+        const plateId = localStorage.getItem('currentPlateId') || localStorage.getItem('plateName') || 'default';
+        return `${STICKER_ASSET_PREFIX}${plateId}`;
+    }
+
+    function openStickerAssetDatabase() {
+        return new Promise((resolve, reject) => {
+            const request = indexedDB.open(STICKER_ASSET_DB, 1);
+            request.addEventListener('upgradeneeded', () => {
+                if (!request.result.objectStoreNames.contains(STICKER_ASSET_STORE)) {
+                    request.result.createObjectStore(STICKER_ASSET_STORE);
+                }
+            });
+            request.addEventListener('success', () => resolve(request.result), { once: true });
+            request.addEventListener('error', () => reject(request.error || new Error('IndexedDB 打开失败')), { once: true });
+        });
+    }
+
+    async function readSoldOutStickerRecord(key) {
+        const database = await openStickerAssetDatabase();
+        try {
+            return await new Promise((resolve, reject) => {
+                const request = database.transaction(STICKER_ASSET_STORE, 'readonly').objectStore(STICKER_ASSET_STORE).get(key);
+                request.addEventListener('success', () => resolve(request.result || null), { once: true });
+                request.addEventListener('error', () => reject(request.error || new Error('贴纸读取失败')), { once: true });
+            });
+        } finally {
+            database.close();
+        }
+    }
+
+    async function writeSoldOutStickerRecord(key, record) {
+        const database = await openStickerAssetDatabase();
+        try {
+            await new Promise((resolve, reject) => {
+                const transaction = database.transaction(STICKER_ASSET_STORE, 'readwrite');
+                transaction.objectStore(STICKER_ASSET_STORE).put(record, key);
+                transaction.addEventListener('complete', resolve, { once: true });
+                transaction.addEventListener('error', () => reject(transaction.error || new Error('贴纸保存失败')), { once: true });
+                transaction.addEventListener('abort', () => reject(transaction.error || new Error('贴纸保存被中断')), { once: true });
+            });
+        } finally {
+            database.close();
+        }
+    }
+
+    async function deleteSoldOutStickerRecord(key) {
+        const database = await openStickerAssetDatabase();
+        try {
+            await new Promise((resolve, reject) => {
+                const transaction = database.transaction(STICKER_ASSET_STORE, 'readwrite');
+                transaction.objectStore(STICKER_ASSET_STORE).delete(key);
+                transaction.addEventListener('complete', resolve, { once: true });
+                transaction.addEventListener('error', () => reject(transaction.error || new Error('贴纸删除失败')), { once: true });
+                transaction.addEventListener('abort', () => reject(transaction.error || new Error('贴纸删除被中断')), { once: true });
+            });
+        } finally {
+            database.close();
+        }
+    }
+
+    async function loadSoldOutStickerAsset() {
+        const key = getSoldOutStickerAssetKey();
+        if (state.soldOutStickerAssetKey === key) return;
+        state.soldOutStickerAssetKey = key;
+        state.soldOutStickerDataUrl = '';
+        state.soldOutStickerName = '';
+        try {
+            const record = await readSoldOutStickerRecord(key);
+            if (!record?.blob) {
+                if (state.soldOutStickerMode === 'image') {
+                    state.soldOutStickerMode = 'emoji';
+                    state.soldOutStickerModeStored = true;
+                    saveStickerSettings();
+                }
+                return;
+            }
+            state.soldOutStickerDataUrl = await readBlobAsDataUrl(record.blob);
+            state.soldOutStickerName = String(record.name || '自定义售罄贴纸');
+            if (!state.soldOutStickerModeStored) {
+                state.soldOutStickerMode = 'image';
+                state.soldOutStickerModeStored = true;
+                saveStickerSettings();
+            }
+        } catch (error) {
+            console.warn('售罄贴纸读取失败:', error);
+        }
+    }
+
+    function collectPlateMapSources() {
+        const entries = typeof global.getClientPlateEntries === 'function' ? global.getClientPlateEntries() : [];
+        const groups = new Map();
+        const boundItems = new Set();
+        let bindingItems = 0;
+        entries.forEach(({ item, index }) => {
+            const storedCrop = item?.imageCrop;
+            const parsedCrop = typeof global.GroupDeskLocalImages?.parseCropReference === 'function'
+                ? global.GroupDeskLocalImages.parseCropReference(item?.imgSrc)
+                : null;
+            const baseCrop = storedCrop && typeof storedCrop === 'object' ? storedCrop : parsedCrop;
+            if (!baseCrop || typeof baseCrop !== 'object') return;
+            bindingItems += 1;
+            const placements = Array.isArray(baseCrop.placements) && baseCrop.placements.length
+                ? baseCrop.placements.map(placement => ({ ...baseCrop, ...placement }))
+                : [baseCrop];
+            const normalizedPlacements = placements
+                .map(crop => normalizeCropDescriptor(item, crop))
+                .filter(Boolean);
+            const surplus = typeof global.getExportSurplus === 'function' ? global.getExportSurplus(item) : 0;
+            const availableCount = Math.min(Math.max(Math.floor(Number(surplus) || 0), 0), normalizedPlacements.length);
+            const firstAvailableIndex = normalizedPlacements.length - availableCount;
+            normalizedPlacements.forEach((descriptor, placementIndex) => {
+                boundItems.add(index);
+                if (!groups.has(descriptor.sourceIdentity)) {
+                    groups.set(descriptor.sourceIdentity, {
+                        sourceIdentity: descriptor.sourceIdentity,
+                        sourceUrl: descriptor.sourceUrl,
+                        sourceName: descriptor.sourceName,
+                        sourceWidth: descriptor.sourceWidth,
+                        sourceHeight: descriptor.sourceHeight,
+                        markers: []
+                    });
+                }
+                groups.get(descriptor.sourceIdentity).markers.push({
+                    item,
+                    crop: descriptor,
+                    placementAvailable: placementIndex >= firstAvailableIndex,
+                    labelId: getAutoMarkerId(item, index, placementIndex, descriptor)
+                });
+            });
+        });
+        return {
+            groups: [...groups.values()],
+            totalItems: entries.length,
+            bindingItems,
+            boundItems: boundItems.size,
+            unboundItems: Math.max(entries.length - boundItems.size, 0)
+        };
+    }
+
+    async function refreshPlateMapSources(result, previewInfo) {
+        if (result.groups.length || typeof global.loadData !== 'function') return result;
+        const selection = typeof global.getCurrentWorkspaceSelection === 'function'
+            ? global.getCurrentWorkspaceSelection()
+            : null;
+        const groupId = selection?.activeGroup?.id || '';
+        const plateId = selection?.activePlate?.id || '';
+        const plateName = selection?.activePlate?.name || global.getExportWorkspaceContext?.().plateName || '当前盘';
+        if (previewInfo) previewInfo.textContent = `正在重新核对【${plateName}】的最新云端绑定...`;
+
+        try {
+            await global.loadData();
+            if (groupId && plateId && typeof global.setWorkspaceSelection === 'function') {
+                global.setWorkspaceSelection(groupId, plateId);
+            }
+            return collectPlateMapSources();
+        } catch (error) {
+            console.warn('整盘图绑定重新读取失败:', error);
+            return result;
+        }
+    }
+
+    function getEmptyPlateMapMessage(result) {
+        const plateName = global.getExportWorkspaceContext?.().plateName || '当前盘';
+        if (!result.totalItems) {
+            return {
+                info: `【${plateName}】没有读取到商品数据，请确认当前盘和云端数据源`,
+                title: '当前盘没有商品数据',
+                detail: '请确认客户端与管理端使用同一个 Gist，并检查当前选择的盘。'
+            };
+        }
+        if (result.bindingItems) {
+            return {
+                info: `【${plateName}】读取到 ${result.bindingItems} 条绑定，但原图链接或裁切尺寸不完整`,
+                title: '绑定信息无法解析',
+                detail: '请在管理端重新应用一次整图裁切，确认原图链接可以公开访问。'
+            };
+        }
+        return {
+            info: `【${plateName}】读取到 ${result.totalItems} 条商品，但这份数据中没有整图绑定`,
+            title: '当前数据没有整图绑定',
+            detail: '页面已重新核对云端；请确认客户端与管理端使用同一个 Gist，并确认绑定应用在这个盘。'
+        };
+    }
+
+    function normalizeCropDescriptor(item, crop) {
+        const rawSource = String(crop.sourceUrl || getSourceFromCropReference(item?.imgSrc) || '').trim();
+        const sourceWidth = Number(crop.sourceWidth || 0);
+        const sourceHeight = Number(crop.sourceHeight || 0);
+        const x = Number(crop.x);
+        const y = Number(crop.y);
+        const width = Number(crop.width);
+        const height = Number(crop.height);
+        if (!rawSource || sourceWidth <= 0 || sourceHeight <= 0) return null;
+        if (![x, y, width, height].every(Number.isFinite) || width <= 0 || height <= 0) return null;
+        const store = global.GroupDeskLocalImages;
+        const isLocalSource = typeof store?.isLocalReference === 'function'
+            ? store.isLocalReference(rawSource)
+            : rawSource.startsWith('local-image://') && !rawSource.includes('#gd-crop=');
+        if (isLocalSource) {
+            return {
+                sourceUrl: rawSource,
+                sourceIdentity: rawSource,
+                sourceName: String(crop.sourceName || '本地整盘原图'),
+                sourceWidth,
+                sourceHeight,
+                x,
+                y,
+                width,
+                height
+            };
+        }
+        try {
+            const sourceUrl = new URL(rawSource, document.baseURI);
+            sourceUrl.hash = '';
+            sourceUrl.searchParams.delete('gd_refresh');
+            if (crop.updatedAt) sourceUrl.searchParams.set('gd_map', String(new Date(crop.updatedAt).getTime() || crop.updatedAt));
+            const identityUrl = new URL(sourceUrl.href);
+            ['gd_v', 'gd_map', 'gd_refresh'].forEach(name => identityUrl.searchParams.delete(name));
+            return {
+                sourceUrl: sourceUrl.href,
+                sourceIdentity: identityUrl.href,
+                sourceName: String(crop.sourceName || sourceUrl.pathname.split('/').pop() || '整盘原图'),
+                sourceWidth,
+                sourceHeight,
+                x,
+                y,
+                width,
+                height
+            };
+        } catch (error) {
+            return null;
+        }
+    }
+
+    function getSourceFromCropReference(value) {
+        const text = String(value || '');
+        const markerIndex = text.lastIndexOf('#gd-crop=');
+        return markerIndex >= 0 ? text.slice(0, markerIndex) : '';
+    }
+
+    function getAutoMarkerId(item, itemIndex, placementIndex, descriptor) {
+        const itemIdentity = String(item?.syncId || item?.id || `item-${itemIndex}`);
+        const geometry = [descriptor.sourceIdentity, descriptor.x, descriptor.y, descriptor.width, descriptor.height].join('|');
+        return `auto-${hashLabelIdentity(itemIdentity)}-${placementIndex}-${hashLabelIdentity(geometry)}`;
+    }
+
+    function hashLabelIdentity(value) {
+        let hash = 2166136261;
+        const text = String(value || '');
+        for (let index = 0; index < text.length; index += 1) {
+            hash ^= text.charCodeAt(index);
+            hash = Math.imul(hash, 16777619);
+        }
+        return (hash >>> 0).toString(36);
+    }
+
+    async function renderPlateMapPreview() {
+        const previewContainer = document.getElementById('previewContainer');
+        const previewGrid = document.getElementById('stockPreviewGrid');
+        const previewInfo = document.getElementById('previewInfo');
+        const downloadButton = document.querySelector('.download-btn');
+        const printButton = document.querySelector('.print-btn');
+        if (!previewContainer || !previewGrid || !previewInfo || !downloadButton || !printButton) return;
+
+        loadStickers();
+        await loadSoldOutStickerAsset();
+        updateToolbarState();
+        let result = collectPlateMapSources();
+        result = await refreshPlateMapSources(result, previewInfo);
+        previewGrid.innerHTML = '';
+        previewGrid.classList.toggle('plate-map-collage-mode', isPlateMapCollageMode());
+        previewContainer.classList.add('visible');
+        previewGrid.classList.add('sticker-edit-mode');
+        applyPlateMapDisplaySettings();
+
+        if (!result.groups.length) {
+            const message = getEmptyPlateMapMessage(result);
+            previewInfo.textContent = message.info;
+            previewGrid.innerHTML = `<div class="plate-map-empty"><strong>${escapeHtml(message.title)}</strong><span>${escapeHtml(message.detail)}</span></div>`;
+            downloadButton.disabled = true;
+            printButton.disabled = true;
+            document.querySelector('.preview-zoom-controls')?.remove();
+            return;
+        }
+
+        previewInfo.textContent = `共 ${result.groups.length} 张整盘图 · 自动标注 ${result.boundItems} 个商品${result.unboundItems ? ` · ${result.unboundItems} 个未绑定` : ''}`;
+
+        const pages = result.groups.map((group, pageIndex) => {
+            const page = document.createElement('section');
+            page.className = 'plate-map-preview-page';
+            const sheet = document.createElement('div');
+            sheet.className = 'stock-grid-preview plate-map-preview';
+            sheet.dataset.sourceName = group.sourceName;
+            sheet.innerHTML = `
+                <div class="plate-map-board" data-source-identity="${escapeHtml(group.sourceIdentity)}" style="aspect-ratio:${group.sourceWidth} / ${group.sourceHeight}">
+                    <img class="plate-map-source-image" src="${escapeHtml(group.sourceUrl)}" crossorigin="anonymous" alt="${escapeHtml(group.sourceName)}" draggable="false" onerror="this.src='${escapeHtml(global.defaultImgUrl || 'ERROR.PNG')}';this.onerror=null;">
+                    <div class="plate-map-auto-layer">${group.markers.map(renderAutoMarker).join('')}</div>
+                    <div class="plate-map-manual-layer"></div>
+                </div>`;
+            page.innerHTML = `
+                <div class="plate-map-page-toolbar">
+                    <span><strong>第 ${pageIndex + 1} 张</strong><small>${escapeHtml(group.sourceName)}</small></span>
+                    <button type="button" data-download-plate-page="${pageIndex}">下载这张 ${state.exportQuality === 'lossless' ? 'PNG' : 'JPG'}</button>
+                </div>`;
+            const viewport = document.createElement('div');
+            viewport.className = 'plate-map-preview-viewport';
+            const stage = document.createElement('div');
+            stage.className = 'plate-map-preview-stage';
+            stage.appendChild(sheet);
+            viewport.appendChild(stage);
+            page.appendChild(viewport);
+            return page;
+        });
+        renderPlateMapPreviewPages(previewGrid, pages);
+
+        applyPlateMapDisplaySettings();
+        applyAllAutoLabelStyles();
+        renderManualStickers();
+        applyLabelSelectionState();
+        downloadButton.disabled = false;
+        printButton.disabled = false;
+        global.createPreviewZoomControls?.();
+        global.resetPreviewZoom?.();
+        syncPlateMapPageWidths();
+        updateToolbarState();
+    }
+
+    function showPlateMapPreviewError(error) {
+        console.error('整盘标价图预览失败:', error);
+        const previewContainer = document.getElementById('previewContainer');
+        const previewGrid = document.getElementById('stockPreviewGrid');
+        const previewInfo = document.getElementById('previewInfo');
+        const reason = String(error?.message || '浏览器没有完成图片解析');
+        previewContainer?.classList.add('visible');
+        if (previewInfo) previewInfo.textContent = `预览生成失败：${reason}`;
+        if (previewGrid) {
+            previewGrid.classList.remove('sticker-edit-mode', 'plate-map-collage-mode');
+            previewGrid.innerHTML = `<div class="plate-map-empty"><strong>整盘标价图生成失败</strong><span>${escapeHtml(reason)}，请刷新页面后重试。</span></div>`;
+        }
+        document.querySelector('.download-btn')?.setAttribute('disabled', 'disabled');
+        document.querySelector('.print-btn')?.setAttribute('disabled', 'disabled');
+        document.querySelector('.preview-zoom-controls')?.remove();
+        global.notifyExport?.(`整盘标价图预览失败：${reason}`);
+    }
+
+    function isPlateMapCollageMode() {
+        return state.exportMode === 'grid4' || state.exportMode === 'grid9';
+    }
+
+    function getPlateMapCollageColumns() {
+        return state.exportMode === 'grid9' ? 3 : 2;
+    }
+
+    function renderPlateMapPreviewPages(previewGrid, pages) {
+        if (!isPlateMapCollageMode()) {
+            pages.forEach(page => previewGrid.appendChild(page));
+            return;
+        }
+
+        const columns = getPlateMapCollageColumns();
+        const pageSize = columns * columns;
+        const collageCount = Math.ceil(pages.length / pageSize);
+        for (let start = 0; start < pages.length; start += pageSize) {
+            const groupPages = pages.slice(start, start + pageSize);
+            const collageIndex = Math.floor(start / pageSize);
+            const section = document.createElement('section');
+            section.className = 'plate-map-collage-preview';
+            section.innerHTML = `
+                <header class="plate-map-collage-preview-head">
+                    <strong>${state.exportMode === 'grid9' ? '九宫格' : '四宫格'}预览${collageCount > 1 ? ` ${collageIndex + 1}/${collageCount}` : ''}</strong>
+                    <div class="plate-map-collage-preview-actions">
+                        <span>${groupPages.length} 张</span>
+                        <button type="button" data-download-plate-collage="${collageIndex}">下载这张 ${state.exportQuality === 'lossless' ? 'PNG' : 'JPG'}</button>
+                    </div>
+                </header>
+                <div class="plate-map-collage-preview-canvas"></div>`;
+            const canvas = section.querySelector('.plate-map-collage-preview-canvas');
+            for (let rowStart = 0; rowStart < groupPages.length; rowStart += columns) {
+                const row = document.createElement('div');
+                row.className = 'plate-map-collage-preview-row';
+                groupPages.slice(rowStart, rowStart + columns).forEach(page => row.appendChild(page));
+                canvas.appendChild(row);
+            }
+            previewGrid.appendChild(section);
+        }
+    }
+
+    function renderAutoMarker({ item, crop, placementAvailable, labelId }, markerIndex) {
+        const left = clamp((crop.x / crop.sourceWidth) * 100, 0, 100);
+        const top = clamp((crop.y / crop.sourceHeight) * 100, 0, 100);
+        const width = clamp((crop.width / crop.sourceWidth) * 100, 0.5, 100 - left);
+        const height = clamp((crop.height / crop.sourceHeight) * 100, 0.5, 100 - top);
+        const surplus = typeof global.getExportSurplus === 'function' ? global.getExportSurplus(item) : 0;
+        const isGift = typeof global.isExportGiftItem === 'function' && global.isExportGiftItem(item);
+        const soldOut = placementAvailable === false || surplus <= 0;
+        const productNameText = String(item?.category || '商品');
+        const productName = escapeHtml(productNameText);
+        const labels = [];
+        const baseZ = 10 + markerIndex * 10;
+
+        labels.push(renderIndependentAutoLabel({
+            id: `${labelId}:name`, type: 'name', labelName: `${productNameText} · 谷名`,
+            left, top, anchorX: 0, anchorY: 0, defaultZ: baseZ + 1,
+            className: 'plate-map-auto-name', content: productName
+        }));
+
+        const kunxuText = String(item?.kunxu || '').trim();
+        if (kunxuText && kunxuText !== '不捆') {
+            labels.push(renderIndependentAutoLabel({
+                id: `${labelId}:kunxu`, type: 'kunxu', labelName: `${productNameText} · 捆序`,
+                left: left + width, top, anchorX: 100, anchorY: 0, defaultZ: baseZ + 2,
+                className: 'plate-map-auto-kunxu', content: escapeHtml(kunxuText)
+            }));
+        }
+
+        if (soldOut) {
+            labels.push(renderIndependentAutoLabel({
+                id: `${labelId}:sold`, type: 'sold', labelName: `${productNameText} · 售罄贴纸`,
+                left: left + width / 2, top: top + height / 2, anchorX: 50, anchorY: 50, defaultZ: baseZ + 5,
+                className: 'plate-map-auto-sold-label',
+                content: renderSoldOutStickerMarkup(isSoldOutImageActive() ? 'plate-map-auto-sticker-image' : 'plate-map-auto-empty')
+            }));
+        } else {
+            let priceContent;
+            let priceClass = 'plate-map-auto-price';
+            if (isGift) {
+                priceContent = '赠';
+                priceClass += ' gift';
+            } else {
+            const priceInfo = typeof global.getExportPriceInfo === 'function' ? global.getExportPriceInfo(item) : { finalPrice: Number(item?.price || 0) };
+            const price = typeof global.formatExportMoney === 'function' ? global.formatExportMoney(priceInfo.finalPrice) : String(priceInfo.finalPrice || 0);
+            const workspace = typeof global.getExportWorkspaceContext === 'function' ? global.getExportWorkspaceContext() : { priceMode: 'direct' };
+            const exportPriceMode = typeof global.getCurrentExportPriceMode === 'function' ? global.getCurrentExportPriceMode() : 'total';
+            if (workspace.priceMode === 'balance' && exportPriceMode === 'adjust') {
+                const basePrice = typeof global.formatExportMoney === 'function' ? global.formatExportMoney(priceInfo.basePrice) : String(priceInfo.basePrice || 0);
+                const adjust = typeof global.formatExportSignedMoney === 'function' ? global.formatExportSignedMoney(priceInfo.adjust) : String(priceInfo.adjust || 0);
+                    priceClass += ' is-adjust';
+                    priceContent = `<strong>¥${escapeHtml(price)}</strong><small>均 ¥${escapeHtml(basePrice)} · 调 ${escapeHtml(adjust)}</small>`;
+            } else {
+                    priceContent = `¥${escapeHtml(price)}`;
+                }
+            }
+            labels.push(renderIndependentAutoLabel({
+                id: `${labelId}:price`, type: 'price', labelName: `${productNameText} · 价格`,
+                left, top: top + height, anchorX: 0, anchorY: 100, defaultZ: baseZ + 3,
+                className: priceClass, content: priceContent
+            }));
+            labels.push(renderIndependentAutoLabel({
+                id: `${labelId}:stock`, type: 'stock', labelName: `${productNameText} · 余量`,
+                left: left + width, top: top + height, anchorX: 100, anchorY: 100, defaultZ: baseZ + 4,
+                className: 'plate-map-auto-stock', content: `余 ${surplus}`
+            }));
+        }
+
+        return `<div class="plate-map-auto-marker ${soldOut ? 'sold-out' : 'available'}" style="left:${left}%;top:${top}%;width:${width}%;height:${height}%" title="${productName}"></div>${labels.join('')}`;
+    }
+
+    function renderIndependentAutoLabel({ id, type, labelName, left, top, anchorX, anchorY, defaultZ, className, content }) {
+        const adjustment = getAutoLabelAdjustment(id);
+        const adjustedLeft = clamp(left + Number(adjustment.offsetX || 0), 0, 100);
+        const adjustedTop = clamp(top + Number(adjustment.offsetY || 0), 0, 100);
+        const scale = clamp(Number(adjustment.scale || 1), MIN_LABEL_SCALE, MAX_LABEL_SCALE);
+        const z = getStoredLabelZ(adjustment.z, defaultZ);
+        return `<div class="plate-map-auto-label ${className}${id === state.selectedAutoLabelId ? ' selected' : ''}"
+            data-label-kind="auto" data-label-type="${escapeHtml(type)}" data-label-id="${escapeHtml(id)}" data-label-name="${escapeHtml(labelName)}"
+            data-base-left="${left}" data-base-top="${top}" data-default-z="${defaultZ}"
+            style="left:${adjustedLeft}%;top:${adjustedTop}%;--plate-map-label-anchor-x:-${anchorX}%;--plate-map-label-anchor-y:-${anchorY}%;--plate-map-label-scale:${scale};z-index:${z}" title="${escapeHtml(labelName)}">
+            ${content}
+            <button class="plate-map-label-resize-handle" type="button" data-label-resize aria-label="拖动调整标签大小" title="拖动调整大小"></button>
+        </div>`;
+    }
+
+    function resetPlateMapZoom() {
+        const previewContainer = document.getElementById('previewContainer');
+        const availableWidth = Math.max(320, (previewContainer?.parentElement?.clientWidth || window.innerWidth) - 36);
+        if (isPlateMapCollageMode()) {
+            state.previewScale = 1;
+            applyPlateMapCollageZoom(availableWidth);
+            const display = document.querySelector('.zoom-display');
+            if (display) display.textContent = '100%';
+            return;
+        }
+        const scale = Math.max(0.3, Math.min(1, availableWidth / 1080));
+        state.previewScale = scale;
+        document.querySelectorAll('.stock-grid-preview').forEach(sheet => {
+            setPlateMapPreviewScale(sheet, scale);
+        });
+        syncPlateMapPageWidths();
+        const display = document.querySelector('.zoom-display');
+        if (display) display.textContent = `${Math.round(scale * 100)}%`;
+    }
+
+    function syncPlateMapPageWidths() {
+        if (isPlateMapCollageMode()) return;
+        document.querySelectorAll('.plate-map-preview-page').forEach(page => {
+            const sheet = page.querySelector('.plate-map-preview');
+            if (!sheet) return;
+            const scale = getPlateMapPreviewScale(sheet);
+            const size = setPlateMapPreviewScale(sheet, scale);
+            page.style.width = `${size.width}px`;
+            page.style.height = 'auto';
+        });
+    }
+
+    function getPlateMapPreviewScale(sheet) {
+        const stage = sheet?.closest('.plate-map-preview-stage');
+        return Math.max(0.01, Number.parseFloat(stage?.dataset.previewScale) || 1);
+    }
+
+    function setPlateMapPreviewScale(sheet, scale) {
+        const normalizedScale = Math.max(0.01, Number(scale) || 1);
+        const viewport = sheet?.closest('.plate-map-preview-viewport');
+        const stage = sheet?.closest('.plate-map-preview-stage');
+        const width = Math.max(1, Math.round((sheet?.offsetWidth || 1) * normalizedScale));
+        const height = Math.max(1, Math.round((sheet?.offsetHeight || 1) * normalizedScale));
+        if (!viewport || !stage) return { width, height };
+        sheet.style.zoom = '1';
+        stage.dataset.previewScale = String(normalizedScale);
+        stage.style.transform = normalizedScale === 1 ? 'none' : `scale(${normalizedScale})`;
+        viewport.style.width = `${width}px`;
+        viewport.style.height = `${height}px`;
+        return { width, height };
+    }
+
+    function applyPlateMapCollageZoom(baseAvailableWidth) {
+        const previewContainer = document.getElementById('previewContainer');
+        const availableWidth = Math.max(280, Number(baseAvailableWidth || ((previewContainer?.parentElement?.clientWidth || window.innerWidth) - 36)));
+        const targetWidth = Math.max(280, Math.round(availableWidth * state.previewScale));
+        document.querySelectorAll('.plate-map-collage-preview').forEach(section => {
+            section.style.width = `${targetWidth}px`;
+            section.querySelectorAll('.plate-map-collage-preview-row').forEach(row => {
+                const pages = Array.from(row.querySelectorAll(':scope > .plate-map-preview-page'));
+                const measurements = pages.map(page => {
+                    const sheet = page.querySelector('.plate-map-preview');
+                    if (!sheet) return null;
+                    page.style.width = 'auto';
+                    page.style.height = 'auto';
+                    const width = Math.max(sheet.offsetWidth, 1);
+                    const height = Math.max(sheet.offsetHeight, 1);
+                    return { page, sheet, width, height, aspect: width / height };
+                }).filter(Boolean);
+                const aspectTotal = measurements.reduce((sum, item) => sum + item.aspect, 0) || 1;
+                const rowHeight = targetWidth / aspectTotal;
+                let usedWidth = 0;
+                measurements.forEach((item, index) => {
+                    const scale = rowHeight / item.height;
+                    const size = setPlateMapPreviewScale(item.sheet, scale);
+                    const pageWidth = index === measurements.length - 1
+                        ? Math.max(1, targetWidth - usedWidth)
+                        : size.width;
+                    item.page.style.width = `${pageWidth}px`;
+                    item.page.style.height = `${size.height}px`;
+                    usedWidth += pageWidth;
+                });
+                row.style.width = `${targetWidth}px`;
+                row.style.height = `${Math.max(1, Math.round(rowHeight))}px`;
+            });
+        });
+    }
+
+    function getPlateMapSheets() {
+        return Array.from(document.querySelectorAll('#stockPreviewGrid .plate-map-preview'));
+    }
+
+    function sanitizeFilePart(value, fallback = '') {
+        let text = String(value || '');
+        try {
+            text = decodeURIComponent(text);
+        } catch (error) {
+            // Keep the original text when a source name is not URI encoded.
+        }
+        return text
+            .replace(/\.[a-z0-9]{2,5}$/i, '')
+            .replace(/[\\/:*?"<>|]/g, '-')
+            .replace(/\s+/g, ' ')
+            .trim() || fallback;
+    }
+
+    function getPlateMapPageFileName(sheet, index, quality = state.exportQuality) {
+        const page = String(index + 1).padStart(2, '0');
+        const sourceName = sanitizeFilePart(sheet?.dataset.sourceName, `第${page}张`);
+        const isLossless = quality === 'lossless';
+        return `${getPlateMapFileBaseName()}-${page}-${sourceName}-${isLossless ? '无损' : '高清'}.${isLossless ? 'png' : 'jpg'}`;
+    }
+
+    async function renderPlateMapSheetCanvas(sheet, scale = 2, portableOptions = {}) {
+        if (typeof global.html2canvas !== 'function') throw new Error('高清图片组件没有加载成功');
+        if (typeof global.createExportRenderClone !== 'function') throw new Error('导出组件没有加载完整');
+        const { host, clone } = global.createExportRenderClone(sheet);
+        try {
+            clone.style.zoom = '1';
+            const fallbackCount = typeof global.makeExportImagesPortable === 'function'
+                ? await global.makeExportImagesPortable(clone, portableOptions)
+                : 0;
+            await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+            const rect = clone.getBoundingClientRect();
+            const width = Math.ceil(rect.width);
+            const height = Math.ceil(rect.height);
+            const canvas = await global.html2canvas(clone, {
+                scale,
+                backgroundColor: null,
+                useCORS: true,
+                allowTaint: false,
+                logging: false,
+                width,
+                height,
+                windowWidth: width,
+                windowHeight: height,
+                scrollX: 0,
+                scrollY: 0
+            });
+            return { canvas, fallbackCount };
+        } finally {
+            host.remove();
+        }
+    }
+
+    async function downloadPlateMapPage(index, button) {
+        const sheet = getPlateMapSheets()[index];
+        if (!sheet || button?.disabled) return;
+        const isLossless = state.exportQuality === 'lossless';
+        const format = isLossless ? 'PNG' : 'JPG';
+        const originalLabel = button?.textContent || `下载这张 ${format}`;
+        if (button) {
+            button.disabled = true;
+            button.textContent = '正在生成...';
+        }
+        try {
+            const { canvas, fallbackCount } = await renderPlateMapSheetCanvas(sheet, 2, isLossless
+                ? { preserveOriginal: true }
+                : {
+                    maxDimension: 3600,
+                    maxPixels: 10000000,
+                    maxBytes: 6000000,
+                    quality: 0.97
+                });
+            const outputCanvas = isLossless ? canvas : optimizePlateMapCollageCanvas(canvas);
+            const blob = isLossless
+                ? await global.canvasToPngBlob(outputCanvas)
+                : await canvasToShareJpegBlob(outputCanvas);
+            global.triggerExportDownload(blob, getPlateMapPageFileName(sheet, index));
+            global.notifyExport?.(`已下载第 ${index + 1} 张整盘标价图${fallbackCount ? '，外链原图读取失败时已使用占位图' : ''}`);
+        } catch (error) {
+            console.error('单张整盘标价图下载失败:', error);
+            alert(`这张整盘标价图生成失败：${error?.message || '浏览器没有完成图片渲染'}`);
+        } finally {
+            if (button) {
+                button.disabled = false;
+                button.textContent = originalLabel;
+            }
+            document.querySelectorAll('.export-render-host').forEach(host => host.remove());
+        }
+    }
+
+    async function downloadPlateMapCollage(index, button) {
+        const sheets = getPlateMapSheets();
+        const columns = getPlateMapCollageColumns();
+        const pageSize = columns * columns;
+        const label = columns === 3 ? '九宫格' : '四宫格';
+        const collageIndex = Math.max(0, Math.floor(Number(index) || 0));
+        const groupSheets = sheets.slice(collageIndex * pageSize, (collageIndex + 1) * pageSize);
+        if (!groupSheets.length || button?.disabled) return;
+
+        const isLossless = state.exportQuality === 'lossless';
+        const format = isLossless ? 'PNG' : 'JPG';
+        const originalLabel = button?.textContent || `下载这张 ${format}`;
+        if (button) {
+            button.disabled = true;
+            button.textContent = '正在生成...';
+        }
+
+        try {
+            const renderScale = isLossless ? 1 : 4 / 3;
+            const portableOptions = isLossless
+                ? { preserveOriginal: true }
+                : {
+                    maxDimension: 3200,
+                    maxPixels: 9000000,
+                    maxBytes: 5000000,
+                    quality: 0.97
+                };
+            const rendered = [];
+            let fallbackCount = 0;
+            for (const sheet of groupSheets) {
+                const result = await renderPlateMapSheetCanvas(sheet, renderScale, portableOptions);
+                rendered.push(result.canvas);
+                fallbackCount += result.fallbackCount;
+            }
+
+            const composedCanvas = composePlateMapCanvases(rendered, columns);
+            const collageCanvas = isLossless ? composedCanvas : optimizePlateMapCollageCanvas(composedCanvas);
+            const collageCount = Math.ceil(sheets.length / pageSize);
+            const suffix = collageCount > 1 ? `-${String(collageIndex + 1).padStart(2, '0')}` : '';
+            const fileName = `${getPlateMapFileBaseName()}-${label}-${isLossless ? '无损' : '高清'}${suffix}.${isLossless ? 'png' : 'jpg'}`;
+            const blob = isLossless
+                ? await global.canvasToPngBlob(collageCanvas)
+                : await canvasToShareJpegBlob(collageCanvas);
+            global.triggerExportDownload(blob, fileName);
+            global.notifyExport?.(`已下载第 ${collageIndex + 1} 张${label}${fallbackCount ? `，${fallbackCount} 张外链原图读取失败时已使用占位图` : ''}`);
+        } catch (error) {
+            console.error('单张整盘拼图下载失败:', error);
+            alert(`这张拼图生成失败：${error?.message || '浏览器没有完成图片渲染'}`);
+        } finally {
+            if (button) {
+                button.disabled = false;
+                button.textContent = originalLabel;
+            }
+            document.querySelectorAll('.export-render-host').forEach(host => host.remove());
+        }
+    }
+
+    function composePlateMapCanvases(canvases, columns) {
+        const actualColumns = Math.min(columns, canvases.length);
+        const targetWidth = Math.max(...canvases.map(canvas => canvas.width)) * actualColumns;
+        const rows = [];
+        for (let start = 0; start < canvases.length; start += actualColumns) {
+            const rowCanvases = canvases.slice(start, start + actualColumns);
+            const aspectTotal = rowCanvases.reduce((sum, canvas) => sum + (canvas.width / canvas.height), 0);
+            rows.push({
+                canvases: rowCanvases,
+                height: Math.max(1, Math.round(targetWidth / aspectTotal))
+            });
+        }
+        const output = document.createElement('canvas');
+        output.width = targetWidth;
+        output.height = rows.reduce((sum, row) => sum + row.height, 0);
+        const context = output.getContext('2d');
+        context.clearRect(0, 0, output.width, output.height);
+        let y = 0;
+        rows.forEach(row => {
+            let x = 0;
+            row.canvases.forEach((canvas, index) => {
+                const width = index === row.canvases.length - 1
+                    ? output.width - x
+                    : Math.max(1, Math.round((canvas.width / canvas.height) * row.height));
+                context.drawImage(canvas, x, y, width, row.height);
+                x += width;
+            });
+            y += row.height;
+        });
+        return output;
+    }
+
+    function optimizePlateMapCollageCanvas(canvas) {
+        const width = Math.max(Number(canvas?.width || 0), 1);
+        const height = Math.max(Number(canvas?.height || 0), 1);
+        const scale = Math.min(
+            1,
+            COLLAGE_MAX_WIDTH / width,
+            COLLAGE_MAX_HEIGHT / height,
+            Math.sqrt(COLLAGE_MAX_PIXELS / (width * height))
+        );
+        const output = document.createElement('canvas');
+        output.width = Math.max(1, Math.round(width * scale));
+        output.height = Math.max(1, Math.round(height * scale));
+        const context = output.getContext('2d', { alpha: false });
+        if (!context) throw new Error('浏览器无法创建压缩画布');
+        context.fillStyle = '#ffffff';
+        context.fillRect(0, 0, output.width, output.height);
+        context.imageSmoothingEnabled = true;
+        context.imageSmoothingQuality = 'high';
+        context.drawImage(canvas, 0, 0, output.width, output.height);
+        return output;
+    }
+
+    function canvasToShareJpegBlob(canvas) {
+        return new Promise((resolve, reject) => {
+            canvas.toBlob(blob => {
+                if (!blob) {
+                    reject(new Error('浏览器没有生成压缩图片'));
+                    return;
+                }
+                resolve(blob);
+            }, 'image/jpeg', COLLAGE_JPEG_QUALITY);
+        });
+    }
+
+    async function downloadCardGridSelection() {
+        const previewContainer = document.getElementById('previewContainer');
+        const previewGrid = document.getElementById('stockPreviewGrid');
+        const downloadButton = document.querySelector('.download-btn');
+        const sheets = Array.from(previewGrid?.querySelectorAll('.stock-grid-preview') || []);
+        if (!previewContainer?.classList.contains('visible') || !sheets.length) {
+            alert('请先生成卡片余量图预览。');
+            return;
+        }
+        if (downloadButton?.disabled || typeof global.html2canvas !== 'function') return;
+
+        const isLossless = state.exportQuality === 'lossless';
+        const formatLabel = isLossless ? 'PNG' : 'JPG';
+        const extension = isLossless ? 'png' : 'jpg';
+        const fileBaseName = originalGetExportFileBaseName?.apply(global) || '余量图';
+        if (downloadButton) {
+            downloadButton.disabled = true;
+            downloadButton.classList.add('is-loading');
+            downloadButton.textContent = '正在生成...';
+        }
+
+        try {
+            let fallbackCount = 0;
+            const files = [];
+            for (let index = 0; index < sheets.length; index++) {
+                const { host, clone } = global.createExportRenderClone(sheets[index]);
+                try {
+                    fallbackCount += await global.makeExportImagesPortable(clone, isLossless
+                        ? { preserveOriginal: true }
+                        : {
+                            maxDimension: 2400,
+                            maxPixels: 6000000,
+                            maxBytes: 3500000,
+                            quality: 0.94
+                        });
+                    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+                    const width = Math.ceil(clone.getBoundingClientRect().width);
+                    const height = Math.ceil(clone.getBoundingClientRect().height);
+                    const canvas = await global.html2canvas(clone, {
+                        scale: 2,
+                        backgroundColor: '#f4f7fb',
+                        useCORS: true,
+                        allowTaint: false,
+                        logging: false,
+                        width,
+                        height,
+                        windowWidth: width,
+                        windowHeight: height,
+                        scrollX: 0,
+                        scrollY: 0
+                    });
+                    const suffix = sheets.length > 1 ? `-${index + 1}` : '';
+                    files.push({
+                        name: `${fileBaseName}${suffix}.${extension}`,
+                        blob: isLossless ? await global.canvasToPngBlob(canvas) : await canvasToShareJpegBlob(canvas)
+                    });
+                } finally {
+                    host.remove();
+                }
+            }
+
+            const delivery = await global.downloadExportFiles(files, `${fileBaseName}-${files.length}张.zip`);
+            const deliveryMessage = delivery.mode === 'zip'
+                ? '，已打包为 ZIP'
+                : delivery.mode === 'individual'
+                    ? '，已逐张开始下载'
+                    : '';
+            const fallbackMessage = fallbackCount ? `，${fallbackCount} 张外链图片读取失败时已使用占位图` : '';
+            global.notifyExport?.(`已生成 ${files.length} 张${isLossless ? '无损' : '高清'} ${formatLabel} 卡片余量图${deliveryMessage}${fallbackMessage}`);
+        } catch (error) {
+            console.error('卡片余量图下载失败:', error);
+            alert(`卡片余量图生成失败：${error?.message || '浏览器没有完成图片渲染'}。`);
+        } finally {
+            document.querySelectorAll('.export-render-host').forEach(host => host.remove());
+            if (downloadButton) {
+                downloadButton.disabled = false;
+                downloadButton.classList.remove('is-loading');
+            }
+            updatePlateMapDownloadLabel();
+        }
+    }
+
+    async function downloadPlateMapSelection() {
+        const sheets = getPlateMapSheets();
+        const downloadButton = document.querySelector('.download-btn');
+        if (!sheets.length) {
+            alert('请先生成整盘标价图预览。');
+            return;
+        }
+        if (downloadButton?.disabled || typeof global.html2canvas !== 'function') return;
+        const previewIsCollage = state.exportMode === 'grid4' || state.exportMode === 'grid9';
+        const previewColumns = state.exportMode === 'grid9' ? 3 : 2;
+        const expectedFileCount = previewIsCollage
+            ? Math.ceil(sheets.length / (previewColumns * previewColumns))
+            : sheets.length;
+        if (previewIsCollage && expectedFileCount > 1) {
+            const choice = await choosePlateMapMultiSaveMode(expectedFileCount);
+            if (!choice) return;
+        }
+        const originalLabel = downloadButton?.textContent || '下载全部';
+        if (downloadButton) {
+            downloadButton.disabled = true;
+            downloadButton.classList.add('is-loading');
+            downloadButton.textContent = '正在生成...';
+        }
+        try {
+            const isCollage = state.exportMode === 'grid4' || state.exportMode === 'grid9';
+            const isLossless = state.exportQuality === 'lossless';
+            const columns = state.exportMode === 'grid9' ? 3 : 2;
+            const pageSize = columns * columns;
+            const renderScale = isCollage ? (isLossless ? 1 : 4 / 3) : 2;
+            const portableOptions = isLossless
+                ? { preserveOriginal: true }
+                : {
+                    maxDimension: 3200,
+                    maxPixels: 9000000,
+                    maxBytes: 5000000,
+                    quality: 0.97
+                };
+            const rendered = [];
+            let fallbackCount = 0;
+            for (const sheet of sheets) {
+                const result = await renderPlateMapSheetCanvas(sheet, renderScale, portableOptions);
+                rendered.push(result.canvas);
+                fallbackCount += result.fallbackCount;
+            }
+
+            const files = [];
+            if (isCollage) {
+                const label = state.exportMode === 'grid9' ? '九宫格' : '四宫格';
+                const pageCount = Math.ceil(rendered.length / pageSize);
+                for (let start = 0; start < rendered.length; start += pageSize) {
+                    const pageIndex = Math.floor(start / pageSize);
+                    const suffix = pageCount > 1 ? `-${String(pageIndex + 1).padStart(2, '0')}` : '';
+                    const composedCanvas = composePlateMapCanvases(rendered.slice(start, start + pageSize), columns);
+                    const collageCanvas = isLossless ? composedCanvas : optimizePlateMapCollageCanvas(composedCanvas);
+                    files.push({
+                        name: `${getPlateMapFileBaseName()}-${label}-${isLossless ? '无损' : '高清'}${suffix}.${isLossless ? 'png' : 'jpg'}`,
+                        blob: isLossless
+                            ? await global.canvasToPngBlob(collageCanvas)
+                            : await canvasToShareJpegBlob(collageCanvas)
+                    });
+                }
+            } else {
+                for (let index = 0; index < rendered.length; index++) {
+                    const outputCanvas = isLossless ? rendered[index] : optimizePlateMapCollageCanvas(rendered[index]);
+                    files.push({
+                        name: getPlateMapPageFileName(sheets[index], index),
+                        blob: isLossless
+                            ? await global.canvasToPngBlob(outputCanvas)
+                            : await canvasToShareJpegBlob(outputCanvas)
+                    });
+                }
+            }
+
+            const packageLabel = isCollage ? `${state.exportMode === 'grid9' ? '九宫格' : '四宫格'}-${files.length}张` : `${files.length}张`;
+            const delivery = await global.downloadExportFiles(files, `${getPlateMapFileBaseName()}-${packageLabel}.zip`);
+            const modeLabel = isCollage ? (state.exportMode === 'grid9' ? '九宫格' : '四宫格') : '分张图片';
+            const shareMessage = isLossless
+                ? '，已生成无损 PNG'
+                : '，已生成高清 JPG';
+            const deliveryMessage = delivery.mode === 'zip'
+                ? '，已打包为 ZIP'
+                : delivery.mode === 'individual'
+                    ? '，已逐张开始下载'
+                    : '';
+            global.notifyExport?.(`已生成 ${modeLabel}${shareMessage}${deliveryMessage}${fallbackCount ? `，${fallbackCount} 张外链原图读取失败时已使用占位图` : ''}`);
+        } catch (error) {
+            console.error('整盘标价图下载失败:', error);
+            alert(`整盘标价图生成失败：${error?.message || '浏览器没有完成图片渲染'}`);
+        } finally {
+            document.querySelectorAll('.export-render-host').forEach(host => host.remove());
+            if (downloadButton) {
+                downloadButton.disabled = false;
+                downloadButton.classList.remove('is-loading');
+                downloadButton.textContent = originalLabel;
+            }
+            updatePlateMapDownloadLabel();
+        }
+    }
+
+    function getPlateMapFileBaseName() {
+        const workspace = typeof global.getExportWorkspaceContext === 'function'
+            ? global.getExportWorkspaceContext()
+            : { groupName: '当前团', plateName: '当前盘' };
+        return `${workspace.groupName}-${workspace.plateName}-整盘标价图`
+            .replace(/[\\/:*?"<>|]/g, '-')
+            .replace(/\s+/g, ' ')
+            .trim() || '整盘标价图';
+    }
+
+    function escapeHtml(value) {
+        if (typeof global.escapeExportHtml === 'function') return global.escapeExportHtml(value);
+        return String(value ?? '').replace(/[&<>"']/g, char => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+        }[char]));
+    }
+
+    function escapeSelector(value) {
+        const text = String(value || '');
+        if (global.CSS?.escape) return global.CSS.escape(text);
+        return text.replace(/[\\"]/g, '\\$&');
+    }
+
+    function clamp(value, minimum, maximum) {
+        return Math.min(Math.max(Number(value) || 0, minimum), maximum);
+    }
+
+    function normalizeColor(value, fallback) {
+        return /^#[0-9a-f]{6}$/i.test(String(value || '')) ? String(value) : fallback;
+    }
+
+    global.setExportLayoutMode = setExportLayoutMode;
+    global.setPlateMapExportMode = setPlateMapExportMode;
+    global.setPlateMapExportQuality = setPlateMapExportQuality;
+    global.setExportMultiSaveMode = setExportMultiSaveMode;
+    global.getExportMultiSaveMode = () => state.multiSaveMode;
+    global.choosePlateMapMultiSaveMode = choosePlateMapMultiSaveMode;
+    global.previewStockGrid = function () {
+        if (typeof global.syncExportPriceModeForPlate === 'function') global.syncExportPriceModeForPlate();
+        if (state.layout === 'plate') {
+            return renderPlateMapPreview().catch(error => {
+                showPlateMapPreviewError(error);
+                return null;
+            });
+        }
+        document.getElementById('stockPreviewGrid')?.classList.remove('sticker-edit-mode');
+        return originalPreviewStockGrid.apply(this, arguments);
+    };
+    global.resetPreviewZoom = function () {
+        if (state.layout === 'plate') return resetPlateMapZoom();
+        return originalResetPreviewZoom?.apply(this, arguments);
+    };
+    global.zoomPreview = function () {
+        if (state.layout !== 'plate') return originalZoomPreview?.apply(this, arguments);
+        if (isPlateMapCollageMode()) {
+            state.previewScale = clamp(state.previewScale + Number(arguments[0] || 0), 0.5, 2);
+            applyPlateMapCollageZoom();
+            const display = document.querySelector('.zoom-display');
+            if (display) display.textContent = `${Math.round(state.previewScale * 100)}%`;
+            return;
+        }
+        state.previewScale = clamp(state.previewScale + Number(arguments[0] || 0), 0.3, 2);
+        document.querySelectorAll('.plate-map-preview').forEach(sheet => {
+            setPlateMapPreviewScale(sheet, state.previewScale);
+        });
+        syncPlateMapPageWidths();
+        const display = document.querySelector('.zoom-display');
+        if (display) display.textContent = `${Math.round(state.previewScale * 100)}%`;
+    };
+    global.getExportFileBaseName = function () {
+        if (state.layout === 'plate') return getPlateMapFileBaseName();
+        return originalGetExportFileBaseName?.apply(this, arguments) || '余量图';
+    };
+    global.downloadStockGridPng = function () {
+        if (state.layout === 'plate') return downloadPlateMapSelection();
+        return downloadCardGridSelection();
+    };
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
+    else init();
+})(window);
