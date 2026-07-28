@@ -1,0 +1,94 @@
+.client-shell-ready .stock-card {
+    height: 344px;
+}
+
+.client-shell-ready .card-front .stock-card-meta {
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.client-shell-ready .card-front .stock-card-availability {
+    min-width: 0;
+    display: grid;
+    justify-items: start;
+    gap: 7px;
+}
+
+.client-shell-ready .card-front .stock-num {
+    width: auto;
+    margin: 0;
+    color: var(--cs-teal);
+    font: 900 25px/1 Bahnschrift, sans-serif;
+    text-align: left;
+}
+
+.client-shell-ready .card-front .stock-status {
+    align-self: flex-start;
+    margin: 0;
+}
+
+.client-shell-ready .card-front .price-info {
+    min-width: 88px;
+    display: grid;
+    justify-items: end;
+    gap: 4px;
+    margin: 0 0 1px auto;
+    padding: 2px 0 3px 13px;
+    color: var(--cs-text);
+    border-top: 0;
+    border-left: 1px solid var(--cs-border);
+    text-align: right;
+}
+
+.client-shell-ready .card-front .price-info span {
+    color: var(--cs-muted);
+    font-size: 9px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.client-shell-ready .card-front .price-info strong {
+    color: var(--cs-blue);
+    font: 900 20px/1 Bahnschrift, sans-serif;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+@media (max-width: 620px) {
+    .client-shell-ready .stock-card {
+        height: 292px;
+    }
+
+    .client-shell-ready .card-front .stock-card-meta {
+        gap: 7px;
+        margin-top: 8px;
+    }
+
+    .client-shell-ready .card-front .stock-card-availability {
+        gap: 6px;
+    }
+
+    .client-shell-ready .card-front .stock-num {
+        font-size: 22px;
+    }
+
+    .client-shell-ready .card-front .price-info {
+        min-width: 72px;
+        padding-left: 9px;
+    }
+
+    .client-shell-ready .card-front .price-info strong {
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 390px) {
+    .client-shell-ready .stock-card {
+        height: 284px;
+    }
+}
