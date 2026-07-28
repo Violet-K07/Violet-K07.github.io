@@ -1,0 +1,39 @@
+{
+  "name": "shu2w+盘用户端",
+  "short_name": "shu2w+盘",
+  "description": "shu2w+盘余量、认领、结算与到货排发查询",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4a90e2",
+  "orientation": "portrait",
+  "scope": "./",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "排谷认领",
+      "short_name": "排谷",
+      "description": "快速认领谷子",
+      "url": "./index.html?page=stock"
+    },
+    {
+      "name": "结算统计",
+      "short_name": "结算",
+      "description": "查看个人结算统计",
+      "url": "./index.html?page=summary"
+    }
+  ],
+  "categories": ["productivity", "utilities"]
+}
