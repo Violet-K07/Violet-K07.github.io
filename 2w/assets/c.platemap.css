@@ -138,6 +138,37 @@
     line-height: 1.45;
 }
 .plate-map-custom-dialog-body p.is-error { color: #a13b32; background: #fff3f1; border-left-color: #c44a3f; }
+.plate-map-custom-grid-summary {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow: hidden;
+    background: #f8fafc;
+    border: 1px solid #d8e2ee;
+    border-left: 3px solid #2468d8;
+    border-radius: 6px;
+}
+.plate-map-custom-grid-metric {
+    min-width: 0;
+    display: grid;
+    gap: 3px;
+    padding: 9px 10px;
+}
+.plate-map-custom-grid-metric:nth-child(odd) { border-right: 1px solid #dfe7f0; }
+.plate-map-custom-grid-metric:nth-child(n + 3) { border-top: 1px solid #dfe7f0; }
+.plate-map-custom-grid-metric span {
+    color: #718196;
+    font-size: 9px;
+    font-weight: 800;
+}
+.plate-map-custom-grid-metric strong {
+    min-width: 0;
+    color: #304b67;
+    font: 900 12px/1.35 Bahnschrift, "Noto Sans SC", sans-serif;
+    overflow-wrap: anywhere;
+}
+.plate-map-custom-grid-metric.is-recommended { background: #eef5ff; }
+.plate-map-custom-grid-metric.is-recommended strong { color: #1f5fbd; }
+.plate-map-custom-grid-metric.is-error strong { color: #a13b32; }
 .plate-map-custom-dialog-actions {
     display: grid;
     grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
@@ -156,6 +187,43 @@
 }
 .plate-map-custom-dialog-actions button.primary { color: #fff; background: #2468d8; border-color: #2468d8; }
 .plate-map-custom-dialog-actions button:disabled { cursor: not-allowed; opacity: .45; }
+.plate-map-reset-dialog-intro {
+    min-height: 0 !important;
+    margin: 0 !important;
+    color: #526579 !important;
+    background: #f4f7fb !important;
+    border-left-color: #7994b3 !important;
+}
+.plate-map-reset-dialog-list {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.plate-map-reset-dialog-list li {
+    position: relative;
+    min-height: 34px;
+    display: flex;
+    align-items: center;
+    padding: 8px 10px 8px 34px;
+    color: #304b67;
+    background: #fff;
+    border: 1px solid #dde6f0;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 800;
+}
+.plate-map-reset-dialog-list li::before {
+    content: "";
+    position: absolute;
+    left: 12px;
+    width: 9px;
+    height: 9px;
+    background: #d98223;
+    border-radius: 2px;
+}
+.plate-map-reset-dialog .plate-map-custom-dialog-actions button.primary { background: #b64b40; border-color: #b64b40; }
 .client-shell-ready .plate-map-quality-label {
     display: inline-flex;
     align-items: center;
@@ -463,12 +531,16 @@
     width: 100%;
     min-width: 0;
     height: 28px;
-    padding: 0 2px 0 6px;
+    padding: 0 5px 0 7px;
     color: #17324f;
     background: transparent;
     border: 0;
     font: 900 11px/1 Bahnschrift, sans-serif;
     text-align: right;
+}
+.client-shell-ready .plate-map-selected-label-size-number:focus-within {
+    border-color: #2468d8;
+    box-shadow: 0 0 0 3px rgba(36, 104, 216, .13);
 }
 .client-shell-ready .plate-map-selected-label-size-number b { color: #60758c; font-size: 9px; }
 .client-shell-ready .plate-map-label-editor-actions { min-width: 0; display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 6px; }
@@ -554,12 +626,38 @@
     width: 100%;
     min-width: 0;
     min-height: 30px;
-    padding: 0 2px 0 6px;
+    padding: 0 5px 0 7px;
     color: var(--cs-text);
     background: transparent;
     border: 0;
     font: 800 11px/1 Bahnschrift, sans-serif;
     text-align: right;
+}
+.client-shell-ready .plate-map-size-number:focus-within {
+    border-color: #2468d8;
+    box-shadow: 0 0 0 3px rgba(36, 104, 216, .13);
+}
+
+.client-shell-ready .plate-map-size-number input[type="number"],
+.client-shell-ready .plate-map-selected-label-size-number input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+    outline: 0;
+    box-shadow: none !important;
+}
+
+.client-shell-ready .plate-map-size-number input[type="number"]:focus,
+.client-shell-ready .plate-map-selected-label-size-number input[type="number"]:focus {
+    border-color: transparent;
+    box-shadow: none !important;
+}
+
+.client-shell-ready .plate-map-size-number input[type="number"]::-webkit-inner-spin-button,
+.client-shell-ready .plate-map-size-number input[type="number"]::-webkit-outer-spin-button,
+.client-shell-ready .plate-map-selected-label-size-number input[type="number"]::-webkit-inner-spin-button,
+.client-shell-ready .plate-map-selected-label-size-number input[type="number"]::-webkit-outer-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
 }
 .client-shell-ready .plate-map-name-toggle {
     min-height: 36px;
@@ -708,6 +806,13 @@
     box-shadow: inset 0 0 0 1px rgba(217, 130, 35, .15);
 }
 .client-shell-ready .plate-map-tool-button.danger { color: #aa4338; }
+.client-shell-ready .plate-map-reset-all-button {
+    margin-left: auto;
+    color: #9d3b32;
+    background: #fff7f5;
+    border-color: #e3b6b1;
+}
+.client-shell-ready .plate-map-reset-all-button:hover:not(:disabled) { color: #fff; background: #b64b40; border-color: #b64b40; }
 .client-shell-ready .plate-map-tool-button:disabled { cursor: not-allowed; opacity: .42; }
 .client-shell-ready #plateMapStickerSize { min-width: 42px; color: #17324f; font: 800 10px/1 Bahnschrift, sans-serif; text-align: center; }
 
@@ -1171,6 +1276,7 @@
     .client-shell-ready .plate-map-sticker-actions { display: grid; grid-template-columns: 1fr; gap: 8px; }
     .client-shell-ready .plate-map-global-size,
     .client-shell-ready .plate-map-label-size { flex-basis: 100%; min-width: 0; max-width: none; }
+    .client-shell-ready .plate-map-reset-all-button { width: 100%; margin-left: 0; }
     .client-shell-ready .plate-map-name-toggle { flex: 1 1 auto; justify-content: center; }
     .client-shell-ready .plate-map-selected-size { flex: 1 1 auto; justify-content: center; }
     .client-shell-ready .plate-map-sticker-management { width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }

@@ -67,6 +67,11 @@
     function init() {
         if (state.initialized || typeof originalPreviewStockGrid !== 'function') return;
         state.initialized = true;
+        const printButton = document.querySelector('.print-btn');
+        if (printButton) {
+            printButton.textContent = '打印 PDF';
+            printButton.setAttribute('aria-label', '打印 PDF');
+        }
         loadCustomGridSize();
         injectLayoutControl();
         bindEditorEvents();
@@ -135,7 +140,7 @@
                             <input id="plateMapCustomRows" type="number" min="1" max="${MAX_CUSTOM_GRID_DIMENSION}" step="1" inputmode="numeric" value="${state.customGridRows}">
                         </label>
                     </div>
-                    <p id="plateMapCustomGridSummary"></p>
+                    <div class="plate-map-custom-grid-summary" id="plateMapCustomGridSummary" aria-live="polite"></div>
                 </div>
                 <footer class="plate-map-custom-dialog-actions">
                     <button type="button" data-custom-grid-action="cancel">取消</button>
@@ -277,6 +282,7 @@
                 <label class="plate-map-global-size plate-map-label-size"><span>谷名标签大小</span><input id="plateMapNameLabelSize" type="range" min="7" max="24" step="1" value="${DEFAULT_NAME_LABEL_SIZE}"><span class="plate-map-size-number"><input id="plateMapNameLabelSizeNumber" type="number" min="7" max="24" step="1" value="${DEFAULT_NAME_LABEL_SIZE}" inputmode="numeric" aria-label="谷名标签大小数值"><span>px</span></span></label>
                 <label class="plate-map-global-size plate-map-label-size"><span>余量标签大小</span><input id="plateMapStockLabelSize" type="range" min="7" max="24" step="1" value="${DEFAULT_STOCK_LABEL_SIZE}"><span class="plate-map-size-number"><input id="plateMapStockLabelSizeNumber" type="number" min="7" max="24" step="1" value="${DEFAULT_STOCK_LABEL_SIZE}" inputmode="numeric" aria-label="余量标签大小数值"><span>px</span></span></label>
                 <label class="plate-map-name-toggle"><input id="plateMapShowProductNames" type="checkbox" checked><span>显示谷名</span></label>
+                <button class="plate-map-tool-button danger plate-map-reset-all-button" id="plateMapResetAllEdits" type="button" data-sticker-action="reset-all-edits" title="恢复所有标签位置和大小，并删除手动新增贴纸">全部恢复默认</button>
             </div>
             <div class="plate-map-label-editor" id="plateMapLabelEditor" hidden>
                 <div class="plate-map-label-editor-copy">
@@ -298,6 +304,39 @@
                 </div>
             </div>`;
         controls.appendChild(toolbar);
+
+        const resetAllDialog = document.createElement('div');
+        resetAllDialog.className = 'plate-map-custom-dialog-backdrop';
+        resetAllDialog.id = 'plateMapResetAllDialog';
+        resetAllDialog.hidden = true;
+        resetAllDialog.innerHTML = `
+            <section class="plate-map-custom-dialog plate-map-reset-dialog" role="dialog" aria-modal="true" aria-labelledby="plateMapResetAllTitle">
+                <header class="plate-map-custom-dialog-header">
+                    <div><span>余量图编辑</span><strong id="plateMapResetAllTitle">全部恢复默认</strong></div>
+                    <button class="plate-map-custom-dialog-close" type="button" data-reset-all-action="cancel" aria-label="关闭恢复默认确认框">×</button>
+                </header>
+                <div class="plate-map-custom-dialog-body">
+                    <p class="plate-map-reset-dialog-intro">只重置当前盘的余量图编辑，不会修改商品、绑定框或售罄贴纸素材。</p>
+                    <ul class="plate-map-reset-dialog-list">
+                        <li>全部尺寸拉杆恢复默认大小</li>
+                        <li>自动标签恢复默认位置、大小和层级</li>
+                        <li id="plateMapResetStickerCount">删除手动新增贴纸</li>
+                    </ul>
+                </div>
+                <footer class="plate-map-custom-dialog-actions">
+                    <button type="button" data-reset-all-action="cancel">取消</button>
+                    <button class="primary" type="button" data-reset-all-action="confirm">确认恢复</button>
+                </footer>
+            </section>`;
+        document.body.appendChild(resetAllDialog);
+        resetAllDialog.addEventListener('click', event => {
+            const action = event.target.closest('[data-reset-all-action]')?.dataset.resetAllAction;
+            if (action === 'confirm') resetAllPlateMapEdits();
+            else if (action === 'cancel' || event.target === resetAllDialog) closeResetAllDialog();
+        });
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && !resetAllDialog.hidden) closeResetAllDialog();
+        });
 
         layoutGroup.addEventListener('click', event => {
             const button = event.target.closest('[data-export-layout]');
@@ -515,15 +554,52 @@
         return { columns, rows, valid };
     }
 
+    function getRecommendedCustomGrid(sourceCount) {
+        if (sourceCount <= 0) return null;
+        if (sourceCount === 1) return { columns: 1, rows: 1 };
+        if (sourceCount === 2) return { columns: 2, rows: 1 };
+        if (sourceCount <= 4) return { columns: 2, rows: 2 };
+        if (sourceCount <= 6) return { columns: 3, rows: 2 };
+        if (sourceCount <= 9) return { columns: 3, rows: 3 };
+        if (sourceCount <= 12) return { columns: 4, rows: 3 };
+        return { columns: 4, rows: 4 };
+    }
+
+    function getCustomGridSourceCount() {
+        try {
+            return collectPlateMapSources().groups.length;
+        } catch (error) {
+            console.warn('读取当前盘整图数量失败:', error);
+            return 0;
+        }
+    }
+
     function syncPlateMapCustomGridDialog() {
         const { columns, rows, valid } = getCustomGridDialogValue();
         const summary = document.getElementById('plateMapCustomGridSummary');
         const applyButton = document.getElementById('plateMapApplyCustomGrid');
         if (summary) {
-            summary.textContent = valid
-                ? `每张最多放 ${columns * rows} 张整图，按 ${columns} 列 × ${rows} 行排列`
-                : `列数和行数可填 1–${MAX_CUSTOM_GRID_DIMENSION}，每张最多 ${MAX_CUSTOM_GRID_ITEMS} 张整图`;
-            summary.classList.toggle('is-error', !valid);
+            const sourceCount = getCustomGridSourceCount();
+            const recommendation = getRecommendedCustomGrid(sourceCount);
+            const capacity = valid ? columns * rows : 0;
+            const outputCount = valid && sourceCount ? Math.ceil(sourceCount / capacity) : 0;
+            summary.innerHTML = `
+                <div class="plate-map-custom-grid-metric">
+                    <span>当前盘</span>
+                    <strong>${sourceCount ? `${sourceCount} 张整图` : '暂未识别整图'}</strong>
+                </div>
+                <div class="plate-map-custom-grid-metric is-recommended">
+                    <span>推荐规格</span>
+                    <strong>${recommendation ? `${recommendation.columns} × ${recommendation.rows}` : '绑定后计算'}</strong>
+                </div>
+                <div class="plate-map-custom-grid-metric${valid ? '' : ' is-error'}">
+                    <span>单张容量</span>
+                    <strong>${valid ? `${capacity} 张` : `最多 ${MAX_CUSTOM_GRID_ITEMS} 张`}</strong>
+                </div>
+                <div class="plate-map-custom-grid-metric${valid ? '' : ' is-error'}">
+                    <span>预计生成</span>
+                    <strong>${valid ? `${outputCount} 张拼图` : '请调整规格'}</strong>
+                </div>`;
         }
         if (applyButton) {
             applyButton.disabled = !valid;
@@ -630,6 +706,7 @@
         if (action === 'upload-image') document.getElementById('plateMapSoldOutStickerInput')?.click();
         if (action === 'use-emoji') useCustomSoldOutEmoji();
         if (action === 'reset-image') resetSoldOutStickerImage();
+        if (action === 'reset-all-edits') openResetAllDialog();
     }
 
     function splitGraphemes(value) {
@@ -737,6 +814,76 @@
         }
     }
 
+    function createDefaultLabelAdjustment() {
+        return { offsetX: 0, offsetY: 0, scale: 1, z: null };
+    }
+
+    function isLabelAdjustmentModified(adjustment) {
+        if (!adjustment || typeof adjustment !== 'object') return false;
+        return Math.abs(Number(adjustment.offsetX || 0)) > 0.001
+            || Math.abs(Number(adjustment.offsetY || 0)) > 0.001
+            || Math.abs(Number(adjustment.scale || 1) - 1) > 0.001
+            || (adjustment.z !== null && adjustment.z !== undefined && adjustment.z !== '');
+    }
+
+    function hasPlateMapEdits() {
+        return state.globalEmojiSize !== DEFAULT_STICKER_SIZE
+            || state.priceLabelSize !== DEFAULT_PRICE_LABEL_SIZE
+            || state.nameLabelSize !== DEFAULT_NAME_LABEL_SIZE
+            || state.stockLabelSize !== DEFAULT_STOCK_LABEL_SIZE
+            || state.stickers.length > 0
+            || Object.values(state.labelAdjustments).some(isLabelAdjustmentModified);
+    }
+
+    function openResetAllDialog() {
+        const dialog = document.getElementById('plateMapResetAllDialog');
+        if (!dialog || !hasPlateMapEdits()) return;
+        const stickerCount = document.getElementById('plateMapResetStickerCount');
+        if (stickerCount) stickerCount.textContent = state.stickers.length
+            ? `删除 ${state.stickers.length} 个手动新增贴纸`
+            : '当前没有手动新增贴纸';
+        dialog.hidden = false;
+        dialog.querySelector('[data-reset-all-action="confirm"]')?.focus();
+    }
+
+    function closeResetAllDialog() {
+        const dialog = document.getElementById('plateMapResetAllDialog');
+        if (!dialog || dialog.hidden) return;
+        dialog.hidden = true;
+        document.getElementById('plateMapResetAllEdits')?.focus();
+    }
+
+    function resetAllPlateMapEdits() {
+        const manualCount = state.stickers.length;
+        const adjustedCount = Object.values(state.labelAdjustments).filter(isLabelAdjustmentModified).length;
+        state.globalEmojiSize = DEFAULT_STICKER_SIZE;
+        state.defaultSize = DEFAULT_STICKER_SIZE;
+        state.priceLabelSize = DEFAULT_PRICE_LABEL_SIZE;
+        state.nameLabelSize = DEFAULT_NAME_LABEL_SIZE;
+        state.stockLabelSize = DEFAULT_STOCK_LABEL_SIZE;
+        state.stickers = [];
+        state.labelAdjustments = {};
+        state.selectedStickerId = '';
+        state.selectedAutoLabelId = '';
+        state.dragging = null;
+        saveStickerSettings();
+        saveStickers();
+        saveLabelAdjustments();
+        applyPlateMapDisplaySettings();
+        renderManualStickers();
+        document.querySelectorAll('.plate-map-auto-label[data-label-id]').forEach(element => {
+            applyAutoLabelStyle(element, createDefaultLabelAdjustment());
+        });
+        applyLabelSelectionState();
+        updateToolbarState();
+        closeResetAllDialog();
+        const detail = [
+            adjustedCount ? `${adjustedCount} 个标签` : '',
+            manualCount ? `${manualCount} 个新增贴纸` : ''
+        ].filter(Boolean).join('、');
+        global.notifyExport?.(`已恢复全部默认${detail ? `，重置了 ${detail}` : ''}`);
+    }
+
     function readBlobAsDataUrl(blob) {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -772,6 +919,7 @@
         const useEmojiButton = document.getElementById('plateMapUseSoldOutEmoji');
         const uploadButton = document.getElementById('plateMapUploadSoldOutSticker');
         const resetButton = document.getElementById('plateMapResetSoldOutSticker');
+        const resetAllButton = document.getElementById('plateMapResetAllEdits');
         const labelEditor = document.getElementById('plateMapLabelEditor');
         const selectedLabelName = document.getElementById('plateMapSelectedLabelName');
         const selectedLabelHint = document.getElementById('plateMapSelectedLabelHint');
@@ -810,6 +958,7 @@
         if (resetButton) resetButton.disabled = !state.soldOutStickerDataUrl
             && state.soldOutStickerEmoji === DEFAULT_STICKER
             && state.soldOutStickerMode === 'emoji';
+        if (resetAllButton) resetAllButton.disabled = !hasPlateMapEdits();
         const selectedManual = state.stickers.find(sticker => sticker.id === state.selectedStickerId);
         const selectedAutoElement = state.selectedAutoLabelId
             ? document.querySelector(`.plate-map-auto-label[data-label-id="${escapeSelector(state.selectedAutoLabelId)}"]`)
@@ -963,14 +1112,21 @@
         if (!board) return;
         const rect = board.getBoundingClientRect();
         if (!rect.width || !rect.height) return;
+        const x = clamp(((event.clientX - rect.left) / rect.width) * 100, 0, 100);
+        const y = clamp(((event.clientY - rect.top) / rect.height) * 100, 0, 100);
+        const z = getNextLabelZ(board.dataset.sourceIdentity || '');
         const sticker = {
             id: `sticker-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
             sourceIdentity: board.dataset.sourceIdentity || '',
-            x: clamp(((event.clientX - rect.left) / rect.width) * 100, 0, 100),
-            y: clamp(((event.clientY - rect.top) / rect.height) * 100, 0, 100),
+            x,
+            y,
+            defaultX: x,
+            defaultY: y,
             text: DEFAULT_STICKER,
             size: state.globalEmojiSize,
-            z: getNextLabelZ(board.dataset.sourceIdentity || '')
+            defaultSize: state.globalEmojiSize,
+            z,
+            defaultZ: z
         };
         state.stickers.push(sticker);
         state.selectedStickerId = sticker.id;
@@ -1168,16 +1324,22 @@
         if (action === 'reset') {
             if (state.selectedStickerId) {
                 const sticker = state.stickers.find(item => item.id === state.selectedStickerId);
-                if (sticker) sticker.size = state.globalEmojiSize;
+                if (sticker) {
+                    sticker.x = clamp(Number(sticker.defaultX ?? sticker.x ?? 0), 0, 100);
+                    sticker.y = clamp(Number(sticker.defaultY ?? sticker.y ?? 0), 0, 100);
+                    sticker.size = clamp(Number(sticker.defaultSize ?? state.globalEmojiSize), 20, MAX_STICKER_SIZE);
+                    sticker.z = getStoredLabelZ(sticker.defaultZ, 1000);
+                }
                 saveStickers();
                 renderManualStickers();
             } else {
-                delete state.labelAdjustments[state.selectedAutoLabelId];
-                applyAutoLabelStyle(getSelectedLabelElement(), getAutoLabelAdjustment(state.selectedAutoLabelId));
+                state.labelAdjustments[state.selectedAutoLabelId] = createDefaultLabelAdjustment();
+                applyAutoLabelStyle(getSelectedLabelElement(), state.labelAdjustments[state.selectedAutoLabelId]);
                 saveLabelAdjustments();
             }
             applyLabelSelectionState();
             updateToolbarState();
+            global.notifyExport?.('已恢复所选标签的默认位置、大小和层级');
             return;
         }
         if (['bottom', 'down', 'up', 'top'].includes(action)) moveSelectedLabelLayer(action);
@@ -1339,12 +1501,16 @@
                 sourceIdentity: String(sticker.sourceIdentity || ''),
                 x: clamp(Number(sticker.x || 0), 0, 100),
                 y: clamp(Number(sticker.y || 0), 0, 100),
+                defaultX: clamp(Number(sticker.defaultX ?? sticker.x ?? 0), 0, 100),
+                defaultY: clamp(Number(sticker.defaultY ?? sticker.y ?? 0), 0, 100),
                 text: String(sticker.text || DEFAULT_STICKER),
                 size: clamp(Number(sticker.size || DEFAULT_STICKER_SIZE), 20, MAX_STICKER_SIZE),
+                defaultSize: clamp(Number(sticker.defaultSize ?? sticker.size ?? DEFAULT_STICKER_SIZE), 20, MAX_STICKER_SIZE),
                 textColor: normalizeColor(sticker.textColor, state.textColor),
                 backgroundColor: normalizeColor(sticker.backgroundColor, state.backgroundColor),
                 backgroundEnabled: !!sticker.backgroundEnabled,
-                z: getStoredLabelZ(sticker.z, 1000 + index)
+                z: getStoredLabelZ(sticker.z, 1000 + index),
+                defaultZ: getStoredLabelZ(sticker.defaultZ, getStoredLabelZ(sticker.z, 1000 + index))
             }));
         } catch (error) {
             state.stickers = [];
