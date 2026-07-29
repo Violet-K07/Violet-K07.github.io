@@ -10,6 +10,12 @@
         ])
     });
     const allowedPlateIds = new Set(config.plates.map(plate => plate.id));
+    const originalGetWorkspaceMeta = typeof global.getWorkspaceMeta === 'function'
+        ? global.getWorkspaceMeta
+        : null;
+    const originalGetWorkspaceSelection = typeof global.getCurrentWorkspaceSelection === 'function'
+        ? global.getCurrentWorkspaceSelection
+        : null;
 
     global.PUBLISHED_WORKSPACE_CONFIG = config;
 
@@ -27,7 +33,7 @@
 
     function getMeta(source) {
         if (source?.workspaceMeta?.groups) return source.workspaceMeta;
-        if (typeof global.getWorkspaceMeta === 'function') return global.getWorkspaceMeta();
+        if (originalGetWorkspaceMeta) return originalGetWorkspaceMeta.call(global);
         try {
             return JSON.parse(localStorage.getItem('workspaceMeta') || 'null');
         } catch (error) {
@@ -35,7 +41,7 @@
         }
     }
 
-    function findPublishedContext(meta) {
+    function findPublishedContext(meta, preferredPlateId = readStoredPlateId()) {
         if (!meta || !Array.isArray(meta.groups)) return null;
         const group = meta.groups.find(item => item?.id === config.groupId)
             || meta.groups.find(item => item?.plates?.some(plate => allowedPlateIds.has(plate?.id)));
@@ -50,40 +56,78 @@
             .filter(Boolean);
         if (!availablePlates.length) return null;
 
-        const preferredId = readStoredPlateId();
-        const selected = availablePlates.find(item => item.plate.id === preferredId)
+        const selected = availablePlates.find(item => item.plate.id === preferredPlateId)
             || availablePlates.find(item => item.plate.id === config.defaultPlateId)
             || availablePlates[0];
         return { group, plate: selected.plate, descriptor: selected.descriptor };
     }
 
-    function applyPublishedContext(source) {
-        const meta = getMeta(source);
-        const context = findPublishedContext(meta);
-        if (!context) return source;
-
-        const nextMeta = {
-            ...meta,
-            activeGroupId: context.group.id,
-            activePlateId: context.plate.id
+    function getPublishedSelection(meta, preferredPlateId) {
+        const context = findPublishedContext(meta, preferredPlateId);
+        if (!context) return null;
+        return {
+            meta: {
+                ...meta,
+                activeGroupId: context.group.id,
+                activePlateId: context.plate.id
+            },
+            activeGroup: context.group,
+            activePlate: context.plate,
+            descriptor: context.descriptor
         };
+    }
+
+    function applyPublishedContext(source, preferredPlateId) {
+        const meta = getMeta(source);
+        const selection = getPublishedSelection(meta, preferredPlateId);
+        if (!selection) return source;
+
+        const nextMeta = selection.meta;
         global.persistWorkspaceMeta?.(nextMeta);
-        global.dispatchEvent(new CustomEvent('published:workspace-ready', { detail: { meta: nextMeta } }));
 
         if (source && typeof source === 'object') {
             source.workspaceMeta = nextMeta;
-            source.groupId = context.group.id;
-            source.groupName = context.group.name;
-            source.plateId = context.plate.id;
-            source.plateName = context.plate.name;
+            source.groupId = selection.activeGroup.id;
+            source.groupName = selection.activeGroup.name;
+            source.plateId = selection.activePlate.id;
+            source.plateName = selection.activePlate.name;
         }
+
+        const detail = {
+            meta: nextMeta,
+            group: selection.activeGroup,
+            plate: selection.activePlate,
+            published: true
+        };
+        global.dispatchEvent(new CustomEvent('published:workspace-ready', { detail }));
+        global.dispatchEvent(new CustomEvent('workspace:changed', { detail }));
         return source;
+    }
+
+    global.getPublishedWorkspaceSelection = function () {
+        return getPublishedSelection(getMeta(null));
+    };
+    global.applyPublishedWorkspaceContext = applyPublishedContext;
+
+    if (originalGetWorkspaceMeta) {
+        global.getWorkspaceMeta = function (...args) {
+            const meta = originalGetWorkspaceMeta.apply(this, args);
+            return getPublishedSelection(meta)?.meta || meta;
+        };
+    }
+
+    if (originalGetWorkspaceSelection) {
+        global.getCurrentWorkspaceSelection = function (...args) {
+            const selection = originalGetWorkspaceSelection.apply(this, args);
+            return getPublishedSelection(selection?.meta || getMeta(null)) || selection;
+        };
     }
 
     if (typeof global.fetchGuziDataFromGist === 'function') {
         const fetchFromCloud = global.fetchGuziDataFromGist;
         global.fetchGuziDataFromGist = async function (...args) {
-            return applyPublishedContext(await fetchFromCloud.apply(this, args));
+            const requestedPlateId = readStoredPlateId() || config.defaultPlateId;
+            return applyPublishedContext(await fetchFromCloud.apply(this, args), requestedPlateId);
         };
     }
 

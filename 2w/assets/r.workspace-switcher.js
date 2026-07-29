@@ -68,6 +68,14 @@
         }).filter(Boolean);
     }
 
+    function getPublishedActivePlate(meta, plates) {
+        if (!plates.length) return null;
+        const selectedId = window.getPublishedWorkspaceSelection?.()?.activePlate?.id
+            || String(localStorage.getItem('currentPlateId') || '').trim()
+            || meta?.activePlateId;
+        return plates.find(plate => plate.id === selectedId) || null;
+    }
+
     function getMode() {
         const bodyMode = document.body?.dataset?.groupMode;
         if (bodyMode === 'admin' || bodyMode === 'client') return bodyMode;
@@ -625,7 +633,9 @@
         const publishedConfig = getPublishedConfig();
         let activeGroup = publishedConfig ? getPublishedGroup(state.meta) : getActiveGroup(state.meta);
         let publishedPlates = publishedConfig ? getPublishedPlates(activeGroup) : [];
-        let activePlate = getActivePlate(state.meta, activeGroup);
+        let activePlate = publishedConfig
+            ? getPublishedActivePlate(state.meta, publishedPlates)
+            : getActivePlate(state.meta, activeGroup);
         if (publishedConfig && publishedPlates.length && !publishedPlates.some(plate => plate.id === activePlate?.id)) {
             activePlate = publishedPlates.find(plate => plate.id === publishedConfig.defaultPlateId) || publishedPlates[0];
             state.meta.activeGroupId = activeGroup.id;
@@ -770,7 +780,10 @@
         meta.activeGroupId = group.id;
         meta.activePlateId = plate.id;
         if (publishedConfig) {
-            state.meta = persistMeta(meta);
+            const selectedMeta = typeof window.setWorkspaceSelection === 'function'
+                ? window.setWorkspaceSelection(group.id, plate.id)
+                : persistMeta(meta);
+            state.meta = normalizeMeta(selectedMeta || meta);
             renderSwitcher();
             setStatus(`已切换到 ${plate.name}`, 'success');
             window.dispatchEvent(new CustomEvent('workspace:changed', { detail: { meta: state.meta } }));
