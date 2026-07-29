@@ -1,7 +1,7 @@
 {
-  "name": "shu2w+盘用户端",
-  "short_name": "shu2w+盘",
-  "description": "shu2w+盘余量、认领、结算与到货排发查询",
+  "name": "2w盘 / 6k立牌盘用户端",
+  "short_name": "2w / 6k立牌",
+  "description": "切换查看 shu2w+盘与 shu 6800+立牌盘的余量、认领、结算与到货排发",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",

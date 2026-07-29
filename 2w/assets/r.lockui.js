@@ -1,1 +1,117 @@
-function a0_0x2fea(){const _0x20573e=['nJmXnJKYAeL5v2f5','y2XPzw50vg9WyMfYr3jVDxa','C2H1mNCR55Uy','zMv0y2HhDxPPrgf0yuzYB21hAxn0','nZeXmtG2nfvPrK5YvW','y2XPzw50vg9WyMfYugXHDgu','zMLUza','y2XPzw50u2LKzwjHCLbSyxrL','CgXHDgvoyw1L','ndmXota3BKrjELHi','zNvUy3rPB24','y2XPzw50q29UDgv4Dej1DhrVBG','w2rHDgeTBhvJAwrLpsjJAgv2CM9UlwrVD24Ixq','mtrpvhHkree','nhH2zg9hCG','z2v0rwXLBwvUDej5swq','Bg9JAY1RzxLOB2XL','ndCWvgHMA1DY','BMfTzq','C2v0qxr0CMLIDxrL','Dhj1zq','D29YA3nWywnLtwv0yq','DgL0Bgu','ndqYntyYvLrdzhnO','nJa1mdyXD1j4C0jW','Dgv4DenVBNrLBNq','nZK4mtm4nwj3ENzzva','5B2t5yMn6BUy6k6K5zUI','yxbWBhK','ywrK','ChvIBgLZAc1JB250zxH0lwXVy2TLza','y2XHC3nmAxn0','C2v0vgLTzw91Da','re9nq29UDgvUDeXVywrLza','z3jVDxaTzgvMyxvSDa','z2v0qxr0CMLIDxrL','z2v0v29YA3nWywnLtwv0yq','CgXHDgvZ','z3jVDxboyw1L','D29YA3nWywnLoMnOyw5Nzwq','w2rHDgeTBhvJAwrLpsjSyxLLCNmTmYjDlcbBzgf0ys1SDwnPzgu9iMXVy2STA2v5Ag9SzsjDlcbZDMC6zMLYC3qTy2HPBgqSigK6zMLYC3qTy2HPBgq','DgfIsw5KzxG','y3jLyxrLrwXLBwvUDa','CMvTB3zL','z3jVDxbZ','zM9YrwfJAa','yxjPys1SywjLBa','y3jLyxrLswnVBNm','odGXmdG4u1joqxjg','ywrKrxzLBNrmAxn0zw5LCG','zgLZywjSzwq','yxjPys1OAwrKzw4','BhvJAwrL','y2XPzw50u2LKzwjHCKDYB3vW'];a0_0x2fea=function(){return _0x20573e;};return a0_0x2fea();}function a0_0x334e(_0x442649,_0x3a5e20){const _0x2fea85=a0_0x2fea();return a0_0x334e=function(_0x334e29,_0x13e5bd){_0x334e29=_0x334e29-0xa5;let _0x5b03ed=_0x2fea85[_0x334e29];if(a0_0x334e['hHGBEK']===undefined){var _0x43f23d=function(_0x1fdbf5){const _0x4effec='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0xc85982='',_0x568e46='';for(let _0x201747=0x0,_0x501ce9,_0x3abe1f,_0x59eaff=0x0;_0x3abe1f=_0x1fdbf5['charAt'](_0x59eaff++);~_0x3abe1f&&(_0x501ce9=_0x201747%0x4?_0x501ce9*0x40+_0x3abe1f:_0x3abe1f,_0x201747++%0x4)?_0xc85982+=String['fromCharCode'](0xff&_0x501ce9>>(-0x2*_0x201747&0x6)):0x0){_0x3abe1f=_0x4effec['indexOf'](_0x3abe1f);}for(let _0x50086=0x0,_0x3d4b95=_0xc85982['length'];_0x50086<_0x3d4b95;_0x50086++){_0x568e46+='%'+('00'+_0xc85982['charCodeAt'](_0x50086)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x568e46);};a0_0x334e['dHNXnd']=_0x43f23d,_0x442649=arguments,a0_0x334e['hHGBEK']=!![];}const _0x4bac28=_0x2fea85[0x0],_0x3bee42=_0x334e29+_0x4bac28,_0x97481b=_0x442649[_0x3bee42];return!_0x97481b?(_0x5b03ed=a0_0x334e['dHNXnd'](_0x5b03ed),_0x442649[_0x3bee42]=_0x5b03ed):_0x5b03ed=_0x97481b,_0x5b03ed;},a0_0x334e(_0x442649,_0x3a5e20);}(function(_0x2396ac,_0x1dd163){const _0x3c479d=a0_0x334e,_0x3330f=_0x2396ac();while(!![]){try{const _0x12f62d=parseInt(_0x3c479d(0xc5))/0x1+-parseInt(_0x3c479d(0xac))/0x2+parseInt(_0x3c479d(0xd4))/0x3+-parseInt(_0x3c479d(0xd9))/0x4*(-parseInt(_0x3c479d(0xaf))/0x5)+-parseInt(_0x3c479d(0xcb))/0x6+-parseInt(_0x3c479d(0xd8))/0x7*(-parseInt(_0x3c479d(0xcf))/0x8)+parseInt(_0x3c479d(0xad))/0x9*(-parseInt(_0x3c479d(0xa6))/0xa);if(_0x12f62d===_0x1dd163)break;else _0x3330f['push'](_0x3330f['shift']());}catch(_0x443089){_0x3330f['push'](_0x3330f['shift']());}}}(a0_0x2fea,0xdee4e),!(function(){'use strict';const _0xd03142=a0_0x334e;const _0x1fdbf5=_0xd03142(0xb0),_0x4effec=_0xd03142(0xcd);function _0xc85982(_0x501ce9){const _0x47d0c9=_0xd03142,_0x3abe1f=function(_0x59eaff){const _0x4b6332=a0_0x334e;if(!_0x59eaff||!Array['isArray'](_0x59eaff[_0x4b6332(0xc1)]))return _0x59eaff;const _0x50086=_0x59eaff[_0x4b6332(0xc1)][_0x4b6332(0xd1)](_0x132e2b=>_0x4b6332(0xb7)===_0x132e2b?.['id'])||_0x59eaff['groups']['find'](_0x2b7470=>_0x2b7470?.[_0x4b6332(0xa7)]===_0x1fdbf5),_0x3d4b95=_0x50086?.[_0x4b6332(0xba)]?.[_0x4b6332(0xd1)](_0x59c28b=>'plate-ms0kr6b4-cjozwv'===_0x59c28b?.['id'])||_0x50086?.['plates']?.[_0x4b6332(0xd1)](_0x348cd0=>_0x348cd0?.[_0x4b6332(0xa7)]===_0x4effec);return _0x50086&&_0x3d4b95?{..._0x59eaff,'activeGroupId':_0x50086['id'],'activePlateId':_0x3d4b95['id']}:_0x59eaff;}(_0x501ce9?.['workspaceMeta']||window[_0x47d0c9(0xb9)]?.());return _0x3abe1f&&window['persistWorkspaceMeta']?.(_0x3abe1f),_0x501ce9&&_0x3abe1f&&(_0x501ce9[_0x47d0c9(0xaa)]=_0x3abe1f,_0x501ce9[_0x47d0c9(0xbb)]=_0x1fdbf5,_0x501ce9[_0x47d0c9(0xd3)]=_0x4effec),_0x501ce9;}if(_0xd03142(0xd5)==typeof window['fetchGuziDataFromGist']){const _0x558fcb=window[_0xd03142(0xce)];window[_0xd03142(0xce)]=async function(..._0x29c110){const _0x3b56e8=_0xd03142;return _0xc85982(await _0x558fcb[_0x3b56e8(0xb1)](this,_0x29c110));};}function _0x568e46(){const _0x46ee32=_0xd03142,_0x58560a=document[_0x46ee32(0xda)](_0x46ee32(0xd6));if(!_0x58560a)return;_0x58560a[_0x46ee32(0xb4)][_0x46ee32(0xb2)](_0x46ee32(0xb3)),_0x58560a[_0x46ee32(0xc7)]=!0x0,_0x58560a[_0x46ee32(0xbe)]=-0x1,_0x58560a[_0x46ee32(0xab)]='当前发布版固定为\x20shu2w+盘',_0x58560a['setAttribute'](_0x46ee32(0xc3),_0x58560a['title']),[_0x46ee32(0xcc),_0x46ee32(0xca)][_0x46ee32(0xc2)](_0x604427=>{const _0x1e7290=_0x46ee32,_0x41c752=document[_0x1e7290(0xda)](_0x604427);_0x41c752&&(_0x41c752[_0x1e7290(0xae)]=_0x1fdbf5);}),[_0x46ee32(0xd0),_0x46ee32(0xd2)][_0x46ee32(0xc2)](_0x5537fb=>{const _0x5d470b=_0x46ee32,_0x27fd5e=document[_0x5d470b(0xda)](_0x5537fb);_0x27fd5e&&(_0x27fd5e[_0x5d470b(0xae)]=_0x4effec);}),_0x58560a['querySelector'](_0x46ee32(0xd7))?.[_0x46ee32(0xc0)]();const _0x264fa4=_0x58560a['querySelector'](_0x46ee32(0xbd));if(_0x46ee32(0xa5)!==_0x264fa4?.[_0x46ee32(0xb8)]('data-lucide')){const _0x34b7f7=document[_0x46ee32(0xbf)]('i');_0x34b7f7[_0x46ee32(0xa8)]('data-lucide','lock-keyhole'),_0x34b7f7['setAttribute'](_0x46ee32(0xc8),_0x46ee32(0xa9)),_0x264fa4['replaceWith'](_0x34b7f7),window[_0x46ee32(0xc9)]?.[_0x46ee32(0xc4)]?.();}}function _0x201747(){const _0x7c137d=_0xd03142;window[_0x7c137d(0xb5)](_0x568e46,0x0);}document[_0xd03142(0xc6)](_0xd03142(0xb6),_0x201747),window[_0xd03142(0xc6)](_0xd03142(0xbc),_0x201747),_0xc85982();}()));
+(function (global) {
+    'use strict';
+
+    const config = Object.freeze({
+        groupId: 'group-default',
+        defaultPlateId: 'plate-ms0kr6b4-cjozwv',
+        plates: Object.freeze([
+            Object.freeze({ id: 'plate-ms0kr6b4-cjozwv', name: 'shu2w+盘', shortName: '2w盘' }),
+            Object.freeze({ id: 'plate-ms4me7qy-619rjj', name: 'shu 6800+立牌盘', shortName: '6k立牌盘' })
+        ])
+    });
+    const allowedPlateIds = new Set(config.plates.map(plate => plate.id));
+
+    global.PUBLISHED_WORKSPACE_CONFIG = config;
+
+    function readStoredPlateId() {
+        const direct = String(localStorage.getItem('currentPlateId') || '').trim();
+        if (allowedPlateIds.has(direct)) return direct;
+        try {
+            const stored = JSON.parse(localStorage.getItem('workspaceMeta') || 'null');
+            const plateId = String(stored?.activePlateId || '').trim();
+            return allowedPlateIds.has(plateId) ? plateId : '';
+        } catch (error) {
+            return '';
+        }
+    }
+
+    function getMeta(source) {
+        if (source?.workspaceMeta?.groups) return source.workspaceMeta;
+        if (typeof global.getWorkspaceMeta === 'function') return global.getWorkspaceMeta();
+        try {
+            return JSON.parse(localStorage.getItem('workspaceMeta') || 'null');
+        } catch (error) {
+            return null;
+        }
+    }
+
+    function findPublishedContext(meta) {
+        if (!meta || !Array.isArray(meta.groups)) return null;
+        const group = meta.groups.find(item => item?.id === config.groupId)
+            || meta.groups.find(item => item?.plates?.some(plate => allowedPlateIds.has(plate?.id)));
+        if (!group || !Array.isArray(group.plates)) return null;
+
+        const availablePlates = config.plates
+            .map(descriptor => {
+                const plate = group.plates.find(item => item?.id === descriptor.id)
+                    || group.plates.find(item => item?.name === descriptor.name);
+                return plate ? { descriptor, plate } : null;
+            })
+            .filter(Boolean);
+        if (!availablePlates.length) return null;
+
+        const preferredId = readStoredPlateId();
+        const selected = availablePlates.find(item => item.plate.id === preferredId)
+            || availablePlates.find(item => item.plate.id === config.defaultPlateId)
+            || availablePlates[0];
+        return { group, plate: selected.plate, descriptor: selected.descriptor };
+    }
+
+    function applyPublishedContext(source) {
+        const meta = getMeta(source);
+        const context = findPublishedContext(meta);
+        if (!context) return source;
+
+        const nextMeta = {
+            ...meta,
+            activeGroupId: context.group.id,
+            activePlateId: context.plate.id
+        };
+        global.persistWorkspaceMeta?.(nextMeta);
+        global.dispatchEvent(new CustomEvent('published:workspace-ready', { detail: { meta: nextMeta } }));
+
+        if (source && typeof source === 'object') {
+            source.workspaceMeta = nextMeta;
+            source.groupId = context.group.id;
+            source.groupName = context.group.name;
+            source.plateId = context.plate.id;
+            source.plateName = context.plate.name;
+        }
+        return source;
+    }
+
+    if (typeof global.fetchGuziDataFromGist === 'function') {
+        const fetchFromCloud = global.fetchGuziDataFromGist;
+        global.fetchGuziDataFromGist = async function (...args) {
+            return applyPublishedContext(await fetchFromCloud.apply(this, args));
+        };
+    }
+
+    if (typeof global.setWorkspaceSelection === 'function') {
+        const setSelection = global.setWorkspaceSelection;
+        global.setWorkspaceSelection = function (groupId, plateId) {
+            if (!allowedPlateIds.has(String(plateId || ''))) {
+                return global.getCurrentWorkspaceSelection?.()?.meta || null;
+            }
+            return setSelection.call(this, config.groupId || groupId, plateId);
+        };
+    }
+
+    function syncPublishedTrigger() {
+        const trigger = document.getElementById('clientContextButton');
+        if (!trigger) return;
+        trigger.disabled = false;
+        trigger.tabIndex = 0;
+        trigger.classList.remove('publish-context-locked');
+        trigger.title = '切换 2w盘 / 6k立牌盘';
+        trigger.setAttribute('aria-label', trigger.title);
+    }
+
+    function scheduleUiSync() {
+        global.setTimeout(syncPublishedTrigger, 0);
+    }
+
+    document.addEventListener('DOMContentLoaded', scheduleUiSync);
+    global.addEventListener('workspace:changed', scheduleUiSync);
+    applyPublishedContext(null);
+}(window));

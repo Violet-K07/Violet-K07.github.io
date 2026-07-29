@@ -103,6 +103,88 @@
     font-size: 10px;
 }
 
+.client-shell-ready .workspace-topbar-popover.workspace-published .workspace-mini-panel {
+    gap: 12px;
+}
+
+.client-shell-ready .workspace-published-picker {
+    display: grid;
+    gap: 10px;
+}
+
+.client-shell-ready .workspace-published-picker-copy {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.client-shell-ready .workspace-published-picker-copy span {
+    color: var(--cs-blue, #2468d8);
+    font-size: 10px;
+    font-weight: 900;
+}
+
+.client-shell-ready .workspace-published-picker-copy strong {
+    color: var(--cs-text, #17324f);
+    font-size: 12px;
+}
+
+.client-shell-ready .workspace-published-options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.client-shell-ready .workspace-published-options button {
+    min-width: 0;
+    min-height: 66px;
+    display: grid;
+    align-content: center;
+    gap: 4px;
+    padding: 10px 12px;
+    color: var(--cs-text, #17324f);
+    text-align: left;
+    background: var(--cs-surface, #fff);
+    border: 1px solid var(--cs-border-strong, #cbd7e5);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color .16s ease, background-color .16s ease, transform .16s ease;
+}
+
+.client-shell-ready .workspace-published-options button:hover:not(.active) {
+    border-color: var(--cs-blue, #2468d8);
+    transform: translateY(-1px);
+}
+
+.client-shell-ready .workspace-published-options button.active {
+    color: var(--cs-blue, #2468d8);
+    background: var(--cs-blue-soft, #eef5ff);
+    border-color: var(--cs-blue, #2468d8);
+    box-shadow: inset 3px 0 0 var(--cs-blue, #2468d8);
+}
+
+.client-shell-ready .workspace-published-options button span {
+    overflow: hidden;
+    font-size: 12px;
+    font-weight: 900;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.client-shell-ready .workspace-published-options button small {
+    overflow: hidden;
+    color: var(--cs-muted, #69798b);
+    font-size: 9px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.client-shell-ready .workspace-published-options button.active small { color: #526f98; }
+.client-shell-ready .workspace-published .workspace-panel-actions { grid-template-columns: 1fr; }
+.client-shell-ready .workspace-published .workspace-panel-actions .workspace-note { display: block; }
+
 .client-context-button[aria-expanded="true"] {
     color: var(--cs-blue);
     background: var(--cs-blue-soft);
@@ -138,10 +220,14 @@
     }
 }
 
+@media (max-width: 380px) {
+    .client-shell-ready .workspace-published-options { grid-template-columns: 1fr; }
+    .client-shell-ready .workspace-published-options button { min-height: 54px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .client-shell-ready .workspace-topbar-popover > .workspace-mini-panel,
     .client-context-button > svg:last-child {
         transition: none !important;
     }
 }
-

@@ -39,6 +39,35 @@
         saving: false
     };
 
+    function getPublishedConfig() {
+        const config = window.PUBLISHED_WORKSPACE_CONFIG;
+        if (!config || !Array.isArray(config.plates) || !config.plates.length) return null;
+        return config;
+    }
+
+    function getPublishedPlateIds() {
+        return new Set((getPublishedConfig()?.plates || []).map(plate => String(plate.id || '')));
+    }
+
+    function getPublishedGroup(meta) {
+        const config = getPublishedConfig();
+        if (!config) return null;
+        const allowedIds = getPublishedPlateIds();
+        return (meta?.groups || []).find(group => group.id === config.groupId)
+            || (meta?.groups || []).find(group => (group.plates || []).some(plate => allowedIds.has(plate.id)))
+            || null;
+    }
+
+    function getPublishedPlates(group) {
+        const config = getPublishedConfig();
+        if (!config || !group) return [];
+        return config.plates.map(descriptor => {
+            const plate = (group.plates || []).find(item => item.id === descriptor.id)
+                || (group.plates || []).find(item => item.name === descriptor.name);
+            return plate ? { ...plate, publishLabel: descriptor.shortName || descriptor.name || plate.name } : null;
+        }).filter(Boolean);
+    }
+
     function getMode() {
         const bodyMode = document.body?.dataset?.groupMode;
         if (bodyMode === 'admin' || bodyMode === 'client') return bodyMode;
@@ -460,7 +489,10 @@
         const collapsed = localStorage.getItem(COLLAPSE_KEY) !== 'false';
         const scope = getPageScope();
         const isClient = getMode() === 'client';
-        const panelActions = isClient
+        const publishedConfig = getPublishedConfig();
+        const panelActions = publishedConfig
+            ? ''
+            : isClient
             ? `
                 <button type="button" class="workspace-mini-btn primary" id="workspaceJoinGroupBtn">${escapeHtml(copy.createGroup)}</button>
                 <a class="workspace-mini-link" href="../admin/group.html">${escapeHtml(copy.ownerEntry)}</a>
@@ -471,9 +503,40 @@
                 <button type="button" class="workspace-mini-btn" id="workspaceCreatePlateBtn">${escapeHtml(copy.createPlate)}</button>
                 <button type="button" class="workspace-mini-btn" id="workspaceDemoBtn">载入模拟团盘</button>
             `;
+        const panelNote = publishedConfig
+            ? '浏览、购物车、结算和到货查询都会跟随当前选择的盘。'
+            : (scope === 'group' ? copy.descGroup : copy.descPlate);
+        const hierarchy = publishedConfig
+            ? `
+                <div class="workspace-published-picker">
+                    <div class="workspace-published-picker-copy">
+                        <span>切换数据</span>
+                        <strong>选择要查看的盘</strong>
+                    </div>
+                    <div class="workspace-published-options" id="workspacePublishedPlateOptions" role="group" aria-label="选择要查看的盘"></div>
+                </div>
+                <div class="workspace-published-compat" hidden>
+                    <select id="workspaceGroupSelect" aria-hidden="true" tabindex="-1"></select>
+                    <select id="workspacePlateSelect" aria-hidden="true" tabindex="-1"></select>
+                </div>
+            `
+            : `
+                <div class="workspace-hierarchy">
+                    <label class="workspace-field">
+                        <span>${escapeHtml(copy.groupLabel)}</span>
+                        <select id="workspaceGroupSelect"></select>
+                    </label>
+                    <div class="workspace-contains">包含</div>
+                    <label class="workspace-field">
+                        <span>${escapeHtml(copy.plateLabel)}</span>
+                        <select id="workspacePlateSelect"></select>
+                    </label>
+                </div>
+            `;
+        const manageLink = publishedConfig ? '' : `<a class="workspace-mini-link" href="group.html">${escapeHtml(copy.manage)}</a>`;
         const shell = document.createElement('section');
         shell.id = SWITCHER_ID;
-        shell.className = `workspace-mini ${collapsed ? 'collapsed' : 'expanded'}`;
+        shell.className = `workspace-mini ${publishedConfig ? 'workspace-published' : ''} ${collapsed ? 'collapsed' : 'expanded'}`;
         shell.innerHTML = `
             <div class="workspace-mini-bar">
                 <div class="workspace-mini-main">
@@ -486,24 +549,14 @@
                 </div>
                 <div class="workspace-mini-actions">
                     <button type="button" class="workspace-mini-btn" id="workspaceToggleBtn" aria-expanded="${String(!collapsed)}">${collapsed ? '展开切换' : '收起'}</button>
-                    <a class="workspace-mini-link" href="group.html">${escapeHtml(copy.manage)}</a>
+                    ${manageLink}
                 </div>
             </div>
             <div class="workspace-mini-panel">
-                <div class="workspace-hierarchy">
-                    <label class="workspace-field">
-                        <span>${escapeHtml(copy.groupLabel)}</span>
-                        <select id="workspaceGroupSelect"></select>
-                    </label>
-                    <div class="workspace-contains">包含</div>
-                    <label class="workspace-field">
-                        <span>${escapeHtml(copy.plateLabel)}</span>
-                        <select id="workspacePlateSelect"></select>
-                    </label>
-                </div>
+                ${hierarchy}
                 <div class="workspace-panel-actions">
                     ${panelActions}
-                    <span class="workspace-note">${escapeHtml(scope === 'group' ? copy.descGroup : copy.descPlate)}</span>
+                    <span class="workspace-note">${escapeHtml(panelNote)}</span>
                 </div>
                 <div class="workspace-status" id="workspaceSwitcherStatus"></div>
             </div>
@@ -519,6 +572,10 @@
         document.getElementById('workspaceToggleBtn')?.addEventListener('click', togglePanel);
         document.getElementById('workspaceGroupSelect')?.addEventListener('change', event => selectGroup(event.target.value));
         document.getElementById('workspacePlateSelect')?.addEventListener('change', event => selectPlate(event.target.value));
+        document.getElementById('workspacePublishedPlateOptions')?.addEventListener('click', event => {
+            const button = event.target.closest('[data-published-plate-id]');
+            if (button && !button.disabled) selectPlate(button.dataset.publishedPlateId);
+        });
         document.getElementById('workspaceJoinGroupBtn')?.addEventListener('click', openJoinGroupModal);
         document.getElementById('workspaceCreateGroupBtn')?.addEventListener('click', openCreateGroupModal);
         document.getElementById('workspaceCreatePlateBtn')?.addEventListener('click', openCreatePlateModal);
@@ -565,11 +622,20 @@
     function renderSwitcher() {
         ensureShell();
         state.meta = normalizeMeta(state.meta || readMeta());
-        const activeGroup = getActiveGroup(state.meta);
-        const activePlate = getActivePlate(state.meta, activeGroup);
+        const publishedConfig = getPublishedConfig();
+        let activeGroup = publishedConfig ? getPublishedGroup(state.meta) : getActiveGroup(state.meta);
+        let publishedPlates = publishedConfig ? getPublishedPlates(activeGroup) : [];
+        let activePlate = getActivePlate(state.meta, activeGroup);
+        if (publishedConfig && publishedPlates.length && !publishedPlates.some(plate => plate.id === activePlate?.id)) {
+            activePlate = publishedPlates.find(plate => plate.id === publishedConfig.defaultPlateId) || publishedPlates[0];
+            state.meta.activeGroupId = activeGroup.id;
+            state.meta.activePlateId = activePlate.id;
+            state.meta = persistMeta(state.meta);
+        }
         const groupSelect = document.getElementById('workspaceGroupSelect');
         const plateSelect = document.getElementById('workspacePlateSelect');
         const breadcrumb = document.getElementById('workspaceBreadcrumb');
+        const publishedOptions = document.getElementById('workspacePublishedPlateOptions');
 
         if (breadcrumb) {
             breadcrumb.innerHTML = `
@@ -580,14 +646,23 @@
         }
 
         if (!groupSelect || !plateSelect) return;
-        groupSelect.innerHTML = state.meta.groups.map(group => (
+        const visibleGroups = publishedConfig && activeGroup ? [activeGroup] : state.meta.groups;
+        groupSelect.innerHTML = visibleGroups.map(group => (
             `<option value="${escapeHtml(group.id)}"${group.id === state.meta.activeGroupId ? ' selected' : ''}>${escapeHtml(group.name)}</option>`
         )).join('');
 
-        const plates = Array.isArray(activeGroup?.plates) ? activeGroup.plates : [];
+        const plates = publishedConfig ? publishedPlates : (Array.isArray(activeGroup?.plates) ? activeGroup.plates : []);
         plateSelect.innerHTML = plates.map(plate => (
             `<option value="${escapeHtml(plate.id)}"${plate.id === activePlate?.id ? ' selected' : ''}>${escapeHtml(plate.name)}</option>`
         )).join('');
+        if (publishedOptions) {
+            publishedOptions.innerHTML = plates.map(plate => `
+                <button type="button" data-published-plate-id="${escapeHtml(plate.id)}" class="${plate.id === activePlate?.id ? 'active' : ''}" aria-pressed="${String(plate.id === activePlate?.id)}">
+                    <span>${escapeHtml(plate.publishLabel || plate.name)}</span>
+                    <small>${escapeHtml(plate.name)}</small>
+                </button>
+            `).join('');
+        }
     }
 
     function openNameModal(title, placeholder, onSubmit) {
@@ -675,6 +750,7 @@
     }
 
     async function selectGroup(groupId) {
+        if (getPublishedConfig()) return;
         const meta = normalizeMeta(state.meta || readMeta());
         const group = meta.groups.find(item => item.id === groupId);
         if (!group) return;
@@ -686,11 +762,21 @@
 
     async function selectPlate(plateId) {
         const meta = normalizeMeta(state.meta || readMeta());
-        const group = meta.groups.find(item => item.id === meta.activeGroupId) || meta.groups[0];
+        const publishedConfig = getPublishedConfig();
+        const group = publishedConfig ? getPublishedGroup(meta) : (meta.groups.find(item => item.id === meta.activeGroupId) || meta.groups[0]);
         const plate = (group?.plates || []).find(item => item.id === plateId);
         if (!group || !plate) return;
+        if (publishedConfig && !getPublishedPlateIds().has(plate.id)) return;
         meta.activeGroupId = group.id;
         meta.activePlateId = plate.id;
+        if (publishedConfig) {
+            state.meta = persistMeta(meta);
+            renderSwitcher();
+            setStatus(`已切换到 ${plate.name}`, 'success');
+            window.dispatchEvent(new CustomEvent('workspace:changed', { detail: { meta: state.meta } }));
+            if (shouldReloadAfterChange()) setTimeout(() => location.reload(), 120);
+            return;
+        }
         await saveMeta(meta, `已切换到 ${group.name} / ${plate.name}`);
     }
 
@@ -829,10 +915,15 @@
         renderSwitcher();
     }
 
+    window.addEventListener('published:workspace-ready', event => {
+        if (isGroupManagerPage()) return;
+        state.meta = normalizeMeta(event.detail?.meta || readMeta());
+        renderSwitcher();
+    });
+
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
         init();
     }
 })();
-
