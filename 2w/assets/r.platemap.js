@@ -149,6 +149,11 @@
             </section>`;
         document.body.appendChild(customGridDialog);
         customGridDialog.addEventListener('click', event => {
+            const recommendation = event.target.closest('[data-custom-grid-recommendation]');
+            if (recommendation && !recommendation.disabled) {
+                fillRecommendedCustomGrid();
+                return;
+            }
             const action = event.target.closest('[data-custom-grid-action]')?.dataset.customGridAction;
             if (action === 'apply') applyPlateMapCustomGrid();
             else if (action === 'cancel' || event.target === customGridDialog) closePlateMapCustomGridDialog();
@@ -574,6 +579,26 @@
         }
     }
 
+    function fillRecommendedCustomGrid() {
+        const recommendation = getRecommendedCustomGrid(getCustomGridSourceCount());
+        if (!recommendation) return;
+        const columnsInput = document.getElementById('plateMapCustomColumns');
+        const rowsInput = document.getElementById('plateMapCustomRows');
+        if (!columnsInput || !rowsInput) return;
+        columnsInput.value = String(recommendation.columns);
+        rowsInput.value = String(recommendation.rows);
+        syncPlateMapCustomGridDialog();
+        [columnsInput, rowsInput].forEach(input => {
+            input.classList.remove('is-recommendation-filled');
+            requestAnimationFrame(() => input.classList.add('is-recommendation-filled'));
+        });
+        setTimeout(() => {
+            columnsInput.classList.remove('is-recommendation-filled');
+            rowsInput.classList.remove('is-recommendation-filled');
+        }, 700);
+        document.getElementById('plateMapApplyCustomGrid')?.focus();
+    }
+
     function syncPlateMapCustomGridDialog() {
         const { columns, rows, valid } = getCustomGridDialogValue();
         const summary = document.getElementById('plateMapCustomGridSummary');
@@ -588,10 +613,11 @@
                     <span>当前盘</span>
                     <strong>${sourceCount ? `${sourceCount} 张整图` : '暂未识别整图'}</strong>
                 </div>
-                <div class="plate-map-custom-grid-metric is-recommended">
+                <button class="plate-map-custom-grid-metric is-recommended" type="button" data-custom-grid-recommendation ${recommendation ? '' : 'disabled'} aria-label="${recommendation ? `自动填入推荐规格 ${recommendation.columns} × ${recommendation.rows}` : '绑定整图后计算推荐规格'}">
                     <span>推荐规格</span>
                     <strong>${recommendation ? `${recommendation.columns} × ${recommendation.rows}` : '绑定后计算'}</strong>
-                </div>
+                    <small>${recommendation ? '点击自动填入' : '绑定整图后可用'}</small>
+                </button>
                 <div class="plate-map-custom-grid-metric${valid ? '' : ' is-error'}">
                     <span>单张容量</span>
                     <strong>${valid ? `${capacity} 张` : `最多 ${MAX_CUSTOM_GRID_ITEMS} 张`}</strong>

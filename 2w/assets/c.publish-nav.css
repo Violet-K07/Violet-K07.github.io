@@ -1,0 +1,15 @@
+/* Published 2w client: keep unfinished destinations out of public navigation. */
+.client-sidebar a[href*="shipping-page"],
+.client-sidebar a[href^="gifts.html"],
+.client-sidebar a[href^="group.html"],
+.client-mobile-nav a[href*="shipping-page"],
+.client-mobile-nav a[href^="gifts.html"],
+.client-mobile-nav a[href^="group.html"] {
+    display: none !important;
+}
+
+@media (max-width: 860px) {
+    .client-mobile-nav {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}

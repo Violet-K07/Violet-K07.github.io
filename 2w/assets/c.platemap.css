@@ -123,6 +123,10 @@
     font: 900 16px/1 Bahnschrift, sans-serif;
     text-align: center;
 }
+.plate-map-custom-grid-fields input.is-recommendation-filled {
+    border-color: #2468d8;
+    box-shadow: 0 0 0 3px rgba(36, 104, 216, .14);
+}
 .plate-map-custom-dialog-body p {
     min-height: 34px;
     display: flex;
@@ -168,6 +172,29 @@
 }
 .plate-map-custom-grid-metric.is-recommended { background: #eef5ff; }
 .plate-map-custom-grid-metric.is-recommended strong { color: #1f5fbd; }
+.plate-map-custom-grid-metric.is-recommended:is(button) {
+    width: 100%;
+    appearance: none;
+    color: inherit;
+    border: 0;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 160ms ease, box-shadow 160ms ease;
+}
+.plate-map-custom-grid-metric.is-recommended:is(button):hover { background: #e0ecff; }
+.plate-map-custom-grid-metric.is-recommended:is(button):focus-visible {
+    position: relative;
+    z-index: 1;
+    outline: 2px solid #2468d8;
+    outline-offset: -2px;
+}
+.plate-map-custom-grid-metric.is-recommended:is(button):disabled { cursor: default; opacity: .72; }
+.plate-map-custom-grid-metric.is-recommended small {
+    color: #4774ad;
+    font-size: 8px;
+    font-weight: 800;
+}
 .plate-map-custom-grid-metric.is-error strong { color: #a13b32; }
 .plate-map-custom-dialog-actions {
     display: grid;
